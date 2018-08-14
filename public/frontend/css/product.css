@@ -1,0 +1,321 @@
+.color ul li img.active {
+    border: 1px solid #a5a5a5;
+    padding: 4px !important;
+}
+.color ul li img:hover {
+  border: 1px solid #b5b5b5;
+  cursor: pointer;
+}
+#for-product{
+  margin-top: 5px;
+    margin-left: -73px;
+    width: 115%;
+}
+.sevice-area-bg{
+  position: relative;
+  background: #ffffff;
+}
+.color-box label {
+    margin-left: 10px;
+    font-size: 16px;
+    color: #212b52;
+    text-transform: uppercase;
+}
+.product-wrapper {
+  border-radius: 8px !important;
+}
+.price {
+	font-weight: 600;
+}
+#auto-contain > div.parent {
+	/*border: 1px solid #a9b0ca;*/
+}
+.main-image {
+  max-width: 80%;
+  max-height: 100%;
+}
+.main-image:hover {
+  cursor: url("https://www.alternateeve.com/images/icon/LOUPE.svg"), auto;
+}
+.zoomImg:hover {
+ cursor: url("https://www.alternateeve.com/images/icon/LOUPE.svg"), auto; 
+}
+#auto-contain > div.parent > .panzoom {
+  height: 585px;
+  vertical-align: middle;
+  display: table-cell; 
+} 
+#add-to-wishlist {
+    margin-left: -72px;
+    width: 114.8%;
+}
+.section-title{
+	text-align: center;
+	color: #212B52;	
+	}
+.section-title h2 {
+  padding: 6px 0;
+  font-weight: bold;
+  font-size: 27px;
+	text-transform: uppercase;
+}
+.related-product-container{
+	background: #D2D2CD;
+  position: relative;
+}
+.tabs-details{
+  position: relative;
+  background: #ffffff;
+  text-align: center;
+  padding-top: 4px;
+  padding-bottom: 35px;
+}
+.tabs-limit {
+  height: 11rem;
+  margin-top: -10.5rem;
+  background-image: linear-gradient(transparent,white);
+  filter: blur(1px) opacity(84.5%);
+}
+.tabs-details > input {
+  background: #ffffff;
+  border: 0px;
+  color: #212b52;
+  font-size: 17px;
+  text-transform: uppercase;
+  outline: none;
+}
+.tabs-details > input:hover {
+  color: #f6ac33;
+ }
+.height-content{
+  height:45rem;
+  overflow:hidden;
+}
+.reviews-height{
+  height: 425px;
+}
+.product-content{
+	height: 11.5rem;
+}
+.wishlist_prd_index {
+  display:block;
+  width:21px;
+  line-height:19px;
+  background:url("../../images/coeur_bleuOrange.svg") no-repeat;
+  text-decoration:none;
+  margin-left: -2.8rem;
+  margin-top: 0px;
+  transition: background-position-y 0.3s;
+  cursor: pointer;
+}
+.wishlist_prd_index:hover{
+  background-position-y: -27px;
+}
+#add-to-wishlist {
+    padding: 23px 0px;
+    display: inline-block;
+    background:url("../../images/coeur_bleuOrange.svg") no-repeat;
+    width: 50px;
+    margin: 0% 0 0 5%;
+    background-size: 100%;
+    transition: background-position-y 0.3s;
+}
+#add-to-wishlist:hover{
+  background-position-y: -64px;
+  background-size: 100%;
+}
+.category-parent-product a, .category-parent-product span{ 
+	font-size: 15px;
+	color: #212B51;
+}
+.contain-product-info {
+  margin-left: 6%;
+}
+.image-thumb {
+  margin-left: -30%;
+}
+#auto-contain {
+  margin-left: 30%;
+  }
+.owl-theme .owl-controls {
+    margin-top: 10px !important;
+}
+.content-video{
+	margin-left: 25%;
+    margin-right: 25%;
+}
+.content-video > .youtube-video > p {
+	text-align: center;
+	color: #212B52;	
+	font-size: 16px;
+	text-transform: uppercase;
+}
+.press-title a{
+  color: #ffffff;
+  background: #212B52;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 6px 0px;
+  display: block;
+  /* width: 60%; 
+      margin-left: 20%;*/
+  border-radius: 8px; 
+  text-transform: uppercase;
+}
+.press-title a:hover {
+  color: #212B52 !important;
+  background: #f6ac33;
+  text-decoration:none;
+  }
+.more {
+	color: #212B52 !important;
+	font-size: 15px !important;
+	font-weight: 400;
+	line-height: 2.5;
+}
+.product-tabs-content-inner p {
+	color: #212B52 !important;
+	font-size: 15px;
+}
+.review-login {
+    text-align: center;
+    color: #212B52;
+    font-size: 15px;
+}
+.wishlist_btn {
+    position: absolute;
+    margin-left: 108%;
+    margin-top: 5px;
+}
+.youtube-video {
+  padding-bottom: 19px;
+  margin-top: 7px;
+}
+.sell_coeur {
+  
+}
+.review-make{
+  color: #ffffff;
+  background: #212B52;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 14px 30px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.review-make:hover {
+  color: #212B52 !important;
+  background: #f6ac33;
+  text-decoration:none;
+}
+.review-btn{
+  text-align: center;
+}
+.table-reviews{
+  color: #212B52;
+}
+.header-table{
+  color: #D2D2CD;
+}
+.uppercase{
+  font-weight: bold;
+}
+.pagination-review{
+  text-align: right;
+}
+.pagination {
+    float: right;
+}
+.rating-area{
+  padding-left: 15px !important;
+}
+.owl-theme .owl-controls .owl-page span {
+    background: white !important;
+    opacity: 1 !important;
+    border: 0.5px solid #212B52;
+}
+.owl-theme .owl-controls .owl-page.active span {    
+    border: 5.5px solid #fff !important;
+    box-shadow:  0 0 0 0.8px #212b52;
+}
+#product-detail-tab.nav-tabs>li {
+    width: 33.1%;
+}
+
+#btn_details{
+  box-shadow: 2px 2px 6px 0px #999;
+  border-radius: 10px;
+  padding: 10px 30px;
+}
+#btn_details:hover{
+  background: #212b52;
+}
+
+.table-padding{
+  padding-top: 4%;
+  padding-bottom: 4%;
+}
+.table-padding > p{
+  line-height: 3;
+}
+.mr-sans-contenu{
+  margin-top: 7%;
+  margin-bottom: 5%;
+}
+.mr-sans-contenu-content{
+  height: 40% !important;
+}
+/* Normal desktop :992px. */
+@media (min-width: 992px) and (max-width: 1199px) {
+  #auto-contain {
+  width: 64%;
+}
+#for-product {
+  margin-left: -57px;
+}
+#add-to-cart{
+  margin-top: -3% !important;
+}
+#add-cart {
+    width: 100% !important;
+}
+.category-parent-product{
+  text-align: center;
+}
+}
+/* Tablet desktop :768px. */
+@media (min-width: 768px) and (max-width: 991px) {
+ #for-product {
+  margin-left: -43px;
+}
+#add-cart {
+    width: 100% !important;
+}
+.category-parent-product{
+  text-align: center;
+} 
+}
+/* Large Mobile :480px. */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+#for-product {
+  margin-left: -38px;
+}
+#add-cart {
+    width: 100% !important;
+}
+.category-parent-product{
+  text-align: center;
+}   
+}
+@media (max-width: 480px) {
+#for-product {
+  margin-left: -2px;
+}
+.category-parent-product{
+  text-align: center;
+}    
+#add-to-wishlist {
+  margin: 0% 0 0 0% !important;
+}
+}

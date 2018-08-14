@@ -1,0 +1,245 @@
+@media (min-width: 1367px){
+	.header-item {	
+	    height: 12vw;
+	}
+	.avatar{
+		font-size: 3.3vw;
+	}
+	.section-title img {
+	    width: 55%;
+	}
+	.title.title-active span {
+		font-size: 32px;	
+	}
+	.newsletter-item-img img{
+		width: 50%;
+	}
+	.login-area div.row {
+	    padding: 10px 10px 10px 10px;
+	}
+	.faq-content{
+		padding-left: 1%;
+		padding-right: 1%;
+	}
+}
+@media (min-width: 992px) and (max-width: 1367px) {
+	.header-item{
+	    height: 12vw;  
+	}
+	.avatar{
+		font-size: 3.2vw;
+	}
+	.section-title img {
+	    width: 6vw;
+	}
+	.newsletter-item-img img{
+		width: 50%;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+	.customer-area {
+	    margin-bottom: 8%;
+	    margin-left: 1%;
+	    margin-right: 1%;
+	}
+	.header-item {
+	    height: 13vw;    
+	}
+	.avatar{
+		font-size: 3.4rem;
+	}
+	.hello-avatar{
+		margin-left: 5%;
+	}
+	.section-title img {
+	    width: 10vw;
+	}
+	.title.title-active span {
+		font-size: 23px;		
+	}
+	.newsletter-item-img img{
+		width: 50%;
+	}
+}
+
+/**		Au dessous de 1023, cacher des éléments	**/
+@media(max-width: 1023px){
+	.section-customer {
+		display: none;
+	}
+	.header-item {
+	    height: 17vw;
+	    
+	}
+	.section-title img {
+	    width: 9vw;
+	}
+	.nav-item span {
+		display: none;
+	}
+	.nav-menu .nav>li>a{
+		padding: 1.5em 1.25em 3.5em 1.25em;
+	}
+	.nav-menu .nav>li>a>img {
+	    max-width: none;
+	    width: 5vw;
+	}
+	.newsletter-item-img {
+	    padding: 20px;
+	    height: 165px;
+	}
+}
+
+
+@media (min-width: 480px) and (max-width: 767px) {
+	.customer-area {
+	    margin-bottom: 10%;
+	    margin-left: 0%;
+	    margin-right: 0%;
+	}
+	.header-item {
+	    height: 20vw;
+	}
+	.section-title img {
+	    width: 13vw;
+	}
+	.title.title-active span {
+	    font-size: 19px;
+	}
+	.aside{
+		margin-bottom: 30px;
+	}
+	.nav-menu.content{
+		padding: 20px 0px;
+	}
+	ul.list-menu {
+	    display: grid;
+	    grid-template-columns: auto auto auto auto auto auto auto auto;
+	}
+	.nav-menu .nav>li>a>img {
+	    max-width: none;
+	    width: 6.5vw;
+	    margin: auto;
+	}
+	.nav-menu .nav>li>a{ 
+	    position: relative;
+	    display: inline;
+	    padding: 14px 0px;
+	    border-bottom: 0px;
+	    cursor: pointer;
+	}
+	.nav-menu .nav>li {
+		padding: 0vw 3vw;
+	    border-right: 1px solid black;
+
+	}
+	.nav-menu .nav>li:last-child{
+	    border-right: none;
+	}
+	.newsletter-item.checkbox {
+		width: 100%;
+		height: 50px;
+		margin-left: 10%;
+		display: grid;
+	    grid-template-columns: auto auto auto;
+	}
+	.newsletter-item p a {
+	    padding-top: 0px;
+	}
+	.newsletter-item-img img{
+		width: 60%;
+	}
+}
+
+@media (max-width: 480px) {
+	.customer-area {
+	    margin-bottom: 15%;
+	    margin-left: 0%;
+	    margin-right: 0%;
+	}
+	.container-fluid {
+	    padding-left: 0px;
+	    padding-right: 0px; 
+	}
+	.header-item {
+	    height: 25vw;
+	}
+	.section-title img {
+	    width: 16vw;
+	}
+	.title-icon{
+		padding-right: 0;
+	}
+	.title-active{
+		padding: 0;
+	}
+	.title.title-active span {
+		font-size: 15px;
+		margin-left: 10px;	
+	}
+	.aside{
+		margin-bottom: 30px;
+	}
+	.nav-menu.content{
+		padding: 20px 0px;
+	}
+	ul.list-menu {
+	    display: grid;
+	    grid-template-columns: auto auto auto auto auto auto auto auto;
+	}
+	.nav-menu .nav>li>a>img {
+	    max-width: none;
+	    width: 6vw;
+	    margin: auto;
+	}
+	.nav-menu .nav>li>a{ 
+	    position: relative;
+	    display: inline;
+	    padding: 14px 0px;
+	    border-bottom: 0px;
+	    cursor: pointer;
+	}
+	.nav-menu .nav>li {
+		padding: 10px;
+	    border-right: 1px solid black;
+
+	}
+	.nav-menu .nav>li:last-child{
+	    border-right: none;
+	}
+	.newsletter{
+		font-size: 13.5px !important;
+	}
+	.newsletter-item.checkbox {
+		width: 100%;
+		height: 50px;
+		margin-left: 5%;
+		display: grid;
+	    grid-template-columns: auto auto auto;
+	}
+	.newsletter-item p a {
+	    padding-top: 0px;
+	}
+	.newsletter-item-img img{
+		width: 100%;
+	}
+	.login-area form input {
+	    width: 100%;
+	}
+	.area-group {
+	    display: grid;
+	    grid-template-columns: 35% 32% 33%;
+	}
+	.area .select {
+		background: url(../../images/FLECHE.svg) #efefed no-repeat calc(100% - 10px);
+	    padding-left: 10px !important;
+	    background-size: 15% !important;
+	}
+	.inner-content {
+	    padding: 5%;
+	}
+	.container.mean-menu-area-logo {
+	    display: block !important;
+	}
+}

@@ -1,0 +1,17 @@
+<?php
+namespace App\Interfaces;
+
+interface StripeAccountRepositoryInterface
+{
+	public function create($input);
+
+	public function getAll();
+
+	public function updateById($id, $input);
+
+	public function deleteById($id);
+
+	public function getById($id);
+
+	public function getActiveStripeAccount();
+}
