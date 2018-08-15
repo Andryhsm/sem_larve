@@ -1,4 +1,4 @@
-        <form class="validate_form" method="POST" action="{!! url(LaravelLocalization::getCurrentLocale().'/customer/tickets/store') !!}">
+        <form class="validate_form" method="POST" action="{!! route('tickets-subscribe-store') !!}">
                     <div class="form-group">
                         <label for="subject">{!! trans('tickets.subject') !!}</label>
                         <input type="text" class="form-control" id="name" name="subject">
@@ -15,7 +15,7 @@
                                 <option value="">-- {!! trans('tickets.select_one') !!} --</option>
                                 @foreach($priorities as $prioritie)
                                     <?php 
-                                        $priority_translation = $prioritie->getByLanguageId(app('language')->language_id);
+                                        $priority_translation = $prioritie->getByLanguageId(1);
                                     ?> 
                                     <option value="{!! $prioritie->id !!}">{!! $priority_translation->name !!}</option>
                                 @endforeach
@@ -27,7 +27,7 @@
                                 <option value="">-- {!! trans('tickets.select_one') !!} --</option>
                                 @foreach($categories as $categorie)
                                     <?php 
-                                        $category_translation = $categorie->getByLanguageId(app('language')->language_id);
+                                        $category_translation = $categorie->getByLanguageId(1);
                                     ?> 
                                     <option value="{!! $categorie->id !!}">{!! $category_translation->name !!}</option>
                                 @endforeach

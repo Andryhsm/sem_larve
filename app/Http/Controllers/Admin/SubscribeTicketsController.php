@@ -27,7 +27,7 @@ class SubscribeTicketsController extends Controller
     	$priorities = $this->ticket_repository->getAllPriorities();
         $faqs = $this->faq_repository->getByType(1);
 
-    	return view('admin.tickets.index')->with('tickets', $tickets)->with('categories', $categories)->with('priorities', $priorities)->with('faqs',$faqs);
+    	return view('admin.tickets_subscribe.index')->with('tickets', $tickets)->with('categories', $categories)->with('priorities', $priorities)->with('faqs',$faqs);
     }
 
     public function store(Request $request)

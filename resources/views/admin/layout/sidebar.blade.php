@@ -255,9 +255,9 @@
             </li>
             @endif
             
-            @if(check_user_access(['help-faq', 'faq']))
-            <li class="treeview {{ set_active(['admin/help-faq']) }}">
-                <a href="#">
+            @if(check_user_access(['tickets-subscribe', 'faq']))
+            <li class="treeview {{ set_active(['admin/faq', 'admin/tickets-subscribe']) }}">
+                <a href="#">    
                     <i class="fa fa-book"></i>
                     <span>Support + FAQ </span>
                     <span class="pull-right-container">
@@ -265,9 +265,9 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                        @if(check_user_access(['help-faq']))
-                        <li class="{{ set_active(['admin/help-faq']) }}"><a
-                                    href="{!! url('/admin/help-faq') !!}"><i class="fa fa-circle-o"></i> Support</a>
+                        @if(check_user_access(['tickets-subscribe']))
+                        <li class="{{ set_active(['admin/tickets-subscribe']) }}"><a
+                                    href="{!! url('/admin/tickets-subscribe') !!}"><i class="fa fa-circle-o"></i> Support</a>
                         </li>
                         @endif
                         @if(check_user_access(['faq']))

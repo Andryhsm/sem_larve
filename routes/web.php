@@ -99,14 +99,12 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
 
             //--------------- Espace madio be subscribes  ---------------
 
-            Route::get('tickets', 'TicketsController@index')->name('tickets');
-            Route::post('tickets/store', 'TicketsController@store');
-            Route::post('tickets/add_comment', 'TicketsController@addComment');
-            Route::get('ajax_customer_info', 'SubscribeController@ajax_index');                    
-            Route::get('get-dashboard', 'SubscribeController@getDashboard');
+            Route::get('tickets-subscribe', 'SubscribeTicketsController@index')->name('tickets-subscribe');
+            Route::post('tickets-subscribe/store', 'SubscribeTicketsController@store')->name('tickets-subscribe-store');
+            Route::post('tickets-subscribe/add_comment', 'SubscribeTicketsController@addComment')->name('tickets-subscribe-add-comment');
+            Route::get('ajax_customer_info', 'SubscribeController@ajax_index')->name('ajax-customer-info'); 
            // Route::get('customer-informations', 'SubscribeController@getCustomerInformations')->name('customer_informations');
             Route::get('help-faq', 'SubscribeTicketsController@index')->name('help-faq');
-
             //--------------- End espace madio subscribes ---------------
 
 
@@ -214,15 +212,15 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
     
 
 });
- /*Route::group(['namespace' => 'Front', 'middleware' => ['localeSessionRedirect', 'localizationRedirect','language'], 'prefix' => LaravelLocalization::setLocale()], function () {
+ Route::group(['namespace' => 'Front', 'middleware' => ['localeSessionRedirect', 'localizationRedirect','language'], 'prefix' => LaravelLocalization::setLocale()], function () {
      Route::get('/', 'HomeController@index');
 
-//     Route::get('login', ['uses' => 'Auth\AuthController@getLogin', "middleware" => 'guest', 'as' => 'login']);
-//     Route::post('login', 'Auth\AuthController@postLogin');
+     Route::get('login', ['uses' => 'Auth\AuthController@getLogin', "middleware" => 'guest', 'as' => 'login']);
+     Route::post('login', 'Auth\AuthController@postLogin');
 
-//     Route::get('sign-up', ['uses' => 'Auth\AuthController@getRegister', "middleware" => 'guest', 'as' => 'customer-sign-up']);
+     Route::get('sign-up', ['uses' => 'Auth\AuthController@getRegister', "middleware" => 'guest', 'as' => 'customer-sign-up']);
 
-//     Route::get('logout', 'Auth\AuthController@destroy')->name('logout');
+     Route::get('logout', 'Auth\AuthController@destroy')->name('logout');
    
     Route::group(['middleware' => ['auth']], function () {
         Route::group(['middleware' => ['customer']], function () {
@@ -240,7 +238,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             }); 
             Route::post('manage-account', 'CustomerController@postManageAccount');           
         });
-    });*/
+    });
     Route::get('/{slug}/{item_id?}', function (Request $request, $slug, $item_id = null) {
         try {
             $value = \App\Url::where('target_url', $slug)->first();
@@ -269,5 +267,5 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             return view('front.404');
         }
     });
-/*});*/
+});
 

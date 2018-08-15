@@ -1,8 +1,8 @@
-@extends('front.customer.layout.master')
+@extends('admin.layout.master')
 
 @section('content')
     <div class="box-body">
-    	@include('front.customer.aid-faq.index')
+    	@include('admin.aid-faq.index')
         <div class="inner-content col-lg-12">
         	
     		<div role="tabpanel" class="tab-panel">
@@ -20,10 +20,10 @@
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="uploadTab">
-                    	@include('front.customer.tickets.form', ['categories' => $categories, 'priorities' => $priorities])
+                    	@include('admin.tickets_subscribe.form', ['categories' => $categories, 'priorities' => $priorities])
                     </div>
                     <div role="tabpanel" class="tab-pane" id="browseTab">
-                    	@include('front.customer.tickets.lists', ['tickets' => $tickets])
+                    	@include('admin.tickets_subscribe.lists', ['tickets' => $tickets])
                     </div>
                 </div>
             </div>
