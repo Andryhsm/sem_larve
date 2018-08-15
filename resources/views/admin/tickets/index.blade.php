@@ -41,6 +41,7 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @if(count($tickets) > 0)
                             @foreach($tickets->data as $ticket)
                                 <tr style="background-color: {!! ($ticket->status_id != null) ? $ticket->status->color : "#f2c113"; !!} !important;">
                                     <td class="hidden">{!! $ticket->id !!}</td>
@@ -71,6 +72,7 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            @endif
                             </tbody>
                         </table>
                     </div>

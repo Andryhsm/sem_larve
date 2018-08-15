@@ -21,13 +21,13 @@ class SubscribeTicketsController extends Controller
 
     public function index()
     {
-    	$tickets = $this->ticket_repository->getTicketsByUserId(auth()->user()->user_id);
+    	$tickets = $this->ticket_repository->getTicketsByUserId(auth()->guard('admin')->user()->admin_id);
     	$type = 2;
         $categories = $this->ticket_repository->getTypeCategories($type);
     	$priorities = $this->ticket_repository->getAllPriorities();
         $faqs = $this->faq_repository->getByType(1);
 
-    	return view('front.customer.tickets.index')->with('tickets', $tickets)->with('categories', $categories)->with('priorities', $priorities)->with('faqs',$faqs);
+    	return view('admin.tickets.index')->with('tickets', $tickets)->with('categories', $categories)->with('priorities', $priorities)->with('faqs',$faqs);
     }
 
     public function store(Request $request)
