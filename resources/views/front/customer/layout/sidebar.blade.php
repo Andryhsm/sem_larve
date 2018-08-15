@@ -45,36 +45,43 @@
                       <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
+                <ul class="treeview-menu">
+                    @foreach(get_training_pages() as $page)   
+                    <li class="{{ set_active([$page->url->target_url]) }}"><a
+                                href="{!! url(LaravelLocalization::getCurrentLocale().'/'.$page->url->target_url) !!}"><i class="fa fa-circle-o"></i> {!! $page->english->page_title !!}</a>
+                    </li>
+                    @endforeach
+                </ul>
             </li>
             
-                <li class="treeview {{ set_active(['*/customer/tickets']) }}">
-                    <a href="#">
-                        <i class="fa fa-book"></i>
-                        <span>Support + FAQ </span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        
-                            <li class="{{ set_active(['*/customer/tickets']) }}"><a
-                                        href="{!! url(LaravelLocalization::getCurrentLocale().'/customer/tickets') !!}"><i class="fa fa-circle-o"></i> Support</a>
-                            </li>
-                        
-                            <li class=""><a
-                                        href=""><i class="fa fa-circle-o"></i> FAQ</a>
-                            </li>
-                        
-                    </ul>
-                </li>
+            <li class="treeview {{ set_active(['*/customer/tickets']) }}">
+                <a href="#">
+                    <i class="fa fa-book"></i>
+                    <span>Support + FAQ </span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    
+                        <li class="{{ set_active(['*/customer/tickets']) }}"><a
+                                    href="{!! url(LaravelLocalization::getCurrentLocale().'/customer/tickets') !!}"><i class="fa fa-circle-o"></i> Support</a>
+                        </li>
+                    
+                        <li class=""><a
+                                    href=""><i class="fa fa-circle-o"></i> FAQ</a>
+                        </li>
+                    
+                </ul>
+            </li>
             
             <li class="treeview {{ set_active(['*/customer/customer-informations']) }}">
                 <a href="#">
                     <i class="fa fa-user"></i>
                     <span>Accounts</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     
@@ -94,5 +101,5 @@
             
         </ul>
     </section>
-    <!-- /.sidebar -->
+    
 </aside>
