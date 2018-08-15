@@ -227,12 +227,9 @@
                         <span>Keywords trends</span>
                     </a>
             </li>
-<<<<<<< HEAD
             @endif
 
-            @if(check_user_access(['training']))
-            <li class="treeview {{ set_active(['training'])}}">
-=======
+            
             <?php
                 $html = '';
                 $active_url = [];
@@ -243,8 +240,8 @@
                     $active_url[] = $page->url->target_url;
                 }
             ?>
+            @if(check_user_access(['training']))
             <li class="treeview {{ set_active($active_url)}}">
->>>>>>> d7feec8ef02e7432119a5d80792e530e41e23224
                 <a href="#">
                     <i class="fa fa-files-o"></i>
                     <span>Training</span>
