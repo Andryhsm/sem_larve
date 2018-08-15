@@ -9,6 +9,9 @@
     background: #b3d4fc;
     text-shadow: none;
 }
+.panel-title {
+  background: #fff;
+}
 .panel-group {
     width: 100% !important;
 }
@@ -50,7 +53,7 @@ a {
     width: 0;
     height: 0;
     position: absolute;
-    top: 28px;
+    top: 115px;
     left: -19px;
     border-top: 13px solid transparent;
     border-right: 10px solid #ffffff;
@@ -68,4 +71,16 @@ a {
     border-right: 10px solid #ffffff;
     border-bottom: 13px solid transparent;
     border-left: 10px solid transparent;
+}
+.right-arrow a::before {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 28px;
+    right: -19px;
+    border-top: 13px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 13px solid transparent;
+    border-left: 10px solid #ffffff;
 }
