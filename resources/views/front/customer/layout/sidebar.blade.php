@@ -47,7 +47,7 @@
                 </a>
             </li>
             
-                <li class="treeview {{ set_active(['admin/blog','admin/blog/*','admin/blog-category','admin/blog-category/*']) }}">
+                <li class="treeview {{ set_active(['*/customer/tickets']) }}">
                     <a href="#">
                         <i class="fa fa-book"></i>
                         <span>Support + FAQ </span>
@@ -68,7 +68,7 @@
                     </ul>
                 </li>
             
-            <li class="treeview {{ set_active(['admin/role','admin/role/*','admin/customer','admin/customer/*','admin/store','admin/store/*','admin/administrator','admin/administrator/*', 'admin/stripe_account', 'admin/stripe_account/*']) }}">
+            <li class="treeview {{ set_active(['*/customer/customer-informations']) }}">
                 <a href="#">
                     <i class="fa fa-user"></i>
                     <span>Accounts</span>
