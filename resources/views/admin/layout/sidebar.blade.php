@@ -210,27 +210,15 @@
              @endif
 
              <!-- Abonnée -->
-             @if(check_user_access(['email-template.index','update_setting', 'setting_update']))
-            <li class="treeview {{ set_active(['admin/system','admin/system/*','admin/meta_og','admin/meta_og/*', 'admin/epartner','admin/epartner/*','admin/email-template','admin/email-template/*']) }}">
+            @if(check_user_access(['update_setting']))
+            <li class="treeview {{ set_active(['admin/keywords_trends', 'admin/keywords_trends/*']) }}">
                 <a href="#">
                     <i class="fa fa-wrench"></i>
-                    <span>System</span>
+                    <span>Keywords trends</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
-                <ul class="treeview-menu">
-                    @if(check_user_access(['update_setting', 'setting_update']))
-                        <li class="{{ set_active(['admin/system','admin/system/*']) }}"><a
-                                    href="{!! URL::to('/admin/system') !!}"><i class="fa fa-circle-o"></i> Meta & OG</a>
-                        </li>
-                    @endif
-                    @if(check_user_access('email-template.index'))
-                        <li class="{{ set_active(['admin/email-template','admin/email-template/*']) }}"><a
-                                href="{!! URL::to('/admin/email-template') !!}"><i class="fa fa-circle-o"></i> Email/SMS
-                            Template</a></li>
-                    @endif
-                </ul>
             </li>
              @endif
         </ul>
