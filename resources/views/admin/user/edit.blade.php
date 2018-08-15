@@ -15,7 +15,7 @@
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab_1" data-toggle="tab">Information</a></li>
-                        <li><a href="#tab_2" data-toggle="tab">Address</a></li>
+                        <li class="hidden"><a href="#tab_2" data-toggle="tab">Address</a></li>
                     </ul>
                     <input type="hidden" name="type" value="{!! $type !!}">
                     <input type="hidden" name="type" value="{!! $type !!}">
@@ -25,7 +25,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="box-body">
-                                            <div class="form-group">
+                                            <div class="form-group hidden">
                                                 <label for="page_title" class="col-sm-2 control-label">First
                                                     Name</label>
                                                 <div class="col-sm-10">
@@ -33,7 +33,7 @@
                                                 </div>
 
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group hidden">
                                                 <label for="content-heading" class="col-sm-2 control-label">Last
                                                     Name</label>
                                                 <div class="col-sm-10">
@@ -71,7 +71,7 @@
                                                     {!! Form::checkbox('is_active', '1',($users->status=='1')? true:false) !!}
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group hidden">
                                                 {!! Form::label('profile_image','Profile Image',array('class' => 'col-sm-2 control-label')) !!}
                                                 <div class="col-sm-10">
                                                     {!! Form::file('profile_image',array('class'=>'form-control', 'placeholder'=>'Confirm Password')) !!}
@@ -80,14 +80,14 @@
                                                     @endif
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group hidden">
                                                 <label for="phone_number" class="col-sm-2 control-label">Phone Number</label>
                                                 <div class="col-sm-10">
                                                     {!! Form::text('phone_number',$users->phone_number,array('class'=>'form-control required', 'placeholder'=>'Phone Number')) !!}
                                                 </div>
                                             </div>
 
-                                            <div class="form-group">
+                                            <div class="form-group hidden">
                                                 <label class="col-sm-2 control-label" for="radius">Radius Of Research (KM)</label>
                                                 <div class="col-sm-10">
                                                     {!! Form::select('radius', getRadiusData(), $users->radius,['class'=>'form-control']) !!}

@@ -56,8 +56,8 @@ class UserRepository implements UserRepositoryInterface
 		$user_address->address1 = $input['address1'];
 		$user_address->address2 = $input['address2'];
 		$user_address->city = $input['city'];
-		$user_address->state_id = $input['state_id'];
-		$user_address->country_id = $input['country_id'];
+		$user_address->state_id = 5;
+		$user_address->country_id = 5;
 		$user_address->zip = $input['zip'];
 		$this->model->address()->save($user_address);
 

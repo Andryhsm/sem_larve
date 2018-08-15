@@ -14,10 +14,8 @@
 
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#tab_1" data-toggle="tab">Information</a></li>
-                        @if($type=='customer')
-                            <li><a href="#tab_2" data-toggle="tab">Address</a></li>
-                        @endif
+                        <li class="active"><a href="#tab_1" data-toggle="tab">Information</a> </li>
+                        <li class="hidden"><a href="#tab_2" data-toggle="tab">Address</a></li>
                     </ul>
                     <input type="hidden" name="type" value="{!! $type !!}">
                     <div class="tab-content">
@@ -112,7 +110,7 @@
                                                     <input type="text" name="address1"
                                                            class="form-control required"
                                                            id="address1"
-                                                           placeholder="Address1">
+                                                           placeholder="Address1" value="address1">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -121,7 +119,7 @@
                                                     <input type="text" name="address2"
                                                            class="form-control required"
                                                            id="address2"
-                                                           placeholder="Address2">
+                                                           placeholder="Address2" value="address2">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -129,7 +127,7 @@
                                                 <div class="col-sm-10">
                                                     <input type="text" name="company" class="form-control required"
                                                            id="company"
-                                                           placeholder="Company">
+                                                           placeholder="Company" value="company">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -138,7 +136,7 @@
                                                     <input type="text" name="city"
                                                            class="form-control required"
                                                            id="city"
-                                                           placeholder="City">
+                                                           placeholder="City" value="city">
                                                 </div>
                                             </div>
 
@@ -148,16 +146,7 @@
                                                     <input type="text" name="zip"
                                                            class="form-control required"
                                                            id="zip"
-                                                           placeholder="Zip/Postal Code">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label" for="country">State</label>
-                                                <div class="col-sm-10">
-                                                    <select name="state_id" id="state" class="form-control required">
-                                                        <option value="">Select State</option>
-                                                    </select>
+                                                           placeholder="Zip/Postal Code" value="12">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -172,6 +161,15 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="country">State</label>
+                                                <div class="col-sm-10">
+                                                    <select name="state_id" id="state" class="form-control required">
+                                                        <option value="">Select State</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
