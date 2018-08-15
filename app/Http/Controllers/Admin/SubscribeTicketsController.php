@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -8,7 +8,7 @@ use App\Repositories\TicketRepository;
 use App\Interfaces\FaqRepositoryInterface;
 use Illuminate\Support\Facades\Redirect;
 
-class TicketsController extends Controller
+class SubscribeTicketsController extends Controller
 {
     protected $ticket_repository;
     protected $faq_repository;

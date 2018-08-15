@@ -210,17 +210,72 @@
              @endif
 
              <!-- Abonnée -->
-            @if(check_user_access(['update_setting']))
-            <li class="treeview {{ set_active(['admin/keywords_trends', 'admin/keywords_trends/*']) }}">
+            <li class="treeview {{ set_active(['admin/attribute','admin/attribute/*','admin/attribute-set','admin/attribute-set/*','admin/brand','admin/brand/*','admin/category','admin/category/*','admin/product','admin/product/*','admin/brand-tag-translation','admin/brand-tag-translation/*']) }}">
+                    <a href="#">
+                        <i class="fa fa-book"></i>
+                        <span>Keywords trends</span>
+                    </a>
+            </li>
+            
+            <li class="treeview {{ set_active(['admin/page','admin/page/*','admin/banner','admin/banner/*','admin/coupon','admin/coupon/*','admin/special-product','admin/special-product/*','admin/faq','admin/faq/*'])}}">
                 <a href="#">
-                    <i class="fa fa-wrench"></i>
-                    <span>Keywords trends</span>
+                    <i class="fa fa-files-o"></i>
+                    <span>Training</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
+                <ul class="treeview-menu">
+                    @foreach(get_training_pages() as $page)   
+                    <li class="{{ set_active([$page->url->target_url]) }}"><a
+                                href="{!! url(LaravelLocalization::getCurrentLocale().'/'.$page->url->target_url) !!}"><i class="fa fa-circle-o"></i> {!! $page->english->page_title !!}</a>
+                    </li>
+                    @endforeach
+                </ul>
             </li>
-             @endif
+            
+            <li class="treeview {{ set_active(['*/customer/tickets']) }}">
+                <a href="#">
+                    <i class="fa fa-book"></i>
+                    <span>Support + FAQ </span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    
+                        <li class="{{ set_active(['*/admin/tickets']) }}"><a
+                                    href="{!! url('/admin/help-faq') !!}"><i class="fa fa-circle-o"></i> Support</a>
+                        </li>
+                    
+                        <li class=""><a
+                                    href=""><i class="fa fa-circle-o"></i> FAQ</a>
+                        </li>
+                    
+                </ul>
+            </li>
+            
+            <li class="treeview {{ set_active(['admin/customer-informations']) }}">
+                <a href="#">
+                    <i class="fa fa-user"></i>
+                    <span>Accounts</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    
+                    <li class="{{ set_active(['admin/customer-informations']) }}"><a
+                                href="{!! route('profile') !!}"><i class="fa fa-circle-o"></i> Profil</a>
+                    </li>
+                    
+                    <li class="{{ set_active(['admin/store','admin/store/*']) }}"><a
+                                href=""><i class="fa fa-circle-o"></i> Sub-accounts</a>
+                    </li>
+                    
+                    
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

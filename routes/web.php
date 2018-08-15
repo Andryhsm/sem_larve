@@ -89,9 +89,30 @@ Route::group(['namespace' => 'Admin', 'middleware' => [], 'prefix' => 'admin/'],
         Route::resource('email-template', 'EmailTemplateController');
 
         Route::get('profile', 'UserController@show')->name('profile');
-        // Route::patch('update/{id}', ['as' => 'profile.update', 'uses' => 'UserController@update']);
+        Route::patch('update/{id}', ['as' => 'profile.update', 'uses' => 'UserController@update']);
+
+
+
+
+        //--------------- Espace madio be subscribes  ---------------
+
+        Route::get('tickets', 'TicketsController@index')->name('tickets');
+        Route::post('tickets/store', 'TicketsController@store');
+        Route::post('tickets/add_comment', 'TicketsController@addComment');
+        Route::get('ajax_customer_info', 'SubscribeController@ajax_index');                    
+        Route::get('get-dashboard', 'SubscribeController@getDashboard');
+       // Route::get('customer-informations', 'SubscribeController@getCustomerInformations')->name('customer_informations');
+        Route::get('help-faq', 'SubscribeTicketsController@index')->name('help-faq');
+
+        //--------------- End espace madio subscribes ---------------
+
+
+
+
 
         // 
+
+    
 
        
         // Route::resource('banner', 'BannerController');
@@ -188,8 +209,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => [], 'prefix' => 'admin/'],
     });
 
 });
-// Route::group(['namespace' => 'Front', 'middleware' => ['localeSessionRedirect', 'localizationRedirect','language'], 'prefix' => LaravelLocalization::setLocale()], function () {
-//     Route::get('/', 'HomeController@index');
+ Route::group(['namespace' => 'Front', 'middleware' => ['localeSessionRedirect', 'localizationRedirect','language'], 'prefix' => LaravelLocalization::setLocale()], function () {
+     Route::get('/', 'HomeController@index');
 
 //     Route::get('login', ['uses' => 'Auth\AuthController@getLogin', "middleware" => 'guest', 'as' => 'login']);
 //     Route::post('login', 'Auth\AuthController@postLogin');
@@ -198,7 +219,6 @@ Route::group(['namespace' => 'Admin', 'middleware' => [], 'prefix' => 'admin/'],
 
 //     Route::get('logout', 'Auth\AuthController@destroy')->name('logout');
    
-<<<<<<< HEAD
     Route::group(['middleware' => ['auth']], function () {
         Route::group(['middleware' => ['customer']], function () {
             /*Customer specific routes*/
@@ -244,28 +264,5 @@ Route::group(['namespace' => 'Admin', 'middleware' => [], 'prefix' => 'admin/'],
             return view('front.404');
         }
     });
-
 });
-=======
-//     Route::group(['middleware' => ['auth']], function () {
-//         Route::group(['middleware' => ['customer']], function () {
-//             /*Customer specific routes*/
-//             Route::get('customer', 'CustomerController@index');
-
-//             Route::group(['prefix' => 'customer/'], function () {
-//                 Route::get('tickets', 'TicketsController@index')->name('tickets');
-//                 Route::post('tickets/store', 'TicketsController@store');
-//                 Route::post('tickets/add_comment', 'TicketsController@addComment');
-//                 Route::get('ajax_customer_info', 'CustomerController@ajax_index');                    
-//                 Route::get('get-dashboard', 'CustomerController@getDashboard');
-//                 Route::get('customer-informations', 'CustomerController@getCustomerInformations')->name('customer_informations');
-//                 Route::get('help-faq', 'TicketsController@index');
-//             }); 
-//             Route::post('manage-account', 'CustomerController@postManageAccount');           
-//         });
-//     });
-
-// });
->>>>>>> fd9d886c3291a0fbf269bc017fa8ae8543faea9a
-
 
