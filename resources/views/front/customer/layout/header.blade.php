@@ -17,12 +17,12 @@
         </a>
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-                <li class="dropdown notifications-menu">
+                <!-- <li class="dropdown notifications-menu">
                     <a href="{!! URL::to('/admin/tickets') !!}">
                       <i class="fa fa-bell-o"></i>
                       <span class="label label-warning">{!! count_tickets() !!}</span>
                     </a>
-                </li>
+                </li> -->
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
