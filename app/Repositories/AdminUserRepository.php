@@ -35,9 +35,9 @@ class AdminUserRepository implements AdminUserRepositoryInterface
         return $admin_user->save();
     }
 
-	public function get()
+	public function get($type)
 	{
-		return $this->model->orderBy('admin_id', 'desc')->get();
+		return $this->model->where('type',$type)->orderBy('admin_id', 'desc')->get();
 	}
 
 	public function getById($admin_id)
@@ -50,7 +50,7 @@ class AdminUserRepository implements AdminUserRepositoryInterface
 		return $this->model->where('role_id', 2)->orWhere('role_id',4)->get();
 	}
 
-	public function save($input)
+	public function save($input, $type)
 	{
 		$this->model->first_name = $input['first_name'];
 		$this->model->last_name = $input['last_name'];
@@ -60,6 +60,7 @@ class AdminUserRepository implements AdminUserRepositoryInterface
 		$this->model->role_id = $input['role_id'];
 		$this->model->profile_image = $input['image_name'];
 		$this->model->created_by = auth()->guard('admin')->user()->admin_id;
+		$this->model->type = $type;
 		$this->model->save();
 		return $this->model;
 

@@ -23,7 +23,8 @@ class AdminUserController extends Controller
 
 	public function index()
 	{
-		$admins = Datatables::collection($this->admin_repository->get())->make(true);
+		$type = 1;
+		$admins = Datatables::collection($this->admin_repository->get($type))->make(true);
 		$admins = $admins->getData();
 		return view('admin.administrator.list', compact('admins'));
 
@@ -43,7 +44,8 @@ class AdminUserController extends Controller
 		}
 		$input = $admin_request->all();
 		$input['image_name'] = $image_name;
-		$admin = $this->admin_repository->save($input);
+		$type=1;
+		$admin = $this->admin_repository->save($input,$type);
 		flash()->success(config('message.admin.add-success'));
 		return redirect()->route('administrator');
 	}

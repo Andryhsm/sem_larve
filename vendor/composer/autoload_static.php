@@ -1244,6 +1244,7 @@ class ComposerStaticInit92ae1cac27eec69b1bea17967da97a45
         'UpdateProductAffiliateTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_09_051422_update_product_affiliate_table.php',
         'UpdateProductTableAddColumnModifiedBy' => __DIR__ . '/../..' . '/database/migrations/2017_10_19_070104_update_product_table_add_column_modified_by.php',
         'UpdateProductTableColumn' => __DIR__ . '/../..' . '/database/migrations/2017_10_16_090509_update_product_table_column.php',
+        'UpdateTableAdminAddType' => __DIR__ . '/../..' . '/database/migrations/2018_08_15_140142_update_table_admin_add_type.php',
         'UpdateTableCommentTickets' => __DIR__ . '/../..' . '/database/migrations/2018_04_23_135357_update_table_comment_tickets.php',
         'UpdateTableStatusCategoriesPriority' => __DIR__ . '/../..' . '/database/migrations/2018_04_25_134953_update_table_status_categories_priority.php',
         'UpdateTableTicketitCategory' => __DIR__ . '/../..' . '/database/migrations/2018_05_03_132640_update_table_ticketit_category.php',

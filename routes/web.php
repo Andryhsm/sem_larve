@@ -70,7 +70,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::resource('tickets/categories', 'CategoriesController');
             Route::resource('tickets/comments', 'CommentController');
             Route::resource('tickets','TicketController');
-             Route::get('administrator', 'AdminUserController@index')->name('administrator');
+            Route::get('administrator', 'AdminUserController@index')->name('administrator');
             Route::post('administrator', 'AdminUserController@store')->name('save_administrator');
             Route::post('administrator/{admin_id}', 'AdminUserController@update')->name('update_administrator');
             Route::get('administrator/create', 'AdminUserController@create')->name('add_administrator');
@@ -82,6 +82,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::get('account/delete/{merchant_id}', 'UserController@destroy');
             Route::resource('role', 'AdminRoleController');
             Route::get('role/destroy/{role_id}', 'AdminRoleController@destroy')->name('delete_role');
+            
             Route::resource('faq','FaqController');
             Route::resource('customer', 'UserController');
             //Route::resource('merchant', 'UserController');
