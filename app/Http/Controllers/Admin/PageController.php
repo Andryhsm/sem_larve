@@ -29,6 +29,7 @@ class PageController extends Controller
      */
     public function index()
     {
+
         $pages = Datatables::collection($this->page_repository->getAll())->make(true);
         $pages = $pages->getData();
 
@@ -83,7 +84,7 @@ class PageController extends Controller
      */
     public function show($id)
     {
-        //
+        //dd($id);
     }
 
     /**
