@@ -212,13 +212,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
     
 
 });
-<<<<<<< HEAD
  Route::group(['namespace' => 'Front', 'middleware' => ['localeSessionRedirect', 'localizationRedirect','language'], 'prefix' => LaravelLocalization::setLocale()], function () {
      Route::get('/', 'HomeController@index');
-=======
-Route::group(['namespace' => 'Front', 'middleware' => ['localeSessionRedirect', 'localizationRedirect','language'], 'prefix' => LaravelLocalization::setLocale()], function () {
-    // Route::get('/', 'HomeController@index');
->>>>>>> 0d6caf82c7a5ce3e8b01079711f077f94f0b60ea
 
      Route::get('login', ['uses' => 'Auth\AuthController@getLogin', "middleware" => 'guest', 'as' => 'login']);
      Route::post('login', 'Auth\AuthController@postLogin');
@@ -243,7 +238,7 @@ Route::group(['namespace' => 'Front', 'middleware' => ['localeSessionRedirect', 
             }); 
             Route::post('manage-account', 'CustomerController@postManageAccount');           
         });
-    });
+    });*/
     Route::get('/{slug}/{item_id?}', function (Request $request, $slug, $item_id = null) {
         try {
             $value = \App\Url::where('target_url', $slug)->first();
