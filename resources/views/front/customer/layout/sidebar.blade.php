@@ -37,7 +37,18 @@
                     </a>
                 </li>
             
-            <li class="treeview {{ set_active(['admin/page','admin/page/*','admin/banner','admin/banner/*','admin/coupon','admin/coupon/*','admin/special-product','admin/special-product/*','admin/faq','admin/faq/*'])}}">
+            <?php
+                $html = '';
+                $active_url = [];
+                foreach(get_training_pages() as $page) {  
+                    $html = $html.'<li class="'.set_active([$page->url->target_url]).'">';
+                    $html = $html.'<a href="'.url(LaravelLocalization::getCurrentLocale().'/'.$page->url->target_url) .'">';
+                    $html = $html.'<i class="fa fa-circle-o"></i>'.$page->english->page_title.'</a></li>';
+                    $active_url[] = $page->url->target_url;
+                }
+                
+            ?>
+            <li class="treeview ">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
                     <span>Training</span>
@@ -46,11 +57,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    @foreach(get_training_pages() as $page)   
-                    <li class="{{ set_active([$page->url->target_url]) }}"><a
-                                href="{!! url(LaravelLocalization::getCurrentLocale().'/'.$page->url->target_url) !!}"><i class="fa fa-circle-o"></i> {!! $page->english->page_title !!}</a>
-                    </li>
-                    @endforeach
+                    <?php echo $html; ?>
                 </ul>
             </li>
             

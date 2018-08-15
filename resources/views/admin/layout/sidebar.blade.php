@@ -226,7 +226,7 @@
                     $active_url[] = $page->url->target_url;
                 }
             ?>
-            <li class="treeview {{ set_active($active_url)}}">
+            <li class="treeview {{ set_active(['admin/page','admin/page/*','admin/banner','admin/banner/*','admin/coupon','admin/coupon/*','admin/special-product','admin/special-product/*','admin/faq','admin/faq/*'])}}">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
                     <span>Training</span>
@@ -239,7 +239,7 @@
                 </ul>
             </li>
             
-            <li class="treeview {{ set_active(['admin/help-faq']) }}">
+            <li class="treeview {{ set_active(['*/customer/tickets']) }}">
                 <a href="#">
                     <i class="fa fa-book"></i>
                     <span>Support + FAQ </span>
@@ -249,12 +249,12 @@
                 </a>
                 <ul class="treeview-menu">
                     
-                        <li class="{{ set_active(['admin/help-faq']) }}"><a
+                        <li class="{{ set_active(['*/admin/tickets']) }}"><a
                                     href="{!! url('/admin/help-faq') !!}"><i class="fa fa-circle-o"></i> Support</a>
                         </li>
                     
                         <li class=""><a
-                                    href="#"><i class="fa fa-circle-o"></i> FAQ</a>
+                                    href=""><i class="fa fa-circle-o"></i> FAQ</a>
                         </li>
                     
                 </ul>
