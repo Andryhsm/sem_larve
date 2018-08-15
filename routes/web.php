@@ -169,8 +169,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => [], 'prefix' => 'admin/'],
         
         // Route::post('search-product','ProductController@searchProduct');
 
-        Route::get('company-account', 'AccountController@index')->name('company_account');
-        Route::get('company-account/{id}', 'AccountController@show')->name('company_account_detail');
+        // Route::get('company-account', 'AccountController@index')->name('company_account');
+        // Route::get('company-account/{id}', 'AccountController@show')->name('company_account_detail');
 
        
         
@@ -178,9 +178,9 @@ Route::group(['namespace' => 'Admin', 'middleware' => [], 'prefix' => 'admin/'],
         // Route::get('store/get-html/{index}','StoreController@getHtml');
         // Route::get('brand-json','BrandController@getAllBrands');
         
-        Route::resource('epartner','EpartnerController');
-        Route::resource('invoice','InvoiceController');
-        Route::post('remove-product-tag', 'ProductController@removeTag')->name('product_remove_tag');
+        // Route::resource('epartner','EpartnerController');
+        // Route::resource('invoice','InvoiceController');
+        // Route::post('remove-product-tag', 'ProductController@removeTag')->name('product_remove_tag');
         
         Route::get('404',function(){
             return view('admin.404');
