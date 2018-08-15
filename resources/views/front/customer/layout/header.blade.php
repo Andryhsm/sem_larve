@@ -42,7 +42,7 @@
                                 <a href="{!! url(LaravelLocalization::getCurrentLocale().'/customer/customer-informations') !!}" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
-                                <a href="{!! url('admin/logout') !!}" class="btn btn-default btn-flat">Sign out</a>
+                                <a href="{!! route('logout') !!}" class="btn btn-default btn-flat">Sign out</a>
                             </div>
                         </li>
                     </ul>
