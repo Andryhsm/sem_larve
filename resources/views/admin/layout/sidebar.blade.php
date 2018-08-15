@@ -234,7 +234,7 @@
                     @endforeach
                 </ul>
             </li>
-            
+            @endif
             <li class="treeview {{ set_active(['*/customer/tickets']) }}">
                 <a href="#">
                     <i class="fa fa-book"></i>
