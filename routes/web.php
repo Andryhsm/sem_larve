@@ -214,8 +214,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
     
 
 });
- /*Route::group(['namespace' => 'Front', 'middleware' => ['localeSessionRedirect', 'localizationRedirect','language'], 'prefix' => LaravelLocalization::setLocale()], function () {
-     Route::get('/', 'HomeController@index');
+Route::group(['namespace' => 'Front', 'middleware' => ['localeSessionRedirect', 'localizationRedirect','language'], 'prefix' => LaravelLocalization::setLocale()], function () {
+    // Route::get('/', 'HomeController@index');
 
 //     Route::get('login', ['uses' => 'Auth\AuthController@getLogin', "middleware" => 'guest', 'as' => 'login']);
 //     Route::post('login', 'Auth\AuthController@postLogin');
@@ -224,7 +224,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
 
 //     Route::get('logout', 'Auth\AuthController@destroy')->name('logout');
    
-    Route::group(['middleware' => ['auth']], function () {
+    /*Route::group(['middleware' => ['auth']], function () {
         Route::group(['middleware' => ['customer']], function () {
             
             Route::get('customer', 'CustomerController@index');
@@ -269,5 +269,5 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             return view('front.404');
         }
     });
-/*});*/
+});
 
