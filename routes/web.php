@@ -203,7 +203,8 @@ Route::group(['namespace' => 'Front', 'middleware' => ['localeSessionRedirect', 
                 Route::get('get-dashboard', 'CustomerController@getDashboard');
                 Route::get('customer-informations', 'CustomerController@getCustomerInformations')->name('customer_informations');
                 Route::get('help-faq', 'TicketsController@index');
-            });            
+            }); 
+            Route::post('manage-account', 'CustomerController@postManageAccount');           
         });
     });
 
