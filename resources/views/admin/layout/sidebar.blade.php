@@ -156,7 +156,7 @@
             @endif
 
             <!-- Admin -->
-            @if(check_user_access(['customer.index','store.index','administrator','role.index']))
+            @if(check_user_access(['customer.index','store.index','administrator','role.index', 'profile', 'sub-accounts']))
             <li class="treeview {{ set_active(['admin/role','admin/role/*','admin/customer','admin/customer/*','admin/store','admin/store/*','admin/administrator','admin/administrator/*']) }}">
                 <a href="#">
                     <i class="fa fa-user"></i>
@@ -180,6 +180,16 @@
                     <li class="{{ set_active(['admin/role','admin/role/*']) }}"><a href="{!! URL::to('admin/role') !!}"><i
                                     class="fa fa-circle-o"></i> Role manager</a></li>
                     @endif  
+                    @if(check_user_access('profile'))
+                    <li class="{{ set_active(['admin/profile']) }}"><a
+                                href="{!! route('profile') !!}"><i class="fa fa-circle-o"></i> Profil</a>
+                    </li>
+                    @endif
+                    @if(check_user_access('sub-accounts'))
+                    <li class="{{ set_active(['admin/store','admin/store/*']) }}"><a
+                                href=""><i class="fa fa-circle-o"></i> Sub-accounts</a>
+                    </li>
+                    @endif
                 </ul>
             </li>
             @endif
@@ -210,14 +220,17 @@
              @endif
 
              <!-- Abonnée -->
-            <li class="treeview {{ set_active(['admin/attribute','admin/attribute/*','admin/attribute-set','admin/attribute-set/*','admin/brand','admin/brand/*','admin/category','admin/category/*','admin/product','admin/product/*','admin/brand-tag-translation','admin/brand-tag-translation/*']) }}">
+            @if(check_user_access(['keywords-trends']))
+            <li class="treeview {{ set_active(['']) }}">
                     <a href="#">
                         <i class="fa fa-book"></i>
                         <span>Keywords trends</span>
                     </a>
             </li>
-            
-            <li class="treeview {{ set_active(['admin/page','admin/page/*','admin/banner','admin/banner/*','admin/coupon','admin/coupon/*','admin/special-product','admin/special-product/*','admin/faq','admin/faq/*'])}}">
+            @endif
+
+            @if(check_user_access(['training']))
+            <li class="treeview {{ set_active(['training'])}}">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
                     <span>Training</span>
@@ -233,7 +246,9 @@
                     @endforeach
                 </ul>
             </li>
+            @endif
             
+            @if(check_user_access(['help-faq', 'faq']))
             <li class="treeview {{ set_active(['admin/help-faq']) }}">
                 <a href="#">
                     <i class="fa fa-book"></i>
@@ -243,39 +258,19 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    
+                        @if(check_user_access(['help-faq']))
                         <li class="{{ set_active(['admin/help-faq']) }}"><a
                                     href="{!! url('/admin/help-faq') !!}"><i class="fa fa-circle-o"></i> Support</a>
                         </li>
-                    
+                        @endif
+                        @if(check_user_access(['faq']))
                         <li class=""><a
                                     href="#"><i class="fa fa-circle-o"></i> FAQ</a>
                         </li>
-                    
+                        @endif
                 </ul>
             </li>
-            
-            <li class="treeview {{ set_active(['admin/customer-informations']) }}">
-                <a href="#">
-                    <i class="fa fa-user"></i>
-                    <span>Accounts</span>
-                    <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    
-                    <li class="{{ set_active(['admin/customer-informations']) }}"><a
-                                href="{!! route('profile') !!}"><i class="fa fa-circle-o"></i> Profil</a>
-                    </li>
-                    
-                    <li class="{{ set_active(['admin/store','admin/store/*']) }}"><a
-                                href=""><i class="fa fa-circle-o"></i> Sub-accounts</a>
-                    </li>
-                    
-                    
-                </ul>
-            </li>
+            @endif
         </ul>
     </section>
     <!-- /.sidebar -->
