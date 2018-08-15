@@ -6,7 +6,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Account Management
+            Subscriber Accounts
         </h1>
         <div class="header-btn">
             <div class="clearfix">
@@ -21,6 +21,7 @@
     </section>
 
     <section class="content">
+        @include('admin.layout.notification')
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
@@ -28,8 +29,8 @@
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
+                                <th class="hidden">First Name</th>
+                                <th class="hidden">Last Name</th>
                                 <th>Email</th>
                                 <th>Status</th>
                                 <th>Role Name</th>
@@ -39,8 +40,8 @@
                             <tbody>
                             @foreach($users as $user)
                                 <tr>
-                                    <td>{!! $user->first_name !!}</td>
-                                    <td>{!! $user->last_name !!}</td>
+                                    <td class="hidden">{!! $user->first_name !!}</td>
+                                    <td class="hidden">{!! $user->last_name !!}</td>
                                     <td>{!! $user->email !!}</td>
                                     <td>
                                         @if($user->status=='1')
