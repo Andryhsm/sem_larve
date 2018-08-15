@@ -234,7 +234,7 @@
                 </ul>
             </li>
             
-            <li class="treeview {{ set_active(['*/customer/tickets']) }}">
+            <li class="treeview {{ set_active(['admin/help-faq']) }}">
                 <a href="#">
                     <i class="fa fa-book"></i>
                     <span>Support + FAQ </span>
@@ -244,12 +244,12 @@
                 </a>
                 <ul class="treeview-menu">
                     
-                        <li class="{{ set_active(['*/admin/tickets']) }}"><a
+                        <li class="{{ set_active(['admin/help-faq']) }}"><a
                                     href="{!! url('/admin/help-faq') !!}"><i class="fa fa-circle-o"></i> Support</a>
                         </li>
                     
                         <li class=""><a
-                                    href=""><i class="fa fa-circle-o"></i> FAQ</a>
+                                    href="#"><i class="fa fa-circle-o"></i> FAQ</a>
                         </li>
                     
                 </ul>
