@@ -216,8 +216,9 @@
                         <span>Keywords trends</span>
                     </a>
             </li>
-            
-            <li class="treeview {{ set_active(['admin/page','admin/page/*','admin/banner','admin/banner/*','admin/coupon','admin/coupon/*','admin/special-product','admin/special-product/*','admin/faq','admin/faq/*'])}}">
+
+            @if(check_user_access(['training']))
+            <li class="treeview {{ set_active(['training'])}}">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
                     <span>Training</span>
