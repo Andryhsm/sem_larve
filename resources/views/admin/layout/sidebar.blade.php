@@ -156,7 +156,7 @@
             @endif
 
             <!-- Admin -->
-            @if(check_user_access(['customer.index','store.index','administrator','role.index']))
+            @if(check_user_access(['customer.index','store.index','administrator','role.index', 'profile', 'sub-accounts']))
             <li class="treeview {{ set_active(['admin/role','admin/role/*','admin/customer','admin/customer/*','admin/store','admin/store/*','admin/administrator','admin/administrator/*']) }}">
                 <a href="#">
                     <i class="fa fa-user"></i>
@@ -180,6 +180,16 @@
                     <li class="{{ set_active(['admin/role','admin/role/*']) }}"><a href="{!! URL::to('admin/role') !!}"><i
                                     class="fa fa-circle-o"></i> Role manager</a></li>
                     @endif  
+                    @if(check_user_access('profile'))
+                    <li class="{{ set_active(['admin/profile']) }}"><a
+                                href="{!! route('profile') !!}"><i class="fa fa-circle-o"></i> Profil</a>
+                    </li>
+                    @endif
+                    @if(check_user_access('sub-accounts'))
+                    <li class="{{ set_active(['admin/store','admin/store/*']) }}"><a
+                                href=""><i class="fa fa-circle-o"></i> Sub-accounts</a>
+                    </li>
+                    @endif
                 </ul>
             </li>
             @endif
@@ -210,15 +220,28 @@
              @endif
 
              <!-- Abonnée -->
-            <li class="treeview {{ set_active(['admin/attribute','admin/attribute/*','admin/attribute-set','admin/attribute-set/*','admin/brand','admin/brand/*','admin/category','admin/category/*','admin/product','admin/product/*','admin/brand-tag-translation','admin/brand-tag-translation/*']) }}">
+            @if(check_user_access(['keywords-trends']))
+            <li class="treeview {{ set_active(['']) }}">
                     <a href="#">
                         <i class="fa fa-book"></i>
                         <span>Keywords trends</span>
                     </a>
             </li>
+            @endif
 
+            
+            <?php
+                $html = '';
+                $active_url = [];
+                foreach(get_training_pages() as $page) {  
+                    $html = $html.'<li class="'.set_active([$page->url->target_url]).'">';
+                    $html = $html.'<a href="'.url(LaravelLocalization::getCurrentLocale().'/'.$page->url->target_url) .'">';
+                    $html = $html.'<i class="fa fa-circle-o"></i>'.$page->english->page_title.'</a></li>';
+                    $active_url[] = $page->url->target_url;
+                }
+            ?>
             @if(check_user_access(['training']))
-            <li class="treeview {{ set_active(['training'])}}">
+            <li class="treeview {{ set_active($active_url)}}">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
                     <span>Training</span>
@@ -227,15 +250,13 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    @foreach(get_training_pages() as $page)   
-                    <li class="{{ set_active([$page->url->target_url]) }}"><a
-                                href="{!! url(LaravelLocalization::getCurrentLocale().'/'.$page->url->target_url) !!}"><i class="fa fa-circle-o"></i> {!! $page->english->page_title !!}</a>
-                    </li>
-                    @endforeach
+                    <?php echo $html; ?>
                 </ul>
             </li>
             @endif
-            <li class="treeview {{ set_active(['*/customer/tickets']) }}">
+            
+            @if(check_user_access(['help-faq', 'faq']))
+            <li class="treeview {{ set_active(['admin/faq', 'admin/tickets-subscribe']) }}">
                 <a href="#">
                     <i class="fa fa-book"></i>
                     <span>Support + FAQ </span>
@@ -244,39 +265,19 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    
-                        <li class="{{ set_active(['*/admin/tickets']) }}"><a
-                                    href="{!! url('/admin/help-faq') !!}"><i class="fa fa-circle-o"></i> Support</a>
+                        @if(check_user_access(['tickets-subscribe']))
+                        <li class="{{ set_active(['admin/tickets-subscribe']) }}"><a
+                                    href="{!! url('/admin/tickets-subscribe') !!}"><i class="fa fa-circle-o"></i> Support</a>
                         </li>
-                    
+                        @endif
+                        @if(check_user_access(['faq']))
                         <li class=""><a
-                                    href=""><i class="fa fa-circle-o"></i> FAQ</a>
+                                    href="#"><i class="fa fa-circle-o"></i> FAQ</a>
                         </li>
-                    
+                        @endif
                 </ul>
             </li>
-            
-            <li class="treeview {{ set_active(['admin/customer-informations']) }}">
-                <a href="#">
-                    <i class="fa fa-user"></i>
-                    <span>Accounts</span>
-                    <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    
-                    <li class="{{ set_active(['admin/customer-informations']) }}"><a
-                                href="{!! route('profile') !!}"><i class="fa fa-circle-o"></i> Profil</a>
-                    </li>
-                    
-                    <li class="{{ set_active(['admin/store','admin/store/*']) }}"><a
-                                href=""><i class="fa fa-circle-o"></i> Sub-accounts</a>
-                    </li>
-                    
-                    
-                </ul>
-            </li>
+            @endif
         </ul>
     </section>
     <!-- /.sidebar -->

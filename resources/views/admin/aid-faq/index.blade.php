@@ -17,13 +17,13 @@
                             <div class="panel-heading {!! $class !!}" role="tab" id="headingOne">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse{!! $faq->id !!}" aria-expanded="true" aria-controls="collapse{!! $faq->id !!}">
-                                        {!! $faq->byLanguage(app('language')->language_id,'question') !!}
+                                        {!! $faq->byLanguage(1,'question') !!}
                                     </a>
                                 </h4>
                             </div>
                             <div id="collapse{!! $faq->id !!}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{!! $faq->id !!}">
                                 <div class="panel-body">
-                                    {!! $faq->byLanguage(app('language')->language_id,'answer') !!}
+                                    {!! $faq->byLanguage(1,'answer') !!}
                                 </div>
                             </div>
                         </div>
@@ -33,15 +33,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="col-lg-12 mb-30">
-            
-        </div>
-        <div class="{!! ((app('language')->language_id==2)? "col-lg-6 col-md-offset-3 ": "col-lg-4 col-md-offset-4") !!}">
-            <div class="question-area text-center">
-                <h3>{!! trans('faq.have_question') !!}</h3>
-                <a class="btn btn-clickee-default" href="{!! url('contact-us') !!}">{!! trans('faq.contact_us') !!}</a>
-            </div>
-        </div> -->
     </div>
 </div>
 
