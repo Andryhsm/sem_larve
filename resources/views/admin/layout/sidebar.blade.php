@@ -22,6 +22,7 @@
         </form>
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
+            <!-- Admin et Abonnée -->
             @if(check_user_access(['dashboard']))
             <li class="active treeview">
                 <a href="{!! route('dashboard') !!}">
@@ -30,6 +31,7 @@
             </li>
             @endif
 
+            <!-- Admin -->
             @if(check_user_access(['orders','order-status.index']))
             <li class="treeview {{ set_active(['admin/order-status','admin/order-status/*','admin/sales/*']) }}">
                 <a href="#">
@@ -54,9 +56,10 @@
                     </ul>
                 </li>
                 @endif
-            
+
+            <!-- Admin -->
             @if(check_user_access(['product_billed','orders']))
-            <li class="treeview {{ set_active(['admin/statistics/sales','admin/statistics/sales/*','admin/finance','admin/finance/*']) }}">
+            <li class="treeview {{ set_active(['admin/statistics/sales','admin/statistics/sales/*']) }}">
                 <a href="#">
                     <i class="fa fa-bar-chart"></i>
                     <span>Statistics</span>
@@ -67,8 +70,9 @@
             </li>
             @endif
 
-            @if(check_user_access(['page.index','email-template.index','coupon','banner.index']))
-            <li class="treeview {{ set_active(['admin/page','admin/page/*','admin/banner','admin/banner/*','admin/coupon','admin/coupon/*','admin/special-product','admin/special-product/*','admin/faq','admin/faq/*'])}}">
+            <!-- Admin -->
+            @if(check_user_access(['page.index','email-template.index']))
+            <li class="treeview {{ set_active(['admin/page','admin/page/*','admin/banner','admin/banner/*','admin/coupon','admin/coupon/*','admin/faq','admin/faq/*'])}}">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
                     <span>Training + FAQ</span>
@@ -91,14 +95,15 @@
             </li>
             @endif
 
+            <!-- Admin -->
             @if(check_user_access(['blog.index','blog-category.index']))
                 <li class="treeview {{ set_active(['admin/blog','admin/blog/*','admin/blog-category','admin/blog-category/*']) }}">
                     <a href="#">
                         <i class="fa fa-book"></i>
                         <span>Blog </span>
                         <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
                         @if(check_user_access('blog-category.index'))
@@ -115,8 +120,9 @@
                 </li>
             @endif
 
+            <!-- Admin -->
             @if(check_user_access(['priorities.index', 'statuses.index', 'categories.index', 'product-rating.index']))
-                <li class="treeview {{ set_active(['admin/tickets/priorities/*','admin/tickets/priorities', 'admin/tickets/statuses/*', 'admin/tickets/statuses', 'admin/tickets/categories', 'admin/tickets/categories/*', 'admin/tickets','admin/tickets/lists', 'admin/product-rating','admin/product-rating/*']) }}">
+                <li class="treeview {{ set_active(['admin/tickets/priorities/*','admin/tickets/priorities', 'admin/tickets/statuses/*', 'admin/tickets/statuses', 'admin/tickets/categories', 'admin/tickets/categories/*', 'admin/tickets','admin/tickets/lists']) }}">
                 <a href="#">
                     <i class="fa fa-ticket"></i>
                     <span>Comm. & Tickets</span>
@@ -149,8 +155,9 @@
             </li>
             @endif
 
-            @if(check_user_access(['customer.index','store.index','administrator','role.index', 'stripe_account.index']))
-            <li class="treeview {{ set_active(['admin/role','admin/role/*','admin/customer','admin/customer/*','admin/store','admin/store/*','admin/administrator','admin/administrator/*', 'admin/stripe_account', 'admin/stripe_account/*']) }}">
+            <!-- Admin -->
+            @if(check_user_access(['customer.index','store.index','administrator','role.index']))
+            <li class="treeview {{ set_active(['admin/role','admin/role/*','admin/customer','admin/customer/*','admin/store','admin/store/*','admin/administrator','admin/administrator/*']) }}">
                 <a href="#">
                     <i class="fa fa-user"></i>
                     <span>Accounts</span>
@@ -177,8 +184,33 @@
             </li>
             @endif
 
-            
-            @if(check_user_access(['epartner.index','epartner.index','email-template.index','update_setting', 'setting_update']))
+            <!-- Admin -->
+            @if(check_user_access(['email-template.index','update_setting', 'setting_update']))
+            <li class="treeview {{ set_active(['admin/system','admin/system/*','admin/meta_og','admin/meta_og/*', 'admin/epartner','admin/epartner/*','admin/email-template','admin/email-template/*']) }}">
+                <a href="#">
+                    <i class="fa fa-wrench"></i>
+                    <span>System</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    @if(check_user_access(['update_setting', 'setting_update']))
+                        <li class="{{ set_active(['admin/system','admin/system/*']) }}"><a
+                                    href="{!! URL::to('/admin/system') !!}"><i class="fa fa-circle-o"></i> Meta & OG</a>
+                        </li>
+                    @endif
+                    @if(check_user_access('email-template.index'))
+                        <li class="{{ set_active(['admin/email-template','admin/email-template/*']) }}"><a
+                                href="{!! URL::to('/admin/email-template') !!}"><i class="fa fa-circle-o"></i> Email/SMS
+                            Template</a></li>
+                    @endif
+                </ul>
+            </li>
+             @endif
+
+             <!-- Abonnée -->
+             @if(check_user_access(['email-template.index','update_setting', 'setting_update']))
             <li class="treeview {{ set_active(['admin/system','admin/system/*','admin/meta_og','admin/meta_og/*', 'admin/epartner','admin/epartner/*','admin/email-template','admin/email-template/*']) }}">
                 <a href="#">
                     <i class="fa fa-wrench"></i>
