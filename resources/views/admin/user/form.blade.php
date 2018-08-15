@@ -26,21 +26,21 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="box-body">
-                                            <div class="form-group">
+                                            <div class="form-group hidden">
                                                 <label class="col-sm-2 control-label" for="page_title">First
                                                     Name</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="first_name" class="form-control required"
-                                                           id="page_title"
+                                                           id="page_title" value="Test" 
                                                            placeholder="First Name">
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group hidden">
                                                 <label class="col-sm-2 control-label" for="content-heading">Last
                                                     Name</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="last_name" class="form-control required"
-                                                           id="content-heading"
+                                                           id="content-heading" value="Test"
                                                            placeholder="Last Name">
                                                 </div>
                                             </div>
@@ -76,20 +76,20 @@
                                                     {!! Form::checkbox('is_active', '1',false) !!}
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group hidden">
                                                 {!! Form::label('profile_image','Profile Image',array('class' => 'col-sm-2 control-label')) !!}
                                                 <div class="col-sm-10">
                                                     {!! Form::file('profile_image',array('class'=>'form-control', 'placeholder'=>'Confirm Password')) !!}
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group hidden">
                                                 <label for="phone_number" class="col-sm-2 control-label">Phone Number</label>
                                                 <div class="col-sm-10">
-                                                    {!! Form::text('phone_number',null,array('class'=>'form-control required', 'placeholder'=>'Phone Number')) !!}
+                                                    {!! Form::text('phone_number','123456789',array('class'=>'form-control required', 'placeholder'=>'Phone Number')) !!}
                                                 </div>
                                             </div>
 
-                                            <div class="form-group">
+                                            <div class="form-group hidden">
                                                 <label class="col-sm-2 control-label" for="radius">Radius Of Research (KM)</label>
                                                 <div class="col-sm-10">
                                                     {!! Form::select('radius', getRadiusData(), null,['class'=>'form-control']) !!}

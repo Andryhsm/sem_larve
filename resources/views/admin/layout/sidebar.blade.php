@@ -16,9 +16,8 @@
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Search...">
                 <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                </span>
             </div>
         </form>
         <ul class="sidebar-menu">
@@ -41,7 +40,7 @@
                     </span>
                     </a>
                     <ul class="treeview-menu">
-                          <li class=" {{ set_active(['admin/sales/*']) }}">
+                        <li class=" {{ set_active(['admin/sales/*']) }}">
                             <a href="#">
                                 <i class="fa fa-circle-o"></i>
                                 All orders
@@ -62,22 +61,9 @@
                     <i class="fa fa-bar-chart"></i>
                     <span>Statistics</span>
                     <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
-                <!-- <ul class="treeview-menu">
-                    @if(check_user_access('orders'))
-                        <li class="{{ set_active(['admin/statistics/sales','admin/statistics/sales/*']) }}"><a
-                                    href="#"><i class="fa fa-circle-o"></i> Sales</a>
-                        </li>
-                    @endif
-                    @if(check_user_access('orders'))
-                        <li class="{{ set_active(['admin/finance','admin/finance/*']) }}"><a
-                                    href="#"><i class="fa fa-circle-o"></i> Finance</a>
-                        </li>
-                    @endif
-                    
-                </ul> -->
             </li>
             @endif
 
@@ -87,8 +73,8 @@
                     <i class="fa fa-files-o"></i>
                     <span>Training + FAQ</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     @if(check_user_access('page.index'))
@@ -178,16 +164,15 @@
                                 href="{!! URL::to('admin/customer') !!}"><i class="fa fa-circle-o"></i> Partners</a>
                     </li>
                     @endif
-                    @if(check_user_access('store.index'))
-                    <li class="{{ set_active(['admin/store','admin/store/*']) }}"><a
-                                href="{!! URL::to('admin/store') !!}"><i class="fa fa-circle-o"></i> Admin system</a>
-                    </li>
-                    @endif
                     @if(check_user_access('administrator'))
                     <li class="{{ set_active(['admin/administrator','admin/administrator/*']) }}"><a
-                                href="{!! URL::to('admin/administrator') !!}"><i class="fa fa-circle-o"></i> Role manager</a>
+                                href="{!! URL::to('admin/administrator') !!}"><i class="fa fa-circle-o"></i> Admin system</a>
                     </li>
                     @endif
+                    @if(check_user_access('role.index'))
+                    <li class="{{ set_active(['admin/role','admin/role/*']) }}"><a href="{!! URL::to('admin/role') !!}"><i
+                                    class="fa fa-circle-o"></i> Role manager</a></li>
+                    @endif  
                 </ul>
             </li>
             @endif
