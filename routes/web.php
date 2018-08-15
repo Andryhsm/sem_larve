@@ -198,6 +198,55 @@ Route::group(['namespace' => 'Admin', 'middleware' => [], 'prefix' => 'admin/'],
 
 //     Route::get('logout', 'Auth\AuthController@destroy')->name('logout');
    
+<<<<<<< HEAD
+    Route::group(['middleware' => ['auth']], function () {
+        Route::group(['middleware' => ['customer']], function () {
+            /*Customer specific routes*/
+            Route::get('customer', 'CustomerController@index');
+
+            Route::group(['prefix' => 'customer/'], function () {
+                Route::get('tickets', 'TicketsController@index')->name('tickets');
+                Route::post('tickets/store', 'TicketsController@store');
+                Route::post('tickets/add_comment', 'TicketsController@addComment');
+                Route::get('ajax_customer_info', 'CustomerController@ajax_index');                    
+                Route::get('get-dashboard', 'CustomerController@getDashboard');
+                Route::get('customer-informations', 'CustomerController@getCustomerInformations')->name('customer_informations');
+                Route::get('help-faq', 'TicketsController@index');
+            }); 
+            Route::post('manage-account', 'CustomerController@postManageAccount');           
+        });
+    });
+    Route::get('/{slug}/{item_id?}', function (Request $request, $slug, $item_id = null) {
+        try {
+            $value = \App\Url::where('target_url', $slug)->first();
+
+            if ($value == null) {
+                return view('front.404');
+            }           
+            $app = app();
+            //dd($value);
+            switch ($value->type) {
+                case 2:
+                    // redirect to BYO page if product's parent category is BYO
+                    $controller = $app->make('App\Http\Controllers\Front\ProductController');
+                    return $controller->CallAction('index', [$value->target_id]);
+                case 1:
+                    $controller = $app->make('App\Http\Controllers\Front\CatalogController');
+                    return $controller->callAction('index', [$value->target_id]);
+                case 3:
+                    $controller = $app->make('App\Http\Controllers\Front\PageController');
+                    return $controller->callAction('index', [$value->target_id]);
+                case 4:
+                    $controller = $app->make('App\Http\Controllers\Front\BlogController');
+                    return $controller->callAction('show', [$value->target_id]);
+            }
+        } catch (Exception $e) {
+            return view('front.404');
+        }
+    });
+
+});
+=======
 //     Route::group(['middleware' => ['auth']], function () {
 //         Route::group(['middleware' => ['customer']], function () {
 //             /*Customer specific routes*/
@@ -217,5 +266,6 @@ Route::group(['namespace' => 'Admin', 'middleware' => [], 'prefix' => 'admin/'],
 //     });
 
 // });
+>>>>>>> fd9d886c3291a0fbf269bc017fa8ae8543faea9a
 
 
