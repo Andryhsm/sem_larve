@@ -88,7 +88,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => [], 'prefix' => 'admin/'],
         Route::post('system','SystemController@store')->name('update_setting');
         Route::resource('email-template', 'EmailTemplateController');
 
-        // Route::get('profile', 'UserController@show')->name('profile');
+        Route::get('profile', 'UserController@show')->name('profile');
         // Route::patch('update/{id}', ['as' => 'profile.update', 'uses' => 'UserController@update']);
 
         // 
