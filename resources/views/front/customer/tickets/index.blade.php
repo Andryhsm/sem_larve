@@ -36,7 +36,9 @@
     </div>
 @stop
 @section('additional-css')
-
+<style type="text/css">
+    
+</style>
 @endsection
 @section('additional-script')
 
