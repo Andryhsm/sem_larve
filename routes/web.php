@@ -27,7 +27,7 @@
 Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
 
     Route::get('/', 'LoginController@index');
-    
+
     Route::group(['prefix' => 'admin/'],function(){
     //Juste pour la fusion des attributs
         Route::get('fusion','ProductController@fusion');
@@ -84,7 +84,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::get('role/destroy/{role_id}', 'AdminRoleController@destroy')->name('delete_role');
             Route::resource('faq','FaqController');
             Route::resource('customer', 'UserController');
-            Route::resource('merchant', 'UserController');
+            //Route::resource('merchant', 'UserController');
             Route::post('tickets/reopen','TicketController@reOpenTicket');
             Route::post('tickets/selectstatus','TicketController@selectStatus');
             Route::get('system','SystemController@index')->name('setting_list');
