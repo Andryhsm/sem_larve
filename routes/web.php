@@ -27,7 +27,7 @@
 Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
 
     Route::get('/', 'LoginController@index');
-    
+
     Route::group(['prefix' => 'admin/'],function(){
     //Juste pour la fusion des attributs
         Route::get('fusion','ProductController@fusion');
@@ -84,7 +84,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::get('role/destroy/{role_id}', 'AdminRoleController@destroy')->name('delete_role');
             Route::resource('faq','FaqController');
             Route::resource('customer', 'UserController');
-            Route::resource('merchant', 'UserController');
+            //Route::resource('merchant', 'UserController');
             Route::post('tickets/reopen','TicketController@reOpenTicket');
             Route::post('tickets/selectstatus','TicketController@selectStatus');
             Route::get('system','SystemController@index')->name('setting_list');
@@ -212,8 +212,13 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
     
 
 });
+<<<<<<< HEAD
  Route::group(['namespace' => 'Front', 'middleware' => ['localeSessionRedirect', 'localizationRedirect','language'], 'prefix' => LaravelLocalization::setLocale()], function () {
      Route::get('/', 'HomeController@index');
+=======
+Route::group(['namespace' => 'Front', 'middleware' => ['localeSessionRedirect', 'localizationRedirect','language'], 'prefix' => LaravelLocalization::setLocale()], function () {
+    // Route::get('/', 'HomeController@index');
+>>>>>>> 0d6caf82c7a5ce3e8b01079711f077f94f0b60ea
 
      Route::get('login', ['uses' => 'Auth\AuthController@getLogin', "middleware" => 'guest', 'as' => 'login']);
      Route::post('login', 'Auth\AuthController@postLogin');
@@ -222,7 +227,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
 
      Route::get('logout', 'Auth\AuthController@destroy')->name('logout');
    
-    Route::group(['middleware' => ['auth']], function () {
+    /*Route::group(['middleware' => ['auth']], function () {
         Route::group(['middleware' => ['customer']], function () {
             
             Route::get('customer', 'CustomerController@index');
