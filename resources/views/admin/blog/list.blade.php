@@ -58,7 +58,7 @@
                                         @endif
                                     </td>
 
-                                    <td>{!! $post->admin->first_name.' '.$post->admin->last_name !!}</td>
+                                    <td>{!! isset($post->admin) ? $post->admin->first_name.' '.$post->admin->last_name : '' !!}</td>
                                     <td>
                                         <div class="btn-group">
                                             <a href="{!! Url("admin/blog/$post->blog_post_id/edit") !!}"
