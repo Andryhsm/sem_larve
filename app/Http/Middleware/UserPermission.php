@@ -31,7 +31,6 @@ class UserPermission
     {
         $role_id = auth()->guard('admin')->user()->role_id;
         $role_permission = AdminRole::with('permissions')->where('admin_role_id', $role_id)->first();
-
         $module = [];
         foreach ($role_permission->permissions as $permisrsion) {
             $route_name = explode(',', $permisrsion->route);

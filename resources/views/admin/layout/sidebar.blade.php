@@ -127,8 +127,8 @@
                     <i class="fa fa-ticket"></i>
                     <span>Comm. & Tickets</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     @if(check_user_access('tickets.index'))
@@ -162,8 +162,8 @@
                     <i class="fa fa-user"></i>
                     <span>Accounts</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     @if(check_user_access('customer.index'))
