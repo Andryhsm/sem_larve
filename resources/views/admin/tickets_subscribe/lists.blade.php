@@ -46,7 +46,7 @@
                                                     @endforeach 
                                                 @endif
                                             </div>
-                                            <div class="content row">
+                                            <div class="" style="padding-top: 10px;">
                                                 <form method="post" action="{!! url(LaravelLocalization::getCurrentLocale().'/customer/tickets/save_comment') !!}" class="form-comment">
                                                     <input class="hidden" id="ticket-id" type="number" name="ticket_id" value="{!! $ticket->id !!}">
                                                     <div class="form-group">
