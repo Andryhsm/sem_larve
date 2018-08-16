@@ -28,7 +28,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
 
     Route::get('/', 'LoginController@index');
 
-    Route::group(['prefix' => 'admin/'],function(){
+    Route::group(['prefix' => '{admin?}/'],function(){
     //Juste pour la fusion des attributs
         Route::get('fusion','ProductController@fusion');
         /*redactor route*/

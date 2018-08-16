@@ -110,16 +110,16 @@
                                         @endif
                                 </div>
                                 <div class="form-group" style="clear: both">
-                                    {!! Form::label('is_active', 'Is Active', ['class' => 'col-sm-1 control-label']) !!}
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-1">
                                         {!! Form::checkbox('is_active', '1',($post && $post->is_active=='1') ? true: false) !!}
                                     </div>
+                                    {!! Form::label('is_active', 'Is Active', ['class' => 'col-sm-10 control-label']) !!}
                                 </div>
                                 <div class="form-group" style="clear: both">
-                                    {!! Form::label('is_popular', 'Is Popular', ['class' => 'col-sm-1 control-label']) !!}
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-1">
                                         {!! Form::checkbox('is_popular', '1',($post && $post->is_active=='1') ? true: false) !!}
                                     </div>
+                                    {!! Form::label('is_popular', 'Is Popular', ['class' => 'col-sm-10 control-label']) !!}
                                 </div>
                             </div>
 

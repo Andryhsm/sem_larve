@@ -3,7 +3,7 @@
 @section('content')
     <div class="login-box">
         <div class="login-logo">
-            <img src="{!! url('backend/img/logo-altee-bleu.svg') !!}">
+            <!-- img src="{!! url('backend/img/logo-altee-bleu.svg') !!}" -->
         </div>
         @if (count($errors) > 0)
             <div class="alert alert-danger">
