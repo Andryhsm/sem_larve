@@ -100,7 +100,7 @@ class UserController extends Controller
         }
         $admin = $this->admin_user_repository->updateById($admin_id, $input);
         flash()->success(config('message.admin.update-success'));
-        return redirect()->route('customer.index');
+        return redirect()->route('profile');
     }
 
     public function edit($admin_id)
