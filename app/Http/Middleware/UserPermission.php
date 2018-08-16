@@ -14,6 +14,7 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 class UserPermission
 {
@@ -31,6 +32,12 @@ class UserPermission
     {
         $role_id = auth()->guard('admin')->user()->role_id;
         $role_permission = AdminRole::with('permissions')->where('admin_role_id', $role_id)->first();
+
+        $urls_traning_page = [];
+        foreach(get_training_pages() as $page) { 
+            $urls_traning_page[] = url($page->url->target_url);
+        }
+
         $module = [];
         foreach ($role_permission->permissions as $permisrsion) {
             $route_name = explode(',', $permisrsion->route);
@@ -48,7 +55,11 @@ class UserPermission
             return $next($request);
         }
         if (in_array(Route::currentRouteName(), $permission_array)) {
-            return $next($request);
+            return $next($request); 
+        }
+       // dd(url()->current());
+        if (in_array(url()->current(), $urls_traning_page)) {
+            return $next($request); 
         }
         return Redirect::to('admin/404');
     }

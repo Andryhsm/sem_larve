@@ -235,7 +235,7 @@
                 $active_url = [];
                 foreach(get_training_pages() as $page) {  
                     $html = $html.'<li class="'.set_active([$page->url->target_url]).'">';
-                    $html = $html.'<a href="'.url($page->url->target_url) .'">';
+                    $html = $html.'<a href="'.url(LaravelLocalization::getCurrentLocale().'/'.$page->url->target_url) .'">';
                     $html = $html.'<i class="fa fa-circle-o"></i>'.$page->english->page_title.'</a></li>';
                     $active_url[] = $page->url->target_url;
                 }
