@@ -37,7 +37,9 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @if(count($blog_categories) > 0)
                             @foreach($blog_categories->data as $category)
+
                                 <tr>
                                     <td>{!! $category->english_name !!}</td>
                                     <td>
@@ -48,7 +50,7 @@
                                             <span class="badge bg-red mr-5">Inactive</span>
                                         @endif
                                     </td>
-                                    <td>{!! $category->admin->first_name.' '.$category->admin->last_name !!}</td>
+                                    <td>{!! isset($category->admin) ? $category->admin->first_name.' '.$category->admin->last_name : '' !!}</td>
                                     <td>
                                         <div class="btn-group">
                                             <a href="{!! Url("admin/blog-category/$category->blog_category_id/edit") !!}"
@@ -62,6 +64,7 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            @endif
                             </tbody>
                         </table>
                     </div>
