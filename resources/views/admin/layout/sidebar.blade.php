@@ -127,8 +127,8 @@
                     <i class="fa fa-ticket"></i>
                     <span>Comm. & Tickets</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     @if(check_user_access('tickets.index'))
@@ -162,8 +162,8 @@
                     <i class="fa fa-user"></i>
                     <span>Accounts</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     @if(check_user_access('customer.index'))
@@ -235,7 +235,7 @@
                 $active_url = [];
                 foreach(get_training_pages() as $page) {  
                     $html = $html.'<li class="'.set_active([$page->url->target_url]).'">';
-                    $html = $html.'<a href="'.url($page->url->target_url) .'">';
+                    $html = $html.'<a href="'.url(LaravelLocalization::getCurrentLocale().'/'.$page->url->target_url) .'">';
                     $html = $html.'<i class="fa fa-circle-o"></i>'.$page->english->page_title.'</a></li>';
                     $active_url[] = $page->url->target_url;
                 }
