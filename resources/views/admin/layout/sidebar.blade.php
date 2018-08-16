@@ -157,7 +157,7 @@
 
             <!-- Admin -->
             @if(check_user_access(['customer.index','store.index','administrator','role.index', 'profile', 'sub-accounts']))
-            <li class="treeview {{ set_active(['admin/role','admin/role/*','admin/customer','admin/customer/*','admin/store','admin/store/*','admin/administrator','admin/administrator/*']) }}">
+            <li class="treeview {{ set_active(['admin/role','admin/role/*','admin/customer','admin/customer/*','admin/store','admin/store/*','admin/administrator','admin/administrator/*','admin/profile']) }}">
                 <a href="#">
                     <i class="fa fa-user"></i>
                     <span>Accounts</span>
