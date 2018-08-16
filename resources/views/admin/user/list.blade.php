@@ -12,8 +12,7 @@
             <div class="clearfix">
                 <div class="btn-group inline pull-left">
                     <div class="btn btn-small">
-                        <a href="{!! URL::to('/admin/'.$type.'/create') !!}" class="btn btn-block btn-primary">Add New
-                            Account</a>
+                        <a href="{!! route('customer.create') !!}" class="btn btn-block btn-primary">Add New account</a>
                     </div>
                 </div>
             </div>
@@ -21,7 +20,6 @@
     </section>
 
     <section class="content">
-        @include('admin.layout.notification')
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
@@ -29,42 +27,45 @@
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th class="hidden">First Name</th>
-                                <th class="hidden">Last Name</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
                                 <th>Email</th>
                                 <th>Status</th>
-                                <th>Role Name</th>
                                 <th class="no-sort">Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($users as $user)
+                            @if( $admins->recordsTotal > 0 )
+                                @foreach($admins->data as $admin)
+                                    <tr>
+                                        <td>{!! $admin->first_name !!}</td>
+                                        <td>{!! $admin->last_name !!}</td>
+                                        <td>{!! $admin->email !!}</td>
+                                        <td>
+                                            @if($admin->is_active==0)
+                                                <span class="badge bg-light-blue">Inactive</span>
+                                            @else
+                                                <span class="badge bg-green">Active</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a href="{{ Url('admin/customer/edit/' . $admin->admin_id) }}"
+                                                   class="btn btn-default btn-sm" title="Edit"><i
+                                                            class="fa fa-fw fa-edit"></i></a>
+                                                {!! Form::open(array('url' => 'admin/customer/'. $admin->admin_id, 'class' => 'pull-right')) !!}
+                                                {!! Form::hidden('_method', 'DELETE') !!}
+                                                {!! Form::button('<i class="fa fa-fw fa-trash"></i>', ['type' => 'submit', 'class' => 'btn delete-btn btn-default btn-sm','title'=>'Delete'] ) !!}
+                                                {{ Form::close() }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
                                 <tr>
-                                    <td class="hidden">{!! $user->first_name !!}</td>
-                                    <td class="hidden">{!! $user->last_name !!}</td>
-                                    <td>{!! $user->email !!}</td>
-                                    <td>
-                                        @if($user->status=='1')
-                                            <span class="badge bg-green">Active</span>
-                                        @else
-                                            <span class="badge bg-light-blue">Inactive</span>
-                                        @endif
-                                    </td>
-                                    <td><span class="label label-success">{!! $user->role->role_name !!}</span></td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a href="{{ URL::to('admin/'.$type.'/' . $user->user_id . '/edit') }}"
-                                               class="btn btn-default btn-sm" title="Edit"><i
-                                                        class="fa fa-fw fa-edit"></i></a>
-                                            {!! Form::open(array('url' => 'admin/'.$type .'/'. $user->user_id, 'class' => 'pull-right')) !!}
-                                            {!! Form::hidden('_method', 'DELETE') !!}
-                                            {!! Form::button('<i class="fa fa-fw fa-trash"></i>', ['type' => 'submit', 'class' => 'btn delete-btn btn-default btn-sm','title'=>'Delete'] ) !!}
-                                            {{ Form::close() }}
-                                        </div>
-                                    </td>
+                                    <td colspan="5" align="center">{{config('admin.NO_RECORDS_MESSAGE')}}</td>
                                 </tr>
-                            @endforeach
-
+                            @endif
                             </tbody>
                         </table>
                     </div>
@@ -79,5 +80,5 @@
     {!! Html::script('backend/plugins/datatables/dataTables.bootstrap.min.js') !!}
 @stop
 @section('footer-scripts')
-    {!! Html::script('backend/js/account.js') !!}
+    {!! Html::script('backend/js/admin_user.js') !!}
 @stop

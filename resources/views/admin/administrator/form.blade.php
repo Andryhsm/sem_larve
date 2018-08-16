@@ -3,9 +3,9 @@
     <section class="content-header">
         <h1>
             @if($admin)
-                Add New Admin
+                Update Admin                
             @else
-                Update Admin
+                Add New Admin
             @endif
         </h1>
     </section>
