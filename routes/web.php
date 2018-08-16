@@ -214,7 +214,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
     Route::group(['middleware' => ['permission']], function () {
         Route::get('/{slug}/{item_id?}', function (Request $request, $slug, $item_id = null) {
             try {
-                dd('11');
+                //dd('11');
                 $value = \App\Url::where('target_url', $slug)->first();
 
                 if ($value == null) {
