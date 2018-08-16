@@ -30,12 +30,12 @@
 
 
                                 <div class="form-group">
-                                    {!! Form::label('english_title', 'Title (English)', ['class' => '']) !!}
-                                    {!! Form::text('english_title', ($post)? $post->english_title:null, ['class' => 'form-control required','id'=>'english_title','placeholder'=>"Title(English)"]) !!}
+                                    {!! Form::label('english_title', 'Title', ['class' => '']) !!}
+                                    {!! Form::text('english_title', ($post)? $post->english_title:null, ['class' => 'form-control required','id'=>'english_title','placeholder'=>"Title"]) !!}
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group hidden">
                                     {!! Form::label('french_title', 'Title (French)', ['class' => '']) !!}
-                                    {!! Form::text('french_title', ($post)? $post->french_title:null, ['class' => 'form-control','id'=>'french_title','placeholder'=>"Title(French)"]) !!}
+                                    {!! Form::text('french_title', ($post)? $post->french_title:'.', ['class' => 'form-control','id'=>'french_title','placeholder'=>"Title(French)"]) !!}
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('url', 'URL', ['class' => '']) !!}
@@ -49,22 +49,26 @@
                                 </div>
 
 
-                                    <div class="form-group">
-                                    <label for="article">Article (English)</label>
-                                    <textarea class="textarea" name="english_article" id="english_article" placeholder="Article (English)"
+                                <div class="form-group">
+                                    <label for="article"></label>
+                                    <textarea class="textarea" name="english_article" id="english_article" placeholder="Article"
                                               style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
                                         @if($post)
                                             {!! $post->english_article !!}
+
                                         @endif
+
                                     </textarea>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group hidden">
                                     <label for="article">Article (French)</label>
                                     <textarea class="textarea" name="french_article" id="french_article" placeholder="Article (French)"
                                               style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
                                         @if($post)
                                                {!! $post->french_article !!}
-                                         @endif
+                                        @else
+                                            .
+                                        @endif
                                     </textarea>
                                 </div>
                                 <div class="form-group">
@@ -147,50 +151,50 @@
 
                                 <div class="tab-pane" id="tab_3">
                                     <div class="form-group">
-                                        {!! Form::label('en_title', "Title (English)", ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text("en_title", ($post)? $post->en_meta_title : null , ['class' => 'form-control','id'=>'en_title','placeholder'=>"Title (English)"]) !!}
+                                        {!! Form::label('en_title', "Title", ['class' => 'col-sm-2 control-label']) !!}
+                                        {!! Form::text("en_title", ($post)? $post->en_meta_title : null , ['class' => 'form-control','id'=>'en_title','placeholder'=>"Title"]) !!}
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group hidden">
                                         {!! Form::label('fr_title', "Title (French)", ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text("fr_title", ($post)? $post->fr_meta_title : null , ['class' => 'form-control','id'=>'fr_title','placeholder'=>"Title (French)"]) !!}
+                                        {!! Form::text("fr_title", ($post)? $post->fr_meta_title : '.' , ['class' => 'form-control','id'=>'fr_title','placeholder'=>"Title (French)"]) !!}
                                     </div>
 
                                     <div class="form-group">
-                                        {!! Form::label('en_meta_description', "Meta Description (English)", ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text("en_meta_description",  ($post)? $post->en_meta_description : null  , ['class' => 'form-control','id'=>'en_meta_description','placeholder'=>"Meta Description (English)"]) !!}
+                                        {!! Form::label('en_meta_description', "Meta Description", ['class' => 'col-sm-2 control-label']) !!}
+                                        {!! Form::text("en_meta_description",  ($post)? $post->en_meta_description : null  , ['class' => 'form-control','id'=>'en_meta_description','placeholder'=>"Meta Description"]) !!}
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group hidden">
                                         {!! Form::label('fr_meta_description', "Meta Description (French)", ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text("fr_meta_description", ($post)? $post->fr_meta_description : null , ['class' => 'form-control','id'=>'fr_meta_description','placeholder'=>"Meta Description (French)"]) !!}
+                                        {!! Form::text("fr_meta_description", ($post)? $post->fr_meta_description : '.' , ['class' => 'form-control','id'=>'fr_meta_description','placeholder'=>"Meta Description (French)"]) !!}
                                     </div>
 
                                     <div class="form-group">
-                                        {!! Form::label('en_meta_keywords', "Meta Keyword (English)", ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text("en_meta_keywords", ($post)? $post->en_meta_keywords : null  , ['class' => 'form-control','id'=>'en_meta_keywords','placeholder'=>"Meta Keyword (English)"]) !!}
+                                        {!! Form::label('en_meta_keywords', "Meta Keyword", ['class' => 'col-sm-2 control-label']) !!}
+                                        {!! Form::text("en_meta_keywords", ($post)? $post->en_meta_keywords : null  , ['class' => 'form-control','id'=>'en_meta_keywords','placeholder'=>"Meta Keyword"]) !!}
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group hidden">
                                         {!! Form::label('fr_meta_keywords', "Meta Keyword (French)", ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text("fr_meta_keywords",  ($post)? $post->fr_meta_keywords : null , ['class' => 'form-control','id'=>'fr_meta_keywords','placeholder'=>"Meta Keyword (French)"]) !!}
+                                        {!! Form::text("fr_meta_keywords",  ($post)? $post->fr_meta_keywords : '.' , ['class' => 'form-control','id'=>'fr_meta_keywords','placeholder'=>"Meta Keyword (French)"]) !!}
                                     </div>
 
                                     <div class="form-group">
-                                        {!! Form::label('en_og_title', "OG Title (English)", ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text("en_og_title", ($post)? $post->en_og_title : null   , ['class' => 'form-control','id'=>'en_og_title','placeholder'=>"OG Title (English)"]) !!}
+                                        {!! Form::label('en_og_title', "OG Title", ['class' => 'col-sm-2 control-label']) !!}
+                                        {!! Form::text("en_og_title", ($post)? $post->en_og_title : null   , ['class' => 'form-control','id'=>'en_og_title','placeholder'=>"OG Title"]) !!}
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group hidden">
                                         {!! Form::label('fr_og_title', "OG Title (French)", ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text("fr_og_title",  ($post)? $post->fr_og_title : null  , ['class' => 'form-control','id'=>'fr_og_title','placeholder'=>"OG Title (French)"]) !!}
+                                        {!! Form::text("fr_og_title",  ($post)? $post->fr_og_title : '.'  , ['class' => 'form-control','id'=>'fr_og_title','placeholder'=>"OG Title (French)"]) !!}
                                     </div>
                                     <div class="form-group">
-                                        {!! Form::label('en_og_description', "OG Description (English)", ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text("en_og_description", ($post)? $post->en_og_description : null   , ['class' => 'form-control','id'=>'en_og_title','placeholder'=>"OG Description (English)"]) !!}
+                                        {!! Form::label('en_og_description', "OG Description", ['class' => 'col-sm-2 control-label']) !!}
+                                        {!! Form::text("en_og_description", ($post)? $post->en_og_description : null   , ['class' => 'form-control','id'=>'en_og_title','placeholder'=>"OG Description"]) !!}
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group hidden">
                                         {!! Form::label('fr_og_description', "OG Description (French)", ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text("fr_og_description",  ($post)? $post->fr_og_description : null  , ['class' => 'form-control','id'=>'fr_og_title','placeholder'=>"OG Description (French)"]) !!}
+                                        {!! Form::text("fr_og_description",  ($post)? $post->fr_og_description : '.'  , ['class' => 'form-control','id'=>'fr_og_title','placeholder'=>"OG Description (French)"]) !!}
                                     </div>
 
                                 </div>

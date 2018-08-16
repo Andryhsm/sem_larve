@@ -56,7 +56,7 @@
                                     <div class="form-group french_input hidden">
                                         <label for="url_key">Content (French)</label>
                                         <textarea class="textarea" name="fr_content" id="fr_content" placeholder="Page Content (French)"
-                                                  value='fr' style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                                  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">fr</textarea>
                                     </div>
 
                                 </div>

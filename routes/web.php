@@ -246,7 +246,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
 
 
 
- Route::group(['namespace' => 'Front', 'middleware' => ['localeSessionRedirect', 'localizationRedirect','language'], 'prefix' => LaravelLocalization::setLocale()], function () {
+ /*Route::group(['namespace' => 'Front', 'middleware' => ['localeSessionRedirect', 'localizationRedirect','language'], 'prefix' => LaravelLocalization::setLocale()], function () {
      Route::get('/', 'HomeController@index');
 
      Route::get('login', ['uses' => 'Auth\AuthController@getLogin', "middleware" => 'guest', 'as' => 'login']);
@@ -254,7 +254,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
 
      Route::get('sign-up', ['uses' => 'Auth\AuthController@getRegister', "middleware" => 'guest', 'as' => 'customer-sign-up']);
 
-     Route::get('logout', 'Auth\AuthController@destroy')->name('logout');
+     Route::get('logout', 'Auth\AuthController@destroy')->name('logout');*/
    
     /*Route::group(['middleware' => ['auth']], function () {
         Route::group(['middleware' => ['customer']], function () {
@@ -273,6 +273,6 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::post('manage-account', 'CustomerController@postManageAccount');           
         });
     });*/
-    
-});
+/*    
+});*/
 
