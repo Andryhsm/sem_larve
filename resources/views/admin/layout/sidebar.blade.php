@@ -107,13 +107,13 @@
                     </a>
                     <ul class="treeview-menu">
                         @if(check_user_access('blog-category.index'))
-                            <li class=""><a
-                                        href=""><i class="fa fa-circle-o"></i> Blog Category</a>
+                            <li class="{{ set_active(['admin/blog-category/*','admin/blog-category']) }}"><a
+                                        href="{!! URL::to('/admin/blog-category') !!}"><i class="fa fa-circle-o"></i> Blog Category</a>
                             </li>
                         @endif
                         @if(check_user_access('blog.index'))
-                            <li class=""><a
-                                        href=""><i class="fa fa-circle-o"></i> Blog Post</a>
+                            <li class="{{ set_active(['admin/blog/*','admin/blog']) }}"><a
+                                        href="{!! URL::to('/admin/blog') !!}"><i class="fa fa-circle-o"></i> Blog Post</a>
                             </li>
                         @endif
                     </ul>
