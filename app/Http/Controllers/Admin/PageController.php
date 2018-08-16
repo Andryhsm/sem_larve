@@ -38,6 +38,7 @@ class PageController extends Controller
 
     public function trainingPage($page_id)
     {
+        dd($page_id);
         $page = $this->page_repository->getById($page_id);
         if (empty($page)) {
             return Redirect('/');

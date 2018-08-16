@@ -1,4 +1,4 @@
-@extends('front.customer.layout.master')
+@extends('admin.layout.master')
 
 @section('content')
 <div class="container">

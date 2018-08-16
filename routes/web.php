@@ -211,8 +211,43 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
         });
     });
     
+    Route::group(['middleware' => ['permission']], function () {
+        Route::get('/{slug}/{item_id?}', function (Request $request, $slug, $item_id = null) {
+            try {
+                dd('11');
+                $value = \App\Url::where('target_url', $slug)->first();
+
+                if ($value == null) {
+                    return view('front.404');
+                }           
+                $app = app();
+                //dd($value);
+                switch ($value->type) {
+                    case 2:
+                        // redirect to BYO page if product's parent category is BYO
+                        $controller = $app->make('App\Http\Controllers\Front\ProductController');
+                        return $controller->CallAction('index', [$value->target_id]);
+                    case 1:
+                        $controller = $app->make('App\Http\Controllers\Front\CatalogController');
+                        return $controller->callAction('index', [$value->target_id]);
+                    case 3:
+                        $controller = $app->make('App\Http\Controllers\Admin\PageController');
+                        return $controller->callAction('trainingPage', [$value->target_id]);
+                    case 4:
+                        $controller = $app->make('App\Http\Controllers\Front\BlogController');
+                        return $controller->callAction('show', [$value->target_id]);
+                }
+            } catch (Exception $e) {
+                return view('front.404');
+            }
+        });
+
+    });
 
 });
+
+
+
  Route::group(['namespace' => 'Front', 'middleware' => ['localeSessionRedirect', 'localizationRedirect','language'], 'prefix' => LaravelLocalization::setLocale()], function () {
      Route::get('/', 'HomeController@index');
 
@@ -240,33 +275,6 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::post('manage-account', 'CustomerController@postManageAccount');           
         });
     });*/
-    Route::get('/{slug}/{item_id?}', function (Request $request, $slug, $item_id = null) {
-        try {
-            $value = \App\Url::where('target_url', $slug)->first();
-
-            if ($value == null) {
-                return view('front.404');
-            }           
-            $app = app();
-            //dd($value);
-            switch ($value->type) {
-                case 2:
-                    // redirect to BYO page if product's parent category is BYO
-                    $controller = $app->make('App\Http\Controllers\Front\ProductController');
-                    return $controller->CallAction('index', [$value->target_id]);
-                case 1:
-                    $controller = $app->make('App\Http\Controllers\Front\CatalogController');
-                    return $controller->callAction('index', [$value->target_id]);
-                case 3:
-                    $controller = $app->make('App\Http\Controllers\Front\PageController');
-                    return $controller->callAction('index', [$value->target_id]);
-                case 4:
-                    $controller = $app->make('App\Http\Controllers\Front\BlogController');
-                    return $controller->callAction('show', [$value->target_id]);
-            }
-        } catch (Exception $e) {
-            return view('front.404');
-        }
-    });
+    
 });
 
