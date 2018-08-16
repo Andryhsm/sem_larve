@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="box-body">
-    	@include('admin.aid-faq.index')
+    	
         <div class="inner-content col-lg-12">
         	
     		<div role="tabpanel" class="tab-panel">
@@ -31,11 +31,7 @@
         </div>
     </div>
 @stop
-@section('additional-css')
-<style type="text/css">
-    
-</style>
-@endsection
+
 @section('additional-script')
 
 	<script type="text/javascript">

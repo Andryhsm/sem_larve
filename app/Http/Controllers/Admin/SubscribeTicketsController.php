@@ -25,9 +25,8 @@ class SubscribeTicketsController extends Controller
     	$type = 2;
         $categories = $this->ticket_repository->getTypeCategories($type);
     	$priorities = $this->ticket_repository->getAllPriorities();
-        $faqs = $this->faq_repository->getByType(1);
 
-    	return view('admin.tickets_subscribe.index')->with('tickets', $tickets)->with('categories', $categories)->with('priorities', $priorities)->with('faqs',$faqs);
+    	return view('admin.tickets_subscribe.index')->with('tickets', $tickets)->with('categories', $categories)->with('priorities', $priorities);
     }
 
     public function store(Request $request)
@@ -54,5 +53,11 @@ class SubscribeTicketsController extends Controller
     		\Log::debug($e->getMessage());
     	}
     	return response()->json(['success' => true, 'data' => $response]);
+    }
+
+    public function getFaq(Request $request) 
+    {
+        $faqs = $this->faq_repository->getByType(1);
+        return view('admin.aid-faq.index')->with('faqs',$faqs);
     }
 }

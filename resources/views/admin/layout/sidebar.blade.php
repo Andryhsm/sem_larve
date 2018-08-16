@@ -265,16 +265,16 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                        @if(check_user_access(['tickets-subscribe']))
-                        <li class="{{ set_active(['admin/tickets-subscribe']) }}"><a
-                                    href="{!! url('/admin/tickets-subscribe') !!}"><i class="fa fa-circle-o"></i> Support</a>
-                        </li>
-                        @endif
-                        @if(check_user_access(['faq']))
-                        <li class=""><a
-                                    href="#"><i class="fa fa-circle-o"></i> FAQ</a>
-                        </li>
-                        @endif
+                    @if(check_user_access(['tickets-subscribe']))
+                    <li class="{{ set_active(['admin/tickets-subscribe']) }}"><a
+                                href="{!! url('/admin/tickets-subscribe') !!}"><i class="fa fa-circle-o"></i> Support</a>
+                    </li>
+                    @endif
+                    @if(check_user_access(['faq']))
+                    <li class="{!! set_active(['admin/help-faq']) !!}"><a
+                                href="{!! url('/admin/help-faq') !!}"><i class="fa fa-circle-o"></i> FAQ</a>
+                    </li>
+                    @endif
                 </ul>
             </li>
             @endif

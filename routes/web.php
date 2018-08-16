@@ -105,7 +105,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::post('tickets-subscribe/add_comment', 'SubscribeTicketsController@addComment')->name('tickets-subscribe-add-comment');
             Route::get('ajax_customer_info', 'SubscribeController@ajax_index')->name('ajax-customer-info'); 
            // Route::get('customer-informations', 'SubscribeController@getCustomerInformations')->name('customer_informations');
-            Route::get('help-faq', 'SubscribeTicketsController@index')->name('help-faq');
+            Route::get('help-faq', 'SubscribeTicketsController@getFaq')->name('help-faq');
             //--------------- End espace madio subscribes ---------------
 
 
@@ -214,14 +214,12 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
     Route::group(['middleware' => ['permission']], function () {
         Route::get('/{slug}/{item_id?}', function (Request $request, $slug, $item_id = null) {
             try {
-                //dd('11');
                 $value = \App\Url::where('target_url', $slug)->first();
 
                 if ($value == null) {
                     return view('front.404');
                 }           
                 $app = app();
-                //dd($value);
                 switch ($value->type) {
                     case 2:
                         // redirect to BYO page if product's parent category is BYO
