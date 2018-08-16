@@ -186,8 +186,8 @@
                     </li>
                     @endif
                     @if(check_user_access('sub-accounts'))
-                    <li class="{{ set_active(['admin/store','admin/store/*']) }}"><a
-                                href=""><i class="fa fa-circle-o"></i> Sub-accounts</a>
+                    <li class="">
+                        <a href=""><i class="fa fa-circle-o"></i> Sub-accounts</a>
                     </li>
                     @endif
                 </ul>
