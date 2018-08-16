@@ -29,11 +29,9 @@
                                                     <div class="panel panel-primary">
                                                         <div class="panel-heading">
                                                             <h3 class="panel-title">
-                                                                @if($comment->type_compte == 1)
-                                                                    {!! $comment->user->first_name !!} {!! $comment->user->last_name !!}
-                                                                @else
-                                                                    {!! $comment->admin['first_name'] !!} {!! $comment->admin['last_name'] !!}
-                                                                @endif
+                                                                
+                                                                {!! $comment->admin['first_name'] !!} {!! $comment->admin['last_name'] !!}
+                                                                
                                                                 <span class="pull-right"> {!! $comment->created_at->diffForHumans() !!} </span>
                                                             </h3>
                                                         </div>
@@ -47,12 +45,12 @@
                                                 @endif
                                             </div>
                                             <div class="" style="padding-top: 10px;">
-                                                <form method="post" action="{!! url(LaravelLocalization::getCurrentLocale().'/customer/tickets/save_comment') !!}" class="form-comment">
+                                                <form method="post" action="{!! url('admin/tickets-subscribe/add_comment') !!}" class="form-comment">
                                                     <input class="hidden" id="ticket-id" type="number" name="ticket_id" value="{!! $ticket->id !!}">
                                                     <div class="form-group">
                                                         <textarea class="form-control content-comment" rows="8" id="message" name="content"></textarea>
                                                     </div>
-                                                    <div class="row">
+                                                    <div class="">
                                                         <a class="btn btn-primary add-comment pull-right">{!! trans('tickets.reply') !!}
                                                         </a>
                                                     </div>

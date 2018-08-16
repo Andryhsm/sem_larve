@@ -99,11 +99,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
-                                    @if($comment->type_compte == 1)
-                                        {!! $comment->user->first_name !!} {!! $comment->user->last_name !!}
-                                    @else
-                                        {!! $comment->admin['first_name'] !!} {!! $comment->admin['last_name'] !!}
-                                    @endif
+                                    {!! $comment->admin['first_name'] !!} {!! $comment->admin['last_name'] !!}
                                     <span class="pull-right"> {!! $comment->created_at->diffForHumans() !!} </span>
                                 </h3>
                             </div>
