@@ -92,7 +92,7 @@
 {!! Html::script('backend/js/validation.js') !!}
 {!! Html::script('backend/js/jquery.form.js') !!}
 {!! Html::script('backend/js/functions.js') !!}
-
+{!! Html::script('backend/js/tickets.js') !!}
 
 @yield('additional-scripts')
 @yield('footer-scripts')

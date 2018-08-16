@@ -39,5 +39,14 @@
 
         	$(".textarea").wysihtml5();
         }
+        
+        jQuery(document).ready(function($) {
+            function activate(ids) {
+                var id = $(ids).attr("id");
+                $('.panel-default').removeClass('actives');
+                $('#' + id).addClass('actives');
+            }    
+        });
+
 	</script>
 @endsection
