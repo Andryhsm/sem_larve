@@ -34,8 +34,15 @@ class PageController extends Controller
         $pages = $pages->getData();
 
         return view('admin.page.list', compact('pages'));
+    }
 
-
+    public function trainingPage($page_id)
+    {
+        $page = $this->page_repository->getById($page_id);
+        if (empty($page)) {
+            return Redirect('/');
+        }
+        return view("admin.page.index",compact("page", $page));
     }
 
     /**

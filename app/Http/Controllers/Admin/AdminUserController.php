@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\AdminUserRequest;
 use App\Models\AdminRole;
 use App\Repositories\AdminUserRepository;
 use App\Service\UploadService;
+use App\Repositories\AdminRoleRepository;
 use Illuminate\Support\Facades\Redirect;
 use Yajra\Datatables\Facades\Datatables;
 
@@ -14,11 +15,14 @@ class AdminUserController extends Controller
 {
 	protected $admin_repository;
 	protected $upload_service;
+	protected $admin_role_repository;
 
-	public function __construct(AdminUserRepository $admin_repo,UploadService $uploadservice)
+	public function __construct(AdminUserRepository $admin_repo,UploadService $uploadservice,AdminRoleRepository $admin_role_repository)
 	{
 		$this->admin_repository = $admin_repo;
 		$this->upload_service = $uploadservice;
+		$this->admin_role_repository = $admin_role_repository;
+
 	}
 
 	public function index()
@@ -53,7 +57,7 @@ class AdminUserController extends Controller
 	public function create()
 	{
 		$admin = false;
-        $roles=AdminRole::all();
+        $roles=$this->admin_role_repository->getByType(1);
         $roles=$this->getAllRole($roles);
 		return view('admin.administrator.form', compact('admin','roles'));
 	}
@@ -61,7 +65,7 @@ class AdminUserController extends Controller
 	public function edit($admin_id)
 	{
 		$admin = $this->admin_repository->getById($admin_id);
-        $roles=AdminRole::all();
+        $roles=$this->admin_role_repository->getByType(1);
         $roles=$this->getAllRole($roles);
 
 		return view('admin.administrator.form', compact('admin','roles'));

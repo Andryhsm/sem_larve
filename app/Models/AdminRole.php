@@ -22,6 +22,7 @@ class AdminRole extends Model
      */
     protected $fillable = [
         'role_name',
+        'type',
     ];
 
     public function permissions(){

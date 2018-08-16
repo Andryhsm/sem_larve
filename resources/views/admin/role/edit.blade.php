@@ -2,7 +2,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Add New Role
+            Edit Role
         </h1>
     </section>
 <?php
@@ -14,6 +14,7 @@ if ($permissions_by_role && count($permissions_by_role) > 0) {
     }
 }
         ?>
+    <?php $types = array('1'=>'Administator','2'=>'Subscribe'); ?>
     <section class="content">
         @include('admin.layout.notification')
         <div class="row">
@@ -25,6 +26,8 @@ if ($permissions_by_role && count($permissions_by_role) > 0) {
                             <label for="page_title">Role Name</label>
                             {!! Form::text('role_name',null ,array('class'=>'form-control required', 'placeholder'=>'Last Name')) !!}
                         </div>
+                        {!! Form::label('type', 'Role type') !!}
+                            {!! Form::select('type', $types, null,['class'=>'form-control ','id'=>'']) !!}
                         <div class="tab-pane" id="tab_3">
                             <label for="page_title">Permission</label>
                             <div id="permission"></div>

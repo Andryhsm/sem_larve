@@ -5,7 +5,7 @@
             Add New Role
         </h1>
     </section>
-
+    <?php $types = array('1'=>'Administator','2'=>'Subscribe'); ?>
     <section class="content">
         @include('admin.layout.notification')
         <div class="row">
@@ -17,6 +17,11 @@
                                 <label for="page_title">Role Name</label>
                                 <input type="text" name="role_name" class="form-control required" id="page_title" placeholder="Role Name">
                             </div>
+                            <div class="form-group">
+                            {!! Form::label('type', 'Role type') !!}
+                            {!! Form::select('type', $types, null,['class'=>'form-control ','id'=>'']) !!}
+
+                        </div>
                             <div class="tab-pane" id="tab_3">
                                 <label for="content-heading">Permission</label>
                                 <div id="permission"></div>

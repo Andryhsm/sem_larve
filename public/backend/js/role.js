@@ -27,6 +27,7 @@ jQuery(document).ready(function () {
             "pageLength": 20,
             columns: [
                 {searchable: true, sortable: true},
+                {searchable: true, sortable: true},
                 {searchable: false, sortable: false}
             ],
             fnDrawCallback: function () {

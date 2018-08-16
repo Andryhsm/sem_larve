@@ -685,6 +685,7 @@ return array(
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
     'TicketPriorityStatusCategoryTable' => $baseDir . '/database/migrations/2018_04_18_104254_ticket_priority_status_category_table.php',
     'TypeError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
+    'UpadateTableRoleManager' => $baseDir . '/database/migrations/2018_08_15_174146_upadate_table_role_manager.php',
     'UpdateAttributeOptionAddColumnAttributeNum' => $baseDir . '/database/migrations/2017_12_30_074727_update_attribute_option_add_column_attribute_num.php',
     'UpdateAttributeOptionTranslationAddColumnAttributeTranslationNumero' => $baseDir . '/database/migrations/2017_12_30_110617_update_attribute_option_translation_add_column_attribute_translation_numero.php',
     'UpdateBrandTable' => $baseDir . '/database/migrations/2017_05_22_045336_update_brand_table.php',

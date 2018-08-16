@@ -15,7 +15,7 @@
                         <img class="profile-user-img img-responsive img-circle"
                              src="{!! $user->getProfileImage() !!}" alt="User profile picture">
                         <h3 class="profile-username text-center">{!! $user->first_name !!} {!! $user->last_name !!}</h3>
-                        <p class="text-muted text-center">User</p>
+                        <p class="text-muted text-center">{!! ($user->type == 1 ? 'Administrator' : 'Subscribe') !!}</p>
                     </div>
                 </div>
             </div>

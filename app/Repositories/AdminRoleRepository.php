@@ -21,6 +21,7 @@ class AdminRoleRepository implements AdminRoleRepositoryInterface
     {
 
         $this->model->fill($input);
+
         $this->model->save();
         if (!empty($input['permission_id'])) {
             $permissions = explode(',', $input['permission_id']);
@@ -67,6 +68,11 @@ class AdminRoleRepository implements AdminRoleRepositoryInterface
     public function getAll()
     {
         return $this->model->all();
+    }
+
+    public function getByType($type)
+    {
+        return $this->model->where('type',$type)->get();
     }
 
 }

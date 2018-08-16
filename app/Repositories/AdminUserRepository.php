@@ -73,7 +73,7 @@ class AdminUserRepository implements AdminUserRepositoryInterface
 		$admin->first_name = $input['first_name'];
 		$admin->last_name = $input['last_name'];
 		$admin->email = $input['email'];
-		$admin->role_id = $input['role_id'];
+		//$admin->role_id = $input['role_id'];
 		$admin->password = (!empty($input['password'])) ? Hash::make($input['password']) : $admin->password;
 		$admin->is_active = isset($input['is_active']) ? $input['is_active'] : '0';
 		$admin->profile_image = (isset($input['image_name']) && !empty($input['image_name'])) ? $input['image_name'] : $admin->profile_image;

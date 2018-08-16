@@ -24,16 +24,18 @@ class UserController extends Controller
     protected $upload_service;
     protected $user_repository;
 	protected $region_repository;
+    protected $admin_role_repository;
 
     public function __construct(AdminUserRepository $admin_user_repository, UploadService $upload_service,
 								UserRepository $user_repository,
-								RegionRepositoryInterface $region_repo
+								RegionRepositoryInterface $region_repo,AdminRoleRepository $admin_role_repository
 								)
     {
         $this->admin_user_repository = $admin_user_repository;
         $this->user_repository = $user_repository;
         $this->upload_service = $upload_service;
 		$this->region_repository = $region_repo;
+        $this->admin_role_repository = $admin_role_repository;
     }
 
     public function index(Request $request)
@@ -69,7 +71,7 @@ class UserController extends Controller
     public function create(Request $request)
     {
         $admin = false;
-        $roles=AdminRole::all();
+        $roles=$this->admin_role_repository->getByType(2);
         $roles=$this->getAllRole($roles);
         return view('admin.user.form', compact('admin','roles'));
     }
@@ -103,9 +105,8 @@ class UserController extends Controller
 
     public function edit($admin_id)
     {
-        dd('ici');
         $admin = $this->admin_user_repository->getById($admin_id);
-        $roles=AdminRole::all();
+        $roles=$this->admin_role_repository->getByType(2);
         $roles=$this->getAllRole($roles);
 
         return view('admin.user.form', compact('admin','roles'));

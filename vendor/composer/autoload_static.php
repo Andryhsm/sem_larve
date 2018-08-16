@@ -1228,6 +1228,7 @@ class ComposerStaticInit92ae1cac27eec69b1bea17967da97a45
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
         'TicketPriorityStatusCategoryTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_18_104254_ticket_priority_status_category_table.php',
         'TypeError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
+        'UpadateTableRoleManager' => __DIR__ . '/../..' . '/database/migrations/2018_08_15_174146_upadate_table_role_manager.php',
         'UpdateAttributeOptionAddColumnAttributeNum' => __DIR__ . '/../..' . '/database/migrations/2017_12_30_074727_update_attribute_option_add_column_attribute_num.php',
         'UpdateAttributeOptionTranslationAddColumnAttributeTranslationNumero' => __DIR__ . '/../..' . '/database/migrations/2017_12_30_110617_update_attribute_option_translation_add_column_attribute_translation_numero.php',
         'UpdateBrandTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_22_045336_update_brand_table.php',
