@@ -5,7 +5,7 @@
         <span class="logo-mini"><b>A</b>LT</span>
         <!-- logo for regular state and mobile devices -->
         <span class="logo-lg">
-            <img src="{!! url('backend/img/logo-altee-bleu.svg') !!}"> 
+            <!-- <img src="{!! url('backend/img/logo-altee-bleu.svg') !!}">  -->
         </span>
     </a>
    
