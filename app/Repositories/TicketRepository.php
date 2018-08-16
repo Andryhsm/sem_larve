@@ -102,9 +102,9 @@ class TicketRepository
 		$ticket->subject = $input['subject'];
 		$ticket->content =  $input['content'];
 		$ticket->priority_id = $input['priority_id'];
-		$ticket->user_id = auth()->user()->user_id;
-		$ticket->name = auth()->user()->first_name.' '.auth()->user()->last_name;
-		$ticket->email = auth()->user()->email;
+		$ticket->user_id = auth()->guard('admin')->user()->admin_id;
+		$ticket->name = auth()->guard('admin')->user()->first_name.' '.auth()->guard('admin')->user()->last_name;
+		$ticket->email = auth()->guard('admin')->user()->email;
 		$ticket->category_id = $input['category_id'];
 		$ticket->status_id = $this->defaultStatus()->id;
 		$ticket->save();
@@ -334,7 +334,7 @@ class TicketRepository
     public function saveComment($input){
     	$this->modelComments = new TicketitComments();
     	$this->modelComments->content = urldecode($input['content']);
-    	$this->modelComments->user_id = auth()->user()->user_id;
+    	$this->modelComments->user_id = auth()->guard('admin')->user()->admin_id;
     	$this->modelComments->ticket_id = $input['ticket_id'];
     	$this->modelComments->type_compte = 1;
 
