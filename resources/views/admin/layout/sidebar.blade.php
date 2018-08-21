@@ -157,7 +157,7 @@
 
             <!-- Admin -->
             @if(check_user_access(['customer.index','store.index','administrator','role.index', 'profile', 'sub-accounts']))
-            <li class="treeview {{ set_active(['admin/role','admin/role/*','admin/customer','admin/customer/*','admin/store','admin/store/*','admin/administrator','admin/administrator/*']) }}">
+            <li class="treeview {{ set_active(['admin/role','admin/role/*','admin/customer','admin/customer/*','admin/store','admin/store/*','admin/administrator','admin/administrator/*', 'admin/profile']) }}">
                 <a href="#">
                     <i class="fa fa-user"></i>
                     <span>Accounts</span>
@@ -181,7 +181,7 @@
                                     class="fa fa-circle-o"></i> Role manager</a></li>
                     @endif  
                     @if(check_user_access('profile'))
-                    <li class="{{ set_active(['admin/profile']) }}"><a
+                    <li class="{{ set_active(['admin/profile/*', 'admin/profile']) }}"><a
                                 href="{!! route('profile') !!}"><i class="fa fa-circle-o"></i> Profil</a>
                     </li>
                     @endif
