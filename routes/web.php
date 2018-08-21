@@ -42,7 +42,9 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::get('help-faq', 'SubscribeTicketsController@getFaq')->name('help-faq-partner');
             Route::get('research-tools', 'KeywordTrendsController@researchTools')->name('research_tools_partner');
             Route::get('data-collections', 'KeywordTrendsController@dataCollections')->name('data_collections_partner');
-           
+            //Route::get('downloadExcel/{type}', 'KeywordTrendsController@downloadExcel')->name('download_excel_partner');
+            Route::post('import-excel', 'KeywordTrendsController@importExcel')->name('import_excel_partner');
+            
             Route::get('404',function(){
                 return view('admin.404');
             })->name('404');
@@ -131,7 +133,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::get('data-collections', 'KeywordTrendsController@dataCollections')->name('data_collections');
             //--------------- End route subscribes ---------------
 
-
+            //Route::get('downloadExcel/{type}', 'KeywordTrendsController@downloadExcel')->name('download_excel');
+            Route::post('importExcel', 'KeywordTrendsController@importExcel')->name('import_excel');
 
            
             // Route::resource('banner', 'BannerController');

@@ -82,7 +82,7 @@
     .hiddeninputfile {
     	width: 0.1px;
     	height: 0.1px;
-    	opacity: 0;
+    	/*opacity: 0;*/
     	overflow: hidden;
     	position: absolute;
     	z-index: -1;
@@ -90,7 +90,6 @@
     .custom_import_file {
         font-size: 1.25em;
         font-weight: 700;
-        border: 2px solid gray;
         color: gray;
         background-color: white;
         padding: 8px 20px;
@@ -110,9 +109,9 @@
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
-                <div class="box">
+                <div class="box"> 
                     <div class="box-body">
-                        <form id="regForm" action="/action_page.php">
+                        <div id="regForm">
                           <!-- One "tab" for each step in the form: -->
                           <div class="tab">
                             <h1>Connect your google Adwords account</h1>
@@ -122,12 +121,23 @@
                           <div class="tab">
                             <h1>File importation</h1>
                             <br><br>
-                            <input type="file" name="file" id="file" class="hiddeninputfile" />
-                            <label for="file" class="custom_import_file">
+                             <label for="file" class="custom_import_file">
                                 <i class="fa fa-download"></i>
                                 Choose file to import (csv or Excel)
                             </label>
+                            <!-- input type="file" name="file" id="file" class="hiddeninputfile" />
+                            <label for="file" class="custom_import_file">
+                                <i class="fa fa-download"></i>
+                                Choose file to import (csv or Excel)
+                            </label -->
                             <br><br><br>
+                              <!-- start form -->
+                            	<div class="container">
+                            		<form id="import-data" style="width: 60%; height: 150px;" action="{{ route('import_excel_partner') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+                            			<input type="file" name="import_file" />
+                            		</form>
+                            	</div>
+                              <!-- end form -->
                           </div>
                           <div class="tab">
                             <h1>Keywords</h1>
@@ -146,9 +156,9 @@
                                                   <tr>
                                                     <th>keyword</th>
                                                   </tr>
-                                                </thead>
+                                                </thead> 
                                                 <tbody>
-                                                  <tr>
+                                                  <tr> 
                                                     <td>css</td>
                                                   </tr>
                                                   <tr>
@@ -211,7 +221,7 @@
                             <span class="step"></span>
                             <span class="step"></span>
                           </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -220,6 +230,24 @@
 @endsection
 @section('additional-scripts')
     <script>
+$(document).ready(function(){
+  $("form#import-data").submit(function(e) {
+      e.preventDefault();    
+      var formData = new FormData(this);
+      $.ajax({
+          url: $(this).attr('action'),
+          type: 'POST',
+          data: formData,
+          success: function (data) {
+              console.log(data);
+          },
+          cache: false,
+          contentType: false,
+          processData: false
+      });
+  });
+});
+    
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the crurrent tab
 
@@ -252,8 +280,10 @@ function nextPrev(n) {
   // Increase or decrease the current tab by 1:
   currentTab = currentTab + n;
   // if you have reached the end of the form...
+  if(currentTab == 2) {
+    $('form#import-data').submit();
+  }
   if (currentTab >= x.length) {
-    // ... the form gets submitted:
     document.getElementById("regForm").submit();
     return false;
   }

@@ -89,6 +89,7 @@
 {!! Html::script('backend/plugins/redactor/plugins/video/video.js') !!}
 --}}
 {!! Html::script('backend/plugins/ckeditor/ckeditor.js') !!}
+{!! Html::script('backend/plugins/ajax-form/jquery.form.min.js') !!}
 {!! Html::script('backend/js/validation.js') !!}
 {!! Html::script('backend/js/jquery.form.js') !!}
 {!! Html::script('backend/js/functions.js') !!}
