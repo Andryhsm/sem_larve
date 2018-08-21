@@ -30,7 +30,6 @@ class KeywordTrendsController extends Controller
 			    $path = Input::file('import_file')->getRealPath();
 			    $data = Excel::load($path, function($reader) {})->get();
 			if(!empty($data) && $data->count()){
-			    dd($data);
 			    $keyword = $data[0]->keys()[0];
 				foreach ($data as $key => $value) {
 					$insert[] = $value->$keyword;

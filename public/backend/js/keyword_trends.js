@@ -3,7 +3,7 @@ var keyword_duplicate_list = [];
 
 $(document).ready(function(){
   $("form#import-data").submit(function(e) {
-//      e.preventDefault();    
+      e.preventDefault();    
       var formData = new FormData(this);
       $.ajax({
           url: $(this).attr('action'),

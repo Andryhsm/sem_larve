@@ -179,8 +179,7 @@
                     @if(check_user_access('role.index'))
                     <li class="{{ set_active(['admin/role','admin/role/*']) }}"><a href="{!! URL::to('admin/role') !!}"><i
                                     class="fa fa-circle-o"></i> Role manager</a></li>
-                    @endif  
-<<<<<<< HEAD
+                    @endif
                     @if(check_user_access('profile'))
                     <li class="{{ set_active(['admin/profile/*', 'admin/profile']) }}"><a
                                 href="{!! route('profile') !!}"><i class="fa fa-circle-o"></i> Profil</a>
@@ -191,8 +190,6 @@
                                 href=""><i class="fa fa-circle-o"></i> Sub-accounts</a>
                     </li>
                     @endif
-=======
->>>>>>> c2d186fdd9b94bc89b6206e32fed923b395352f7
                 </ul>
             </li>
             @endif
