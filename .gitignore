@@ -7,8 +7,6 @@ composer.lock
 /public/hot
 /storage/*.key
 /storage/*
-/vendor
-/vendor/*
 .c9/*
 /.idea
 /.c9

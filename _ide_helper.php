@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.4.36 on 2018-05-08.
+ * Generated for Laravel 5.4.36 on 2018-08-21.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -6837,7 +6837,7 @@ namespace Illuminate\Support\Facades {
          * @param array $cookies The COOKIE parameters
          * @param array $files The FILES parameters
          * @param array $server The SERVER parameters
-         * @param string|resource $content The raw body data
+         * @param string|resource|null $content The raw body data
          * @static 
          */
         public static function initialize($query = array(), $request = array(), $attributes = array(), $cookies = array(), $files = array(), $server = array(), $content = null)
@@ -6870,7 +6870,7 @@ namespace Illuminate\Support\Facades {
          * @param array $cookies The request cookies ($_COOKIE)
          * @param array $files The request files ($_FILES)
          * @param array $server The server parameters ($_SERVER)
-         * @param string $content The raw body data
+         * @param string|resource|null $content The raw body data
          * @return static 
          * @static 
          */
@@ -7517,7 +7517,7 @@ namespace Illuminate\Support\Facades {
          * Gets the mime type associated with the format.
          *
          * @param string $format The format
-         * @return string The associated mime type (null if not found)
+         * @return string|null The associated mime type (null if not found)
          * @static 
          */
         public static function getMimeType($format)
@@ -12117,7 +12117,7 @@ namespace Illuminate\Support\Facades {
          * @param array $cookies The COOKIE parameters
          * @param array $files The FILES parameters
          * @param array $server The SERVER parameters
-         * @param string|resource $content The raw body data
+         * @param string|resource|null $content The raw body data
          * @static 
          */
         public static function initialize($query = array(), $request = array(), $attributes = array(), $cookies = array(), $files = array(), $server = array(), $content = null)
@@ -12150,7 +12150,7 @@ namespace Illuminate\Support\Facades {
          * @param array $cookies The request cookies ($_COOKIE)
          * @param array $files The request files ($_FILES)
          * @param array $server The server parameters ($_SERVER)
-         * @param string $content The raw body data
+         * @param string|resource|null $content The raw body data
          * @return static 
          * @static 
          */
@@ -12797,7 +12797,7 @@ namespace Illuminate\Support\Facades {
          * Gets the mime type associated with the format.
          *
          * @param string $format The format
-         * @return string The associated mime type (null if not found)
+         * @return string|null The associated mime type (null if not found)
          * @static 
          */
         public static function getMimeType($format)
@@ -15908,6 +15908,186 @@ namespace Aloha\Twilio\Support\Laravel {
     }         
 }
     
+namespace Cartalyst\Stripe\Laravel\Facades {
+
+    class Stripe {
+        
+        /**
+         * Create a new Stripe API instance.
+         *
+         * @param string $apiKey
+         * @param string $apiVersion
+         * @return \Cartalyst\Stripe\Stripe 
+         * @static 
+         */
+        public static function make($apiKey = null, $apiVersion = null)
+        {
+            return \Cartalyst\Stripe\Stripe::make($apiKey, $apiVersion);
+        }
+        
+        /**
+         * Returns the current package version.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getVersion()
+        {
+            return \Cartalyst\Stripe\Stripe::getVersion();
+        }
+        
+        /**
+         * Returns the Config repository instance.
+         *
+         * @return \Cartalyst\Stripe\ConfigInterface 
+         * @static 
+         */
+        public static function getConfig()
+        {
+            return \Cartalyst\Stripe\Stripe::getConfig();
+        }
+        
+        /**
+         * Sets the Config repository instance.
+         *
+         * @param \Cartalyst\Stripe\ConfigInterface $config
+         * @return $this 
+         * @static 
+         */
+        public static function setConfig($config)
+        {
+            return \Cartalyst\Stripe\Stripe::setConfig($config);
+        }
+        
+        /**
+         * Returns the Stripe API key.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getApiKey()
+        {
+            return \Cartalyst\Stripe\Stripe::getApiKey();
+        }
+        
+        /**
+         * Sets the Stripe API key.
+         *
+         * @param string $apiKey
+         * @return $this 
+         * @static 
+         */
+        public static function setApiKey($apiKey)
+        {
+            return \Cartalyst\Stripe\Stripe::setApiKey($apiKey);
+        }
+        
+        /**
+         * Returns the Stripe API version.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getApiVersion()
+        {
+            return \Cartalyst\Stripe\Stripe::getApiVersion();
+        }
+        
+        /**
+         * Sets the Stripe API version.
+         *
+         * @param string $apiVersion
+         * @return $this 
+         * @static 
+         */
+        public static function setApiVersion($apiVersion)
+        {
+            return \Cartalyst\Stripe\Stripe::setApiVersion($apiVersion);
+        }
+        
+        /**
+         * Sets the idempotency key.
+         *
+         * @param string $idempotencyKey
+         * @return $this 
+         * @static 
+         */
+        public static function idempotent($idempotencyKey)
+        {
+            return \Cartalyst\Stripe\Stripe::idempotent($idempotencyKey);
+        }
+        
+        /**
+         * Sets the account id.
+         *
+         * @param string $accountId
+         * @return $this 
+         * @static 
+         */
+        public static function accountId($accountId)
+        {
+            return \Cartalyst\Stripe\Stripe::accountId($accountId);
+        }
+        
+        /**
+         * Returns the amount converter class and method name.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getAmountConverter()
+        {
+            return \Cartalyst\Stripe\Stripe::getAmountConverter();
+        }
+        
+        /**
+         * Sets the amount converter class and method name.
+         *
+         * @param $amountConverter string
+         * @return void 
+         * @static 
+         */
+        public static function setAmountConverter($amountConverter)
+        {
+            \Cartalyst\Stripe\Stripe::setAmountConverter($amountConverter);
+        }
+        
+        /**
+         * Disables the amount converter.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function disableAmountConverter()
+        {
+            \Cartalyst\Stripe\Stripe::disableAmountConverter();
+        }
+        
+        /**
+         * Returns the default amount converter.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getDefaultAmountConverter()
+        {
+            return \Cartalyst\Stripe\Stripe::getDefaultAmountConverter();
+        }
+        
+        /**
+         * Sets the default amount converter;
+         *
+         * @return void 
+         * @static 
+         */
+        public static function setDefaultAmountConverter()
+        {
+            \Cartalyst\Stripe\Stripe::setDefaultAmountConverter();
+        }
+        
+    }         
+}
+    
 namespace Artesaos\SEOTools\Facades {
 
     class SEOMeta {
@@ -17050,6 +17230,148 @@ namespace Mcamara\LaravelLocalization\Facades {
 namespace Jenssegers\Date {
 
     class Date {
+        
+    }         
+}
+    
+namespace Barryvdh\DomPDF {
+
+    class Facade {
+        
+        /**
+         * Get the DomPDF instance
+         *
+         * @return \Barryvdh\DomPDF\Dompdf 
+         * @static 
+         */
+        public static function getDomPDF()
+        {
+            return \Barryvdh\DomPDF\PDF::getDomPDF();
+        }
+        
+        /**
+         * Set the paper size (default A4)
+         *
+         * @param string $paper
+         * @param string $orientation
+         * @return $this 
+         * @static 
+         */
+        public static function setPaper($paper, $orientation = 'portrait')
+        {
+            return \Barryvdh\DomPDF\PDF::setPaper($paper, $orientation);
+        }
+        
+        /**
+         * Show or hide warnings
+         *
+         * @param bool $warnings
+         * @return $this 
+         * @static 
+         */
+        public static function setWarnings($warnings)
+        {
+            return \Barryvdh\DomPDF\PDF::setWarnings($warnings);
+        }
+        
+        /**
+         * Load a HTML string
+         *
+         * @param string $string
+         * @param string $encoding Not used yet
+         * @return static 
+         * @static 
+         */
+        public static function loadHTML($string, $encoding = null)
+        {
+            return \Barryvdh\DomPDF\PDF::loadHTML($string, $encoding);
+        }
+        
+        /**
+         * Load a HTML file
+         *
+         * @param string $file
+         * @return static 
+         * @static 
+         */
+        public static function loadFile($file)
+        {
+            return \Barryvdh\DomPDF\PDF::loadFile($file);
+        }
+        
+        /**
+         * Load a View and convert to HTML
+         *
+         * @param string $view
+         * @param array $data
+         * @param array $mergeData
+         * @param string $encoding Not used yet
+         * @return static 
+         * @static 
+         */
+        public static function loadView($view, $data = array(), $mergeData = array(), $encoding = null)
+        {
+            return \Barryvdh\DomPDF\PDF::loadView($view, $data, $mergeData, $encoding);
+        }
+        
+        /**
+         * Set/Change an option in DomPdf
+         *
+         * @param array $options
+         * @return static 
+         * @static 
+         */
+        public static function setOptions($options)
+        {
+            return \Barryvdh\DomPDF\PDF::setOptions($options);
+        }
+        
+        /**
+         * Output the PDF as a string.
+         *
+         * @return string The rendered PDF as string
+         * @static 
+         */
+        public static function output()
+        {
+            return \Barryvdh\DomPDF\PDF::output();
+        }
+        
+        /**
+         * Save the PDF to a file
+         *
+         * @param $filename
+         * @return static 
+         * @static 
+         */
+        public static function save($filename)
+        {
+            return \Barryvdh\DomPDF\PDF::save($filename);
+        }
+        
+        /**
+         * Make the PDF downloadable by the user
+         *
+         * @param string $filename
+         * @return \Illuminate\Http\Response 
+         * @static 
+         */
+        public static function download($filename = 'document.pdf')
+        {
+            return \Barryvdh\DomPDF\PDF::download($filename);
+        }
+        
+        /**
+         * Return a response with the PDF to show in the browser
+         *
+         * @param string $filename
+         * @return \Illuminate\Http\Response 
+         * @static 
+         */
+        public static function stream($filename = 'document.pdf')
+        {
+            return \Barryvdh\DomPDF\PDF::stream($filename);
+        }
         
     }         
 }
@@ -19244,6 +19566,8 @@ namespace {
     
     class Twilio extends \Aloha\Twilio\Support\Laravel\Facade {}
     
+    class Stripe extends \Cartalyst\Stripe\Laravel\Facades\Stripe {}
+    
     class SEOMeta extends \Artesaos\SEOTools\Facades\SEOMeta {}
     
     class OpenGraph extends \Artesaos\SEOTools\Facades\OpenGraph {}
@@ -19255,6 +19579,8 @@ namespace {
     class LaravelLocalization extends \Mcamara\LaravelLocalization\Facades\LaravelLocalization {}
     
     class Date extends \Jenssegers\Date\Date {}
+    
+    class PDF extends \Barryvdh\DomPDF\Facade {}
     
     class Datatables extends \Yajra\Datatables\Facades\Datatables {}
     
