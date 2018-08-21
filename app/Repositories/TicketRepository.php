@@ -31,7 +31,7 @@ class TicketRepository
 
 	public function getAll()
 	{
-		return $this->modelTicketit::with('category','priority','status','category.french','priority.french','status.french','category.english','priority.english','status.english','user','admin','comments','comments.user','comments.admin')->orderby('id','desc')->get();
+		return $this->modelTicketit::with('category','priority','status','category.french','priority.french','status.french','category.english','priority.english','status.english','admin','comments','comments.admin')->orderby('id','desc')->get();
 	}
 
 	public function getById($id)

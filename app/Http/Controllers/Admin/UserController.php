@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Interfaces\RegionRepositoryInterface;
 use App\Models\Admin;
 use App\Http\Requests\Admin\AdminUserRequest;
 use App\Models\AdminRole;
@@ -23,18 +22,15 @@ class UserController extends Controller
     protected $admin_user_repository;
     protected $upload_service;
     protected $user_repository;
-	protected $region_repository;
     protected $admin_role_repository;
 
     public function __construct(AdminUserRepository $admin_user_repository, UploadService $upload_service,
-								UserRepository $user_repository,
-								RegionRepositoryInterface $region_repo,AdminRoleRepository $admin_role_repository
+								UserRepository $user_repository,AdminRoleRepository $admin_role_repository
 								)
     {
         $this->admin_user_repository = $admin_user_repository;
         $this->user_repository = $user_repository;
         $this->upload_service = $upload_service;
-		$this->region_repository = $region_repo;
         $this->admin_role_repository = $admin_role_repository;
     }
 
@@ -64,7 +60,7 @@ class UserController extends Controller
         $type=2;
         $admin = $this->admin_user_repository->save($input,$type);
         flash()->success(config('message.admin.add-success'));
-        return redirect()->route('customer.index');      
+        return redirect()->to('admin/customer');      
 
     }
 
@@ -100,7 +96,10 @@ class UserController extends Controller
         }
         $admin = $this->admin_user_repository->updateById($admin_id, $input);
         flash()->success(config('message.admin.update-success'));
-        return redirect()->route('profile');
+        if($admin->type == 1)
+            return redirect()->route('profile');
+        else
+            return redirect()->route('profile_partner');    
     }
 
     public function edit($admin_id)
@@ -114,12 +113,13 @@ class UserController extends Controller
 
     public function destroy($admin_id)
     {
+        dd($admin_id);
         if ($this->admin_user_repository->deleteById($admin_id)) {
             flash()->success(config('message.admin.delete-success'));
         } else {
             flash()->error(config('message.admin.delete-error'));
         }
-        return redirect()->route('customer.index');
+        return redirect()->to('admin/customer');
 
     }
     public function getAllRole($roles){

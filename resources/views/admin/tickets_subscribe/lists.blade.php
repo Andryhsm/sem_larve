@@ -45,7 +45,7 @@
                                                 @endif
                                             </div>
                                             <div class="" style="padding-top: 10px;">
-                                                <form method="post" action="{!! url('admin/tickets-subscribe/add_comment') !!}" class="form-comment">
+                                                <form method="post" action="{!! url('partner/tickets-subscribe/add_comment') !!}" class="form-comment">
                                                     <input class="hidden" id="ticket-id" type="number" name="ticket_id" value="{!! $ticket->id !!}">
                                                     <div class="form-group">
                                                         <textarea class="form-control content-comment" rows="8" id="message" name="content"></textarea>

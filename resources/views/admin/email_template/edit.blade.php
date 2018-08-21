@@ -19,50 +19,57 @@
                         </div>
 
                         <div class="form-group english_input">
-                            {!! Form::label('en_subject', 'Subject (English)', ['class' => 'col-sm-2 control-label']) !!}
-                            {!! Form::text('en_subject',$email_template->english->subject, ['class' => 'form-control required','id'=>'en_subject','placeholder'=>"Subject (English)"]) !!}
+                            {!! Form::label('en_subject', 'Subject', ['class' => 'col-sm-2 control-label']) !!}
+                            {!! Form::text('en_subject',$email_template->english->subject, ['class' => 'form-control required','id'=>'en_subject','placeholder'=>"Subject"]) !!}
                         </div>
-                        <div class="form-group french_input">
+                        <div class="form-group french_input hidden">
                             {!! Form::label('fr_subject', 'Subject (French)', ['class' => 'col-sm-2 control-label']) !!}
-                            {!! Form::text('fr_subject',(!empty($email_template->french)) ? $email_template->french->subject:null, ['class' => 'form-control','id'=>'fr_subject','placeholder'=>"Subject (French)"]) !!}
+                            {!! Form::text('fr_subject',(!empty($email_template->french)) ? $email_template->french->subject:'.', ['class' => 'form-control','id'=>'fr_subject','placeholder'=>"Subject (French)"]) !!}
                         </div>
                         <div class="form-group english_input">
-                            {!! Form::label('en_content', 'Content (English)', ['class' => 'control-label']) !!}
-                            <textarea class="textarea" name="en_content" id="en_content" placeholder="Content (English)"
+                            {!! Form::label('en_content', 'Content', ['class' => 'control-label']) !!}
+                            <textarea class="textarea" name="en_content" id="en_content" placeholder="Content"
                                       style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
                                     {!! $email_template->english->content !!}
                                 </textarea>
                         </div>
 
-                        <div class="form-group french_input">
+                        <div class="form-group french_input hidden">
                             {!! Form::label('fr_content', 'Content (French)', ['class' => 'control-label']) !!}
                             <textarea class="textarea" name="fr_content" id="fr_content" placeholder="Content (French)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
                                 @if(!empty($email_template->french))
                                     {!! $email_template->french->content !!}
+                                @else 
+                                    .
                                 @endif
                             </textarea>
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('enable_sms', 'Enable SMS', ['class' => 'col-sm-1 control-label']) !!}
+                            {!! Form::label('enable_sms', 'Enable SMS', ['class' => 'pull-left control-label']) !!}
+                            <div class='col-sm-2'>
                             {!! Form::checkbox('enable_sms', '1',($email_template && $email_template->enable_sms==1) ? true : false)     !!}
+                            </div>
+                            <br>
                         </div>
 
 
                         <div class="form-group english_input">
-                            {!! Form::label('sms_en_content', 'SMS Content (English)', ['class' => 'control-label']) !!}
-                            <textarea class="textarea" name="sms_en_content" id="sms_en_content" placeholder="SMS Content (English)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                            {!! Form::label('sms_en_content', 'SMS Content', ['class' => 'control-label']) !!}
+                            <textarea class="textarea" name="sms_en_content" id="sms_en_content" placeholder="SMS Content" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
                                 @if(!empty($email_template->english))
                                     {!! $email_template->english->sms_content !!}
                                 @endif
                             </textarea>
                         </div>
 
-                        <div class="form-group french_input">
+                        <div class="form-group french_input hidden">
                             {!! Form::label('sms_fr_content', 'SMS Content (French)', ['class' => 'control-label']) !!}
                             <textarea class="textarea" name="sms_fr_content" id="sms_fr_content" placeholder="SMS Content (French)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
                                 @if(!empty($email_template->french))
                                     {!! $email_template->french->sms_content !!}
+                                @else 
+                                    .
                                 @endif
                             </textarea>
                         </div>

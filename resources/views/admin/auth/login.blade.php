@@ -4,6 +4,7 @@
     <div class="login-box">
         <div class="login-logo">
             <!-- img src="{!! url('backend/img/logo-altee-bleu.svg') !!}" -->
+            <h1>LaFactorySEM</h1>
         </div>
         @if (count($errors) > 0)
             <div class="alert alert-danger">

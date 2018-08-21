@@ -25,6 +25,7 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
+        "maatwebsite/excel": "^3.0",
         "mcamara/laravel-localization": "^1.2",
         "nesbot/carbon": "^1.22",
         "predis/predis": "~1.1",

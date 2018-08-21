@@ -1,4 +1,4 @@
-        <form class="validate_form" method="POST" action="{!! route('tickets-subscribe-store') !!}">
+        <form class="validate_form" method="POST" action="{!! route('tickets-subscribe-store-partner') !!}">
                     <div class="form-group">
                         <label for="subject">{!! trans('tickets.subject') !!}</label>
                         <input type="text" class="form-control" id="name" name="subject">

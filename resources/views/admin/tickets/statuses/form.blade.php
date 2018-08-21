@@ -28,7 +28,7 @@
                                         <div class="box-body">
                                             <div class="" style="width:50%; margin: auto;">
                                                 <div class="form-group">
-                                                    <label for="name_en" class="">English name</label>
+                                                    <label for="name_en" class="">Name</label>
                                                     <div class="">
                                                         <input type="text" value="{!! ($statuses) ? $statuses->english->name : '' !!}" class="form-control" name="name_en"/>
                                                     </div>

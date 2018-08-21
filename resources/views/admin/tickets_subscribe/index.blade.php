@@ -9,6 +9,7 @@
     			<div class="faq-title text-center" style="margin-bottom: -13px;">
                     <h2 class="mt--60">SUPPORT</h2>
                 </div>
+                @include('admin.layout.notification')
                 <ul class="nav nav-tabs" style="font-size: 17px !important;" role="tablist">
                     <li role="presentation" class="active"><a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">{!! trans('tickets.new_ticket') !!}</a>
 

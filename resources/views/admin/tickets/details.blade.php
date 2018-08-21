@@ -3,9 +3,9 @@
     <section class="content-header">
         <h1>
             @if($ticket->type == "Ticket")
-            Tickets Details
+                Tickets Details
             @else
-            Contacts Details
+                Contacts Details
             @endif
         </h1>
     </section>

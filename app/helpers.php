@@ -187,28 +187,7 @@ if (!function_exists('changeColorArray')) {
     }
 }
 
-if (!function_exists('getFavouriteCategoryList')) {
 
-    /**
-     * @return array
-     */
-    function getFavouriteCategoryList()
-    {
-        $category_lists = \DB::table('favourite_category')->lists('category_name','favourite_category_id');
-        return ['' => '- Select Favorite Category -'] + $category_lists ;
-    }
-}
-if (!function_exists('getFavouriteCategories')) {
-
-    /**
-     * @return array
-     */
-    function getFavouriteCategories()
-    {
-        return \DB::table('favourite_category')->lists('category_name','favourite_category_id');
-
-    }
-}
 
 if (!function_exists('getImages')) {
 
@@ -489,58 +468,6 @@ function videoType($url)
     return (strpos($url, 'youtube') > 0) ? 'youtube' : 'unknown';
 }
 
-function getProductPrice($product,$symbol='CDN$')
-{
-    $price = $symbol.'0.00';
-    if (!empty($product['Offers']['Offer'])) {
-        $price = $product['Offers']['Offer']['OfferListing']['Price']['FormattedPrice'];
-    } else if (!empty($product['OfferSummary']['LowestNewPrice'])) {
-        $price = $product['OfferSummary']['LowestNewPrice']['FormattedPrice'];
-    } elseif (!empty($product['OfferSummary']['LowestUsedPrice'])) {
-        $price = $product['OfferSummary']['LowestUsedPrice']['FormattedPrice'];
-    } elseif (!empty($product['ItemAttributes']['ListPrice'])) {
-        $price = $product['ItemAttributes']['ListPrice']['FormattedPrice'];
-    }
-    return $price;
-}
-
-function getCategories($categories, $title_name,$selected_category)
-{
-	$language_id = app('language')->language_id;
-    echo "<div class='list-group category-filter'>";
-    foreach ($categories as $category) {
-        if (!empty($category['title'])) {
-            $selected_class=($selected_category==$category['key'])?'selected':'';
-            $cat_title = strtolower(str_replace(' ', '-', $category['title']));
-            $class = !empty($category['children']) ? 'fa fa-caret-up category-drop' : '';
-            echo "<a data-id='" . $category['key'] . "' class='filter $selected_class' data-toggle='collapse' data-parent='#" . $category['title'] . "' data-type='category-filter'><i class='fa icon-check'></i>" . (($language_id=='1') ? $category['english_title'] : $category['french_title']) . "</a>
-             <i class='$class ' data-href='#" . $cat_title . "'></i>";  //<i class='pe-7s-science'></i> 
-            if (!empty($category['children'])) {
-                getChildCategory($category['children'], $title_name, $selected_category, $cat_title);
-            }
-        }
-    }
-    echo "</div>";
-}
-
-function getChildCategory($categories, $title_name,$selected_category,$name)
-{
-	$language_id = app('language')->language_id;
-	echo "<div class='collapse list-group-submenu' id='".$name."'>";
-    foreach ($categories as $category) {
-        if (!empty($category['title'])) {
-            $cat_title = strtolower(str_replace(' ', '-', $category['title']));
-            $selected_class=($selected_category==$category['key'])?'selected':'';
-            $class = !empty($category['children']) ? 'fa fa-caret-up category-drop' : '';
-            echo "<a data-id='" . $category['key'] . "'  class='filter $selected_class' data-toggle='collapse' data-parent-ids='".$category['parent_ids']."' data-parent='#" . $cat_title . "' data-type='category-filter'>" . (($language_id=='1') ?       $category['english_title'] : $category['french_title']) . "</a> 
-            <i class='$class' data-href='#" . $cat_title . "'></i>";  // <i class='pe-7s-smile'></i> code smile 
-            if (!empty($category['children'])) {
-                echo getChildCategory($category['children'], $title_name, $selected_category, $cat_title);
-            }
-        }
-    }
-    echo "</div>";
-}
 
 function parse_youtube($link)
 {
@@ -600,126 +527,7 @@ function getAvailableHours()
 	return ['24h'=>'24h','48h'=>'48h','72h'=>'72h','4 days'=>'4 days','5 days'=>'5 days','6 days'=>'6 days','7 days'=>'7 days'];
 }
 
-function getLatitudeAndLongitudeByZipCode($zip_code)
-{
-    $arrContextOptions=array(
-            "ssl"=>array(
-                "verify_peer"=>false,
-                "verify_peer_name"=>false,
-            ),
-        );
-	$url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAYvJI_Ul_xb9kOGHOtHJ9odVD43OcGz0s&address=" . urlencode($zip_code) . "&sensor=false";
-	
-    $result_string = file_get_contents($url, false, stream_context_create($arrContextOptions));
-	$result = json_decode($result_string, true);
-    if($result['status'] == "OK"){
-    	$result1[] = $result['results'][0];
-    	$location = $result1[0]['geometry']['location'];
-        return $location;
-    }else{
-        return "NOT FOUND"; 
-    }
-}
 
-function calculateDistance($lat1, $lon1, $lat2, $lon2, $decimals = 1)
-{
-	$theta = $lon1 - $lon2;
-	$distance = (sin(deg2rad($lat1)) * sin(deg2rad($lat2))) + (cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta)));
-	$distance = acos($distance);
-	$distance = rad2deg($distance);
-	$distance = $distance * 60 * 1.1515;
-	$distance = $distance * 1.609344;
-	return round($distance, $decimals);
-}
-
-/*function getMerchantCount($item)
-{
-	$count = 0;
-    if($item['zip_code'] != null){	
-        $location = getLatitudeAndLongitudeByZipCode($item['zip_code']);
-    	foreach ($item->brand->stores as $store) {
-    		$distance = calculateDistance($store->latitude, $store->longitude, $location['lat'], $location['lng']);
-    		if ($item['radius'] >= $distance) {
-    			$count += 1;
-    		}
-    	}
-    }
-	return $count;
-}*/
-
-function getMerchantCount($item)
-{
-    $count = 0;
-    if(Cookie::has('zip_code') && Cookie::has('distance')){  
-        $location = getLatitudeAndLongitudeByZipCode(Cookie::get('zip_code'));
-        if($location != "NOT FOUND"){
-            foreach ($item->brand->stores as $store) {
-                $distance = calculateDistance($store->latitude, $store->longitude, $location['lat'], $location['lng']);
-                if (Cookie::get('distance') >= $distance) {
-                    $count += 1;
-                }   
-            }
-        }
-    }
-    return $count;
-}
-
-function getDistanceMerchant($store_lat, $store_lng){
-    $location = getLatitudeAndLongitudeByZipCode(Cookie::get('zip_code'));
-    \Log::debug(Cookie::get('zip_code'));;
-    if($location != "NOT FOUND"){
-        $distance = calculateDistance($store_lat, $store_lng, $location['lat'], $location['lng']);
-        return $distance;
-    }
-    return 0;
-}
-
-function getStoresInRadius($stores)
-{
-    $stores_lists = []; 
-    if(Cookie::has('zip_code') || Cookie::has('distance')){
-            $zip_code = Cookie::get('zip_code');
-            $zip_code = str_replace(' ', '+', $zip_code);
-            $zip_code = str_replace('%', '+', $zip_code);
-            $requested_distance = intval(Cookie::get('distance'));
-        
-            foreach ($stores as $store) {
-                $store_lat_lng = $store->latitude.','.$store->longitude;
-                $arrContextOptions=array(
-                    "ssl"=>array(
-                        "verify_peer"=>false,
-                        "verify_peer_name"=>false,
-                    ),
-                ); 
-                $files = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins='.$zip_code.'&destinations='.$store_lat_lng.'&sensor=false';
-                $result = file_get_contents($files, false, stream_context_create($arrContextOptions));
-                $output = json_decode($result, true);
-                if($output['status'] != "INVALID_REQUEST" && !empty($output['rows'][0]) && !empty($output['rows'][0]['elements'][0])){
-                    if($output['rows'][0]['elements'][0]['status'] != "NOT_FOUND" && $output['rows'][0]['elements'][0]['status'] != "ZERO_RESULTS"){
-                        $distances = $output['rows'][0]['elements'][0]['distance']['text'];
-                        $distances = str_replace(',', '', $distances);
-                        $distance = intval($distances);
-                        if($distance < $requested_distance) {
-                           $stores_lists[] = $store;
-                        }
-                    }
-                }
-            }
-    }
-    //\Log::debug($stores_lists);
-    return $stores_lists;
-}
-
-function getCouponExpiryDate($item)
-{
-	$time = ['24h'=>'1','48h'=>'2','72h'=>'3','4 days'=>'4','5'=>'5','6'=>'6','7'=>'7'];
-
-	if($item->available_type=='1' || $item->available_type=='2')
-	{
-		return \Carbon\Carbon::parse(\Carbon\Carbon::now()->addDays($item->available_time))->format('Y-m-d');
-	}
-	return \Carbon\Carbon::parse(\Carbon\Carbon::now()->addDay())->format('Y-m-d');
-}
 
 
 //Supprimer la valeur d'un tableau numerique en gardant l'ordonance de son indexe
@@ -740,46 +548,6 @@ function add_area_in_cookie($zip, $distance){
 
 
 
-function count_wishlist(){
-    $product_count = 0;
-    if(auth()->check()){    
-        $products = App\Models\Wishlist::where('user_id',\Auth::user()->user_id)->get();
-        $product_count = $products->count();
-    }else{
-        $wishlists = [];
-        if(Cookie::has('id_user_browser')){
-            $id_user_browser = Cookie::get('id_user_browser');
-            $all_wishlist_product = (\Cache::has('wishlist_product')) ? \Cache::get('wishlist_product') : [];
-            if(!empty($all_wishlist_product) && array_key_exists($id_user_browser, $all_wishlist_product)){
-                $wishlists = $all_wishlist_product[$id_user_browser];
-            }
-        }
-        $product_count = sizeof($wishlists);
-    }
-    return $product_count;
-}
-
-function all_product_id_wishlist(){
-    $id_products = [];
-    if(auth()->check()){    
-        $products = App\Models\Wishlist::where('user_id',\Auth::user()->user_id)->get();
-        foreach ($products as $value) {
-        $id_products[] = $value->product_id; 
-        }
-    }else{
-        if(Cookie::has('id_user_browser')){
-            $products_user = [];
-            $id_user = Cookie::get('id_user_browser');
-            $all_wishlist_products = (\Cache::has('wishlist_product')) ? \Cache::get('wishlist_product') : [];
-            if (isset($all_wishlist_products[$id_user])) {
-                $products_user = $all_wishlist_products[$id_user];
-            }
-            $id_products = array_keys($products_user);
-        }
-    }
-    return $id_products;
-}
-
 function explode_multi($delemiter, $array_string){
     $result_string = [];
     foreach ($array_string as $array) {
@@ -788,19 +556,6 @@ function explode_multi($delemiter, $array_string){
     return $result_string;
 }
 
-function is_user_has_wishlist(){
-    if(Cookie::has('id_user_browser')){
-        $id_user = Cookie::get('id_user_browser');
-        $all_wishlist_products = (\Cache::has('wishlist_product')) ? \Cache::get('wishlist_product') : [];
-        $products_user = $all_wishlist_products[$id_user];
-        if(!empty($products_user))
-            return true;
-        else
-            return false;
-    }else{
-        return false;
-    }
-}
 
 function stripe_account_name(){
     return \App\StripeAccount::where('is_active', 1)->first()->stripe_account_name;
@@ -843,10 +598,7 @@ function count_tickets(){
     
 }
 
-function get_attribute_name_french($attribute_id){
-    $attribut = \App\Attribute::with('translation','options','options.english','options.french')
-            ->where('attribute_id', $attribute_id)
-            ->first();  
-    return $attribut->translation[1]->attribute_name;
+function get_pre_keyword() {
+    //auth()->guard('admin')->user();
+    return 'admin';
 }
-

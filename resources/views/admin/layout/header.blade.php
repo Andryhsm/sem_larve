@@ -2,10 +2,11 @@
     <!-- Logo -->
     <a href="{!! route('dashboard') !!}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
+        <span class="logo-mini"><b>S</b>EM</span>
         <!-- logo for regular state and mobile devices -->
         <span class="logo-lg">
             <!-- <img src="{!! url('backend/img/logo-altee-bleu.svg') !!}">  -->
+            <h3>LaFactorySEM</h3>
         </span>
     </a>
    

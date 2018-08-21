@@ -23,12 +23,33 @@
 |
 */
 
-
+	
 Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
 
     Route::get('/', 'LoginController@index');
+    
+    Route::group(['prefix' => 'partner/'],function(){
+        Route::group(['middleware' => ['auth.admin','permission']], function () {
+            
+            Route::get('dashboard', 'DashboardController@index')->name('dashboard_partner');
+           
+            Route::get('profile', 'UserController@show')->name('profile_partner');
 
-    Route::group(['prefix' => '{admin?}/'],function(){
+            Route::get('tickets-subscribe', 'SubscribeTicketsController@index')->name('tickets-subscribe-partner');
+            Route::post('tickets-subscribe/store', 'SubscribeTicketsController@store')->name('tickets-subscribe-store-partner');
+            Route::post('tickets-subscribe/add_comment', 'SubscribeTicketsController@addComment')->name('tickets-subscribe-add-comment-partner');
+            Route::get('ajax_customer_info', 'SubscribeController@ajax_index')->name('ajax-customer-info-partner'); 
+            Route::get('help-faq', 'SubscribeTicketsController@getFaq')->name('help-faq-partner');
+            Route::get('research-tools', 'KeywordTrendsController@researchTools')->name('research_tools_partner');
+            Route::get('data-collections', 'KeywordTrendsController@dataCollections')->name('data_collections_partner');
+           
+            Route::get('404',function(){
+                return view('admin.404');
+            })->name('404');
+        });
+    });    
+
+    Route::group(['prefix' => 'admin/'],function(){
     //Juste pour la fusion des attributs
         Route::get('fusion','ProductController@fusion');
         /*redactor route*/
@@ -45,10 +66,10 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
         Route::get('get-state/{country_id}', 'RegionController@getState')->name('get-state');
         Route::post('get-coordinates','StoreController@getCoordinates');
 
-        //Route::post('search_store','searchController@search');
         Route::get('get-brand-by-tag','BrandController@byTag');
-        Route::group(['middleware' => ['auth.admin','permission']], function () {
 
+        Route::group(['middleware' => ['auth.admin','permission']], function () {
+            
             Route::get('dashboard', 'DashboardController@index')->name('dashboard');
             
             Route::get('sales/{status}', 'SalesController@index')->name('orders');
@@ -96,9 +117,9 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::patch('update/{id}', ['as' => 'profile.update', 'uses' => 'UserController@update']);
 
 
+            
 
-
-            //--------------- Espace madio be subscribes  ---------------
+            //--------------- Start route subscribes  ---------------
 
             Route::get('tickets-subscribe', 'SubscribeTicketsController@index')->name('tickets-subscribe');
             Route::post('tickets-subscribe/store', 'SubscribeTicketsController@store')->name('tickets-subscribe-store');
@@ -106,15 +127,11 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::get('ajax_customer_info', 'SubscribeController@ajax_index')->name('ajax-customer-info'); 
            // Route::get('customer-informations', 'SubscribeController@getCustomerInformations')->name('customer_informations');
             Route::get('help-faq', 'SubscribeTicketsController@getFaq')->name('help-faq');
-            //--------------- End espace madio subscribes ---------------
+            Route::get('research-tools', 'KeywordTrendsController@researchTools')->name('research_tools');
+            Route::get('data-collections', 'KeywordTrendsController@dataCollections')->name('data_collections');
+            //--------------- End route subscribes ---------------
 
 
-
-
-
-            // 
-
-        
 
            
             // Route::resource('banner', 'BannerController');

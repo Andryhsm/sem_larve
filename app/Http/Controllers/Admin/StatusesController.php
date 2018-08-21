@@ -57,12 +57,12 @@ class StatusesController extends Controller
         try{
             $this->ticket_repository->storeStatuses($request->all());
         }catch(\Exception $e){ 
-            return flash()->error("Enregistrement non succès! ");
+            return flash()->error("Ticket status not added successfully! ");
         }
         /*$statuses = \Cache::remember('statuses', 60, function () {
             return Statuses::all();
         });*/
-        flash()->success("Enregistrement avec success!");
+        flash()->success("Ticket status added successfully!");
         return redirect()->route('statuses.index');
     }
 
@@ -110,9 +110,9 @@ class StatusesController extends Controller
         try {
             $this->ticket_repository->updateStatusesById($id, $request->all());
         } catch (Exception $e) {
-            return flash()->error("Erreur de modification");
+            return flash()->error("Error while updating information!");
         }
-        flash()->success("Modification avec succès !");
+        flash()->success("Ticket status updated successfully!");
         return redirect()->route('statuses.index');
     }
 
@@ -126,9 +126,9 @@ class StatusesController extends Controller
     {
         try{
             $this->ticket_repository->deleteStatuses($id, $request->all());
-            flash()->success("Enregistrement avec succès! ");
+            flash()->success("Ticket status deleted successfully! ");
         }catch(\Exception $e){ 
-            flash()->error("Enregistrement non succès! ");
+            flash()->error("Error while deleting ticket status! ");
         }
         return redirect()->route('statuses.index');
     }

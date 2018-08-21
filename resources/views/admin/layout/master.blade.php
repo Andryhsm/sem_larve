@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="_token" content="{{ csrf_token() }}"/>
 
-    <title>ALTEE | Admin Panel</title>
+    <title>LaFactorySEM | Panel</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     {!! Html::style('backend/bootstrap/css/bootstrap.min.css') !!}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     {!! Html::style('backend/plugins/select2/select2.css') !!}
-
+    {!! Html::style('frontend/css/style.css') !!}
     {!! Html::style('backend/dist/css/AdminLTE.min.css') !!}
     {!! Html::style('backend/dist/css/skins/skin-black-light.css') !!}
     {!! Html::style('backend/plugins/iCheck/flat/blue.css') !!}

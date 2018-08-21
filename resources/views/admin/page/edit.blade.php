@@ -23,21 +23,21 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tab_1">
                                     <div class="form-group english_input">
-                                        {!! Form::label('en_page_title', 'Page Title (English)', ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text('en_page_title',$page->english->page_title , ['class' => 'form-control required','id'=>'en_page_title','placeholder'=>"Page Title(English)"]) !!}
+                                        {!! Form::label('en_page_title', 'Page Title', ['class' => 'col-sm-2 control-label']) !!}
+                                        {!! Form::text('en_page_title',$page->english->page_title , ['class' => 'form-control required','id'=>'en_page_title','placeholder'=>"Page Title"]) !!}
                                     </div>
-                                    <div class="form-group french_input">
+                                    <div class="form-group french_input hidden">
                                         {!! Form::label('fr_page_title', 'Page Title (French)', ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text('fr_page_title',(!empty($page->french)) ? $page->french->page_title : null , ['class' => 'form-control','id'=>'fr_page_title','placeholder'=>"Page Title(French)"]) !!}
+                                        {!! Form::text('fr_page_title',(!empty($page->french)) ? $page->french->page_title : '.' , ['class' => 'form-control','id'=>'fr_page_title','placeholder'=>"Page Title(French)"]) !!}
                                     </div>
 
                                     <div class="form-group english_input">
-                                        {!! Form::label('en_content_heading', 'Content Heading (English)', ['class' => 'col-sm-2 control-label']) !!}</label>
-                                        {!! Form::text('en_content_heading',$page->english->content_heading , ['class' => 'form-control required','id'=>'en_content_heading','placeholder'=>"Content Heading(English)"]) !!}
+                                        {!! Form::label('en_content_heading', 'Content Heading', ['class' => 'col-sm-2 control-label']) !!}</label>
+                                        {!! Form::text('en_content_heading',$page->english->content_heading , ['class' => 'form-control required','id'=>'en_content_heading','placeholder'=>"Content Heading"]) !!}
                                     </div>
-                                    <div class="form-group french_input">
+                                    <div class="form-group french_input hidden">
                                         {!! Form::label('fr_content_heading', 'Content Heading (French)', ['class' => 'col-sm-2 control-label']) !!}</label>
-                                        {!! Form::text('fr_content_heading',(!empty($page->french))?$page->french->content_heading:null  , ['class' => 'form-control','id'=>'fr_content_heading','placeholder'=>"Content Heading(French)"]) !!}
+                                        {!! Form::text('fr_content_heading',(!empty($page->french))?$page->french->content_heading:'.'  , ['class' => 'form-control','id'=>'fr_content_heading','placeholder'=>"Content Heading(French)"]) !!}
                                     </div>
 
                                     <div class="form-group">
@@ -45,23 +45,28 @@
                                         {!! Form::text('url_key',($page->url->request_url)?$page->url->request_url:null , ['class' => 'form-control required','id'=>'url_key','placeholder'=>"Url key"]) !!}
                                     </div>
                                     <div class="form-group">
-                                        {!! Form::label('is_active', 'Is Active', ['class' => 'col-sm-1 control-label']) !!}
-                                        {!! Form::checkbox('is_active', '1',($page->status==1)?true:false) !!}
+                                        {!! Form::label('is_active', 'Is Active', ['class' => 'pull-left control-label']) !!}
+                                        <div class="col-sm-10">
+                                            {!! Form::checkbox('is_active', '1',($page->status==1)?true:false) !!}
+                                        </div>
+                                        <br>
                                     </div>
                                     <div class="form-group english_input">
-                                        <label for="url_key">Content (English)</label>
-                                        <textarea class="textarea" name="en_content" id="en_content" placeholder="Page Content (English)"
+                                        <label for="url_key">Content</label>
+                                        <textarea class="textarea" name="en_content" id="en_content" placeholder="Page Content"
                                                   style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
                                             {!! $page->english->content !!}
                                         </textarea>
                                     </div>
 
-                                    <div class="form-group french_input">
+                                    <div class="form-group french_input hidden">
                                         <label for="url_key">Content (French)</label>
                                         <textarea class="textarea" name="fr_content" id="fr_content" placeholder="Page Content (French)"
                                                   style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
                                             @if(!empty($page->french))
                                                 {!! $page->french->content !!}
+                                            @else 
+                                                .
                                             @endif
                                         </textarea>
                                     </div>
@@ -70,50 +75,50 @@
                                 </div>
                                 <div class="tab-pane" id="tab_2">
                                     <div class="form-group">
-                                        {!! Form::label('en_title', "Title (English)", ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text("en_title", ($page)? $page->english->meta_title : null , ['class' => 'form-control','id'=>'en_title','placeholder'=>"Title (English)"]) !!}
+                                        {!! Form::label('en_title', "Title", ['class' => 'col-sm-2 control-label']) !!}
+                                        {!! Form::text("en_title", ($page)? $page->english->meta_title : null , ['class' => 'form-control','id'=>'en_title','placeholder'=>"Title"]) !!}
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group hidden">
                                         {!! Form::label('fr_title', "Title (French)", ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text("fr_title", ($page)? $page->french->meta_title : null, ['class' => 'form-control','id'=>'fr_title','placeholder'=>"Title (French)"]) !!}
+                                        {!! Form::text("fr_title", ($page)? $page->french->meta_title : '.', ['class' => 'form-control','id'=>'fr_title','placeholder'=>"Title (French)"]) !!}
                                     </div>
 
                                     <div class="form-group">
-                                        {!! Form::label('en_meta_description', "Meta Description (English)", ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text("en_meta_description",  ($page)? $page->english->meta_description : null , ['class' => 'form-control','id'=>'en_meta_description','placeholder'=>"Meta Description (English)"]) !!}
+                                        {!! Form::label('en_meta_description', "Meta Description", ['class' => 'col-sm-2 control-label']) !!}
+                                        {!! Form::text("en_meta_description",  ($page)? $page->english->meta_description : null , ['class' => 'form-control','id'=>'en_meta_description','placeholder'=>"Meta Description"]) !!}
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group hidden">
                                         {!! Form::label('fr_meta_description', "Meta Description (French)", ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text("fr_meta_description", ($page)? $page->french->meta_description : null , ['class' => 'form-control','id'=>'fr_meta_description','placeholder'=>"Meta Description (French)"]) !!}
+                                        {!! Form::text("fr_meta_description", ($page)? $page->french->meta_description : '.' , ['class' => 'form-control','id'=>'fr_meta_description','placeholder'=>"Meta Description (French)"]) !!}
                                     </div>
 
                                     <div class="form-group">
-                                        {!! Form::label('en_meta_keywords', "Meta Keyword (English)", ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text("en_meta_keywords", ($page)? $page->english->meta_keywords : null , ['class' => 'form-control','id'=>'en_meta_keywords','placeholder'=>"Meta Keyword (English)"]) !!}
+                                        {!! Form::label('en_meta_keywords', "Meta Keyword", ['class' => 'col-sm-2 control-label']) !!}
+                                        {!! Form::text("en_meta_keywords", ($page)? $page->english->meta_keywords : null , ['class' => 'form-control','id'=>'en_meta_keywords','placeholder'=>"Meta Keyword"]) !!}
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group hidden">
                                         {!! Form::label('fr_meta_keywords', "Meta Keyword (French)", ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text("fr_meta_keywords",  ($page)? $page->french->meta_keywords : null , ['class' => 'form-control','id'=>'fr_meta_keywords','placeholder'=>"Meta Keyword (French)"]) !!}
+                                        {!! Form::text("fr_meta_keywords",  ($page)? $page->french->meta_keywords : '.' , ['class' => 'form-control','id'=>'fr_meta_keywords','placeholder'=>"Meta Keyword (French)"]) !!}
                                     </div>
 
                                     <div class="form-group">
-                                        {!! Form::label('en_og_title', "OG Title (English)", ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text("en_og_title", ($page)? $page->english->og_title : null  , ['class' => 'form-control','id'=>'en_og_title','placeholder'=>"OG Title (English)"]) !!}
+                                        {!! Form::label('en_og_title', "OG Title", ['class' => 'col-sm-2 control-label']) !!}
+                                        {!! Form::text("en_og_title", ($page)? $page->english->og_title : null  , ['class' => 'form-control','id'=>'en_og_title','placeholder'=>"OG Title"]) !!}
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group hidden">
                                         {!! Form::label('fr_og_title', "OG Title (French)", ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text("fr_og_title",  ($page)? $page->french->og_title : null  , ['class' => 'form-control','id'=>'fr_og_title','placeholder'=>"OG Title (French)"]) !!}
+                                        {!! Form::text("fr_og_title",  ($page)? $page->french->og_title : '.'  , ['class' => 'form-control','id'=>'fr_og_title','placeholder'=>"OG Title (French)"]) !!}
                                     </div>
                                     <div class="form-group">
-                                        {!! Form::label('en_og_description', "OG Description (English)", ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text("en_og_description", ($page)? $page->english->og_description : null  , ['class' => 'form-control','id'=>'en_og_title','placeholder'=>"OG Description (English)"]) !!}
+                                        {!! Form::label('en_og_description', "OG Description", ['class' => 'col-sm-2 control-label']) !!}
+                                        {!! Form::text("en_og_description", ($page)? $page->english->og_description : null  , ['class' => 'form-control','id'=>'en_og_title','placeholder'=>"OG Description"]) !!}
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group hidden">
                                         {!! Form::label('fr_og_description', "OG Description (French)", ['class' => 'col-sm-2 control-label']) !!}
-                                        {!! Form::text("fr_og_description",  ($page)? $page->french->og_description : null , ['class' => 'form-control','id'=>'fr_og_title','placeholder'=>"OG Description (French)"]) !!}
+                                        {!! Form::text("fr_og_description",  ($page)? $page->french->og_description : '.' , ['class' => 'form-control','id'=>'fr_og_title','placeholder'=>"OG Description (French)"]) !!}
                                     </div>
                                 </div>
                             </div>
