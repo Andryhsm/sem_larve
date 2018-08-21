@@ -30,9 +30,8 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>English Question</th>
-                                <th>French Question</th>
-                                <th>Type</th>
+                                <th>Question</th>
+                                <th>Answer</th>
                                 <th>Status</th>
                                 <th class="no-sort">Action</th>
                             </tr>
@@ -41,15 +40,7 @@
                             @foreach($faqs->data as $faq)
                                 <tr>
                                     <td>{!! $faq->english_question !!}</td>
-                                    <td>{!! $faq->french_question !!}</td>
-                                    <td>
-                                        @if($faq->type == '1')
-                                            <span class="badge bg-green mr-5">Customer</span>
-                                        @else
-                                            <span class="badge bg-red mr-5">Merchant</span>
-                                        @endif
-
-                                    </td>
+                                    <td>{!! $faq->english_answer !!}</td>
                                     <td>
                                         @if($faq->status == '1')
                                             <span class="badge bg-green mr-5">Active</span>

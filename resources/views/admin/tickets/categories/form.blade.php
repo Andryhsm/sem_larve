@@ -19,12 +19,12 @@
                     <div class="box-body">
                          <div class="" style="width:50%; margin: auto;">
                             <div class="form-group">
-                                {!! Form::label('name_en', 'English name', ['class' => '']) !!}
-                                {!! Form::text('name_en', ($categories)? $categories->english->name:null, ['class' => 'form-control required','id'=>'name_en','placeholder'=>"English name"]) !!}
+                                {!! Form::label('name_en', 'Name', ['class' => '']) !!}
+                                {!! Form::text('name_en', ($categories)? $categories->english->name:null, ['class' => 'form-control required','id'=>'name_en','placeholder'=>"Name"]) !!}
                             </div>
-                            <div class="form-group">
+                            <div class="form-group hidden">
                                 {!! Form::label('name_fr', 'French name', ['class' => '']) !!}
-                                {!! Form::text('name_fr', ($categories)? $categories->french->name:null, ['class' => 'form-control required','id'=>'name_fr','placeholder'=>"French name"]) !!}
+                                {!! Form::text('name_fr', ($categories)? $categories->french->name:'.', ['class' => 'form-control required','id'=>'name_fr','placeholder'=>"French name"]) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('color', 'Color', ['class' => '']) !!}

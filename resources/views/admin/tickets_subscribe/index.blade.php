@@ -2,13 +2,14 @@
 
 @section('content')
     <div class="box-body">
-    	@include('admin.aid-faq.index')
+    	
         <div class="inner-content col-lg-12">
         	
     		<div role="tabpanel" class="tab-panel">
     			<div class="faq-title text-center" style="margin-bottom: -13px;">
                     <h2 class="mt--60">SUPPORT</h2>
                 </div>
+                @include('admin.layout.notification')
                 <ul class="nav nav-tabs" style="font-size: 17px !important;" role="tablist">
                     <li role="presentation" class="active"><a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">{!! trans('tickets.new_ticket') !!}</a>
 
@@ -31,11 +32,7 @@
         </div>
     </div>
 @stop
-@section('additional-css')
-<style type="text/css">
-    
-</style>
-@endsection
+
 @section('additional-script')
 
 	<script type="text/javascript">
@@ -43,5 +40,14 @@
 
         	$(".textarea").wysihtml5();
         }
+        
+        jQuery(document).ready(function($) {
+            function activate(ids) {
+                var id = $(ids).attr("id");
+                $('.panel-default').removeClass('actives');
+                $('#' + id).addClass('actives');
+            }    
+        });
+
 	</script>
 @endsection

@@ -23,39 +23,13 @@
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <!-- Admin et Abonnée -->
-            @if(check_user_access(['dashboard']))
+            @if(check_user_access(['dashboard','dashboard_partner']))
             <li class="active treeview">
-                <a href="{!! route('dashboard') !!}">
+                <a href="{!! ($user->type==1) ? route('dashboard') : route('dashboard_partner') !!}">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
             @endif
-
-            <!-- Admin -->
-            @if(check_user_access(['orders','order-status.index']))
-            <li class="treeview {{ set_active(['admin/order-status','admin/order-status/*','admin/sales/*']) }}">
-                <a href="#">
-                    <i class="fa fa-files-o"></i>
-                    <span>Sales</span>
-                    <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li class=" {{ set_active(['admin/sales/*']) }}">
-                            <a href="#">
-                                <i class="fa fa-circle-o"></i>
-                                All orders
-                            </a>
-                        </li>
-                        @if(check_user_access('order-status.index'))
-                        <li class="{{ set_active(['admin/order-status','admin/order-status/*']) }}">
-                            <a href="{!! Url('/admin/order-status') !!}"><i class="fa fa-circle-o"></i> Status Manager</a>
-                        </li>
-                        @endif
-                    </ul>
-                </li>
-                @endif
 
             <!-- Admin -->
             @if(check_user_access(['product_billed','orders']))
@@ -154,10 +128,36 @@
                 </ul>
             </li>
             @endif
-
+            
+              <!-- Admin -->
+            @if(check_user_access(['orders','order-status.index']))
+            <li class="treeview {{ set_active(['admin/order-status','admin/order-status/*','admin/sales/*']) }}">
+                <a href="#">
+                    <i class="fa fa-files-o"></i>
+                    <span>Sales</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class=" {{ set_active(['admin/sales/*']) }}">
+                            <a href="#">
+                                <i class="fa fa-circle-o"></i>
+                                All orders
+                            </a>
+                        </li>
+                        @if(check_user_access('order-status.index'))
+                        <li class="{{ set_active(['admin/order-status','admin/order-status/*']) }}">
+                            <a href="{!! Url('/admin/order-status') !!}"><i class="fa fa-circle-o"></i> Status Manager</a>
+                        </li>
+                        @endif
+                    </ul>
+                </li>
+                @endif
+        
             <!-- Admin -->
-            @if(check_user_access(['customer.index','store.index','administrator','role.index', 'profile', 'sub-accounts']))
-            <li class="treeview {{ set_active(['admin/role','admin/role/*','admin/customer','admin/customer/*','admin/store','admin/store/*','admin/administrator','admin/administrator/*', 'admin/profile']) }}">
+            @if(check_user_access(['customer.index','store.index','administrator','role.index']))
+            <li class="treeview {{ set_active(['admin/role','admin/role/*','admin/customer','admin/customer/*','admin/store','admin/store/*','admin/administrator','admin/administrator/*']) }}">
                 <a href="#">
                     <i class="fa fa-user"></i>
                     <span>Accounts</span>
@@ -180,6 +180,7 @@
                     <li class="{{ set_active(['admin/role','admin/role/*']) }}"><a href="{!! URL::to('admin/role') !!}"><i
                                     class="fa fa-circle-o"></i> Role manager</a></li>
                     @endif  
+<<<<<<< HEAD
                     @if(check_user_access('profile'))
                     <li class="{{ set_active(['admin/profile/*', 'admin/profile']) }}"><a
                                 href="{!! route('profile') !!}"><i class="fa fa-circle-o"></i> Profil</a>
@@ -190,6 +191,8 @@
                                 href=""><i class="fa fa-circle-o"></i> Sub-accounts</a>
                     </li>
                     @endif
+=======
+>>>>>>> c2d186fdd9b94bc89b6206e32fed923b395352f7
                 </ul>
             </li>
             @endif
@@ -220,43 +223,35 @@
              @endif
 
              <!-- Abonnée -->
-            @if(check_user_access(['keywords-trends']))
-            <li class="treeview {{ set_active(['']) }}">
+            @if(check_user_access(['research_tools', 'data_collections', 'research_tools_partner', 'data_collections_partner']))
+            <li class="treeview {{ set_active(['admin/research-tools/*', 'admin/research-tools', '/admin/data-collections', '/admin/data-collections/*',
+                                                'partner/research-tools/*', 'partner/research-tools', 'partner/data-collections', 'partner/data-collections/*']) }}">
                     <a href="#">
-                        <i class="fa fa-book"></i>
+                        <i class="fa fa-pencil"></i>
                         <span>Keywords trends</span>
+                        <span class="pull-right-container">
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
+                    <ul class="treeview-menu">
+                        @if(check_user_access(['research_tools', 'research_tools_partner']))
+                            <li class="{{ set_active(['admin/research-tools','admin/research-tools/*','partner/research-tools','partner/research-tools/*' ]) }}"><a
+                                        href="{!! ($user->type == 1) ? route('research_tools') : route('research_tools_partner') !!}"><i class="fa fa-circle-o"></i> Research tools</a>
+                            </li>
+                        @endif
+                        @if(check_user_access('data_collections', 'data_collections_partner'))
+                            <li class="{{ set_active(['admin/data-collections','admin/data-collections/*','partner/data-collections','partner/data-collections/*' ]) }}"><a
+                                    href="{!! ($user->type == 1) ? route('data_collections') : route('data_collections_partner') !!}"><i class="fa fa-circle-o"></i> Data collections</a></li>
+                        @endif
+                    </ul>
             </li>
             @endif
 
             
-            <?php
-                $html = '';
-                $active_url = [];
-                foreach(get_training_pages() as $page) {  
-                    $html = $html.'<li class="'.set_active([$page->url->target_url]).'">';
-                    $html = $html.'<a href="'.url($page->url->target_url) .'">';
-                    $html = $html.'<i class="fa fa-circle-o"></i>'.$page->english->page_title.'</a></li>';
-                    $active_url[] = $page->url->target_url;
-                }
-            ?>
-            @if(check_user_access(['training']))
-            <li class="treeview {{ set_active($active_url)}}">
-                <a href="#">
-                    <i class="fa fa-files-o"></i>
-                    <span>Training</span>
-                    <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <?php echo $html; ?>
-                </ul>
-            </li>
-            @endif
             
-            @if(check_user_access(['help-faq', 'faq']))
-            <li class="treeview {{ set_active(['admin/faq', 'admin/tickets-subscribe']) }}">
+    
+            @if(check_user_access(['help-faq', 'help-faq-partner', 'tickets-subscribe', 'tickets-subscribe-partner']))
+            <li class="treeview {{ set_active(['admin/tickets-subscribe','partner/tickets-subscribe', 'admin/help-faq', 'partner/help-faq']) }}">
                 <a href="#">
                     <i class="fa fa-book"></i>
                     <span>Support + FAQ </span>
@@ -265,19 +260,49 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                        @if(check_user_access(['tickets-subscribe']))
-                        <li class="{{ set_active(['admin/tickets-subscribe']) }}"><a
-                                    href="{!! url('/admin/tickets-subscribe') !!}"><i class="fa fa-circle-o"></i> Support</a>
-                        </li>
-                        @endif
-                        @if(check_user_access(['faq']))
-                        <li class=""><a
-                                    href="#"><i class="fa fa-circle-o"></i> FAQ</a>
-                        </li>
-                        @endif
+                    @if(check_user_access(['tickets-subscribe','tickets-subscribe-partner']))
+                    <li class="{{ set_active(['admin/tickets-subscribe','partner/tickets-subscribe']) }}">
+                        <a href="{!! ($user->type == 1) ? route('tickets-subscribe') : route('tickets-subscribe-partner') !!}">
+                            <i class="fa fa-circle-o"></i> Support
+                        </a>
+                    </li>
+                    @endif
+                    @if(check_user_access(['help-faq','help-faq-partner']))
+                    <li class="{{ set_active(['admin/help-faq','partner/help-faq']) }}">
+                        <a href="{!! ($user->type == 1) ? route('help-faq') : route('help-faq-partner') !!}">
+                            <i class="fa fa-circle-o"></i> FAQ
+                        </a>
+                    </li>
+                    @endif
                 </ul>
             </li>
             @endif
+            
+                <!-- Admin -->
+            @if(check_user_access(['profile_partner', 'sub-accounts']))
+            <li class="treeview {{ set_active(['admin/profile','partner/profile']) }}">
+                <a href="#">
+                    <i class="fa fa-user"></i>
+                    <span>Accounts</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    @if(check_user_access(['profile','profile_partner']))
+                    <li class="{{ set_active(['admin/profile','partner/profile']) }}">
+                        <a href="{!! ($user->type == 1) ? route('profile') : route('profile_partner') !!}"><i class="fa fa-circle-o"></i> Profil</a>
+                    </li>
+                    @endif
+                    @if(check_user_access('sub-accounts'))
+                    <li class="">
+                        <a href=""><i class="fa fa-circle-o"></i> Sub-accounts</a>
+                    </li>
+                    @endif
+                </ul>
+            </li>
+            @endif
+
         </ul>
     </section>
     <!-- /.sidebar -->

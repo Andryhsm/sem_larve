@@ -34,7 +34,10 @@ class LoginController extends Controller
             }
             $user = $auth->getLastAttempted();
             $auth->login($user, $request->has('memory'));
-            return redirect()->route('dashboard');
+            if($user->type == 1)
+                return redirect()->route('dashboard');
+            else
+                return redirect()->route('dashboard_partner');
         }
         return Redirect::back()
             ->withErrors('Your email address/password combination is incorrect.')

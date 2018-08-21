@@ -49,8 +49,9 @@ class AdminUserController extends Controller
 		$input = $admin_request->all();
 		$input['image_name'] = $image_name;
 		$type=1;
-		$admin = $this->admin_repository->save($input,$type);
-		flash()->success(config('message.admin.add-success'));
+		if($admin = $this->admin_repository->save($input,$type)) 
+			flash()->success(config('message.admin.add-success'));
+		else flash()->error(config('message.admin.add-error'));
 		return redirect()->route('administrator');
 	}
 
@@ -87,8 +88,9 @@ class AdminUserController extends Controller
 		if ($image_name) {
 			$input['image_name'] = $image_name;
 		}
-		$admin = $this->admin_repository->updateById($admin_id, $input);
-		flash()->success(config('message.admin.update-success'));
+		if($admin = $this->admin_repository->updateById($admin_id, $input)) 
+			flash()->success(config('message.admin.update-success'));
+		else flash()->error(config('message.admin.update-error'));
 		return redirect()->route('administrator');
 	}
 

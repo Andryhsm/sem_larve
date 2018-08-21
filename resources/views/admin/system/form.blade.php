@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="nav-tabs-custom">
-                    <ul class="nav nav-tabs">
+                    <ul class="nav nav-tabs hidden">
                         <li class="active"><a href="#tab_1" data-toggle="tab">English</a></li>
                         <li><a href="#tab_2" data-toggle="tab">French</a></li>
                     </ul>
@@ -36,7 +36,7 @@
                                 </div>
                             </section>
                         </div>
-                        <div class="tab-pane" id="tab_2">
+                        <div class="tab-pane hidden" id="tab_2">
                             <section class="content">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -45,7 +45,7 @@
                                                 <div class="form-group">
                                                     {!! Form::label($french_setting->name, $french_setting->name, ['class' => 'col-sm-2 control-label']) !!}
                                                     <div class="col-sm-10">
-                                                        {!! Form::text("setting[2][$french_setting->name]", $french_setting->value, ['class' => 'form-control required','id'=>'en_product_name']) !!}
+                                                        {!! Form::text("setting[2][$french_setting->name]", ($french_setting->value) ? $french_setting->value : '.', ['class' => 'form-control required','id'=>'en_product_name']) !!}
                                                     </div>
                                                 </div>
                                             @endforeach

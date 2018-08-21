@@ -39,7 +39,7 @@ class FaqRepository implements FaqRepositoryInterface
 			$this->model->english_answer = $input['english_answer'];
 			$this->model->french_answer = $input['french_answer'];
 			$this->model->status = isset($input['status']) ? $input['status'] : '0';
-			$this->model->type = isset($input['faq_type']) ? $input['faq_type'] : '0';
+			$this->model->type = 1;
 			$this->model->save();
 			return $this->model;
 		} catch (\Exception $e) {
@@ -56,7 +56,7 @@ class FaqRepository implements FaqRepositoryInterface
 			$faq->english_answer = $input['english_answer'];
 			$faq->french_answer = $input['french_answer'];
 			$faq->status = isset($input['status']) ? $input['status'] : '0';
-			$faq->type = isset($input['faq_type']) ? $input['faq_type'] : '0';
+			$faq->type = 1;
 			$faq->save();
 		} catch (\Exception $e) {
 			return $e->getMessage();

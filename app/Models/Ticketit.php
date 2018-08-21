@@ -39,11 +39,6 @@ class Ticketit extends Model
         return $this->belongsTo(Admin::class, 'user_id');
     }
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
     
     public function comments()
     {

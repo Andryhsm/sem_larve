@@ -18,20 +18,20 @@
                                 <input type="text" name="template_name" class="form-control required" id="content-heading" placeholder="Template Name">
                             </div>
                             <div class="form-group english_input">
-                                {!! Form::label('en_subject', 'Subject (English)', ['class' => 'col-sm-2 control-label']) !!}
-                                <input type="text" name="en_subject"  class="form-control required" id="en_subject" placeholder="Subject (English)">
+                                {!! Form::label('en_subject', 'Subject', ['class' => 'col-sm-2 control-label']) !!}
+                                <input type="text" name="en_subject"  class="form-control required" id="en_subject" placeholder="Subject">
                             </div>
-                            <div class="form-group french_input">
+                            <div class="form-group french_input hidden">
                                 {!! Form::label('fr_subject', 'Subject (French)', ['class' => 'col-sm-2 control-label']) !!}
-                                <input type="text" name="fr_subject"  class="form-control" id="fr_subject" placeholder="Subject(French)">
+                                <input type="text" name="fr_subject"  class="form-control" id="fr_subject" placeholder="Subject(French)" value="fr">
                             </div>
                             <div class="form-group english_input">
-                                {!! Form::label('en_content', 'Content (English)', ['class' => 'control-label']) !!}
-                                <textarea class="textarea" name="en_content" id="en_content" placeholder="Content (English)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                {!! Form::label('en_content', 'Content', ['class' => 'control-label']) !!}
+                                <textarea class="textarea" name="en_content" id="en_content" placeholder="Content" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                             </div>
-                            <div class="form-group french_input">
+                            <div class="form-group french_input hidden">
                                 {!! Form::label('fr_content', 'Content (French)', ['class' => 'control-label']) !!}
-                                <textarea class="textarea" name="fr_content" id="fr_content" placeholder="Content (French)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                <textarea class="textarea" name="fr_content" id="fr_content" placeholder="Content (French)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">fr</textarea>
                             </div>
 
                             <div class="form-group">
@@ -40,12 +40,12 @@
                             </div>
 
                             <div class="form-group english_input">
-                                {!! Form::label('sms_en_content', 'SMS Content (English)', ['class' => 'control-label']) !!}
-                                <textarea class="textarea" name="sms_en_content" id="sms_en_content" placeholder="SMS Content (English)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                {!! Form::label('sms_en_content', 'SMS Content', ['class' => 'control-label']) !!}
+                                <textarea class="textarea" name="sms_en_content" id="sms_en_content" placeholder="SMS Content" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                             </div>
-                            <div class="form-group french_input">
+                            <div class="form-group french_input hidden">
                                 {!! Form::label('sms_fr_content', 'SMS Content (French)', ['class' => 'control-label']) !!}
-                                <textarea class="textarea" name="sms_fr_content" id="sms_fr_content" placeholder="SMS Content (French)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                <textarea class="textarea" name="sms_fr_content" id="sms_fr_content" placeholder="SMS Content (French)" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">fr</textarea>
                             </div>
 
 
