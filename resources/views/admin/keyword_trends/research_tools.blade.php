@@ -13,9 +13,8 @@
     #regForm {
       background-color: #ffffff;
       margin: 100px auto;
-      font-family: Raleway;
-      padding: 40px;
-      width: 70%;
+      padding: 5px;
+      width: 100%;
       min-width: 300px;
     }
     
@@ -39,24 +38,6 @@
     /* Hide all steps by default: */
     .tab {
       display: none;
-    }
-    
-    button {
-      background-color: #4CAF50;
-      color: #ffffff;
-      border: none;
-      padding: 10px 20px;
-      font-size: 17px;
-      font-family: Raleway;
-      cursor: pointer;
-    }
-    
-    button:hover {
-      opacity: 0.8;
-    }
-    
-    #prevBtn {
-      background-color: #bbbbbb;
     }
     
     /* Make circles that indicate the steps of the form: */
@@ -113,7 +94,7 @@
                     <div class="box-body">
                         <div id="regForm">
                           <!-- One "tab" for each step in the form: -->
-                          <div class="tab">
+                          <div class="tabtab hidden">
                             <h1>Connect your google Adwords account</h1>
                             <p><input type="email" placeholder="e-mail" oninput="this.className = ''" name="ads-e-mail"></p>
                             <p><input type="password" placeholder="password" oninput="this.className = ''" name="ads-password"></p>
@@ -141,66 +122,18 @@
                           </div>
                           <div class="tab">
                             <h1>Keywords</h1>
-                            <p><input placeholder="File path" oninput="this.className = ''" name="file_path"></p>
-                            <div class="panel-group" id="accordion">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">View keyword</a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseOne" class="panel-collapse collapse in">
-                                        <div class="panel-body">
-                                            <table class="table table-bordered table-hover table-responsive">
-                                                <thead>
-                                                  <tr>
-                                                    <th>keyword</th>
-                                                  </tr>
-                                                </thead> 
-                                                <tbody>
-                                                  <tr> 
-                                                    <td>css</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td>Jquery</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td>Laravel</td>
-                                                  </tr>
-                                                </tbody>
-                                              </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Duplicate keyword list found</a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            <table class="table table-bordered table-hover table-responsive">
-                                                <thead>
-                                                  <tr>
-                                                    <th>keyword</th>
-                                                  </tr>
-                                                </thead>
-                                                <tbody>
-                                                  <tr>
-                                                    <td>css</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td>Jquery</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td>Laravel</td>
-                                                  </tr>
-                                                </tbody>
-                                              </table>
-                                        </div>
-                                    </div>
-                                </div>
+                            <button class="btn btn-primary" id="show_keyword_list">Show keywords list</button>
+                            <p><input placeholder="File path" class="hidden" oninput="this.className = ''" name="file_path"></p>
+                              <table class="table keywords-list table-bordered table-hover table-responsive hidden">
+                                  <thead>
+                                      <tr>
+                                          <th>keyword</th>
+                                          <th class="no-sort">Action</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
                           </div>
                           </div>
                           <div class="tab">
@@ -210,12 +143,12 @@
                           </div>
                           <div style="overflow:auto;">
                             <div style="float:right;">
-                              <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                              <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                              <button type="button" class="btn btn-default" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                              <button type="button" class="btn btn-primary" onclick="nextPrev(1)">Next</button>
                             </div>
                           </div>
                           <!-- Circles which indicates the steps of the form: -->
-                          <div style="text-align:center;margin-top:40px;">
+                          <div style="text-align:center;margin-top:40px;" class="hidden">
                             <span class="step"></span>
                             <span class="step"></span>
                             <span class="step"></span>
@@ -226,101 +159,9 @@
                 </div>
             </div>
         </div>
+         
     </section> 
 @endsection
 @section('additional-scripts')
-    <script>
-$(document).ready(function(){
-  $("form#import-data").submit(function(e) {
-      e.preventDefault();    
-      var formData = new FormData(this);
-      $.ajax({
-          url: $(this).attr('action'),
-          type: 'POST',
-          data: formData,
-          success: function (data) {
-              console.log(data);
-          },
-          cache: false,
-          contentType: false,
-          processData: false
-      });
-  });
-});
-    
-var currentTab = 0; // Current tab is set to be the first tab (0)
-showTab(currentTab); // Display the crurrent tab
-
-function showTab(n) {
-  // This function will display the specified tab of the form...
-  var x = document.getElementsByClassName("tab");
-  x[n].style.display = "block";
-  //... and fix the Previous/Next buttons:
-  if (n == 0) {
-    document.getElementById("prevBtn").style.display = "none";
-  } else {
-    document.getElementById("prevBtn").style.display = "inline";
-  }
-  if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").innerHTML = "Submit";
-  } else {
-    document.getElementById("nextBtn").innerHTML = "Next";
-  }
-  //... and run a function that will display the correct step indicator:
-  fixStepIndicator(n)
-}
-
-function nextPrev(n) {
-  // This function will figure out which tab to display
-  var x = document.getElementsByClassName("tab");
-  // Exit the function if any field in the current tab is invalid:
- // if (n == 1 && !validateForm()) return false;
-  // Hide the current tab:
-  x[currentTab].style.display = "none";
-  // Increase or decrease the current tab by 1:
-  currentTab = currentTab + n;
-  // if you have reached the end of the form...
-  if(currentTab == 2) {
-    $('form#import-data').submit();
-  }
-  if (currentTab >= x.length) {
-    document.getElementById("regForm").submit();
-    return false;
-  }
-  // Otherwise, display the correct tab:
-  showTab(currentTab);
-}
-
-function validateForm() {
-  // This function deals with validation of the form fields
-  var x, y, i, valid = true;
-  x = document.getElementsByClassName("tab");
-  y = x[currentTab].getElementsByTagName("input");
-  // A loop that checks every input field in the current tab:
-  for (i = 0; i < y.length; i++) {
-    // If a field is empty...
-    if (y[i].value == "") {
-      // add an "invalid" class to the field:
-      y[i].className += " invalid";
-      // and set the current valid status to false
-      valid = false;
-    }
-  }
-  // If the valid status is true, mark the step as finished and valid:
-  if (valid) {
-    document.getElementsByClassName("step")[currentTab].className += " finish";
-  }
-  return valid; // return the valid status
-}
-
-function fixStepIndicator(n) {
-  // This function removes the "active" class of all steps...
-  var i, x = document.getElementsByClassName("step");
-  for (i = 0; i < x.length; i++) {
-    x[i].className = x[i].className.replace(" active", "");
-  }
-  //... and adds the "active" class on the current step:
-  x[n].className += " active";
-}
-</script>
+   {!! Html::script('backend/js/keyword_trends.js') !!}
 @stop
