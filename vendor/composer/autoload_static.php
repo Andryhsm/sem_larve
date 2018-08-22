@@ -9,9 +9,9 @@ class ComposerStaticInit92ae1cac27eec69b1bea17967da97a45
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
+        '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
-        '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
@@ -71,6 +71,7 @@ class ComposerStaticInit92ae1cac27eec69b1bea17967da97a45
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
             'SuperClosure\\' => 13,
+            'Stripe\\' => 7,
             'ShoppingCart\\' => 13,
             'SchulzeFelix\\DataTransferObject\\' => 32,
             'SchulzeFelix\\AdWords\\' => 21,
@@ -257,6 +258,10 @@ class ComposerStaticInit92ae1cac27eec69b1bea17967da97a45
         'SuperClosure\\' => 
         array (
             0 => __DIR__ . '/..' . '/jeremeamia/SuperClosure/src',
+        ),
+        'Stripe\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
         ),
         'ShoppingCart\\' => 
         array (
@@ -450,6 +455,13 @@ class ComposerStaticInit92ae1cac27eec69b1bea17967da97a45
     );
 
     public static $prefixesPsr0 = array (
+        'Z' => 
+        array (
+            'ZfrMailChimp\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src',
+            ),
+        ),
         'P' => 
         array (
             'Prophecy\\' => 
@@ -496,6 +508,17 @@ class ComposerStaticInit92ae1cac27eec69b1bea17967da97a45
             'JakubOnderka\\PhpConsoleColor' => 
             array (
                 0 => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src',
+            ),
+        ),
+        'G' => 
+        array (
+            'Guzzle\\Tests' => 
+            array (
+                0 => __DIR__ . '/..' . '/guzzle/guzzle/tests',
+            ),
+            'Guzzle' => 
+            array (
+                0 => __DIR__ . '/..' . '/guzzle/guzzle/src',
             ),
         ),
         'D' => 
@@ -1191,6 +1214,96 @@ class ComposerStaticInit92ae1cac27eec69b1bea17967da97a45
         'TheSeer\\Tokenizer\\XMLSerializer' => __DIR__ . '/..' . '/theseer/tokenizer/src/XMLSerializer.php',
         'TypeError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
         'UserRoleTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UserRoleTableSeeder.php',
+        'ZfrMailChimpTest\\Client\\Listener\\ErrorHandlerListenerTest' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/tests/ZfrMailChimpTest/Client/Listener/ErrorHandlerListenerTest.php',
+        'ZfrMailChimp\\Client\\Listener\\ErrorHandlerListener' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Client/Listener/ErrorHandlerListener.php',
+        'ZfrMailChimp\\Client\\MailChimpClient' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Client/MailChimpClient.php',
+        'ZfrMailChimp\\Exception\\Absplit\\UnknownErrorException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Absplit/UnknownErrorException.php',
+        'ZfrMailChimp\\Exception\\Absplit\\UnknownSplitTestException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Absplit/UnknownSplitTestException.php',
+        'ZfrMailChimp\\Exception\\Absplit\\UnknownTestTypeException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Absplit/UnknownTestTypeException.php',
+        'ZfrMailChimp\\Exception\\Absplit\\UnknownWaitUnitException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Absplit/UnknownWaitUnitException.php',
+        'ZfrMailChimp\\Exception\\Absplit\\UnknownWinnerTypeException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Absplit/UnknownWinnerTypeException.php',
+        'ZfrMailChimp\\Exception\\Absplit\\WinnerNotSelectedException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Absplit/WinnerNotSelectedException.php',
+        'ZfrMailChimp\\Exception\\AvestaDbException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/AvestaDbException.php',
+        'ZfrMailChimp\\Exception\\Campaign\\BounceMissingException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Campaign/BounceMissingException.php',
+        'ZfrMailChimp\\Exception\\Campaign\\DoesNotExistException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Campaign/DoesNotExistException.php',
+        'ZfrMailChimp\\Exception\\Campaign\\InvalidAbsplitException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Campaign/InvalidAbsplitException.php',
+        'ZfrMailChimp\\Exception\\Campaign\\InvalidAutoException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Campaign/InvalidAutoException.php',
+        'ZfrMailChimp\\Exception\\Campaign\\InvalidContentException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Campaign/InvalidContentException.php',
+        'ZfrMailChimp\\Exception\\Campaign\\InvalidOptionException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Campaign/InvalidOptionException.php',
+        'ZfrMailChimp\\Exception\\Campaign\\InvalidRssException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Campaign/InvalidRssException.php',
+        'ZfrMailChimp\\Exception\\Campaign\\InvalidSegmentException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Campaign/InvalidSegmentException.php',
+        'ZfrMailChimp\\Exception\\Campaign\\InvalidStatusException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Campaign/InvalidStatusException.php',
+        'ZfrMailChimp\\Exception\\Campaign\\InvalidTemplateException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Campaign/InvalidTemplateException.php',
+        'ZfrMailChimp\\Exception\\Campaign\\NotSavedException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Campaign/NotSavedException.php',
+        'ZfrMailChimp\\Exception\\Campaign\\StatsNotAvailableException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Campaign/StatsNotAvailableException.php',
+        'ZfrMailChimp\\Exception\\Email\\AlreadySubscribedException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Email/AlreadySubscribedException.php',
+        'ZfrMailChimp\\Exception\\Email\\AlreadyUnsubscribedException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Email/AlreadyUnsubscribedException.php',
+        'ZfrMailChimp\\Exception\\Email\\NotExistsException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Email/NotExistsException.php',
+        'ZfrMailChimp\\Exception\\Email\\NotSubscribedException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Email/NotSubscribedException.php',
+        'ZfrMailChimp\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/ExceptionInterface.php',
+        'ZfrMailChimp\\Exception\\InvalidAnalyticsException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/InvalidAnalyticsException.php',
+        'ZfrMailChimp\\Exception\\InvalidApiKeyException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/InvalidApiKeyException.php',
+        'ZfrMailChimp\\Exception\\InvalidAppKeyException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/InvalidAppKeyException.php',
+        'ZfrMailChimp\\Exception\\InvalidDateTimeException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/InvalidDateTimeException.php',
+        'ZfrMailChimp\\Exception\\InvalidEcommOrderException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/InvalidEcommOrderException.php',
+        'ZfrMailChimp\\Exception\\InvalidEmailException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/InvalidEmailException.php',
+        'ZfrMailChimp\\Exception\\InvalidFolderException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/InvalidFolderException.php',
+        'ZfrMailChimp\\Exception\\InvalidIpException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/InvalidIpException.php',
+        'ZfrMailChimp\\Exception\\InvalidOptionsException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/InvalidOptionsException.php',
+        'ZfrMailChimp\\Exception\\InvalidPagingLimitException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/InvalidPagingLimitException.php',
+        'ZfrMailChimp\\Exception\\InvalidPagingStartException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/InvalidPagingStartException.php',
+        'ZfrMailChimp\\Exception\\InvalidParametersException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/InvalidParametersException.php',
+        'ZfrMailChimp\\Exception\\InvalidSendTypeException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/InvalidSendTypeException.php',
+        'ZfrMailChimp\\Exception\\InvalidTemplateException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/InvalidTemplateException.php',
+        'ZfrMailChimp\\Exception\\InvalidTrackingOptionsException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/InvalidTrackingOptionsException.php',
+        'ZfrMailChimp\\Exception\\InvalidUrlException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/InvalidUrlException.php',
+        'ZfrMailChimp\\Exception\\Ls\\AlreadySubscribedException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Ls/AlreadySubscribedException.php',
+        'ZfrMailChimp\\Exception\\Ls\\CannotRemoveEmailMergeException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Ls/CannotRemoveEmailMergeException.php',
+        'ZfrMailChimp\\Exception\\Ls\\DoesNotExistException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Ls/DoesNotExistException.php',
+        'ZfrMailChimp\\Exception\\Ls\\InvalidBounceMemberException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Ls/InvalidBounceMemberException.php',
+        'ZfrMailChimp\\Exception\\Ls\\InvalidImportException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Ls/InvalidImportException.php',
+        'ZfrMailChimp\\Exception\\Ls\\InvalidInterestFieldTypeException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Ls/InvalidInterestFieldTypeException.php',
+        'ZfrMailChimp\\Exception\\Ls\\InvalidInterestGroupException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Ls/InvalidInterestGroupException.php',
+        'ZfrMailChimp\\Exception\\Ls\\InvalidMergeFieldException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Ls/InvalidMergeFieldException.php',
+        'ZfrMailChimp\\Exception\\Ls\\InvalidMergeIdException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Ls/InvalidMergeIdException.php',
+        'ZfrMailChimp\\Exception\\Ls\\InvalidOptionException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Ls/InvalidOptionException.php',
+        'ZfrMailChimp\\Exception\\Ls\\InvalidUnsubMemberException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Ls/InvalidUnsubMemberException.php',
+        'ZfrMailChimp\\Exception\\Ls\\MergeFieldRequiredException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Ls/MergeFieldRequiredException.php',
+        'ZfrMailChimp\\Exception\\Ls\\NotSubscribedException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Ls/NotSubscribedException.php',
+        'ZfrMailChimp\\Exception\\Ls\\TooManyInterestGroupsException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Ls/TooManyInterestGroupsException.php',
+        'ZfrMailChimp\\Exception\\Ls\\TooManyMergeFieldsException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Ls/TooManyMergeFieldsException.php',
+        'ZfrMailChimp\\Exception\\MC\\DuplicateException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/MC/DuplicateException.php',
+        'ZfrMailChimp\\Exception\\MC\\InvalidArchiveException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/MC/InvalidArchiveException.php',
+        'ZfrMailChimp\\Exception\\MC\\InvalidImportException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/MC/InvalidImportException.php',
+        'ZfrMailChimp\\Exception\\MC\\InvalidPaymentException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/MC/InvalidPaymentException.php',
+        'ZfrMailChimp\\Exception\\MC\\SearchException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/MC/SearchException.php',
+        'ZfrMailChimp\\Exception\\MaxSizeReachedException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/MaxSizeReachedException.php',
+        'ZfrMailChimp\\Exception\\Order\\UnknownTypeException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/Order/UnknownTypeException.php',
+        'ZfrMailChimp\\Exception\\ParseException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/ParseException.php',
+        'ZfrMailChimp\\Exception\\PdoException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/PdoException.php',
+        'ZfrMailChimp\\Exception\\RequestTimedOutException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/RequestTimedOutException.php',
+        'ZfrMailChimp\\Exception\\TooManyConnectionsException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/TooManyConnectionsException.php',
+        'ZfrMailChimp\\Exception\\UnknownException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/UnknownException.php',
+        'ZfrMailChimp\\Exception\\UnknownMethodException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/UnknownMethodException.php',
+        'ZfrMailChimp\\Exception\\UnknownModuleException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/UnknownModuleException.php',
+        'ZfrMailChimp\\Exception\\UnknownMonthlyPlanException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/UnknownMonthlyPlanException.php',
+        'ZfrMailChimp\\Exception\\User\\CannotSendCampaignException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/User/CannotSendCampaignException.php',
+        'ZfrMailChimp\\Exception\\User\\DisabledException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/User/DisabledException.php',
+        'ZfrMailChimp\\Exception\\User\\DoesExistException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/User/DoesExistException.php',
+        'ZfrMailChimp\\Exception\\User\\DoesNotExistException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/User/DoesNotExistException.php',
+        'ZfrMailChimp\\Exception\\User\\InvalidActionException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/User/InvalidActionException.php',
+        'ZfrMailChimp\\Exception\\User\\InvalidRoleException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/User/InvalidRoleException.php',
+        'ZfrMailChimp\\Exception\\User\\MissingEmailException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/User/MissingEmailException.php',
+        'ZfrMailChimp\\Exception\\User\\MissingModuleOutboxException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/User/MissingModuleOutboxException.php',
+        'ZfrMailChimp\\Exception\\User\\ModuleAlreadyPurchasedException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/User/ModuleAlreadyPurchasedException.php',
+        'ZfrMailChimp\\Exception\\User\\ModuleNotPurchasedException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/User/ModuleNotPurchasedException.php',
+        'ZfrMailChimp\\Exception\\User\\NotApprovedException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/User/NotApprovedException.php',
+        'ZfrMailChimp\\Exception\\User\\NotEnoughCreditException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/User/NotEnoughCreditException.php',
+        'ZfrMailChimp\\Exception\\User\\UnderMaintenanceException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/User/UnderMaintenanceException.php',
+        'ZfrMailChimp\\Exception\\User\\UnknownException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/User/UnknownException.php',
+        'ZfrMailChimp\\Exception\\ValidationErrorException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/ValidationErrorException.php',
+        'ZfrMailChimp\\Exception\\XmlRpc2Exception' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/XmlRpc2Exception.php',
+        'ZfrMailChimp\\Exception\\ZendUriException' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Exception/ZendUriException.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

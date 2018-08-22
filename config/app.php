@@ -201,6 +201,7 @@ return [
 		Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         Jenssegers\Date\DateServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        SchulzeFelix\AdWords\AdWordsServiceProvider::class,
 	],
 
     /*
@@ -268,6 +269,7 @@ return [
         'Date' => Jenssegers\Date\Date::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'AdWords' => SchulzeFelix\AdWords\AdWordsFacade::class,
 	],
 
 ];

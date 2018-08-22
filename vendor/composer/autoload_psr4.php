@@ -30,6 +30,7 @@ return array(
     'Symfony\\Component\\CssSelector\\' => array($vendorDir . '/symfony/css-selector'),
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
     'SuperClosure\\' => array($vendorDir . '/jeremeamia/SuperClosure/src'),
+    'Stripe\\' => array($vendorDir . '/stripe/stripe-php/lib'),
     'ShoppingCart\\' => array($baseDir . '/Cart'),
     'SchulzeFelix\\DataTransferObject\\' => array($vendorDir . '/schulzefelix/laravel-data-transfer-object/src'),
     'SchulzeFelix\\AdWords\\' => array($vendorDir . '/schulzefelix/laravel-adwords-targeting-idea-service/src'),
