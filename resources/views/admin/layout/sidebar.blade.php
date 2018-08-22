@@ -293,7 +293,12 @@
                     @endif
                     @if(check_user_access('sub-accounts'))
                     <li class="">
-                        <a href=""><i class="fa fa-circle-o"></i> Sub-accounts</a>
+                        <a href="#"><i class="fa fa-circle-o"></i> Sub-accounts</a>
+                    </li>
+                    @endif
+                    @if(check_user_access('sub-accounts'))
+                    <li class=""><a
+                                href="#"><i class="fa fa-circle-o"></i> API Google</a>
                     </li>
                     @endif
                 </ul>

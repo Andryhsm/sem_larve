@@ -91,7 +91,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box"> 
-                    <div class="box-body">
+                    <div class="box-body"> 
                         <div id="regForm">
                           <!-- One "tab" for each step in the form: -->
                           <div class="tabtab hidden">
@@ -100,6 +100,8 @@
                             <p><input type="password" placeholder="password" oninput="this.className = ''" name="ads-password"></p>
                           </div>
                           <div class="tab">
+                            <div class="notification">
+                            </div>
                             <h1>File importation</h1>
                             <br><br>
                              <label for="file" class="custom_import_file">
@@ -109,20 +111,23 @@
                             <!-- input type="file" name="file" id="file" class="hiddeninputfile" />
                             <label for="file" class="custom_import_file">
                                 <i class="fa fa-download"></i>
-                                Choose file to import (csv or Excel)
+                                Chooses file to import (csv or Excel)
                             </label -->
                             <br><br><br>
                               <!-- start form -->
                             	<div class="container">
                             		<form id="import-data" style="width: 60%; height: 150px;" action="{{ route('import_excel_partner') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
                             			<input type="file" name="import_file" />
+                            		  <button class="btn btn-primary" type="submit" class="import_files" style="margin-top:2.5%;">Import File</button>
                             		</form>
                             	</div>
                               <!-- end form -->
                           </div>
                           <div class="tab">
-                            <h1>Keywords</h1>
-                            <button class="btn btn-primary" id="show_keyword_list">Show keywords list</button>
+                            <h1>List Keywords</h1>
+                            <div class="col-lg-12 text-center keyword-button" style="margin: 3% 0;">
+                              <button class="btn btn-primary" id="show_keyword_list">Show keywords list</button>
+                            </div>
                             <p><input placeholder="File path" class="hidden" oninput="this.className = ''" name="file_path"></p>
                               <table class="table keywords-list table-bordered table-hover table-responsive hidden">
                                   <thead>
@@ -134,9 +139,24 @@
                                     <tbody>
                                     </tbody>
                                 </table>
+                                <div class="row">
+                                  <div class="col-lg-12 text-center">  
+                                    <span>List of duplicate found in the keyword</span>
+                                  </div>
+                                </div>
+                                <table style="background: #f4f4f4;" class="table keywords-duplicate-list table-bordered table-hover table-responsive">
+                                  <thead>
+                                      <tr>
+                                          <th>keyword</th>
+                                          <th>Occurence</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
                           </div>
                           </div>
-                          <div class="tab">
+                          <div class="tabs hidden">
                             <h1>Parametters</h1>
                             <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
                             <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
@@ -144,7 +164,7 @@
                           <div style="overflow:auto;">
                             <div style="float:right;">
                               <button type="button" class="btn btn-default" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                              <button type="button" class="btn btn-primary" onclick="nextPrev(1)">Next</button>
+                              <button type="button" class="btn btn-primary next-button disabled" onclick="nextPrev(1)">Next</button>
                             </div>
                           </div>
                           <!-- Circles which indicates the steps of the form: -->

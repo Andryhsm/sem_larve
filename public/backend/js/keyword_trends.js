@@ -1,3 +1,9 @@
+Array.prototype.uniq = function(){
+  return this.filter(
+      function(a){return !this[a] ? this[a] = true : false;}, {}
+  );
+}
+
 var keyword_list = [];
 var keyword_duplicate_list = [];
 
@@ -10,7 +16,16 @@ $(document).ready(function(){
           type: 'POST',
           data: formData,
           success: function (response) {
-              insert_data(response.data);
+              if(response.status == 'ok' || response.status == 'not_finish' ) {
+                 insert_data(response.data);
+                 $('.next-button').removeClass('disabled');
+              }
+              $('.notification').html('<div class="alert '+response.type_alert+' alert-dismissible show" role="alert">'+
+                      ' ' +response.message + ' '+
+                      '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                        '<span aria-hidden="true">&times;</span>'+
+                      '</button>'+
+                    '</div>');
           },
           cache: false,
           contentType: false,
@@ -53,24 +68,19 @@ function showTab(n) {
 }
 
 function nextPrev(n) {
-  // This function will figure out which tab to display
-  var x = document.getElementsByClassName("tab");
-  // Exit the function if any field in the current tab is invalid:
- // if (n == 1 && !validateForm()) return false;
-  // Hide the current tab:
-  x[currentTab].style.display = "none";
-  // Increase or decrease the current tab by 1:
-  currentTab = currentTab + n;
-  // if you have reached the end of the form...
-  if(currentTab == 1) {
-    $('form#import-data').submit();
-  }
-  if (currentTab >= x.length) {
-    document.getElementById("regForm").submit();
-    return false;
-  }
-  // Otherwise, display the correct tab:
-  showTab(currentTab);
+    if(!$('.next-button').hasClass('disabled')) { 
+      var x = document.getElementsByClassName("tab");
+     
+      x[currentTab].style.display = "none";
+      currentTab = currentTab + n;
+     
+      if (currentTab >= x.length) {
+        document.getElementById("regForm").submit();
+        return false;
+      }
+      // Otherwise, display the correct tab:
+      showTab(currentTab);
+    }
 }
 
 function validateForm() {
@@ -95,22 +105,55 @@ function validateForm() {
   return valid; // return the valid status
 }
 
+function unique(list) {
+    var result = [];
+    $.each(list, function(i, e) {
+        if ($.inArray(e, result) == -1) result.push(e);
+    });
+    return result;
+}
+
 function insert_data(data) {
     $('.keywords-list tbody').html('');
     keyword_list = data;
     var sorted_arr = keyword_list.slice().sort();
-    var results = [];
-    for (var i = 0; i < sorted_arr.length - 1; i++) {
-        if (sorted_arr[i + 1] == sorted_arr[i]) {
-            results.push(sorted_arr[i]);
-        }
-    }
-    console.log(results);
-    for(var j = 1; j < keyword_list.length; j++) {
+    
+    var list_unique = keyword_list.uniq();
+    for(var j = 0; j < list_unique.length; j++) {
         $('.keywords-list tbody').append('<tr>'+
-                                            '<td>'+keyword_list[j]+'</td>' +
+                                            '<td>'+list_unique[j]+'</td>' +
                                             '<td><a href="#" data-id='+j+'><i class="fa fa-times"></i></a></td>'+
                                          '</tr>');
+    }
+    get_duplicate(data);
+    post_duplicate(keyword_duplicate_list);
+}
+
+function get_duplicate(data) {
+    counts = {};
+    list_duplicate = {};
+    jQuery.each(data, function(key,value) {
+      if (!counts.hasOwnProperty(value)) {
+        counts[value] = 1;
+      } else {
+        counts[value]++;
+        list_duplicate[value] = counts[value];
+      }
+    });
+    keyword_duplicate_list = list_duplicate;
+}
+
+function post_duplicate(keyword_duplicate_list) {
+    $('.keywords-duplicate-list tbody').html('');
+    if(Object.keys(keyword_duplicate_list).length > 0) {
+       $.each(keyword_duplicate_list, function(key, value) {
+          $('.keywords-duplicate-list tbody').append('<tr>'+
+                                             '<td>'+key+'</td>' +
+                                            '<td>'+value+'</td>'+
+                                         '</tr>');
+       });
+    } else {
+          $('.keywords-duplicate-list tbody').append('<span>No duplicate entry found!</span>');
     }
 }
 
