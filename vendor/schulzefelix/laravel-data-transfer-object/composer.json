@@ -1,0 +1,48 @@
+{
+    "name": "schulzefelix/laravel-data-transfer-object",
+    "type": "library",
+    "description": "Data Transfer Objects with Attribute Casting and Date Mutators.",
+    "keywords": [
+        "schulzefelix",
+        "felix",
+        "dto",
+        "data transfer object",
+        "attribute casting",
+        "mutators",
+        "accessors",
+        "serialization",
+        "laravel-data-transfer-object"
+    ],
+    "homepage": "https://github.com/schulzefelix/laravel-data-transfer-object",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Felix Schulze",
+            "email": "githubissues@schulze.co",
+            "homepage": "https://schulze.co",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : "^7.0",
+        "illuminate/support": "~5.1",
+        "nesbot/carbon": "^1.21"
+
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SchulzeFelix\\DataTransferObject\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SchulzeFelix\\DataTransferObject\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    }
+}
