@@ -81,7 +81,7 @@
     }
     .column1 {
       float: left;
-      border-right: 6px solid silver;
+      border-right: 4px solid #514949;
       padding-right: 50px;
     }
     .column2 {
@@ -160,6 +160,7 @@
                             	<div class="container">
                             		<form id="import-data" style="width: 60%; height: 150px;" action="{{ route('import_excel_partner') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
                             			<input type="file" name="import_file" />
+                            			<p class="file_name"></p>
                             		  <button class="btn btn-primary" type="submit" class="import_files" style="margin-top:2.5%;">Import File</button>
                             		</form>
                             	</div>
@@ -218,14 +219,16 @@
                                         <select name="location" class="form-control required">
                                            <option value="2276" selected>2276</option>
                                         </select>
-                                  </div>
-                              </div>
-                              
+                                  </div> 
+                              </div>  
+                               
                               <div class="form-group bottle">
                                   <label class="col-sm-3 control-label">Language</label>
                                   <div class="col-sm-9">
                                         <select name="language_code" class="form-control required">
-                                           <option value="2276" selected>2276</option>
+                                          @foreach ($languagecodes as $language_code)
+                                             <option value="{!! $language_code->criteron_id !!}" selected>{!! $language_code->language_name !!}</option>
+                                          @endforeach
                                         </select>
                                   </div>
                               </div>

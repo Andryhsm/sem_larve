@@ -8,11 +8,7 @@ var keyword_list = [];
 var keyword_duplicate_list = [];
 
 $(document).ready(function(){
-  
-  console.log("Whe make request");
-  $.get("get-locations", function(data, status){
-        console.log(data);
-  });
+
   $("form#import-data").submit(function(e) {
       e.preventDefault();    
       var formData = new FormData(this);
@@ -83,6 +79,10 @@ $(document).ready(function(){
             })
         }
     });
+    
+  $('input[name="import_file"]').change(function(e){
+  		$('.file_name').html(e.target.files[0].name);
+  });
 });
     
 var currentTab = 0; // Current tab is set to be the first tab (0)
@@ -113,7 +113,9 @@ function nextPrev(n) {
      
       x[currentTab].style.display = "none";
       currentTab = currentTab + n;
-      if (currentTab == 2) {
+      if(currentTab == 1) {
+        get_locations();  
+      } else if (currentTab == 2) {
         $('.next-button').html('Create a new data Collection');
       } else if (currentTab == 3) {
         lanch_request();
@@ -152,6 +154,27 @@ function validateForm() {
     document.getElementsByClassName("step")[currentTab].className += " finish";
   }
   return valid; // return the valid status
+}
+
+function get_locations() {
+  console.log("request"); 
+  $.ajax({
+      url: 'get-locations',
+      type: 'GET',
+      dataType: 'json',
+  })
+  .done(function(response) {
+    var locations = response.data
+    $('input[name="location"]').html('');
+    for(var i = 0; i < locations.length; i++){
+      $('input[name="location"]').append('<option value='+locations[i].criteria_id+'>'+locations[i].location_name+'</option>');
+    }
+    console.log("The location must to be append");
+    console.log(locations);
+  })
+  .fail(function() {
+      console.log("error");
+  });
 }
 
 function unique(list) {
