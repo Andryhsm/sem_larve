@@ -12,7 +12,7 @@ use App\Service\UploadService;
 use App\Store;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\DataTables\Facades\DataTables;
 
 class StoreController extends Controller
 {
@@ -36,7 +36,7 @@ class StoreController extends Controller
 	 */
 	public function index()
 	{
-		$stores = Datatables::collection($this->store_repository->getAll())->make(true);
+		$stores = DataTables::collection($this->store_repository->getAll())->make(true);
 		//dd($stores);
 		$stores = $stores->getData();
 		return view('admin.store.list', compact('stores'));

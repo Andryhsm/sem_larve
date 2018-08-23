@@ -6,7 +6,7 @@ use App\Http\Requests\FaqRequest;
 use App\Interfaces\FaqRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\DataTables\Facades\DataTables;
 
 class FaqController extends Controller
 {
@@ -19,7 +19,7 @@ class FaqController extends Controller
 
 	public function index()
 	{
-		$faqs = \Datatables::collection($this->faq_repository->getAll())->make(true);
+		$faqs = \DataTables::collection($this->faq_repository->getAll())->make(true);
 		$faqs = $faqs->getData();
 		return view('admin.faq.list', compact('faqs'));
 	}

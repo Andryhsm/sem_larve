@@ -34,7 +34,7 @@ class BrandController extends Controller
 
 	public function getData()
 	{
-		$data_tables = \Datatables::collection($this->brand_repository->get());
+		$data_tables = \DataTables::collection($this->brand_repository->get());
 
 		$data_tables->EditColumn('brand_name', function ($brand) {
 			return  (!is_null($brand->parent_id)) ? $brand->parent->brand_name." ".$brand->brand_name : $brand->brand_name;

@@ -8,7 +8,7 @@ class Keyword extends Model
 {
     protected $table = 'keyword';
     protected $primaryKey = 'keyword_id';
-    protected $fillable = ['campaign_id', 'keyword_name'];
+    protected $fillable = ['campaign_id', 'keyword_name', 'search_volume', 'cpc', 'competition', 'target_monthly_search'];
 
     public function campaign()
 	{

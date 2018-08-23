@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
-use Yajra\Datatables\Datatables;
+use Yajra\DataTables\DataTables;
 
 class EmailTemplateController extends Controller
 {
@@ -29,7 +29,7 @@ class EmailTemplateController extends Controller
     public function index()
     {
 
-        $email_templates = \Yajra\Datatables\Facades\Datatables::collection($this->email_template_repository->getAll())->make(true);
+        $email_templates = \Yajra\DataTables\Facades\DataTables::collection($this->email_template_repository->getAll())->make(true);
         $email_templates = $email_templates->getData();
         return view('admin.email_template.list', compact('email_templates'));
     }

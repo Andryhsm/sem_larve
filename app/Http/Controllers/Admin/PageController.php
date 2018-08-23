@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\DataTables\Facades\DataTables;
 
 class PageController extends Controller
 {
@@ -30,7 +30,7 @@ class PageController extends Controller
     public function index()
     {
 
-        $pages = Datatables::collection($this->page_repository->getAll())->make(true);
+        $pages = DataTables::collection($this->page_repository->getAll())->make(true);
         $pages = $pages->getData();
 
         return view('admin.page.list', compact('pages'));

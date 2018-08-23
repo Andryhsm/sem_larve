@@ -11,7 +11,7 @@ use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\DataTables\Facades\DataTables;
 
 class InvoiceController extends Controller
 {
@@ -28,7 +28,7 @@ class InvoiceController extends Controller
 
 	public function index()
 	{
-		$invoices = Datatables::collection($this->invoice_repository->getAll())->make(true);
+		$invoices = DataTables::collection($this->invoice_repository->getAll())->make(true);
 		$invoices = $invoices->getData();
 		return view('admin.invoice.list',compact('invoices'));
 	}

@@ -25,7 +25,7 @@ class BlogPostController extends Controller
 
 	public function index()
 	{
-		$posts = \Datatables::collection($this->blog_post_repository->getAll())->make(true);
+		$posts = \DataTables::collection($this->blog_post_repository->getAll())->make(true);
 		$posts = $posts->getData();
 		return view('admin.blog.list', compact('posts'));
 	}

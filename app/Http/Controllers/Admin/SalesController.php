@@ -35,7 +35,7 @@ class SalesController extends Controller
 
 	public function getData($status)
 	{
-		$data_tables = \Datatables::collection($this->order_repository->getByStatus($status));
+		$data_tables = \DataTables::collection($this->order_repository->getByStatus($status));
 
 		$data_tables->EditColumn('order_id', function ($order) {
 			return  $order->order_id;

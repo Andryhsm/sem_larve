@@ -18,7 +18,7 @@ class BlogCategoryController extends Controller
 
 	public function index()
 	{
-		$blog_categories = \Datatables::collection($this->blog_category_repository->getAll())->make(true);
+		$blog_categories = \DataTables::collection($this->blog_category_repository->getAll())->make(true);
 		$blog_categories = $blog_categories->getData();
 		return view('admin.blog.blog-category-list', compact('blog_categories'));
 	}

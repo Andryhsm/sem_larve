@@ -11,7 +11,7 @@
 |
 */
 
-
+ 
 /*=
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -44,8 +44,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::get('data-collections', 'KeywordTrendsController@dataCollections')->name('data_collections_partner');
             //Route::get('downloadExcel/{type}', 'KeywordTrendsController@downloadExcel')->name('download_excel_partner');
             Route::post('import-excel', 'KeywordTrendsController@importExcel')->name('import_excel_partner');
-            
-            Route::resource('adwords_api','AdwordsApiController');
+            Route::post('make-request-adwords', 'KeywordTrendsController@makeRequestAdwords')->name('make_request_adowrds_partner');
+            Route::resource('adwords_api','AdwordsApiController'); 
             
             Route::get('404',function(){
                 return view('admin.404');
@@ -137,6 +137,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
 
             //Route::get('downloadExcel/{type}', 'KeywordTrendsController@downloadExcel')->name('download_excel');
             Route::post('importExcel', 'KeywordTrendsController@importExcel')->name('import_excel');
+            Route::post('make-request-adwords', 'KeywordTrendsController@makeRequestAdwords')->name('make_request_adwords');
 
            
             // Route::resource('banner', 'BannerController');

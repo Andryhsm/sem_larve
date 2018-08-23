@@ -75,5 +75,10 @@ class KeywordTrendsController extends Controller
 		    'type_alert' => 'alert-success'
 		    ]);
 	}
+	
+	public function makeRequestAdwords(Request $request) {
+		$keywrods = Input::get('keywords');
+		dd($keywrods);
+	}
 
 }

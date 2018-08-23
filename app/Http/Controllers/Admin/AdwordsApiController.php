@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\AdwordsApiRepository;
+use Yajra\DataTables\Facades\DataTables;
 
 class AdwordsApiController extends Controller
 {
@@ -24,7 +25,7 @@ class AdwordsApiController extends Controller
     public function index()
     {
         $user = auth()->guard('admin')->user()->admin_id;
-        $adwords_apis = Datatables::collection($this->adwords_api_repository->getAllByUser($user))->make(true);
+        $adwords_apis = DataTables::collection($this->adwords_api_repository->getAllByUser($user))->make(true);
 		$adwords_apis = $adwords_apis->getData();
 		return view('admin.adwords_api.index', compact('adwords_apis'));
     }
@@ -36,7 +37,8 @@ class AdwordsApiController extends Controller
      */
     public function create()
     {
-        //
+        $adwords_api = false;
+		return view('admin.adwords_api.form', compact('adwords_api'));
     }
 
     /**
@@ -47,7 +49,9 @@ class AdwordsApiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $faq = $this->adwords_api_repository->store($request->all());
+		flash()->success(config('message.account_api.add-success'));
+		return redirect()->route('adwords_api.index');
     }
 
     /**
@@ -69,7 +73,8 @@ class AdwordsApiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $adwords_api = $this->adwords_api_repository->getById($id);
+		return view('admin.adwords_api.form', compact('adwords_api'));
     }
 
     /**
@@ -81,7 +86,9 @@ class AdwordsApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $adwords_api = $this->adwords_api_repository->updateById($id, $request->all());
+		flash()->success(config('message.account_api.update-success'));
+		return redirect()->route('adwords_api.index');
     }
 
     /**
@@ -92,6 +99,12 @@ class AdwordsApiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $status = $this->adwords_api_repository->deleteById($id);
+		if ($status) {
+			flash()->success(config('message.account_api.delete-success'));
+		} else {
+			flash()->error(config('message.account_api.delete-error'));
+		}
+		return redirect()->route('adwords_api.index');
     }
 }

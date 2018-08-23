@@ -85,6 +85,14 @@ return [
 		'delete-success' => 'User deleted successfully.',
 		'delete-error' => 'User not deleted successfully.',
 	],
+	'account_api' => [
+		'add-success' => 'Account added successfully.',
+		'add-error' => 'Account not added successfully.',
+		'update-success' => 'Information updated successfully.',
+		'update-error' => 'Information not updated successfully.',
+		'delete-success' => 'Account deleted successfully.',
+		'delete-error' => 'Account not deleted successfully.',
+	],
 	'email-template' => [
 		'add-success' => 'Email Template added successfully.',
 		'add-error' => 'Email Template not added successfully.',
