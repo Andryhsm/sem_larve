@@ -19,10 +19,13 @@ class CreateTableCampaign extends Migration
             $table->foreign('user_id')
                 ->references('user_id')->on('users')
                 ->onDelete('cascade');
+            $table->integer('location_id')->index('idx_location_id')->unsigned();
+            $table->foreign('location_id')
+                ->references('location_id')->on('location')
+                ->onDelete('set null');
             $table->string('campaign_name');
-            $table->string('location');
-            $table->string('monthly_searches');
-            $table->string('convert_null_to_zero');
+            $table->integer('monthly_searches');
+            $table->integer('convert_null_to_zero');
         });
     }
 

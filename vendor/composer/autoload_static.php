@@ -556,6 +556,7 @@ class ComposerStaticInit92ae1cac27eec69b1bea17967da97a45
         'CreateTableAdwordsAPI' => __DIR__ . '/../..' . '/database/migrations/2018_08_23_064913_create_table_adwords__a_p_i.php',
         'CreateTableCampaign' => __DIR__ . '/../..' . '/database/migrations/2018_08_23_103802_create_table_campaign.php',
         'CreateTableKeyword' => __DIR__ . '/../..' . '/database/migrations/2018_08_23_103814_create_table_keyword.php',
+        'CreateTableLocation' => __DIR__ . '/../..' . '/database/migrations/2018_08_23_114549_create_table_location.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'DivisionByZeroError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
         'EmailTemplateTableSeeder' => __DIR__ . '/../..' . '/database/seeds/EmailTemplateTableSeeder.php',

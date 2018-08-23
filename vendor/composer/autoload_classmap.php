@@ -27,6 +27,7 @@ return array(
     'CreateTableAdwordsAPI' => $baseDir . '/database/migrations/2018_08_23_064913_create_table_adwords__a_p_i.php',
     'CreateTableCampaign' => $baseDir . '/database/migrations/2018_08_23_103802_create_table_campaign.php',
     'CreateTableKeyword' => $baseDir . '/database/migrations/2018_08_23_103814_create_table_keyword.php',
+    'CreateTableLocation' => $baseDir . '/database/migrations/2018_08_23_114549_create_table_location.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'DivisionByZeroError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
     'EmailTemplateTableSeeder' => $baseDir . '/database/seeds/EmailTemplateTableSeeder.php',

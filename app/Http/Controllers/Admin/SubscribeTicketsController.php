@@ -23,7 +23,6 @@ class SubscribeTicketsController extends Controller
     {
         $searchVolumes = \AdWords::withTargetedMonthlySearches()->searchVolumes(['cheesecake', 'coffee']);
         
-        
         dd($searchVolumes);
     	$tickets = $this->ticket_repository->getTicketsByUserId(auth()->guard('admin')->user()->admin_id);
     	$type = 2;
