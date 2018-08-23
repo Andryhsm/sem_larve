@@ -14,7 +14,7 @@ if ($permissions_by_role && count($permissions_by_role) > 0) {
     }
 }
         ?>
-    <?php $types = array('1'=>'Administator','2'=>'Subscribe'); ?>
+    <?php $types = array('1'=>'Administator','2'=>'Partner'); ?>
     <section class="content">
         @include('admin.layout.notification')
         <div class="row">

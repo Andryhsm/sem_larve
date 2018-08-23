@@ -6,7 +6,7 @@ use App\Interfaces\OrderStatusRepositoryInterface;
 use App\Repositories\OrderStatusRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\DataTables\Facades\DataTables;
 
 class OrderStatusController extends Controller
 {
@@ -24,7 +24,7 @@ class OrderStatusController extends Controller
 	 */
 	public function index()
 	{
-		$status = Datatables::collection($this->order_status_repository->getAll())->make(true);
+		$status = DataTables::collection($this->order_status_repository->getAll())->make(true);
 		$status = $status->getData();
 		return view('admin.order_status.list', compact('status'));
 

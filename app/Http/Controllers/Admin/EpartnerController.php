@@ -8,7 +8,7 @@ use App\Service\UploadService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\DataTables\Facades\DataTables;
 
 class EpartnerController extends Controller
 {
@@ -23,7 +23,7 @@ class EpartnerController extends Controller
 
 	public function index()
 	{
-		$medias = Datatables::collection($this->epartner_repository->getAll())->make(true);
+		$medias = DataTables::collection($this->epartner_repository->getAll())->make(true);
 		$medias = $medias->getData();
 		return view('admin.epartner.list', compact('medias'));
 	}

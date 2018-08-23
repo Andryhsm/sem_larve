@@ -12,7 +12,7 @@ use App\Service\UploadService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\DataTables\Facades\DataTables;
 use Validator;
 use Session;
 use Redirect;
@@ -37,7 +37,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $type = 2;
-        $admins = Datatables::collection($this->admin_user_repository->get($type))->make(true);
+        $admins = DataTables::collection($this->admin_user_repository->get($type))->make(true);
         $admins = $admins->getData();
         return view('admin.user.list', compact('admins'));
     }

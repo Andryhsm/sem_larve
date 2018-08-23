@@ -8,7 +8,7 @@ use App\Interfaces\AttributeRepositoryInterface;
 use App\Interfaces\AttributeSetRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\DataTables\Facades\DataTables;
 
 class AttributeSetController extends Controller
 {
@@ -24,7 +24,7 @@ class AttributeSetController extends Controller
 
 	public function index()
 	{
-		$attribute_sets = Datatables::collection($this->attribute_set_repository->getAll())->make(true);
+		$attribute_sets = DataTables::collection($this->attribute_set_repository->getAll())->make(true);
 		$attribute_sets = $attribute_sets->getData();
 		return view('admin.attribute_set.list', compact('attribute_sets'));
 	}

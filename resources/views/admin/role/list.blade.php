@@ -41,7 +41,7 @@
                             @foreach($roles as $role)
                                 <tr>
                                     <td>{!! $role->role_name !!}</td>
-                                    <td>{!! ($role->type == 1) ? 'Administrator role':'Subscribe role' !!}</td>
+                                    <td>{!! ($role->type == 1) ? 'Administrator role':'Partner role' !!}</td>
                                     <td>
                                         <div class="btn-group">
                                             <a href="{{ URL::to('admin/role/' . $role->admin_role_id . '/edit') }}"

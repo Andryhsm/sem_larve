@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit92ae1cac27eec69b1bea17967da97a45
+class ComposerStaticInitd401bffa1f7fb2a9ddb821d84f6f7fdc
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -559,6 +559,11 @@ class ComposerStaticInit92ae1cac27eec69b1bea17967da97a45
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
+        'CreateTableAdwordsAPI' => __DIR__ . '/../..' . '/database/migrations/2018_08_23_064913_create_table_adwords__a_p_i.php',
+        'CreateTableCampaign' => __DIR__ . '/../..' . '/database/migrations/2018_08_24_103804_create_table_campaign.php',
+        'CreateTableKeyword' => __DIR__ . '/../..' . '/database/migrations/2018_08_24_103815_create_table_keyword.php',
+        'CreateTableLocation' => __DIR__ . '/../..' . '/database/migrations/2018_08_24_014550_create_table_location.php',
+        'CreateTableLocationCampaignKeyword' => __DIR__ . '/../..' . '/database/migrations/2018_08_23_151045_create_table_location_campaign_keyword.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'DivisionByZeroError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
         'EmailTemplateTableSeeder' => __DIR__ . '/../..' . '/database/seeds/EmailTemplateTableSeeder.php',
@@ -1219,6 +1224,7 @@ class ComposerStaticInit92ae1cac27eec69b1bea17967da97a45
         'TheSeer\\Tokenizer\\Tokenizer' => __DIR__ . '/..' . '/theseer/tokenizer/src/Tokenizer.php',
         'TheSeer\\Tokenizer\\XMLSerializer' => __DIR__ . '/..' . '/theseer/tokenizer/src/XMLSerializer.php',
         'TypeError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
+        'UpdateTableAdwordsAPI' => __DIR__ . '/../..' . '/database/migrations/2018_08_23_082958_update_table_adwords__a_p_i.php',
         'UserRoleTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UserRoleTableSeeder.php',
         'ZfrMailChimpTest\\Client\\Listener\\ErrorHandlerListenerTest' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/tests/ZfrMailChimpTest/Client/Listener/ErrorHandlerListenerTest.php',
         'ZfrMailChimp\\Client\\Listener\\ErrorHandlerListener' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Client/Listener/ErrorHandlerListener.php',
@@ -1315,11 +1321,11 @@ class ComposerStaticInit92ae1cac27eec69b1bea17967da97a45
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit92ae1cac27eec69b1bea17967da97a45::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit92ae1cac27eec69b1bea17967da97a45::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit92ae1cac27eec69b1bea17967da97a45::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit92ae1cac27eec69b1bea17967da97a45::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit92ae1cac27eec69b1bea17967da97a45::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitd401bffa1f7fb2a9ddb821d84f6f7fdc::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitd401bffa1f7fb2a9ddb821d84f6f7fdc::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitd401bffa1f7fb2a9ddb821d84f6f7fdc::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitd401bffa1f7fb2a9ddb821d84f6f7fdc::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitd401bffa1f7fb2a9ddb821d84f6f7fdc::$classMap;
 
         }, null, ClassLoader::class);
     }

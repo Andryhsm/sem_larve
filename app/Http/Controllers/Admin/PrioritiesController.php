@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\TicketRepository;
 use Illuminate\Support\Facades\Redirect;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
 class PrioritiesController extends Controller
@@ -24,7 +24,7 @@ class PrioritiesController extends Controller
      */
     public function index()
     {
-        $priorities = Datatables::collection($this->ticket_repository->getAllPriorities())->make(true);
+        $priorities = DataTables::collection($this->ticket_repository->getAllPriorities())->make(true);
         $priorities = $priorities->getData();
         return view('admin.tickets.priorities.index',compact('priorities'));
     }

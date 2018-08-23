@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\TicketRepository;
 use Illuminate\Support\Facades\Redirect;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
 class CategoriesController extends Controller
@@ -24,7 +24,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Datatables::collection($this->ticket_repository->getAllCategories())->make(true);
+        $categories = DataTables::collection($this->ticket_repository->getAllCategories())->make(true);
         $categories = $categories->getData();
         return view('admin.tickets.categories.index',compact('categories'));
     }

@@ -9,7 +9,7 @@ use App\Repositories\AdminUserRepository;
 use App\Service\UploadService;
 use App\Repositories\AdminRoleRepository;
 use Illuminate\Support\Facades\Redirect;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\DataTables\Facades\DataTables;
 
 class AdminUserController extends Controller
 {
@@ -28,7 +28,7 @@ class AdminUserController extends Controller
 	public function index()
 	{
 		$type = 1;
-		$admins = Datatables::collection($this->admin_repository->get($type))->make(true);
+		$admins = DataTables::collection($this->admin_repository->get($type))->make(true);
 		$admins = $admins->getData();
 		return view('admin.administrator.list', compact('admins'));
 

@@ -32,6 +32,7 @@ class UserPermission
     {
         $role_id = auth()->guard('admin')->user()->role_id;
         $role_permission = AdminRole::with('permissions')->where('admin_role_id', $role_id)->first();
+        //dd($role_permission->permissions);
         $urls_traning_page = [];
         foreach(get_training_pages() as $page) { 
             $urls_traning_page[] = url($page->url->target_url);

@@ -185,7 +185,7 @@ return [
 		App\Providers\ComposerServiceProvider::class,
 		App\Providers\RepositoryServiceProvider::class,
 		Laracasts\Flash\FlashServiceProvider::class,
-		Yajra\Datatables\DatatablesServiceProvider::class,
+		Yajra\DataTables\DataTablesServiceProvider::class,
 		Barryvdh\Debugbar\ServiceProvider::class,
         JsLocalization\JsLocalizationServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
@@ -270,6 +270,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'AdWords' => SchulzeFelix\AdWords\AdWordsFacade::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
 	],
 
 ];

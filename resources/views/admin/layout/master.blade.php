@@ -94,6 +94,7 @@
 {!! Html::script('backend/js/jquery.form.js') !!}
 {!! Html::script('backend/js/functions.js') !!}
 {!! Html::script('backend/js/tickets.js') !!}
+{!! Html::script('backend/js/TableExport/tableExport.js') !!}
 
 @yield('additional-scripts')
 @yield('footer-scripts')
