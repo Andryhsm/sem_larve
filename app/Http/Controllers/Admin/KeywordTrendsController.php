@@ -76,5 +76,4 @@ class KeywordTrendsController extends Controller
 		    ]);
 	}
 
-    
 }

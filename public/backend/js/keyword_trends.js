@@ -36,13 +36,49 @@ $(document).ready(function(){
   $('#show_keyword_list').on('click', function(){
      if($('.keywords-list').hasClass('hidden')) {
          $('.keywords-list').removeClass('hidden');
+         $('#delete_keyword_in_list').removeClass('hidden');
          $(this).html('Hide keywords list');
      } else {
          $('.keywords-list').addClass('hidden');
+         $('#delete_keyword_in_list').addClass('hidden');
          $(this).html('Show keywords list');
      }
      
   });
+  
+  // $('#delete_keyword_in_list').on('click', function(){
+  //     $('.ckeck_keyword:checked').each(function () {
+  //       $(this).closest('tr').remove()
+  //     });
+  // });
+  
+  if ($('#delete_keyword_in_list').length > 0) {
+        $('#delete_keyword_in_list').off('click');
+        $('#delete_keyword_in_list').on('click', function (e) {
+            console.log('ici e');
+            e.preventDefault();
+            $('#confirm').modal({backdrop: 'static', keyboard: false})
+                .one('click', '#delete', function () {
+                    $('.ckeck_keyword:checked').each(function () {
+                      $(this).closest('tr').remove();
+                    });
+                });
+        });
+    }
+  
+  $('.ckeck_all_keyword').click(function(){
+        $(this).toggleClass('1');
+        if($(this).hasClass('1')){
+            $(".ckeck_keyword").each(function(index, element) {
+               $(element).prop('checked', true);
+            });
+        }
+        else {
+            $(".ckeck_keyword").each(function(index, element) {
+               $(element).prop('checked', false);
+            })
+        }
+    });
 });
     
 var currentTab = 0; // Current tab is set to be the first tab (0)
@@ -121,8 +157,8 @@ function insert_data(data) {
     var list_unique = keyword_list.uniq();
     for(var j = 0; j < list_unique.length; j++) {
         $('.keywords-list tbody').append('<tr>'+
+                                            '<td><input class="ckeck_keyword" type="checkbox" /></td>'+
                                             '<td>'+list_unique[j]+'</td>' +
-                                            '<td><a href="#" data-id='+j+'><i class="fa fa-times"></i></a></td>'+
                                          '</tr>');
     }
     get_duplicate(data);
@@ -166,3 +202,5 @@ function fixStepIndicator(n) {
   //... and adds the "active" class on the current step:
   x[n].className += " active";
 }
+
+

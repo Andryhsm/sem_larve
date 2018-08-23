@@ -79,6 +79,23 @@
         font-weight: bold;
         cursor: pointer;
     }
+   
+    tbody {
+        display:block;
+        max-height:400px;
+        overflow-y:scroll;
+    }
+    thead, tbody tr {
+        display:table;
+        width:100%;
+        table-layout:fixed;
+    }
+    thead {
+        width:100%; 
+    }
+    table {
+        width:100%;
+    }
 </style>
 @stop
 @section('content')
@@ -127,33 +144,36 @@
                             <h1>List Keywords</h1>
                             <div class="col-lg-12 text-center keyword-button" style="margin: 3% 0;">
                               <button class="btn btn-primary" id="show_keyword_list">Show keywords list</button>
+                              <button class="btn btn-danger hidden" id="delete_keyword_in_list">Delete</button>
                             </div>
                             <p><input placeholder="File path" class="hidden" oninput="this.className = ''" name="file_path"></p>
-                              <table class="table keywords-list table-bordered table-hover table-responsive hidden">
+                              
+                                <table class="table keywords-list table-bordered table-hover table-responsive hidden">
                                   <thead>
                                       <tr>
+                                          <th class="no-sort"><input class="ckeck_all_keyword" type="checkbox" /></th>
                                           <th>keyword</th>
-                                          <th class="no-sort">Action</th>
                                       </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
+                                  </thead>
+                                  <tbody>
+                                  </tbody>
                                 </table>
-                                <div class="row">
-                                  <div class="col-lg-12 text-center">  
-                                    <span>List of duplicate found in the keyword</span>
-                                  </div>
+                              
+                              <div class="row">
+                                <div class="col-lg-12 text-center">  
+                                  <span>List of duplicate found in the keyword</span>
                                 </div>
-                                <table style="background: #f4f4f4;" class="table keywords-duplicate-list table-bordered table-hover table-responsive">
-                                  <thead>
-                                      <tr>
-                                          <th>keyword</th>
-                                          <th>Occurence</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
+                              </div>
+                              <table style="background: #f4f4f4;" class="table keywords-duplicate-list table-bordered table-hover table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>keyword</th>
+                                        <th>Occurence</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                  </tbody>
+                              </table>
                           </div>
                           </div>
                           <div class="tabs hidden">

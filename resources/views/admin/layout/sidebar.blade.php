@@ -220,7 +220,7 @@
              @endif
 
              <!-- Abonnée -->
-            @if(check_user_access(['research_tools', 'data_collections', 'research_tools_partner', 'data_collections_partner']))
+            @if(check_user_access(['research_tools', 'data_collections', 'research_tools_partner', 'data_collections_partner', 'keyword_number']))
             <li class="treeview {{ set_active(['admin/research-tools/*', 'admin/research-tools', '/admin/data-collections', '/admin/data-collections/*',
                                                 'partner/research-tools/*', 'partner/research-tools', 'partner/data-collections', 'partner/data-collections/*']) }}">
                     <a href="#">
@@ -236,7 +236,7 @@
                                         href="{!! ($user->type == 1) ? route('research_tools') : route('research_tools_partner') !!}"><i class="fa fa-circle-o"></i> Research tools</a>
                             </li>
                         @endif
-                        @if(check_user_access('data_collections', 'data_collections_partner'))
+                        @if(check_user_access('data_collections', 'data_collections_partner', 'keyword_number'))
                             <li class="{{ set_active(['admin/data-collections','admin/data-collections/*','partner/data-collections','partner/data-collections/*' ]) }}"><a
                                     href="{!! ($user->type == 1) ? route('data_collections') : route('data_collections_partner') !!}"><i class="fa fa-circle-o"></i> Data collections</a></li>
                         @endif
@@ -276,8 +276,8 @@
             @endif
             
                 <!-- Admin -->
-            @if(check_user_access(['profile_partner', 'sub-accounts']))
-            <li class="treeview {{ set_active(['admin/profile','partner/profile']) }}">
+            @if(check_user_access(['profile_partner','sub-accounts','adwords_api.index']))
+            <li class="treeview {{ set_active(['admin/profile','partner/profile','partner/adwords_api']) }}">
                 <a href="#">
                     <i class="fa fa-user"></i>
                     <span>Accounts</span>
@@ -296,9 +296,9 @@
                         <a href="#"><i class="fa fa-circle-o"></i> Sub-accounts</a>
                     </li>
                     @endif
-                    @if(check_user_access('sub-accounts'))
-                    <li class=""><a
-                                href="#"><i class="fa fa-circle-o"></i> API Google</a>
+                    @if(check_user_access('adwords_api.index'))
+                    <li class="{{ set_active(['partner/adwords_api']) }}">
+                        <a href="{!! route('adwords_api.index') !!}"><i class="fa fa-circle-o"></i> API Google</a>
                     </li>
                     @endif
                 </ul>

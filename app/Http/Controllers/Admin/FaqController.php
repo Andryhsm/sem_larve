@@ -6,6 +6,7 @@ use App\Http\Requests\FaqRequest;
 use App\Interfaces\FaqRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\Datatables\Facades\Datatables;
 
 class FaqController extends Controller
 {

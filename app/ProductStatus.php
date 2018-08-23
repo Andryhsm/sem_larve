@@ -11,6 +11,6 @@ class ProductStatus extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = ['status'];
-
+    
     public $timestamps = false;
 }
