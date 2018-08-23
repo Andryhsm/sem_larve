@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Excel;
 use Illuminate\Support\Facades\Input;
 use App\Repositories\KeywordTrendsRepository;
+use League\Csv\Reader;
+use League\Csv\Statement;
 
 class KeywordTrendsController extends Controller
 {
@@ -19,6 +21,15 @@ class KeywordTrendsController extends Controller
     
     public function researchTools()
     {
+
+    	$csv = Reader::createFromPath(storage_path('location.csv'));
+        $csv->setHeaderOffset(0);
+        $location = [];
+        $records = (new Statement())->process($csv);
+        foreach ($records->getRecords() as $record) {
+            $location[] = $record;
+        }
+        dd($location);
         return view('admin.keyword_trends.research_tools');
     }
     
