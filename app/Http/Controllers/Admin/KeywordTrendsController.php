@@ -79,6 +79,9 @@ class KeywordTrendsController extends Controller
 	public function makeRequestAdwords(Request $request) {
 		$keywrods = Input::get('keywords');
 		dd($keywrods);
+		$searchVolumes = \AdWords::convertNullToZero()->location(2276)->language(1001)->searchVolumes(['keywords']);;
+        
+        dd($searchVolumes);
 	}
 
 }

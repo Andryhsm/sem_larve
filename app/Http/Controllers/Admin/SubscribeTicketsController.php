@@ -21,9 +21,7 @@ class SubscribeTicketsController extends Controller
 
     public function index()
     {
-        $searchVolumes = \AdWords::convertNullToZero()->location(2276)->language(1001)->searchVolumes(['cheesecake', 'coffee']);;
         
-        dd($searchVolumes);
     	$tickets = $this->ticket_repository->getTicketsByUserId(auth()->guard('admin')->user()->admin_id);
     	$type = 2;
         $categories = $this->ticket_repository->getTypeCategories($type);
