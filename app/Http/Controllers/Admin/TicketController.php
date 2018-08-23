@@ -24,7 +24,6 @@ class TicketController extends Controller
      */
     public function index()
     {
-        dd("list");
         $tickets = Datatables::collection($this->ticket_repository->getAll())->make(true);
         $tickets = $tickets->getData();
         return view('admin.tickets.index',compact('tickets'));
