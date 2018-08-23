@@ -8,6 +8,11 @@ var keyword_list = [];
 var keyword_duplicate_list = [];
 
 $(document).ready(function(){
+  
+  console.log("Whe make request");
+  $.get("get-locations", function(data, status){
+        console.log(data);
+  });
   $("form#import-data").submit(function(e) {
       e.preventDefault();    
       var formData = new FormData(this);
@@ -55,7 +60,6 @@ $(document).ready(function(){
   if ($('#delete_keyword_in_list').length > 0) {
         $('#delete_keyword_in_list').off('click');
         $('#delete_keyword_in_list').on('click', function (e) {
-            console.log('ici e');
             e.preventDefault();
             $('#confirm').modal({backdrop: 'static', keyboard: false})
                 .one('click', '#delete', function () {

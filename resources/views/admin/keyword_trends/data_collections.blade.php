@@ -142,7 +142,7 @@
                                                     <a class="btn btn-default btn-sm show_keyword_number" action="{{ route('show_campaign_keywords') }}" data-id="{!! $campaign->campaign_id !!}" title="View"><i
                                                                 class="fa fa-fw fa-eye"></i></a>
                                                                 
-                                                    <a class="btn btn-default btn-sm" title="View">
+                                                    <a class="btn btn-default btn-sm delete-campaign" action="{{ route('delete_campaign') }}" data-id="{!! $campaign->campaign_id !!}" title="View">
                                                         <i class="fa fa-fw fa-trash"></i>
                                                     </a>
                                                 </div>
@@ -163,11 +163,11 @@
                                 <h1>Keywords</h1>
                                 @include('admin.keyword_trends.keyword_number')
                                 <br><br>
-                                <div class="notifying">
-                                  <div id="progressbar">
-                              	    <div class="progress-label">Loading...</div>
-                              	  </div>
-                                </div>
+                                <!--<div class="notifying">-->
+                                <!--  <div id="progressbar">-->
+                              	 <!--   <div class="progress-label">Loading...</div>-->
+                              	 <!-- </div>-->
+                                <!--</div>-->
                                 <br><br>
                                 <div>
                                     <div>
@@ -193,7 +193,9 @@
     </section> 
 @endsection
 @section('additional-scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-   {!! Html::script('backend/js/data_collection.js') !!}
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>-->
+    <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+    
+    {!! Html::script('backend/js/TableExport/tableExport.js') !!}
+    {!! Html::script('backend/js/data_collection.js') !!}
 @stop

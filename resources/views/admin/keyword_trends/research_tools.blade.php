@@ -79,6 +79,19 @@
         font-weight: bold;
         cursor: pointer;
     }
+    .column1 {
+      float: left;
+      border-right: 6px solid silver;
+      padding-right: 50px;
+    }
+    .column2 {
+      float: left;
+      margin-left: 50px;
+    }
+    .column1 p, .column2 p {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
     #keyword_trend_form {
       width: 90%;
       margin: auto;
@@ -237,13 +250,21 @@
                               <h1>Summary</h1>
                               <div class="summary panel panel-default">
                                   <div class="panel-body">
-                                      <div class="panel-heading">Summary</div>
+                                      <!--<div class="panel-heading">Summary</div>-->
                                       <div class="row">
                                           <div class="col-xs-12">
-                                              <p><strong>Campagne Name:</strong> <span class="campaign_name"></span> </p>
-                                              <p><strong>Language Code:</strong> <span class="location"> </span></p>
-                                              <p><strong>Monthly searches:</strong> <span class="monthly_searches"></span> </p>
-                                              <p><strong>Convert NULL values to Zero:</strong> <span class="convert_null_to_zero"></span> </p>
+                                            <div class="column1">
+                                              <p><strong>Campagne Name:</strong></p>
+                                              <p><strong>Language Code:</strong></p>
+                                              <p><strong>Monthly searches:</strong></p>
+                                              <p><strong>Convert NULL values to Zero:</strong></p>
+                                            </div>
+                                            <div class="column2">
+                                              <p><span class="campaign_name"></span></p>
+                                              <p><span class="location"> </span></p>
+                                              <p><span class="monthly_searches"></span></p>
+                                              <p><span class="convert_null_to_zero"></span></p>
+                                            </div>
                                           </div>
                                       </div>
                                 </div>

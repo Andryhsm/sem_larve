@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\LanguageCode;
+use App\Locations;
 use Excel;
 use Illuminate\Support\Facades\Input;
 use App\Repositories\KeywordTrendsRepository;
@@ -21,10 +23,17 @@ class KeywordTrendsController extends Controller
     
     public function researchTools()
     {
-        return view('admin.keyword_trends.research_tools');
+    	$languagecode = LanguageCode::all();
+        return view('admin.keyword_trends.research_tools', compact('locations', 'languagecode'));
     }
     
-    public function dataCollections()
+    public function getLocations()
+    {
+    	$locations = Locations::all();
+    	return response()->json(['status' => 'ok', 'data' => $locations]);
+    }
+    
+    public function dataCollections() 
     {
     	$user_id = auth()->guard('admin')->user()->admin_id;
     	$campaigns = $this->keyword_trend_repository->getAllByUser($user_id);

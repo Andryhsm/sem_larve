@@ -17,9 +17,12 @@ $(document).ready(function(){
 				data: {campaign_id: campaign_id},
 			})
 			.done(function(datas) {
-				console.log(datas);
+				
+				$('#keyword_number tbody').html('');
 				$.each(datas, function( index, value ) {
-          console.log( index + ": " + value );
+				  
+				  $('#keyword_number tbody').append('<tr><td>'+ value.keyword_name +'</td><td>'+ value.search_volume +'</td></tr>');  
+          
         });
 				var x = document.getElementsByClassName("tab");
         x[0].style.display = "none";
@@ -31,6 +34,29 @@ $(document).ready(function(){
       
     });
     
+      if ($('.delete-campaign').length > 0) {
+        $('.delete-campaign').off('click');
+        $('.delete-campaign').on('click', function (e) {
+            e.preventDefault();
+            var campaign_id = $(this).attr('data-id');
+            $('#confirm').modal({backdrop: 'static', keyboard: false})
+                .one('click', '#delete', function () {
+                    $.ajax({
+              				url: $(this).attr('action'),
+              				type: 'POST',
+              				data: {campaign_id: campaign_id},
+              			})
+              			.done(function(datas) {
+              				
+              				console.log(datas);
+              				
+              			})
+              			.fail(function(xhr) {
+              				//console.log(xhr.responseText);
+              			});
+                });
+        });
+    }
     
     function fixStepIndicator(n) {
       var i, x = document.getElementsByClassName("step");
@@ -46,7 +72,7 @@ $(document).ready(function(){
         showTab(0);
     })
     
-    /***  Progress bar  ***/
+    /***  Progress bar  
     var progressbar = $("#progressbar"),
 	      progressLabel = $(".progress-label");
 

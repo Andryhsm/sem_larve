@@ -26,5 +26,10 @@ class KeywordTrendsRepository
 	{
 		return $this->modelKeyword->where('campaign_id',$id)->get();	
 	}
+	
+	public function deleteById($id)
+	{
+		return $this->modelCampaign->destroy($id);
+	}
 
 }
