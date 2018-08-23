@@ -8,7 +8,21 @@ $(document).ready(function(){
       fixStepIndicator(n)
     }
     
-    $('#campaign_list a').click(function() {
+    $('#campaign_list .show_keyword_number').click(function() {
+      var campaign_id = $(this).attr('data-id');
+      
+      $.ajax({
+				url: $(this).attr('action'),
+				type: 'POST',
+				data: {campaign_id: campaign_id},
+			})
+			.done(function(datas) {
+				console.log(datas);
+			})
+			.fail(function(xhr) {
+				//console.log(xhr.responseText);
+			});
+      
       var x = document.getElementsByClassName("tab");
       x[0].style.display = "none";
       showTab(1);
@@ -59,7 +73,6 @@ $(document).ready(function(){
 });
 
 function exportTo(type) {
-  //console.log(type);
   $('#keyword_number').tableExport({
     filename: 'Keywords_%DD%-%MM%-%YY%',
     format: type,

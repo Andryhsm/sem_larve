@@ -94,11 +94,11 @@ function showTab(n) {
   } else {
     document.getElementById("prevBtn").style.display = "inline";
   }
-  if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").innerHTML = "Submit";
-  } else {
-    document.getElementById("nextBtn").innerHTML = "Next";
-  }
+  // if (n == (x.length - 1)) {
+  //   document.getElementById("nextBtn").innerHTML = "Submit";
+  // } else {
+  //   document.getElementById("nextBtn").innerHTML = "Next";
+  // }
   //... and run a function that will display the correct step indicator:
   fixStepIndicator(n)
 }
@@ -109,7 +109,16 @@ function nextPrev(n) {
      
       x[currentTab].style.display = "none";
       currentTab = currentTab + n;
-     
+      if (currentTab == 2) {
+        $('.next-button').html('Create a new data Collection');
+      } else if (currentTab == 3) {
+        lanch_request();
+        paste_param();
+        $('.next-button').html('Launch');
+      } else {
+        $('.next-button').html('Next');
+      }
+      
       if (currentTab >= x.length) {
         document.getElementById("regForm").submit();
         return false;
@@ -191,6 +200,36 @@ function post_duplicate(keyword_duplicate_list) {
     } else {
           $('.keywords-duplicate-list tbody').append('<span>No duplicate entry found!</span>');
     }
+}
+
+function lanch_request() { 
+  var params = {
+    'monthly_searches': $('input[name="monthly_searches"]').is( ":checked" ) ? 1 : 0,
+    'location_id': $('select[name="location"]').val(),
+    'convert_null_to_zero': $('input[name="convert_null_to_zero"]').is( ":checked" ) ? 1 : 0,
+  };
+  var data = keyword_list.uniq();
+  $.ajax({
+      url: 'make-request-adwords',
+      type: 'POST',
+      dataType: 'json',
+      data: {keywords: data, params: params},
+  })
+  .done(function(data) {
+      console.log(data);
+  })
+  .fail(function() {
+      console.log("error");
+  });
+}
+
+function paste_param() {
+  console.log("paste param");
+  $('.campaign_name').html($('input[name="campaign_name"]').val());
+  $('.language_code').html($('input[name="language_code"]').val());
+  $('.monthly_searches').html($('input[name="monthly_searches"]').val());
+  $('.convert_null_to_zero').html($('input[name="convert_null_to_zero"]').val());
+  $('.location').html($('input[name="location"]').val());
 }
 
 function fixStepIndicator(n) {

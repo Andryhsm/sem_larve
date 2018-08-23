@@ -6,12 +6,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Excel;
 use Illuminate\Support\Facades\Input;
+use App\Repositories\KeywordTrendsRepository;
 
 class KeywordTrendsController extends Controller
 {
-    public function __construct()
+	protected $keyword_trend_repository; 
+	
+    public function __construct(KeywordTrendsRepository $keyword_trend_repo)
     {
-        
+        $this->keyword_trend_repository = $keyword_trend_repo;
     }
     
     public function researchTools()
@@ -21,7 +24,9 @@ class KeywordTrendsController extends Controller
     
     public function dataCollections()
     {
-        return view('admin.keyword_trends.data_collections');
+    	$user_id = auth()->guard('admin')->user()->admin_id;
+    	$campaigns = $this->keyword_trend_repository->getAllByUser($user_id);
+    	return view('admin.keyword_trends.data_collections',compact('campaigns'));
     }
     
     public function importExcel()
@@ -77,11 +82,21 @@ class KeywordTrendsController extends Controller
 	}
 	
 	public function makeRequestAdwords(Request $request) {
-		$keywrods = Input::get('keywords');
-		dd($keywrods);
-		$searchVolumes = \AdWords::convertNullToZero()->location(2276)->language(1001)->searchVolumes(['keywords']);;
-        
-        dd($searchVolumes);
+		$keywords = Input::get('keywords');
+		$params = Input::get('params');
+		$searchVolumes = \AdWords::convertNullToZero()->location($params['location_id'])->language(1001)->searchVolumes($keywords);
+        return response()->json([
+        	'status' => 'ok',
+        	'data' => $searchVolumes,
+        	'param' => $params
+        	]);
 	}
-
+	
+	public function showCampaignResultData(Request $request) {
+		$campaign_id = Input::get('campaign_id');
+		return response()->json([
+		    'status' => 'ok', 
+		    'data' => $campaign_id,
+		    ]);
+	}
 }

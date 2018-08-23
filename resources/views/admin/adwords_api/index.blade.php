@@ -43,10 +43,10 @@
                                     <td>{!! $adwords_api->adwords_client_secret !!}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="{!! Url("admin/adwords_api/$adwords_api->adwords_api_id/edit") !!}"
+                                            <a href="{!! Url("partner/adwords_api/$adwords_api->adwords_api_id/edit") !!}"
                                                class="btn btn-default btn-sm" title="Edit"><i
                                                         class="fa fa-fw fa-edit"></i></a>
-                                            {!! Form::open(array('url' => 'admin/adwords_api/' . $adwords_api->id, 'class' => 'pull-right')) !!}
+                                            {!! Form::open(array('url' => 'partner/adwords_api/' . $adwords_api->adwords_api_id, 'class' => 'pull-right')) !!}
                                             {!! Form::hidden('_method', 'DELETE') !!}
                                             {!! Form::button('<i class="fa fa-fw fa-trash"></i>', ['type' => 'submit', 'class' => 'btn delete-btn btn-default btn-sm','title'=>'Delete'] ) !!}
                                             {{ Form::close() }}

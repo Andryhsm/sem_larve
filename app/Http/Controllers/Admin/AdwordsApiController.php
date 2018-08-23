@@ -49,7 +49,7 @@ class AdwordsApiController extends Controller
      */
     public function store(Request $request)
     {
-        $faq = $this->adwords_api_repository->store($request->all());
+        $adwords_api = $this->adwords_api_repository->store($request->all());
 		flash()->success(config('message.account_api.add-success'));
 		return redirect()->route('adwords_api.index');
     }

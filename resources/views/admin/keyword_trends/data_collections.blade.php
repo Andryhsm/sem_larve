@@ -92,6 +92,22 @@
 	    font-weight: bold;
 	    text-shadow: 1px 1px 0 #ddd;
 	  }
+	  tbody {
+        display:block;
+        max-height:400px;
+        overflow-y:scroll;
+    }
+    thead, tbody tr {
+        display:table;
+        width:100%;
+        table-layout:fixed;
+    }
+    thead {
+        width:100%; 
+    }
+    table {
+        width:100%;
+    }
 </style>
 @stop
 @section('content')
@@ -113,26 +129,31 @@
                                     <thead>
                                     <tr>
                                         <th>Campaign name</th>
-                                        <th>Details</th>
                                         <th class="no-sort">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        
+                                        @if(count($campaigns)>0)
+                                        @foreach($campaigns as $campaign)
                                         <tr>
-                                            <td>G-bizn</td>
-                                            <td>G-bizness Madagascar 2018</td>
+                                            <td>{!! $campaign->campaign_name !!}</td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <a class="btn btn-default btn-sm" title="View"><i
+                                                    <a class="btn btn-default btn-sm show_keyword_number" action="{{ route('show_campaign_keywords') }}" data-id="{!! $campaign->campaign_id !!}" title="View"><i
                                                                 class="fa fa-fw fa-eye"></i></a>
+                                                                
                                                     <a class="btn btn-default btn-sm" title="View">
                                                         <i class="fa fa-fw fa-trash"></i>
                                                     </a>
                                                 </div>
                                             </td>
                                         </tr>
-                                        
+                                        @endforeach
+                                        @else
+                                        <tr>
+                                          <td colspan='2'>No record found</td>
+                                        </tr>
+                                        @endif
         
                                     </tbody>
                                 </table>

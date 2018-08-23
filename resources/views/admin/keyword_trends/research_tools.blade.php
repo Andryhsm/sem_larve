@@ -79,7 +79,19 @@
         font-weight: bold;
         cursor: pointer;
     }
-   
+    #keyword_trend_form {
+      width: 90%;
+      margin: auto;
+    }
+    #keyword_trend_form input[type="checkbox"] {
+      width: auto !important;
+    }
+    .bottle {
+      content: '';
+      clear: both;
+      display: flex;
+    }
+    
     tbody {
         display:block;
         max-height:400px;
@@ -175,13 +187,69 @@
                                   </tbody>
                               </table>
                           </div>
-                          </div>
-                          <div class="tabs hidden">
+                          </div>  
+                          <div class="tab"> 
                             <h1>Parametters</h1>
-                            <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
-                            <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
+                            {!! Form::open(array('url' => '','id' =>'keyword_trend_form','class'=>'validate_form')) !!}
+                              
+                              <div class="form-group bottle">
+                                {!! Form::label('campaign_name', ' Campagne name ', ['class' => 'col-sm-3 control-label']) !!}
+                                <div class="col-sm-9">
+                                  {!! Form::text('campaign_name', null, ['class' => 'form-control required','id'=>'campaign_name','placeholder'=>" Campagne name "]) !!}
+                                </div>
+                              </div>
+                              
+                              <div class="form-group bottle">
+                                  <label class="col-sm-3 control-label">Location</label>
+                                  <div class="col-sm-9">
+                                        <select name="location" class="form-control required">
+                                           <option value="2276" selected>2276</option>
+                                        </select>
+                                  </div>
+                              </div>
+                              
+                              <div class="form-group bottle">
+                                  <label class="col-sm-3 control-label">Language</label>
+                                  <div class="col-sm-9">
+                                        <select name="language_code" class="form-control required">
+                                           <option value="2276" selected>2276</option>
+                                        </select>
+                                  </div>
+                              </div>
+                              
+                              <div class="form-group bottle">
+                                  {!! Form::label('monthly_searches', 'Monthly Searches', ['class' => 'col-sm-3 control-label']) !!}
+                                  <div class="col-sm-9">
+                                      {!! Form::checkbox('monthly_searches', null, false) !!}
+                                  </div>
+                              </div>
+                              
+                              <div class="form-group bottle">
+                                  {!! Form::label('convert_null_to_zero', 'Convert NULL values to Zero', ['class' => 'col-sm-3 control-label']) !!}
+                                  <div class="col-sm-9">
+                                      {!! Form::checkbox('convert_null_to_zero', null, false) !!}
+                                  </div>
+                              </div> 
+                              
+                            {!! Form::close() !!}
                           </div>
-                          <div style="overflow:auto;">
+                           <div class="tab">
+                              <h1>Summary</h1>
+                              <div class="summary panel panel-default">
+                                  <div class="panel-body">
+                                      <div class="panel-heading">Summary</div>
+                                      <div class="row">
+                                          <div class="col-xs-12">
+                                              <p><strong>Campagne Name:</strong> <span class="campaign_name"></span> </p>
+                                              <p><strong>Language Code:</strong> <span class="location"> </span></p>
+                                              <p><strong>Monthly searches:</strong> <span class="monthly_searches"></span> </p>
+                                              <p><strong>Convert NULL values to Zero:</strong> <span class="convert_null_to_zero"></span> </p>
+                                          </div>
+                                      </div>
+                                </div>
+                              </div>
+                           </div>
+                          <div>
                             <div style="float:right;">
                               <button type="button" class="btn btn-default" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
                               <button type="button" class="btn btn-primary next-button disabled" onclick="nextPrev(1)">Next</button>
@@ -204,4 +272,4 @@
 @endsection
 @section('additional-scripts')
    {!! Html::script('backend/js/keyword_trends.js') !!}
-@stop
+@stop 

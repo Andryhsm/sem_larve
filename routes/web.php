@@ -45,7 +45,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             //Route::get('downloadExcel/{type}', 'KeywordTrendsController@downloadExcel')->name('download_excel_partner');
             Route::post('import-excel', 'KeywordTrendsController@importExcel')->name('import_excel_partner');
             Route::post('make-request-adwords', 'KeywordTrendsController@makeRequestAdwords')->name('make_request_adowrds_partner');
-            Route::resource('adwords_api','AdwordsApiController'); 
+            Route::resource('adwords_api','AdwordsApiController');
+            Route::post('show-campaign-keywords','KeywordTrendsController@showCampaignResultData')->name('show_campaign_keywords');
             
             Route::get('404',function(){
                 return view('admin.404');
