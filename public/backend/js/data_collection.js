@@ -18,14 +18,17 @@ $(document).ready(function(){
 			})
 			.done(function(datas) {
 				console.log(datas);
+				$.each(datas, function( index, value ) {
+          console.log( index + ": " + value );
+        });
+				var x = document.getElementsByClassName("tab");
+        x[0].style.display = "none";
+        showTab(1);
 			})
 			.fail(function(xhr) {
 				//console.log(xhr.responseText);
 			});
       
-      var x = document.getElementsByClassName("tab");
-      x[0].style.display = "none";
-      showTab(1);
     });
     
     

@@ -7,11 +7,13 @@ use App\Http\Controllers\Controller;
 use Excel;
 use Illuminate\Support\Facades\Input;
 use App\Repositories\KeywordTrendsRepository;
-
+use League\Csv\Reader;
+use League\Csv\Statement;
+ 
 class KeywordTrendsController extends Controller
-{
+{   
 	protected $keyword_trend_repository; 
-	
+	 
     public function __construct(KeywordTrendsRepository $keyword_trend_repo)
     {
         $this->keyword_trend_repository = $keyword_trend_repo;
@@ -30,7 +32,7 @@ class KeywordTrendsController extends Controller
     }
     
     public function importExcel()
-	{
+	{ 
 		$keyword = "";
 		if(Input::hasFile('import_file')){
 			    $path = Input::file('import_file')->getRealPath();
@@ -94,9 +96,7 @@ class KeywordTrendsController extends Controller
 	
 	public function showCampaignResultData(Request $request) {
 		$campaign_id = Input::get('campaign_id');
-		return response()->json([
-		    'status' => 'ok', 
-		    'data' => $campaign_id,
-		    ]);
+		$datas = $this->keyword_trend_repository->getKeywordByCampaignId($campaign_id);
+		return response()->json($datas);
 	}
 }
