@@ -102,6 +102,14 @@
     #keyword_trend_form input[type="checkbox"] {
       width: auto !important;
     }
+    .no-duplicate {
+        text-align: center;
+        padding: 3%;
+        font-size: 18px;
+    }
+    .keywords-duplicate-list thead {
+      background: #cecece;
+    }
     .bottle {
       content: '';
       clear: both;
@@ -180,7 +188,7 @@
                                 <table class="table keywords-list table-bordered table-hover table-responsive hidden">
                                   <thead>
                                       <tr>
-                                          <th class="no-sort"><input class="ckeck_all_keyword" type="checkbox" /></th>
+                                          <th class="no-sort" style="width: 5%;"><input class="ckeck_all_keyword" type="checkbox" /></th>
                                           <th>keyword</th>
                                       </tr>
                                   </thead>
