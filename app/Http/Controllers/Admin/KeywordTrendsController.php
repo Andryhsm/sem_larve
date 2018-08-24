@@ -23,8 +23,8 @@ class KeywordTrendsController extends Controller
     
     public function researchTools()
     {
-    	$languagecode = LanguageCode::all();
-        return view('admin.keyword_trends.research_tools', compact('locations', 'languagecode'));
+    	$languagecodes = LanguageCode::all();
+        return view('admin.keyword_trends.research_tools', compact('languagecodes'));
     }
     
     public function getLocations()
