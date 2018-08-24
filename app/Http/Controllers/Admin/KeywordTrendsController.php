@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace App\Http\Controllers\Admin;
 
@@ -18,16 +18,16 @@ class KeywordTrendsController extends Controller
 	 
     public function __construct(KeywordTrendsRepository $keyword_trend_repo)
     {
-        $this->keyword_trend_repository = $keyword_trend_repo;
-    }
-    
-    public function researchTools()
+         $this->keyword_trend_repository = $keyword_trend_repo;
+    } 
+     
+    public function researchTools() 
     {
-    	$languagecodes = LanguageCode::all();
-        return view('admin.keyword_trends.research_tools', compact('languagecodes'));
+        $locations = [];
+        return view('admin.keyword_trends.research_tools');
     }
-    
-    public function getLocations()
+     
+    public function getLocations() 
     {
     	$locations = Locations::all();
     	return response()->json(['status' => 'ok', 'data' => $locations]);

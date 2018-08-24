@@ -32,6 +32,8 @@ $(document).ready(function(){
           contentType: false,
           processData: false
       });
+      
+      get_locations();  
   });
   
   $('#show_keyword_list').on('click', function(){
@@ -81,7 +83,9 @@ $(document).ready(function(){
     });
     
   $('input[name="import_file"]').change(function(e){
-  		$('.file_name').html(e.target.files[0].name);
+  		//$('.file_name').html();
+  		$('.file_name').attr('data-content',e.target.files[0].name)
+      $('.file_name').popover();
   });
 });
     
@@ -114,7 +118,6 @@ function nextPrev(n) {
       x[currentTab].style.display = "none";
       currentTab = currentTab + n;
       if(currentTab == 1) {
-        get_locations();  
       } else if (currentTab == 2) {
         $('.next-button').html('Create a new data Collection');
       } else if (currentTab == 3) {
