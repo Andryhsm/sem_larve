@@ -68,6 +68,9 @@
     	position: absolute;
     	z-index: -1;
     }
+    .title-duplicate {
+      margin: 5% 0;
+    }
     .custom_import_file {
         font-size: 1.25em;
         font-weight: 700;
@@ -185,7 +188,7 @@
                                 </table>
                               
                               <div class="row">
-                                <div class="col-lg-12 text-center">  
+                                <div class="col-lg-12 text-center title-duplicate">  
                                   <span>List of duplicate found in the keyword</span>
                                 </div>
                               </div>
