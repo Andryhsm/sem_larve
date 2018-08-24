@@ -68,6 +68,9 @@
     	position: absolute;
     	z-index: -1;
     }
+    .title-duplicate {
+      margin: 5% 0;
+    }
     .custom_import_file {
         font-size: 1.25em;
         font-weight: 700;
@@ -98,6 +101,14 @@
     }
     #keyword_trend_form input[type="checkbox"] {
       width: auto !important;
+    }
+    .no-duplicate {
+        text-align: center;
+        padding: 3%;
+        font-size: 18px;
+    }
+    .keywords-duplicate-list thead {
+      background: #cecece;
     }
     .bottle {
       content: '';
@@ -177,7 +188,7 @@
                                 <table class="table keywords-list table-bordered table-hover table-responsive hidden">
                                   <thead>
                                       <tr>
-                                          <th class="no-sort"><input class="ckeck_all_keyword" type="checkbox" /></th>
+                                          <th class="no-sort" style="width: 5%;"><input class="ckeck_all_keyword" type="checkbox" /></th>
                                           <th>keyword</th>
                                       </tr>
                                   </thead>
@@ -186,7 +197,7 @@
                                 </table>
                               
                               <div class="row">
-                                <div class="col-lg-12 text-center">  
+                                <div class="col-lg-12 text-center title-duplicate">  
                                   <span>List of duplicate found in the keyword</span>
                                 </div>
                               </div>

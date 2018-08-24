@@ -196,7 +196,7 @@ function insert_data(data) {
     var list_unique = keyword_list.uniq();
     for(var j = 0; j < list_unique.length; j++) {
         $('.keywords-list tbody').append('<tr>'+
-                                            '<td><input class="ckeck_keyword" type="checkbox" /></td>'+
+                                            '<td style="width: 5%;"><input class="ckeck_keyword" type="checkbox" /></td>'+
                                             '<td>'+list_unique[j]+'</td>' +
                                          '</tr>');
     }
@@ -228,7 +228,7 @@ function post_duplicate(keyword_duplicate_list) {
                                          '</tr>');
        });
     } else {
-          $('.keywords-duplicate-list tbody').append('<span>No duplicate entry found!</span>');
+          $('.keywords-duplicate-list tbody').append('<div class="no-duplicate"><span>No duplicate entry found!</span></div>');
     }
 }
 
