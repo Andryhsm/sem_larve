@@ -218,7 +218,7 @@
               </div>
               <div class="modal-body">
                 <div class="checkbox">
-                    <label><input class="col1" onclick="show_column(this);" type="checkbox" checked="" value="0">Research name</input></label>
+                    <label><input class="col1" type="checkbox" checked="" value="0">Research name</input></label>
                 </div>
                 <div class="checkbox">  
                     <label><input class="col2" onclick="show_column(this);" type="checkbox" checked="" value="1">Region</input></label>
@@ -300,6 +300,15 @@
     }
     
     var table = $('#product_list').DataTable();
+    
+    $('.col1').change(function() {
+        if($(this).prop('checked'))
+        {
+          table.column(0).visible(true);
+        }else{
+            table.column(0).visible(false);
+        }
+    });
     
     function show_column(box){
         if($(box).prop('checked'))
