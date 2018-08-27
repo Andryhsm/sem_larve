@@ -2,6 +2,8 @@
 @section('additional-styles')
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    {!! Html::style('backend/plugins/datatables/dataTables.bootstrap.css') !!}
+    {!! Html::style('backend/plugins/colorpicker/bootstrap-colorpicker.css') !!}
     <style>
     * {
       box-sizing: border-box;
@@ -74,7 +76,7 @@
         cursor: pointer;
     }
     
-	  tbody {
+	/*  tbody {
         display:block;
         max-height:100vh !important;
         overflow-y:scroll;
@@ -89,9 +91,9 @@
     }
     table {
         width:100%;
-    }
+    }*/
    
-    .td_body {
+    /*.td_body {
         display: none;
         transition: all 1s ease-in-out;
     }
@@ -105,7 +107,7 @@
         -webkit-box-pack: center;
         -ms-flex-pack: center;
         justify-content: center;
-    }
+    }*/
     .content-monthly-searches ul li {
         padding: 7px;
         list-style-type: none;
@@ -202,13 +204,113 @@
                 </div>
             </div>
         </div>
+        
+        
+        <!-- Start modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Select column to show</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="checkbox">
+                    <label><input class="col1" onclick="show_column(this);" type="checkbox" checked="" value="0">Research name</input></label>
+                </div>
+                <div class="checkbox">  
+                    <label><input class="col2" onclick="show_column(this);" type="checkbox" checked="" value="1">Region</input></label>
+                </div>
+                <div class="checkbox">
+                    <label><input class="col3" onclick="show_column(this);" type="checkbox" checked="" value="4">Language</input></label>
+                </div>
+                <div class="checkbox">
+                    <label><input class="col4" onclick="show_column(this);" type="checkbox" checked="" value="5">Username</input></label>
+                </div>
+                <div class="checkbox">
+                    <label><input class="col5" onclick="show_column(this);" type="checkbox" checked="" value="9">Date</input></label>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end modal-->
          
     </section> 
 @endsection
 @section('additional-scripts')
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>-->
-    <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
-    
+    {!! Html::script('backend/plugins/datatables/jquery.dataTables.js') !!}
+    {!! Html::script('backend/plugins/datatables/dataTables.bootstrap.min.js') !!}
     {!! Html::script('backend/js/TableExport/tableExport.js') !!}
     {!! Html::script('backend/js/data_collection.js') !!}
+@stop
+
+@section('footer-scripts')
+<script>
+    if (jQuery('#campaign_list').length > 0) {
+        jQuery('#campaign_list').DataTable({
+            "responsive": true,
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bInfo": true,
+            "bAutoWidth": false,
+            "order": [[0, "desc"]],
+            "lengthMenu": [20, 40, 60, 80, 100],
+            "pageLength": 20,
+            columns: [
+                {searchable: true, sortable: true},
+                {searchable: true, sortable: true},
+                {searchable: true, sortable: true},
+                {searchable: false, sortable: false},
+                {searchable: false, sortable: false},
+                {searchable: false, sortable: false}
+            ],
+            fnDrawCallback: function () {
+                var $paginate = this.siblings('.dataTables_paginate');
+                if (this.api().data().length <= this.fnSettings()._iDisplayLength) {
+                    $paginate.hide();
+                }
+                else {
+                    $paginate.show();
+                }
+            },
+                initComplete : function() {
+                   
+                    
+                }
+        });
+        
+        $('#campaign_list_length').append('<div class="btn btn-samall">'+
+            '<div class="btn-group" data-toggle="modal" data-target="#exampleModal">'+
+              '<a href="#" class="btn btn-default">Select column to show</a>'+
+              '<a href="#" class="btn btn-default"><span class="caret"></span></a>'+
+            '</div>'+
+        '</div>');
+        
+    }
+
+    if (jQuery('.dataTables_filter').length > 0) {
+        jQuery('.dataTables_filter').find('input').addClass('form-control')
+    }
+    
+    var table = $('#product_list').DataTable();
+    
+    function show_column(box){
+        if($(box).prop('checked'))
+        {
+            console.log(table.column(0));
+            table.column(0).visible(true);
+        }else{
+            table.column(0).visible(false);
+            console.log('checked false');
+        }
+    }
+    
+</script>
 @stop

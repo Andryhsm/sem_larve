@@ -1,169 +1,5 @@
 @extends($layout)
-@section('additional-styles')
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <style>
-    
-    #regForm {
-      background-color: #ffffff;
-      margin-top: 50px;
-      padding: 5px;
-      width: 100%;
-      min-width: 300px;
-    }
-    
-    input {
-      padding: 10px;
-      width: 100%;
-      font-size: 17px;
-      font-family: Raleway;
-      border: 1px solid #aaaaaa;
-    }
-    
-    /* Mark input boxes that gets an error on validation: */
-    input.invalid {
-      background-color: #ffdddd;
-    }
-    .tab_form h3 {
-        left: 0;
-        border-bottom: 1px solid black;
-        font-weight: bold;
-    }
-    .research_tools {
-        width: 90%;
-        margin: auto;
-    }
-    .hiddeninputfile {
-    	width: 0.1px;
-    	height: 0.1px;
-    	opacity: 0;
-    	overflow: hidden;
-    	position: absolute;
-    	z-index: -1;
-    }
-    .title-duplicate {
-      margin: 5% 0;
-    }
-    .custom_import_file {
-        font-size: 1.25em;
-        font-weight: 700;
-        color: gray;
-        background-color: white;
-        padding: 8px 20px;
-        border-radius: 8px;
-        font-size: 24px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-    .custom_import_file i {
-        margin-right: 10px;
-    }
-    .column1 {
-      float: left;
-      border-right: 4px solid gray;
-      padding-right: 50px;
-    }
-    .column2 {
-      float: left;
-      margin-left: 50px;
-    }
-    .column1 p, .column2 p {
-      padding-top: 10px;
-      padding-bottom: 10px;
-    }
-    .progress_stat {
-        text-align: center;
-    }
-    #keyword_trend_form {
-      width: 100%;
-      margin: auto;
-    }
-    #keyword_trend_form input[type="checkbox"] {
-      width: auto !important;
-    }
-    #import-data {
-        width: 60%; 
-        height: 250px;
-        margin: auto;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-                align-items: center;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-                flex-direction: column;
-    }
-    .no-duplicate {
-        text-align: center;
-        padding: 3%;
-        font-size: 18px;
-    }
-    .keywords-duplicate-list thead {
-      background: #cecece;
-    }
-    .bottle {
-      content: '';
-      clear: both;
-      display: flex;
-    }
-    .file_name {
-        display: none;
-        background: silver;
-        padding: 15px 50px;
-        font-size: 18px;
-        border-radius: 5px;
-        text-align: center;
-        transition: all 1s ease-in-out;
-    }
-    button.import_files {
-        display: none;
-        transition: all 1s ease-in-out;
-    }
-    .notifying {
-  		width: 300px;
-	    padding: 20px 20px;
-	    border: 1px solid #BFBFBF;
-	    border-radius: 4px;
-	    background-color: white;
-	    box-shadow: 5px 5px 5px #aaaaaa;
-  		position: fixed;
-  		z-index: 9;
-  		right: 50px;
-        top: 100px;
-        display: none;
-  	}
-    .progressbar {
-	    float: left;
-	    background-color: lightgrey;
-	    width: 100%;
-	    margin-top: 15px;
-	}
-	.bar {
-	    background-color: gray;
-	    color: #fff !important;
-	    height: 24px;
-	    width: 1%;
-	}
-    tbody {
-        display:block;
-        max-height:400px;
-        overflow-y:scroll;
-    }
-    thead, tbody tr {
-        display:table;
-        width:100%;
-        table-layout:fixed;
-    }
-    thead {
-        width:100%; 
-    }
-    table {
-        width:100%;
-    }
-</style>
-@stop
+
 @section('content')
     <section class="content">
         <div class="row">
@@ -177,29 +13,29 @@
                             <div class="notification">
                             </div>
                             <h3>Keywords import</h3>
-                             
-                            <!-- input type="file" name="file" id="file" class="hiddeninputfile" />
-                            <label for="file" class="custom_import_file">
-                                <i class="fa fa-download"></i>
-                                Chooses file to import (csv or Excel)
-                            </label -->
-                            
-                            	<div class="">
-                            		<form id="import-data" action="{{ route('import_excel_partner') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
-                            			<label for="import_file" class="custom_import_file">
+                        		<form id="import-data" action="{{ route('import_excel_partner') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+                        			<div class="col-lg-10 import_label">
+                        			    <label for="import_file" class="custom_import_file">
                                             <i class="fa fa-download"></i>
                                             Choose file to import (csv or Excel)
                                         </label>
-                                        <br><br>
-                            			<input type="file" id="import_file" name="import_file" class="hiddeninputfile" autocomplete="off"/>
-                            			<p class="file_name"></p>
-                            		  <button class="btn btn-primary import_files" type="submit" style="margin-top:2.5%;">Import File</button>
-                            		</form>
-                            	</div>
-                              <!-- end form -->
+                                        <a class="import_help">
+                                            <i class="fa fa-question-circle"></i>
+                                        </a>
+                                        <input type="file" id="import_file" name="import_file" class="hiddeninputfile" autocomplete="off"/>
+                        			    <p class="file_name"></p>
+                        			   <!-- <div id="import_help">
+                        			        <p>Import an Excel or CSV file with one column. </p> 
+                                            <p>First Row/description will not be imported. </p>
+                        			    </div> -->
+                        			</div>
+                        			<div class="col-lg-2">
+                        			    <button class="btn btn-primary import_files" type="submit" style="margin-top:2.5%;">Import File</button>
+                        			</div>
+                        		</form>
                           </div>
                           <div class="tab_form">
-                            <h1>List Keywords</h1>
+                            <h3>Imported data</h3>
                             <div class="col-lg-12 text-center keyword-button" style="margin: 3% 0;">
                               <button class="btn btn-primary" id="show_keyword_list">Show keywords list</button>
                               <button class="btn btn-danger hidden" id="delete_keyword_in_list">Delete</button>
@@ -238,7 +74,7 @@
                           <div class="tab_form">
                             <!--<div class="notification">-->
                             <!--</div> -->
-                            <h1>Parametters</h1>
+                            <h3>Parametters</h3>
                             {!! Form::open(array('url' => '','id' =>'keyword_trend_form','class'=>'validate_form')) !!}
                               
                               <div class="form-group bottle">
@@ -393,7 +229,7 @@
                             {!! Form::close() !!}
                           </div>
                            <div class="tab_form">
-                              <h1>Summary</h1>
+                              <h3>Summary</h3>
                               <div class="summary panel panel-default">
                                   <div class="panel-body">
                                       <!--<div class="panel-heading">Summary</div>-->
@@ -432,13 +268,6 @@
                               <button type="button" disabled class="btn btn-primary hidden" id="btn_data_collection" onclick="nextPrev(1)">Create a new data Collection</button>
                                <button type="button" class="btn btn-primary hidden" id="launch">Launch</button>
                             </div>
-                          </div>
-                          <!-- Circles which indicates the steps of the form: -->
-                          <div style="text-align:center;margin-top:40px;" class="hidden">
-                            <span class="step"></span>
-                            <span class="step"></span>
-                            <span class="step"></span>
-                            <span class="step"></span>
                           </div>
                         </div>
                       </div>

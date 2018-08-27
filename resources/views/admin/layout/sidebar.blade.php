@@ -149,8 +149,8 @@
                 @endif
         
             <!-- Admin -->
-            @if(check_user_access(['customer.index','store.index','administrator','role.index']))
-            <li class="treeview {{ set_active(['admin/role','admin/role/*','admin/customer','admin/customer/*','admin/store','admin/store/*','admin/administrator','admin/administrator/*']) }}">
+            @if(check_user_access(['customer.index','store.index','administrator','role.index','adwords_api.index']))
+            <li class="treeview {{ set_active(['admin/role','admin/role/*','admin/customer','admin/customer/*','admin/store','admin/store/*','admin/administrator','admin/administrator/*','partner/adwords_api','partner/adwords_api/*']) }}">
                 <a href="#">
                     <i class="fa fa-user"></i>
                     <span>Accounts</span>
@@ -172,6 +172,11 @@
                     @if(check_user_access('role.index'))
                     <li class="{{ set_active(['admin/role','admin/role/*']) }}"><a href="{!! URL::to('admin/role') !!}"><i
                                     class="fa fa-circle-o"></i> Role manager</a></li>
+                    @endif
+                    @if(check_user_access('adwords_api.index'))
+                    <li class="{{ set_active(['partner/adwords_api','partner/adwords_api/*']) }}">
+                        <a href="{!! route('adwords_api.index') !!}"><i class="fa fa-circle-o"></i> API Google</a>
+                    </li>
                     @endif
                     @if(check_user_access('profile'))
                     <li class="{{ set_active(['admin/profile/*', 'admin/profile']) }}"><a
@@ -237,7 +242,28 @@
             </li>
             @endif
 
-            
+             <?php
+                $html = '';
+                $active_url = [];
+                foreach(get_training_pages() as $page) {  
+                    $html = $html.'<li class="'.set_active([$page->url->target_url]).'">';
+                    $html = $html.'<a href="'.url($page->url->target_url) .'">';
+                    $html = $html.'<i class="fa fa-circle-o"></i>'.$page->english->page_title.'</a></li>';
+                    $active_url[] = $page->url->target_url;
+                }
+            ?>
+            <li class="treeview {{ set_active($active_url)}}">
+                <a href="#">
+                    <i class="fa fa-files-o"></i>
+                    <span>Training</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <?php echo $html; ?>
+                </ul>
+            </li>
             
     
             @if(check_user_access(['help-faq', 'help-faq-partner', 'tickets-subscribe', 'tickets-subscribe-partner']))
@@ -269,8 +295,8 @@
             @endif
             
                 <!-- Admin -->
-            @if(check_user_access(['profile_partner','sub-accounts','adwords_api.index']))
-            <li class="treeview {{ set_active(['admin/profile','partner/profile','partner/adwords_api']) }}">
+            @if(check_user_access(['profile_partner','sub-accounts']))
+            <li class="treeview {{ set_active(['admin/profile','partner/profile']) }}">
                 <a href="#">
                     <i class="fa fa-user"></i>
                     <span>Accounts</span>
@@ -289,11 +315,7 @@
                         <a href="#"><i class="fa fa-circle-o"></i> Sub-accounts</a>
                     </li>
                     @endif
-                    @if(check_user_access('adwords_api.index'))
-                    <li class="{{ set_active(['partner/adwords_api']) }}">
-                        <a href="{!! route('adwords_api.index') !!}"><i class="fa fa-circle-o"></i> API Google</a>
-                    </li>
-                    @endif
+                   
                 </ul>
             </li>
             @endif

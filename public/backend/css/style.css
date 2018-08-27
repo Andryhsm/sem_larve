@@ -344,7 +344,7 @@ input.invalid {
     cursor: pointer;
 }
 
-  tbody {
+/*  tbody {
     display:block;
     max-height:100vh !important;
     overflow-y:scroll;
@@ -383,8 +383,155 @@ table {
     margin: 2px;
     border-radius: 4px;
     text-align: center;
-}
+}*/
 a .fa-angle-down {
     font-size: 20px !important;
 }
+#regForm {
+  background-color: #ffffff;
+  margin-top: 50px;
+  padding: 5px;
+  width: 100%;
+  min-width: 300px;
+}
 
+
+.tab_form {
+    margin-bottom: 20px;
+}
+.tab_form h3 {
+    left: 0;
+    border-bottom: 1px solid black;
+    font-weight: bold;
+}
+.research_tools {
+    width: 90%;
+    margin: auto;
+}
+.hiddeninputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.title-duplicate {
+  margin: 5% 0;
+}
+.custom_import_file {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: gray;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.custom_import_file i {
+    margin-right: 10px;
+}
+.import_help i {
+    margin-left: 10px;
+    font-size: 26px;
+}
+.column1 {
+  float: left;
+  border-right: 4px solid gray;
+  padding-right: 50px;
+}
+.column2 {
+  float: left;
+  margin-left: 50px;
+}
+.column1 p, .column2 p {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.progress_stat {
+    text-align: center;
+}
+#keyword_trend_form {
+  width: 100%;
+  margin: auto;
+}
+#keyword_trend_form input[type="checkbox"] {
+  width: auto !important;
+}
+#import-data {  
+   padding-top: 50px; 
+   padding-bottom: 70px;
+}
+.import_label {
+    text-align: left;
+}
+.no-duplicate {
+    text-align: center;
+    padding: 3%;
+    font-size: 18px;
+}
+.keywords-duplicate-list thead {
+  background: #cecece;
+}
+.bottle {
+  content: '';
+  clear: both;
+  display: flex;
+}
+.file_name {
+    display: none;
+    background: silver;
+    padding: 15px 50px;
+    font-size: 18px;
+    border-radius: 5px;
+    text-align: center;
+    width: -moz-fit-content;
+    transition: all 1s ease-in-out;
+}
+button.import_files {
+   /* display: none;*/
+    transition: all 1s ease-in-out;
+}
+.notifying {
+  	width: 300px;
+    padding: 20px 20px;
+    border: 1px solid #BFBFBF;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 5px 5px 5px #aaaaaa;
+  	position: fixed;
+  	z-index: 9;
+  	right: 50px;
+    top: 100px;
+    display: none;
+  }
+.progressbar {
+    float: left;
+    background-color: lightgrey;
+    width: 100%;
+    margin-top: 15px;
+}
+.bar {
+    background-color: gray;
+    color: #fff !important;
+    height: 24px;
+    width: 1%;
+}
+tbody {
+    display:block;
+    max-height:400px;
+    overflow-y:scroll;
+}
+thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+thead {
+    width:100%; 
+}
+table {
+    width:100%;
+}

@@ -30,6 +30,7 @@ class UserPermission
 
     public function handle($request, Closure $next)
     {
+        
         $role_id = auth()->guard('admin')->user()->role_id;
         $role_permission = AdminRole::with('permissions')->where('admin_role_id', $role_id)->first();
         //dd($role_permission->permissions);
@@ -37,7 +38,7 @@ class UserPermission
         foreach(get_training_pages() as $page) { 
             $urls_traning_page[] = url($page->url->target_url);
         }
-
+        
         $module = [];
         foreach ($role_permission->permissions as $permisrsion) {
             $route_name = explode(',', $permisrsion->route);
@@ -57,7 +58,6 @@ class UserPermission
         if (in_array(Route::currentRouteName(), $permission_array)) {
             return $next($request); 
         }
-       // dd(url()->current());
         if (in_array(url()->current(), $urls_traning_page)) {
             return $next($request); 
         }
