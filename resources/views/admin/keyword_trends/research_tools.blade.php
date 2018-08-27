@@ -26,6 +26,11 @@
     .tab_form h3 {
         left: 0;
         border-bottom: 1px solid black;
+        font-weight: bold;
+    }
+    .research_tools {
+        width: 90%;
+        margin: auto;
     }
     .hiddeninputfile {
     	width: 0.1px;
@@ -165,6 +170,7 @@
             <div class="col-xs-12">
                 <div class="box"> 
                     <div class="box-body"> 
+                     <div class="research_tools">
                         <div id="regForm">
                           <!-- One "tab" for each step in the form: -->
                           <div class="tab_form">
@@ -435,6 +441,7 @@
                             <span class="step"></span>
                           </div>
                         </div>
+                      </div>
                     </div>
                 </div>
             </div>
