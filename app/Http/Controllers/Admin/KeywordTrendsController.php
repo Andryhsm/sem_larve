@@ -32,8 +32,8 @@ class KeywordTrendsController extends Controller
     public function researchTools() 
     {
         $locations = [];
-		$countries = Locations::where('parent_id', '')->get();
-        return view('admin.keyword_trends.research_tools', compact('countries'));
+		//$countries = Locations::where('parent_id', '')->get();
+        return view('admin.keyword_trends.research_tools');  //, compact('countries')
     }
      
     public function getStatesByLocation(Request $request) 

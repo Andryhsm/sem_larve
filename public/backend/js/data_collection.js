@@ -5,7 +5,6 @@ $(document).ready(function(){
     function showTab(n) {
       var x = document.getElementsByClassName("tab");
       x[n].style.display = "block";
-      fixStepIndicator(n)
     }
     // $('#keyword_number').on('click', '.fa-angle-down', function() {
     //   var index = $(this).parents('tr').index();
@@ -134,13 +133,7 @@ $(document).ready(function(){
         
     }
     
-    function fixStepIndicator(n) {
-      var i, x = document.getElementsByClassName("step");
-      for (i = 0; i < x.length; i++) {
-        x[i].className = x[i].className.replace(" active", "");
-      }
-      x[n].className += " active";
-    }
+  
     
     $('#previous').click(function(){
         var x = document.getElementsByClassName("tab");
