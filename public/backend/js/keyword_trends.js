@@ -102,6 +102,28 @@ $(document).ready(function(){
         $(this).addClass('request_done');
      }
   });
+
+  $(document).on('change', '.select-country', function(){
+    var url = $(this).data('url');
+    console.log(url);
+    $.ajax({
+      url: url,
+      type: 'POST',
+      dataType: 'json',
+      data: {id: $(this).val()},
+    })
+    .done(function(response) {
+      $('.select-states').html('');
+      var states = response.data;
+      for (var i = states.length - 1; i >= 0; i--) {
+        $('.select-states').append('<option value="'+states[i].criteria_id+'">'+states[i].location_name+'</option>');
+      }
+    })
+    .fail(function() {
+      console.log("error");
+    });
+    
+  });
 });
     
 var currentTab = 0; // Current tab is set to be the first tab (0)

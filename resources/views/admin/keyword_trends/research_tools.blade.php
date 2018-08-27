@@ -84,75 +84,23 @@
                               </div>
                               
                               <div class="form-group bottle">
+                                  <label class="col-sm-3 control-label">Country</label>
+                                  <div class="col-sm-9">
+                                      <select name="country" data-url="{!! route('get_states_partner') !!}" class="form-control required select-country">
+                                          @foreach($countries as $country)
+                                            <option value="{!! $country->criteria_id !!}" selected="">{!! $country->location_name !!}</option>
+                                          @endforeach
+                                      </select>
+                                  </div>  
+                              </div>
+
+                              <div class="form-group bottle">
                                   <label class="col-sm-3 control-label">Location</label>
                                   <div class="col-sm-9">
-                                        <select name="location" class="form-control required">
-                                           <option value="1000003" selected="">Luanda</option>
-                                           <option value="1000004" selected="">The Valley</option>
-                                           <option value="1000010" selected="">Abu Dhabi</option>
-                                           <option value="1000011" selected="">Ajman</option>
-                                           <option value="1000012" selected="">Al Ain</option>
-                                           <option value="1000013" selected="">Dubai</option>
-                                           <option value="1000014" selected="">Ras Al-Khaimah</option>
-                                           <option value="1000018" selected="">Salta</option>
-                                           <option value="1000021" selected="">Avellaneda</option>
-                                           <option value="1000024" selected="">Bahia Blanca</option>
-                                           <option value="1000025" selected="">Balcarce</option>
-                                           <option value="1000027" selected="">Brandsen</option>
-                                           <option value="1000028" selected="">Campana</option>
-                                           <option value="1002604" selected="">Montreal</option>
-                                           <option value="1002605" selected="">Napierville</option>
-                                           <option value="1000031" selected="">Del Viso</option>
-                                           <option value="1000035" selected="">Isidro Casanova</option>
-                                           <option value="1000036" selected="">Junin</option>
-                                           <option value="1000037" selected="">La Plata</option>
-                                           <option value="1000039" selected="">Lomas de Zamora</option>
-                                           <option value="1000040" selected="">Luis Guillon</option>
-                                           <option value="1000041" selected="">Lujan</option>
-                                           <option value="1000042" selected="">Mar del Plata</option>
-                                           <option value="1000044" selected="">Moron</option>
-                                           <option value="1000045" selected="">Olavarria</option>
-                                           <option value="1000047" selected="">Pergamino</option>
-                                           <option value="1000050" selected="">Pinamar</option>
-                                           <option value="1000053" selected="">Quilmes</option>
-                                           <option value="1000058" selected="">San Antonio de Padua</option>
-                                           <option value="1000059" selected="">San Fernando</option>
-                                           <option value="1000060" selected="">San Isidro</option>
-                                           <option value="1000062" selected="">San Nicolas de los Arroyos</option>
-                                           <option value="1000063" selected="">San Pedro</option>
-                                           <option value="1000065" selected="">Tandil</option>
-                                           <option value="1000066" selected="">Tortuguitas</option>
-                                           <option value="1000067" selected="">Trenque Lauquen</option>
-                                           <option value="1000069" selected="">Vicente Lopez</option>
-                                           <option value="1000070" selected="">Villa Gesell</option>
-                                           <option value="1000072" selected="">Zarate</option>
-                                           <option value="1000073" selected="">Buenos Aires</option>
-                                           <option value="1000075" selected="">Concepcion del Uruguay</option>
-                                            <option value="1002612" selected="">Outremont</option>
-                                            <option value="1002613" selected="">Papineauville</option>
-                                            <option value="1002614" selected="">Piedmont</option>
-                                            <option value="1002615" selected="">Pierrefonds-Roxboro</option>
-                                            <option value="1002616" selected="">Pohenegamook</option>
-                                            <option value="1002617" selected="">Pointe-a-la-Croix</option>
-                                            <option value="1002618" selected="">Pointe-aux-Outardes</option>
-                                            <option value="1002619" selected="">Pointe-aux-Trembles</option>
-                                            <option value="1002620" selected="">Pointe-Claire</option>
-                                            <option value="1002621" selected="">Pont-Rouge</option>
-                                            <option value="1002622" selected="">Port-Cartier</option>
-                                            <option value="1002623" selected="">Portneuf</option>
-                                            <option value="1006886" selected="">London</option>
-                                            <option value="1006887" selected="">London Colney</option>
-                                            <option value="1006888" selected="">Long Eaton</option>
-                                            <option value="1006932" selected="">Milnthorpe</option>
-                                            <option value="1006933" selected="">Milton Keynes</option>
-                                            <option value="1006934" selected="">Mirfield</option>
-                                            <option value="1006935" selected="">Mitcheldean</option>
-                                            <option value="1006973" selected="">Oswestry</option>
-                                            <option value="1006974" selected="">Oundle</option>
-                                            <option value="1010224" selected="">Port Louis</option>
-                                            <option value="1010225" selected="">Blantyre</option>
-                                            <option value="1010227" selected="">Ipoh</option>
-                                            <option value="1010228" selected="">Kuala Kangsar</option>
+                                      <select name="location" class="form-control required select-states">
+                                          @foreach($countries as $country)
+                                            <option value="{!! $country->criteria_id !!}" selected="">{!! $country->location_name !!}</option>
+                                          @endforeach
                                       </select>
                                   </div>  
                               </div>
