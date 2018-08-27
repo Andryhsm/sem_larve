@@ -140,7 +140,7 @@
                                     <thead>
                                     <tr>
                                         <th>Research name</th>
-                                        <th>Region</th>
+                                        <th>Région</th>
                                         <th>Language</th>
                                         <th>Username</th>
                                         <th>Date</th>
@@ -152,11 +152,11 @@
                                         @foreach($campaigns as $campaign)
                                         <tr>
                                             <td>{!! $campaign->campaign_name !!}</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>  <!--  style="width:10%;"  -->
+                                            <td>{!! ($campaign->location) ? $campaign->location->location_name:'' !!}</td>
+                                            <td>{!! ($campaign->language) ? $campaign->language->language_name:'' !!}</td>
+                                            <td>{!! ($campaign->user) ? ($campaign->user->last_name.' '.$campaign->user->first_name) : '' !!}</td>
+                                            <td>{!! $campaign->added_on !!}</td>
+                                            <td>  
                                                 <div class="btn-group">
                                                     <a class="btn btn-default btn-sm show_keyword_number" action="{{ route('show_campaign_keywords') }}" data-id="{!! $campaign->campaign_id !!}" title="View" style="margin-right:6px;"><i
                                                                 class="fa fa-fw fa-eye"></i></a> 
@@ -192,13 +192,7 @@
                                 </div>
                             </div>
                          
-                          <!-- Circles which indicates the steps of the form: -->
-                            <div style="text-align:center;margin-top:40px;" class="hidden">
-                                <span class="step"></span>
-                                <span class="step"></span>
-                                <span class="step"></span>
-                                <span class="step"></span>
-                            </div>
+                          
                         </div>
                     </div>
                 </div>
@@ -207,18 +201,18 @@
         
         
         <!-- Start modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="showColumnModal" tabindex="-1" role="dialog" aria-labelledby="showColumnLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Select column to show</h5>
+                <h5 class="modal-title" id="showColumnLabel">Select column to show</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
                 <div class="checkbox">
-                    <label><input class="col1" type="checkbox" checked="" value="0">Research name</input></label>
+                    <label><input class="col1" onclick="show_column(this);" type="checkbox" checked="" value="0">Research name</input></label>
                 </div>
                 <div class="checkbox">  
                     <label><input class="col2" onclick="show_column(this);" type="checkbox" checked="" value="1">Region</input></label>
@@ -267,8 +261,8 @@
                 {searchable: true, sortable: true},
                 {searchable: true, sortable: true},
                 {searchable: true, sortable: true},
-                {searchable: false, sortable: false},
-                {searchable: false, sortable: false},
+                {searchable: true, sortable: true},
+                {searchable: true, sortable: false},
                 {searchable: false, sortable: false}
             ],
             fnDrawCallback: function () {
@@ -283,7 +277,7 @@
         });
         
         $('#campaign_list_length').append('<div class="btn btn-samall">'+
-            '<div class="btn-group" data-toggle="modal" data-target="#exampleModal">'+
+            '<div class="btn-group" data-toggle="modal" data-target="#showColumnModal">'+
               '<a href="#" class="btn btn-default">Select column to show</a>'+
               '<a href="#" class="btn btn-default"><span class="caret"></span></a>'+
             '</div>'+
@@ -295,26 +289,15 @@
         jQuery('.dataTables_filter').find('input').addClass('form-control')
     }
     
-    var table = $('#product_list').DataTable();
-    
-    $('.col1').change(function() {
-        if($(this).prop('checked'))
-        {
-          table.column(0).visible(true);
-        }else{
-            table.column(0).visible(false);
-        }
-    });
+    var table = $('#campaign_list').DataTable();
     
     function show_column(box){
-        alert( 'Table\'s column visibility are set to: '+table.columns().visible() );
+        col_num = parseInt($(box).attr('value'));
         if($(box).prop('checked'))
         {
-            console.log(table.column(0));
-            table.column(0).visible(true);
+            table.column(col_num).visible(true);
         }else{
-            table.column(0).visible(false);
-            console.log('checked false');
+            table.column(col_num).visible(false);
         }
     }
     

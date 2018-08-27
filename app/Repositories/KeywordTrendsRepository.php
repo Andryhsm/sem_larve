@@ -19,7 +19,7 @@ class KeywordTrendsRepository
 
 	public function getAllByUser($id)
 	{
-		return $this->modelCampaign->where('admin_id',$id)->orderBy('campaign_id','desc')->get();
+		return $this->modelCampaign->with('location','language','user')->where('admin_id',$id)->orderBy('campaign_id','desc')->get();
 	}
 
 	public function getKeywordByCampaignId($id)

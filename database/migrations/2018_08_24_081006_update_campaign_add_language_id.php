@@ -15,6 +15,7 @@ class UpdateCampaignAddLanguageId extends Migration
     {
         Schema::table('campaign', function (Blueprint $table) {
            // $table->integer('language_id')->unsigned();
+           $table->timestamp('added_on');
         });
     }
 

@@ -102,6 +102,12 @@ $(document).ready(function(){
         $(this).addClass('request_done');
      }
   });
+  
+  $('#import_help').click(function(){
+    $('.import_help').slideToggle();
+  });
+  
+  
 });
     
 var currentTab = 0; // Current tab is set to be the first tab (0)

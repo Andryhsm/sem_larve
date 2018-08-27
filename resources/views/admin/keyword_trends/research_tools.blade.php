@@ -76,14 +76,14 @@
                             <h3>Parametters</h3>
                             {!! Form::open(array('url' => '','id' =>'keyword_trend_form','class'=>'validate_form')) !!}
                               
-                              <div class="form-group bottle">
+                              <div class="form-group flex_bottle">
                                 {!! Form::label('campaign_name', ' Campagne name ', ['class' => 'col-sm-3 control-label']) !!}
                                 <div class="col-sm-9">
                                   {!! Form::text('campaign_name', null, ['class' => 'form-control required','id'=>'campaign_name','placeholder'=>" Campagne name "]) !!}
                                 </div>
                               </div>
                               
-                              <div class="form-group bottle">
+                              <div class="form-group flex_bottle">
                                   <label class="col-sm-3 control-label">Location</label>
                                   <div class="col-sm-9">
                                         <select name="location" class="form-control required">
@@ -157,7 +157,7 @@
                                   </div>  
                               </div>
                               
-                              <div class="form-group bottle">
+                              <div class="form-group flex_bottle">
                                  <label class="col-sm-3 control-label">Language</label>
                                   <div class="col-sm-9">
                                         <select name="language_code" class="form-control required">
@@ -211,14 +211,14 @@
                                   </div>
                               </div>
                               
-                              <div class="form-group bottle">
+                              <div class="form-group flex_bottle">
                                   {!! Form::label('monthly_searches', 'Monthly Searches', ['class' => 'col-sm-3 control-label']) !!}
                                   <div class="col-sm-9">
                                       {!! Form::checkbox('monthly_searches', null, false) !!}
                                   </div>
                               </div>
                               
-                              <div class="form-group bottle">
+                              <div class="form-group flex_bottle">
                                   {!! Form::label('convert_null_to_zero', 'Convert NULL values to Zero', ['class' => 'col-sm-3 control-label']) !!}
                                   <div class="col-sm-9">
                                       {!! Form::checkbox('convert_null_to_zero', null, false) !!}

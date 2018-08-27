@@ -344,24 +344,7 @@ input.invalid {
     cursor: pointer;
 }
 
-/*  tbody {
-    display:block;
-    max-height:100vh !important;
-    overflow-y:scroll;
-}
-thead, tbody tr {
-    display:table;
-    width:100%;
-    table-layout:fixed;
-}
-thead {
-    width:100%; 
-}
-table {
-    width:100%;
-}
-
-.td_body {
+/*.td_body {
     display: none;
     transition: all 1s ease-in-out;
 }
@@ -405,7 +388,7 @@ a .fa-angle-down {
     font-weight: bold;
 }
 .research_tools {
-    width: 90%;
+    width: 85%;
     margin: auto;
 }
 .hiddeninputfile {
@@ -424,7 +407,7 @@ a .fa-angle-down {
     font-weight: 700;
     color: gray;
     background-color: white;
-    padding: 8px 20px;
+    padding: 8px 0px;
     border-radius: 8px;
     font-size: 24px;
     font-weight: bold;
@@ -433,9 +416,10 @@ a .fa-angle-down {
 .custom_import_file i {
     margin-right: 10px;
 }
-.import_help i {
+#import_help i {
     margin-left: 10px;
     font-size: 26px;
+    cursor: pointer;
 }
 .column1 {
   float: left;
@@ -475,23 +459,27 @@ a .fa-angle-down {
 .keywords-duplicate-list thead {
   background: #cecece;
 }
-.bottle {
+.flex_bottle {
   content: '';
   clear: both;
   display: flex;
 }
-.file_name {
+.file_name, .import_help {
     display: none;
-    background: silver;
     padding: 15px 50px;
     font-size: 18px;
     border-radius: 5px;
     text-align: center;
-    width: -moz-fit-content;
-    transition: all 1s ease-in-out;
+    width: -webkit-fit-content;width: -moz-fit-content;width: fit-content;
+}
+.file_name{
+    background: lightgrey
+} 
+.import_help {
+    background: lightblue;
 }
 button.import_files {
-   /* display: none;*/
+    display: none;
     transition: all 1s ease-in-out;
 }
 .notifying {
@@ -519,19 +507,29 @@ button.import_files {
     height: 24px;
     width: 1%;
 }
-tbody {
+.tab_form tbody {
     display:block;
     max-height:400px;
     overflow-y:scroll;
 }
-thead, tbody tr {
+.tab_form thead, .tab_form tbody tr {
     display:table;
     width:100%;
     table-layout:fixed;
 }
-thead {
+.tab_form thead {
     width:100%; 
 }
-table {
+.tab_form table {
     width:100%;
 }
+.keyword_list, .duplicate_keyword {
+    margin: 3% 0;
+}
+.keywords-duplicate-list, .import_help {
+    display: none;
+}
+.tab_form {
+    clear: both;
+}
+

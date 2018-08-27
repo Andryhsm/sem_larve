@@ -1095,12 +1095,12 @@
 .check-merchant-left{
   margin-left: 26.2%;
 }
-.checkbox label input {
+/*.checkbox label input {
   margin-top: -7px;
   margin-bottom: 0;
   padding: 0;
   width: 0;
-}
+}*/
 /*----------------------------------------*/
 /*  32. faq
 /*----------------------------------------*/
@@ -1839,9 +1839,9 @@
 .owl-theme .owl-controls {
   margin-top: 0;
 }
-.checkbox {
+/*.checkbox {
   margin-bottom: 0;
-}
+}*/
 
 
 

@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     {!! Html::style('backend/plugins/select2/select2.css') !!}
-    {!! Html::style('frontend/css/style.css') !!}
     {!! Html::style('backend/dist/css/AdminLTE.min.css') !!}
     {!! Html::style('backend/dist/css/skins/skin-black-light.css') !!}
     {!! Html::style('backend/plugins/iCheck/flat/blue.css') !!}

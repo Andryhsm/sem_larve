@@ -19,6 +19,12 @@ class Campaign extends Model
 	
 	public function location()
 	{
-		return $this->hasOne(Location::class,'location_id','location_id');
+		return $this->hasOne(Location::class,'criteria_id','location_id');
 	}
+	
+	public function language()
+	{
+		return $this->hasOne(Language::class,'language_id','language_id');
+	}
+	
 }
