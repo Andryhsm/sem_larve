@@ -83,7 +83,7 @@
                                 </div>
                               </div>
                               
-                              <div class="form-group bottle">
+                              <!--<div class="form-group bottle">
                                   <label class="col-sm-3 control-label">Country</label>
                                   <div class="col-sm-9">
                                       <select name="country" data-url="{!! route('get_states_partner') !!}" class="form-control required select-country">
@@ -92,7 +92,7 @@
                                           @endforeach
                                       </select>
                                   </div>  
-                              </div>
+                              </div>-->
 
                               <div class="form-group bottle">
                                   <label class="col-sm-3 control-label">Location</label>
