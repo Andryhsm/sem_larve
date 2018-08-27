@@ -7,23 +7,85 @@ $(document).ready(function(){
       x[n].style.display = "block";
       fixStepIndicator(n)
     }
+    // $('#keyword_number').on('click', '.fa-angle-down', function() {
+    //   var index = $(this).parents('tr').index();
+    //   $('#keyword_number tr').eq(index + 2).slideToggle();
+    //   if($(this).hasClass('fa-angle-down')) {
+    //     $(this).removeClass('fa-angle-down');
+    //     $(this).addClass('fa-angle-up');
+    //   }
+    //   else {
+    //     $(this).removeClass('fa-angle-up');
+    //     $(this).addClass('fa-angle-down');
+    //   }
+    // })
+    
+    $('#keyword_number').on('click', '.show-monthly', function() {
+        console.log("click");
+        var $icon = $(this).find('i');
+        var $content_monthly_searches = $(this).parent().find('.content-monthly-searches');
+        if($icon.hasClass('fa-angle-down')) {
+          $icon.removeClass('fa-angle-down');
+          $icon.addClass('fa-angle-up');
+          $content_monthly_searches.removeClass('hidden');
+        } else {
+          $icon.removeClass('fa-angle-up');
+          $icon.addClass('fa-angle-down');
+          $content_monthly_searches.addClass('hidden');
+        }
+        
+    })
     
     $('#campaign_list .show_keyword_number').click(function() {
       var campaign_id = $(this).attr('data-id');
       
       $.ajax({
 				url: $(this).attr('action'),
-				type: 'POST',
+				type: 'GET',
 				data: {campaign_id: campaign_id},
 			})
 			.done(function(datas) {
+				var months = [ "january", "february", "march", "april", "may", "june", 
+               "july", "august", "september", "october", "november", "december" ];
 				
 				$('#keyword_number tbody').html('');
-				$.each(datas, function( index, value ) {
-				  
-				  $('#keyword_number tbody').append('<tr><td>'+ value.keyword_name +'</td><td>'+ value.search_volume +'</td></tr>');  
+				
+				if(datas.length !=0)
+        {
           
-        });
+           $.each(datas, function( index, value ) {
+            var html = '<tr>';
+    				  html += '<td>'+ value.keyword_name +'</td><td>'+ value.search_volume +'</td>';
+    				  html += '<td>' + value.cpc + '</td><td>' + value.competition  + '</td>';
+    				  
+    				  if(value.target_monthly_search != null) 
+    				    html += '<td style="width:25%;">';
+    				      html += '<a class="btn btn-default show-monthly"><i class="fa fa-angle-down"></i></a>';
+    				        if(value.target_monthly_search.length > 0) {
+            				    html += '<div class="content-monthly-searches hidden">'+
+            				              '<ul>';
+                        				    var target_monthly_search = value.target_monthly_search.split('||');
+                        				    $.each(target_monthly_search, function(i, val) {
+                        				      var tab = val.split(';')
+                        				      if(tab[2] != null) {
+                            				    html += '<li>'+tab[0] + ' - ' + months[tab[1] - 1] + ' : ' + tab[2]+',</li>';
+                            				    
+                        				      }
+                        				    });
+              				  html +=   '</ul>';
+              				          '</div></div>';
+            				  }
+    				    html += '</td>';
+  				  html += '</tr>';
+  				  
+  				  $('#keyword_number tbody').append(html);
+          });
+        }
+        else
+        {
+           $('#keyword_number tbody').append('<tr><td colspan="5">No record found</td></tr>');
+        }
+				
 				var x = document.getElementsByClassName("tab");
         x[0].style.display = "none";
         showTab(1);
@@ -39,16 +101,28 @@ $(document).ready(function(){
         $('.delete-campaign').on('click', function (e) {
             e.preventDefault();
             var campaign_id = $(this).attr('data-id');
+            var url = $(this).attr('action');
+            var tr_table = $(this).closest('tr');
+            
             $('#confirm').modal({backdrop: 'static', keyboard: false})
                 .one('click', '#delete', function () {
                     $.ajax({
-              				url: $(this).attr('action'),
+              				url: url,
               				type: 'POST',
               				data: {campaign_id: campaign_id},
               			})
-              			.done(function(datas) {
+              			.done(function(response) {
               				
-              				console.log(datas);
+              				console.log(response.status);
+              				$('.notification').html('<div class="alert '+response.status+' alert-dismissible show" role="alert">'+
+                      ' ' +response.message + ' '+
+                      '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                        '<span aria-hidden="true">&times;</span>'+
+                      '</button>'+
+                    '</div>');
+                    if(response.status == "alert-success"){
+                      tr_table.remove();
+                    }
               				
               			})
               			.fail(function(xhr) {
@@ -102,8 +176,11 @@ $(document).ready(function(){
 });
 
 function exportTo(type) {
+  $('.content-monthly-searches').removeClass('hidden');
   $('#keyword_number').tableExport({
     filename: 'Keywords_%DD%-%MM%-%YY%',
     format: type,
   });
+  $('.content-monthly-searches').addClass('hidden');
 }
+

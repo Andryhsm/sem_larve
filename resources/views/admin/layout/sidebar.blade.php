@@ -12,14 +12,7 @@
             </div>
         </div>
         <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search...">
-                <span class="input-group-btn">
-                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-                </span>
-            </div>
-        </form>
+        <hr>
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <!-- Admin et Abonnée -->
@@ -257,17 +250,17 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    @if(check_user_access(['tickets-subscribe','tickets-subscribe-partner']))
-                    <li class="{{ set_active(['admin/tickets-subscribe','partner/tickets-subscribe']) }}">
-                        <a href="{!! ($user->type == 1) ? route('tickets-subscribe') : route('tickets-subscribe-partner') !!}">
-                            <i class="fa fa-circle-o"></i> Support
-                        </a>
-                    </li>
-                    @endif
                     @if(check_user_access(['help-faq','help-faq-partner']))
                     <li class="{{ set_active(['admin/help-faq','partner/help-faq']) }}">
                         <a href="{!! ($user->type == 1) ? route('help-faq') : route('help-faq-partner') !!}">
                             <i class="fa fa-circle-o"></i> FAQ
+                        </a>
+                    </li>
+                    @endif
+                    @if(check_user_access(['tickets-subscribe','tickets-subscribe-partner']))
+                    <li class="{{ set_active(['admin/tickets-subscribe','partner/tickets-subscribe']) }}">
+                        <a href="{!! ($user->type == 1) ? route('tickets-subscribe') : route('tickets-subscribe-partner') !!}">
+                            <i class="fa fa-circle-o"></i> Support
                         </a>
                     </li>
                     @endif

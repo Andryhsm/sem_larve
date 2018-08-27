@@ -95,7 +95,17 @@ class KeywordTrendsController extends Controller
 	public function makeRequestAdwords(Request $request) {
 		$keywords = Input::get('keywords');
 		$params = Input::get('params');
-		$searchVolumes = \AdWords::convertNullToZero()->location($params['location_id'])->language(1001)->searchVolumes($keywords);
+	
+		$searchVolumes = [];
+		if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==0) {
+			$searchVolumes = \AdWords::location($params['location_id'])->language($params['language_id'])->searchVolumes($keywords);
+		} else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==0) {
+			$searchVolumes = \AdWords::withTargetedMonthlySearches()->location($params['location_id'])->language($params['language_id'])->searchVolumes($keywords);
+		} else if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==1) {
+			$searchVolumes = \AdWords::convertNullToZero()->location($params['location_id'])->language($params['language_id'])->searchVolumes($keywords);
+		} else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==1) {
+			$searchVolumes = \AdWords::withTargetedMonthlySearches()->convertNullToZero()->location($params['location_id'])->language($params['language_id'])->searchVolumes($keywords);
+		}
         return response()->json([
         	'status' => 'ok',
         	'data' => $searchVolumes,
@@ -103,9 +113,43 @@ class KeywordTrendsController extends Controller
         	]);
 	}
 	
+	public function save_data_collection(Request $request) {
+		$keyword_result = $request->get('keywords_result');
+		try{
+			$campaign = $this->keyword_trend_repository->storeDataCollection($request->all());
+		} catch(\Exception $e) {
+			\Log::debug($e->getMessage());
+		}
+		$params = $request->get('params');
+		return response()->json(['status' => 'ok', 'campaign' => $campaign]);
+	}	
+	
 	public function showCampaignResultData(Request $request) {
 		$campaign_id = Input::get('campaign_id');
 		$datas = $this->keyword_trend_repository->getKeywordByCampaignId($campaign_id);
 		return response()->json($datas);
+	}
+	
+	public function OverviewListKeyword(Request $request) {
+		$campaign_id = Input::get('campaign_id');
+		$datas = $this->keyword_trend_repository->getKeywordByCampaignId($campaign_id);
+		return view('admin.keyword_trends.overview_keyword_list', compact('datas'));
+	}
+	
+	public function deleteCampaign(Request $request)
+	{
+		$campaign_id = Input::get('campaign_id');
+		$status = $this->keyword_trend_repository->deleteCampaignById($campaign_id);
+		if ($status) {
+			return response()->json([
+        	'status' => 'alert-success',
+        	'message' => 'Campaign deleted successfully.'
+        	]);
+		} else {
+			return response()->json([
+        	'status' => 'alert-danger',
+        	'message' => 'Campaign not deleted successfully.'
+        	]);
+		}
 	}
 }

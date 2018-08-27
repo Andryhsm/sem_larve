@@ -14,7 +14,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Yajra\DataTables\Facades\DataTables;
 use Validator;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Redirect;
 
 class UserController extends Controller
@@ -96,10 +96,16 @@ class UserController extends Controller
         }
         $admin = $this->admin_user_repository->updateById($admin_id, $input);
         flash()->success(config('message.admin.update-success'));
-        if($admin->type == 1)
-            return redirect()->route('profile');
-        else
-            return redirect()->route('profile_partner');    
+        
+        if(Session::has('partner_account')  && Session::get('partner_account') == 'yes')
+            return redirect()->to('admin/customer'); 
+        else{
+            if($admin->type == 1)
+                return redirect()->route('profile');
+            else
+                return redirect()->route('profile_partner');    
+        }
+            
     }
 
     public function edit($admin_id)
@@ -113,7 +119,6 @@ class UserController extends Controller
 
     public function destroy($admin_id)
     {
-        dd($admin_id);
         if ($this->admin_user_repository->deleteById($admin_id)) {
             flash()->success(config('message.admin.delete-success'));
         } else {

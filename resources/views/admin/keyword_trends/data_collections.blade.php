@@ -73,28 +73,10 @@
         font-weight: bold;
         cursor: pointer;
     }
-    .notifying {
-  		width: 284px;
-	    padding: 10px 10px 20px 10px;
-	    border: 1px solid #BFBFBF;
-	    border-radius: 4px;
-	    background-color: white;
-	    box-shadow: 5px 5px 5px #aaaaaa;
-  		position: fixed;
-  		z-index: 9;
-  		right: 50px;
-      top: 100px;
-  	}
-    .progress-label {
-	    float: left;
-	    margin-left: 50%;
-	    margin-top: 5px;
-	    font-weight: bold;
-	    text-shadow: 1px 1px 0 #ddd;
-	  }
+    
 	  tbody {
         display:block;
-        max-height:400px;
+        max-height:100vh !important;
         overflow-y:scroll;
     }
     thead, tbody tr {
@@ -107,6 +89,33 @@
     }
     table {
         width:100%;
+    }
+   
+    .td_body {
+        display: none;
+        transition: all 1s ease-in-out;
+    }
+    .td_body ul {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            padding: 0;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+    .content-monthly-searches ul li {
+        padding: 7px;
+        list-style-type: none;
+        background-color: lightgrey;
+        margin: 2px;
+        border-radius: 4px;
+        text-align: center;
+    }
+    a .fa-angle-down, a .fa-angle-up {
+        font-size: 20px;
     }
 </style>
 @stop
@@ -124,12 +133,16 @@
                         <div class="">
                           <!-- One "tab" for each step in the form: -->
                             <div class="tab">
-                                <h1>Campaign list</h1>
+                                <h1>Research list</h1>
                                 <table id="campaign_list" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Campaign name</th>
-                                        <th class="no-sort">Action</th>
+                                        <th>Research name</th>
+                                        <th>Region</th>
+                                        <th>Language</th>
+                                        <th>Username</th>
+                                        <th>Date</th>
+                                        <th class="no-sort">Action</th>   <!--style="width:10%;"-->
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -137,10 +150,14 @@
                                         @foreach($campaigns as $campaign)
                                         <tr>
                                             <td>{!! $campaign->campaign_name !!}</td>
-                                            <td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>  <!--  style="width:10%;"  -->
                                                 <div class="btn-group">
-                                                    <a class="btn btn-default btn-sm show_keyword_number" action="{{ route('show_campaign_keywords') }}" data-id="{!! $campaign->campaign_id !!}" title="View"><i
-                                                                class="fa fa-fw fa-eye"></i></a>
+                                                    <a class="btn btn-default btn-sm show_keyword_number" action="{{ route('show_campaign_keywords') }}" data-id="{!! $campaign->campaign_id !!}" title="View" style="margin-right:6px;"><i
+                                                                class="fa fa-fw fa-eye"></i></a> 
                                                                 
                                                     <a class="btn btn-default btn-sm delete-campaign" action="{{ route('delete_campaign') }}" data-id="{!! $campaign->campaign_id !!}" title="View">
                                                         <i class="fa fa-fw fa-trash"></i>
@@ -163,11 +180,7 @@
                                 <h1>Keywords</h1>
                                 @include('admin.keyword_trends.keyword_number')
                                 <br><br>
-                                <!--<div class="notifying">-->
-                                <!--  <div id="progressbar">-->
-                              	 <!--   <div class="progress-label">Loading...</div>-->
-                              	 <!-- </div>-->
-                                <!--</div>-->
+                                
                                 <br><br>
                                 <div>
                                     <div>

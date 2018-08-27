@@ -37,7 +37,6 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @if(count($blog_categories) > 0)
                             @foreach($blog_categories->data as $category)
 
                                 <tr>
@@ -64,7 +63,6 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            @endif
                             </tbody>
                         </table>
                     </div>

@@ -7,6 +7,7 @@
             User Profile
         </h1>
     </section>
+    <?php Session::put('partner_account', 'no'); ?>
     <section class="content">
         <div class="row">
             <div class="col-md-3">

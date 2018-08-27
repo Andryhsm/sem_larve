@@ -3,7 +3,10 @@
     <thead>
     <tr>
         <th>Keyword</th>
-        <th>Number</th>
+        <th>Search volume</th>
+        <th>Cpc</th>
+        <th>Competition</th>
+        <th style="width:25%;">Target monthly search</th>
     </tr>
     </thead>
     <tbody>

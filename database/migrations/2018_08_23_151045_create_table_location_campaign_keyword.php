@@ -47,7 +47,7 @@ class CreateTableLocationCampaignKeyword extends Migration
             $table->string('keyword_name');
             $table->integer('search_volume');
             $table->integer('cpc');
-            $table->float('competition');
+            $table->double('competition',20,16);
             $table->text('target_monthly_search');
         });
     }

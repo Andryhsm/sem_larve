@@ -46,9 +46,11 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::post('import-excel', 'KeywordTrendsController@importExcel')->name('import_excel_partner');
             Route::post('make-request-adwords', 'KeywordTrendsController@makeRequestAdwords')->name('make_request_adowrds_partner');
             Route::resource('adwords_api','AdwordsApiController');
-            Route::post('show-campaign-keywords','KeywordTrendsController@showCampaignResultData')->name('show_campaign_keywords');
+            Route::get('show-campaign-keywords','KeywordTrendsController@showCampaignResultData')->name('show_campaign_keywords');
+            Route::get('overview-keyword-list', 'KeywordTrendsController@OverviewListKeyword')->name('overview-list');
             Route::get('get-locations', 'KeywordTrendsController@getLocations')->name('get_locations_partner');
             Route::post('delete_campaign','KeywordTrendsController@deleteCampaign')->name('delete_campaign');
+            Route::post('save-data-collection','KeywordTrendsController@save_data_collection')->name('save_data_collection_partner');
             
             Route::get('404',function(){
                 return view('admin.404');
@@ -142,6 +144,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::post('importExcel', 'KeywordTrendsController@importExcel')->name('import_excel');
             Route::post('make-request-adwords', 'KeywordTrendsController@makeRequestAdwords')->name('make_request_adwords');
             Route::get('get-locations', 'KeywordTrendsController@getLocations')->name('get_locations');
+            Route::post('save-data-collection','KeywordTrendsController@save_data_collection')->name('save_data_collection');
            
             // Route::resource('banner', 'BannerController');
             // Route::resource('product-rating', 'ProductRatingController');

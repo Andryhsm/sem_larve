@@ -3,13 +3,13 @@
     <section class="content-header">
         <h1>
             @if($admin)
-                Update Account                
+                Update Partner                
             @else
-                Add New Account
+                Add New Partner
             @endif
         </h1>
     </section>
-
+    <?php Session::put('partner_account', 'yes'); ?>
     <section class="content">
         @include('admin.layout.notification')
         <div class="row">

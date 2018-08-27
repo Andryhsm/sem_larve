@@ -1222,6 +1222,7 @@ class ComposerStaticInitd401bffa1f7fb2a9ddb821d84f6f7fdc
         'TheSeer\\Tokenizer\\Tokenizer' => __DIR__ . '/..' . '/theseer/tokenizer/src/Tokenizer.php',
         'TheSeer\\Tokenizer\\XMLSerializer' => __DIR__ . '/..' . '/theseer/tokenizer/src/XMLSerializer.php',
         'TypeError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
+        'UpdateCampaignAddLanguageId' => __DIR__ . '/../..' . '/database/migrations/2018_08_24_081006_update_campaign_add_language_id.php',
         'UpdateTableAdwordsAPI' => __DIR__ . '/../..' . '/database/migrations/2018_08_23_082958_update_table_adwords__a_p_i.php',
         'UserRoleTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UserRoleTableSeeder.php',
         'ZfrMailChimpTest\\Client\\Listener\\ErrorHandlerListenerTest' => __DIR__ . '/..' . '/zfr/zfr-mailchimp/tests/ZfrMailChimpTest/Client/Listener/ErrorHandlerListenerTest.php',
