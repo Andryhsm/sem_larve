@@ -36,12 +36,13 @@
                           </div>
                           <div class="tab_form">
                             <h3>Imported data</h3>
-                            <div class="col-lg-12 text-center keyword-button" style="margin: 3% 0;">
-                              <button class="btn btn-primary" id="show_keyword_list">Show keywords list</button>
-                              <button class="btn btn-danger hidden" id="delete_keyword_in_list">Delete</button>
-                            </div>
-                            <p><input placeholder="File path" class="hidden" oninput="this.className = ''" name="file_path"></p>
-                              
+                            <div class="col-lg-12">
+                                <div class=""></div>
+                                <div class="col-lg-12 text-center keyword-button" style="margin: 3% 0;">
+                                  <button class="btn btn-primary" id="show_keyword_list">Show keywords list</button>
+                                  <button class="btn btn-danger hidden" id="delete_keyword_in_list">Delete</button>
+                                </div>
+                                <p><input placeholder="File path" class="hidden" oninput="this.className = ''" name="file_path"></p>
                                 <table class="table keywords-list table-bordered table-hover table-responsive hidden">
                                   <thead>
                                       <tr>
@@ -53,13 +54,11 @@
                                   <tbody>
                                   </tbody>
                                 </table>
-                              
-                              <div class="row">
-                                <div class="col-lg-12 text-center title-duplicate">  
-                                  <span>List of duplicate found in the keyword</span>
-                                </div>
-                              </div>
-                              <table style="background: #f4f4f4;" class="table keywords-duplicate-list table-bordered table-hover table-responsive">
+                            </div>
+                            <div class="col-lg-12">
+                                <div></div>
+                                <div></div>
+                                <table style="background: #f4f4f4;" class="table keywords-duplicate-list table-bordered table-hover table-responsive">
                                 <thead>
                                     <tr>
                                         <th>keyword</th>
@@ -69,8 +68,8 @@
                                   <tbody>
                                   </tbody>
                               </table>
+                            </div>
                           </div>
-                          </div>  
                           <div class="tab_form">
                             <!--<div class="notification">-->
                             <!--</div> -->

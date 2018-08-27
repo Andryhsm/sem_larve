@@ -224,13 +224,13 @@
                     <label><input class="col2" onclick="show_column(this);" type="checkbox" checked="" value="1">Region</input></label>
                 </div>
                 <div class="checkbox">
-                    <label><input class="col3" onclick="show_column(this);" type="checkbox" checked="" value="4">Language</input></label>
+                    <label><input class="col3" onclick="show_column(this);" type="checkbox" checked="" value="2">Language</input></label>
                 </div>
                 <div class="checkbox">
-                    <label><input class="col4" onclick="show_column(this);" type="checkbox" checked="" value="5">Username</input></label>
+                    <label><input class="col4" onclick="show_column(this);" type="checkbox" checked="" value="3">Username</input></label>
                 </div>
                 <div class="checkbox">
-                    <label><input class="col5" onclick="show_column(this);" type="checkbox" checked="" value="9">Date</input></label>
+                    <label><input class="col5" onclick="show_column(this);" type="checkbox" checked="" value="4">Date</input></label>
                 </div>
               </div>
               <div class="modal-footer">
@@ -260,7 +260,7 @@
             "bFilter": true,
             "bInfo": true,
             "bAutoWidth": false,
-            "order": [[0, "desc"]],
+            "order": [[5, "desc"]],
             "lengthMenu": [20, 40, 60, 80, 100],
             "pageLength": 20,
             columns: [
@@ -279,11 +279,7 @@
                 else {
                     $paginate.show();
                 }
-            },
-                initComplete : function() {
-                   
-                    
-                }
+            }
         });
         
         $('#campaign_list_length').append('<div class="btn btn-samall">'+
@@ -311,6 +307,7 @@
     });
     
     function show_column(box){
+        alert( 'Table\'s column visibility are set to: '+table.columns().visible() );
         if($(box).prop('checked'))
         {
             console.log(table.column(0));
