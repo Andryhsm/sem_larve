@@ -252,6 +252,8 @@
                     $active_url[] = $page->url->target_url;
                 }
             ?>
+
+            @if(check_user_access('training'))
             <li class="treeview {{ set_active($active_url)}}">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
@@ -264,7 +266,7 @@
                     <?php echo $html; ?>
                 </ul>
             </li>
-            
+            @endif
     
             @if(check_user_access(['help-faq', 'help-faq-partner', 'tickets-subscribe', 'tickets-subscribe-partner', 'subaccount.index']))
             <li class="treeview {{ set_active(['admin/tickets-subscribe','partner/tickets-subscribe', 'admin/help-faq', 'partner/help-faq']) }}">
