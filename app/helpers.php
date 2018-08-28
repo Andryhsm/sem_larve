@@ -407,7 +407,7 @@ if(!function_exists("getImageNameWithoutExtension"))
 if(!function_exists("get_training_pages"))
 {
     function get_training_pages() {
-        return \App\Models\Page::with('url')->with('english')->get();
+        return \App\Models\Page::with('url')->with('english')->where('status',1)->get();
     }
 }
 
