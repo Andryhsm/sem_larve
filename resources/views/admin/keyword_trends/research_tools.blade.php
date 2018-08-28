@@ -110,18 +110,16 @@
                                   </div>
     
                                   <div class="form-group flex_bottle">
-                                      <label class="col-sm-4 control-label">State</label>
+                                      <label class="col-sm-4 control-label">Province</label>
                                       <div class="col-sm-8">
                                           <select name="province" data-type="province" data-url="{!! route('get_states_partner') !!}" class="form-control required select-location select-province">
-                                          @foreach($countries as $country)
-                                            <option value="{!! $country->criteria_id !!}" selected="">{!! $country->location_name !!}</option>
-                                          @endforeach
+                                            <option>Select a province</option>
                                           </select>
                                       </div>  
                                   </div>
 
                                   <div class="form-group flex_bottle">
-                                      <label class="col-sm-4 control-label">Region</label>
+                                      <label class="col-sm-4 control-label">State</label>
                                       <div class="col-sm-8">
                                           <select name="location" class="form-control required select-state">
                                             <option>Select a state</option>
