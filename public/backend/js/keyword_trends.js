@@ -23,10 +23,13 @@ $(document).ready(function(){
                     $('.keyword_list .number').html(keyword_list.length + ' Keywords imported')
                     $('#show_keyword_list').removeAttr('disabled');
                  }
+                 else $('.keyword_list .number').html('No keyword imported');
+                 
                  if(keyword_duplicate_list.length > 0) {
                     $('.duplicate_keyword .number').html(keyword_duplicate_list.length + ' Duplicate found')
                     $('#show_duplicate_keyword_list').removeAttr('disabled');                    
-                 }                 
+                 } 
+                 else $('.duplicate_keyword .number').html('No duplicate found')               
               }
               $('.notification').html('<div class="alert '+response.type_alert+' alert-dismissible show" role="alert">'+
                       ' ' +response.message + ' '+

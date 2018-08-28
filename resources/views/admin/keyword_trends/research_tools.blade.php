@@ -39,7 +39,7 @@
                             <div class="col-lg-12">
                                 <div class="keyword_list">
                                     <div class="col-lg-8 number">
-                                        X.XXX.XXX Keywords imported  
+                                        Keywords imported  
                                     </div>
                                     <div class="col-lg-4 row keyword-button">
                                         <button class="btn btn-primary pull-right" id="show_keyword_list" disabled>Show keywords list</button>
@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="duplicate_keyword">
                                     <div class="col-lg-8 number">
-                                        XX Duplicate found
+                                        Duplicate found
 
                                     </div>
                                     <div class="col-lg-4 row">
