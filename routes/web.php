@@ -52,6 +52,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::post('delete_campaign','KeywordTrendsController@deleteCampaign')->name('delete_campaign');
             Route::post('save-data-collection','KeywordTrendsController@save_data_collection')->name('save_data_collection_partner');
             Route::post('get-states', 'KeywordTrendsController@getStatesByLocation')->name('get_states_partner');
+            Route::resource('subaccount', 'SubAccountController');
             
             Route::get('404',function(){
                 return view('admin.404');

@@ -57,13 +57,15 @@ class AdminUserRepository implements AdminUserRepositoryInterface
 		$this->model->email = $input['email'];
 		$this->model->password = Hash::make($input['password']);
 		$this->model->is_active = isset($input['is_active']) ? $input['is_active'] : '0';
-		$this->model->role_id = $input['role_id'];
+		if($type==3)
+			$this->model->role_id = null;
+		else	
+			$this->model->role_id = $input['role_id'];
 		$this->model->profile_image = $input['image_name'];
 		$this->model->created_by = auth()->guard('admin')->user()->admin_id;
 		$this->model->type = $type;
 		$this->model->save();
 		return $this->model;
-
 	}
 
 	public function updateById($admin_id, $input)
