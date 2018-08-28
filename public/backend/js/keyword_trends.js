@@ -139,7 +139,7 @@ $(document).ready(function(){
   
       $(selector).html('');
       var states = response.data;
-      for (var i = states.length - 1; i >= 0; i--) {
+      for (var i = 0; var i < states.length; i++) {
         $(selector).append('<option value="'+states[i].criteria_id+'">'+states[i].location_name+'</option>');
       }
     })
