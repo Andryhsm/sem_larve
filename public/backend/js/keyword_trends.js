@@ -80,7 +80,7 @@ $(document).ready(function(){
       $('.required').each( function(i, el) {
         if( $(el).val() == '' ) valid = false;
       });
-     if(valid){  //  && keyword_list.length > 0
+     if(valid && keyword_list.length > 0){  
        $('#btn_data_collection').removeAttr('disabled');
      }else{
        $('#btn_data_collection').attr('disabled',true);
@@ -225,6 +225,7 @@ function launch_request() {
     keywords: last_list_of_keyword,
     params: params
   }
+  console.log('++++++ ' + JSON.stringify(data));
   $.ajax({
     xhr: function() {
         var total = keyword_list.length;
