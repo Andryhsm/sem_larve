@@ -6,7 +6,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            All Admin
+            All Sub-account
         </h1>
         <div class="header-btn">
             <div class="clearfix">

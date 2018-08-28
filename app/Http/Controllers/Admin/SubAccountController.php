@@ -112,7 +112,7 @@ class SubAccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $admin_request, $id)
     {
         $image_name='';
         if ($admin_request->hasFile('profile_image')) {
@@ -128,7 +128,7 @@ class SubAccountController extends Controller
         if ($image_name) {
             $input['image_name'] = $image_name;
         }
-        if($admin = $this->admin_repository->updateById($admin_id, $input)) 
+        if($admin = $this->admin_repository->updateById($id, $input)) 
             flash()->success(config('message.admin.update-success'));
         else flash()->error(config('message.admin.update-error'));
         return redirect()->route('subaccount.index');
@@ -142,7 +142,7 @@ class SubAccountController extends Controller
      */
     public function destroy($id)
     {
-        if ($this->admin_repository->deleteById($admin_id)) {
+        if ($this->admin_repository->deleteById($id)) {
             flash()->success(config('message.admin.delete-success'));
         } else {
             flash()->error(config('message.admin.delete-error'));
