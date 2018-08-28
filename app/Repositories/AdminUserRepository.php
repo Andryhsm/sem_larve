@@ -41,6 +41,11 @@ class AdminUserRepository implements AdminUserRepositoryInterface
 		return $this->model->where('type',$type)->orderBy('admin_id', 'desc')->get();
 	}
 
+	public function getPartnerAccount($types)
+	{
+		return $this->model->whereIn('type',$types)->orderBy('admin_id', 'desc')->get();
+	}
+
 	public function getSubaccount($type, $admin_id)
 	{
 		return $this->model->where('created_by', $admin_id)->orderBy('admin_id', 'desc')->get();

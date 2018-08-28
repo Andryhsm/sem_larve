@@ -70,7 +70,7 @@
                                     </div>
                                 </div>
                                  <div class="col-lg-12">
-                                    <table style="background: #f4f4f4;" class="table keywords-duplicate-list table-bordered table-hover table-responsive">
+                                    <table style="background: #f4f4f4; margin-top: 5%;" class="table keywords-duplicate-list table-bordered table-hover table-responsive">
                                     <thead>
                                         <tr>
                                             <th>keyword</th>
@@ -101,7 +101,7 @@
                                   <div class="form-group flex_bottle">
                                       <label class="col-sm-4 control-label">Country</label>
                                       <div class="col-sm-8">
-                                          <select name="country" data-url="{!! route('get_states_partner') !!}" class="form-control required select-country">
+                                          <select name="country" data-type="country" data-url="{!! route('get_states_partner') !!}" class="form-control required select-location">
                                             @foreach($countries as $country)
                                               <option value="{!! $country->criteria_id !!}" selected="">{!! $country->location_name !!}</option>
                                             @endforeach
@@ -110,12 +110,21 @@
                                   </div>
     
                                   <div class="form-group flex_bottle">
-                                      <label class="col-sm-4 control-label">Location</label>
+                                      <label class="col-sm-4 control-label">State</label>
                                       <div class="col-sm-8">
-                                          <select name="location" class="form-control required select-states">
+                                          <select name="province" data-type="province" data-url="{!! route('get_states_partner') !!}" class="form-control required select-location select-province">
                                           @foreach($countries as $country)
                                             <option value="{!! $country->criteria_id !!}" selected="">{!! $country->location_name !!}</option>
                                           @endforeach
+                                          </select>
+                                      </div>  
+                                  </div>
+
+                                  <div class="form-group flex_bottle">
+                                      <label class="col-sm-4 control-label">Region</label>
+                                      <div class="col-sm-8">
+                                          <select name="location" class="form-control required select-state">
+                                            <option>Select a state</option>
                                           </select>
                                       </div>  
                                   </div>

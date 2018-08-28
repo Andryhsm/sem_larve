@@ -20,13 +20,13 @@ $(document).ready(function(){
               if(response.status == 'ok' || response.status == 'not_finish' ) {
                  insert_data(response.data);
                  if(keyword_list.length > 0) {
-                    $('.keyword_list .number').html(keyword_list.length + ' Keywords imported')
+                    $('.keyword_list .number').html(keyword_list.uniq().length + ' Keywords imported')
                     $('#show_keyword_list').removeAttr('disabled');
                  }
                  else $('.keyword_list .number').html('No keyword imported');
-                 
-                 if(keyword_duplicate_list.length > 0) {
-                    $('.duplicate_keyword .number').html(keyword_duplicate_list.length + ' Duplicate found')
+                 var duplicate_length = Object.keys(keyword_duplicate_list).length
+                 if(duplicate_length > 0) {
+                    $('.duplicate_keyword .number').html(duplicate_length + ' Duplicate found')
                     $('#show_duplicate_keyword_list').removeAttr('disabled');                    
                  } 
                  else $('.duplicate_keyword .number').html('No duplicate found')               
@@ -121,9 +121,9 @@ $(document).ready(function(){
     $('.import_help').slideToggle();
   });
   
-  $(document).on('change', '.select-country', function(){
+  $(document).on('change', '.select-location', function(){
     var url = $(this).data('url');
-    console.log(url);
+    var type = $(this).data('type');
     $.ajax({
       url: url,
       type: 'POST',
@@ -131,10 +131,16 @@ $(document).ready(function(){
       data: {id: $(this).val()},
     })
     .done(function(response) {
-      $('.select-states').html('');
+      var selector = '';
+      if(type == 'country') 
+        selector = '.select-province';
+      else 
+        selector = '.select-state';
+  
+      $(selector).html('');
       var states = response.data;
       for (var i = states.length - 1; i >= 0; i--) {
-        $('.select-states').append('<option value="'+states[i].criteria_id+'">'+states[i].location_name+'</option>');
+        $(selector).append('<option value="'+states[i].criteria_id+'">'+states[i].location_name+'</option>');
       }
     })
     .fail(function() {
