@@ -37,11 +37,13 @@
                             {!! Form::label('confirm_password', 'Confirm Password') !!}
                             {!! Form::password('confirm_password',['class' => 'form-control','id'=>'confirm_password','placeholder'=>"Confirm Password"]) !!}
                         </div>
-                        <div class="form-group">
-                            {!! Form::label('role_id', 'Role') !!}
-                            {!! Form::select('role_id', $roles,($admin) ? $admin->role_id : null,['class'=>'form-control ','id'=>'']) !!}
+                        @if(!$admin || ($admin && $admin->type!=3))
+                            <div class="form-group">
+                                {!! Form::label('role_id', 'Role') !!}
+                                {!! Form::select('role_id', $roles,($admin) ? $admin->role_id : null,['class'=>'form-control ','id'=>'']) !!}
 
-                        </div>
+                            </div>
+                        @endif
                         <div class="form-group">
                             {!! Form::label('profile_image','Profile Image') !!}
                             {!! Form::file('profile_image',array('class'=>'form-control', 'placeholder'=>'Profile Image')) !!}
@@ -57,7 +59,7 @@
                         </div>
                     </div>
                     <div class="box-footer">
-                        <a href="{!! route('administrator') !!}" class="btn btn-default">Cancel</a>
+                        <a href="{!! route('customer.index') !!}" class="btn btn-default">Cancel</a>
                         <button type="submit" class="btn btn-primary pull-right" id="add-admin">Save</button>
                     </div>
                     </form>

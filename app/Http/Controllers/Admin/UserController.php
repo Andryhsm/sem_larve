@@ -36,8 +36,8 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $type = 2;
-        $admins = DataTables::collection($this->admin_user_repository->get($type))->make(true);
+        $types = [2, 3];
+        $admins = DataTables::collection($this->admin_user_repository->getPartnerAccount($types))->make(true);
         $admins = $admins->getData();
         return view('admin.user.list', compact('admins'));
     }
