@@ -128,99 +128,19 @@ $(document).ready(function(){
     });
     
   });
+  
+  $('#show_duplicate_keyword_list').click(function() {
+    $('.keywords-duplicate-list').slideToggle();
+    $('.keywords-duplicate-list').toggleClass('show');
+    if($('.keywords-duplicate-list').hasClass('show'))
+      $(this).html('Hide keywords list');
+    else $(this).html('Show keywords list');
+  });
+  
+  
+  
 });
-    
-var currentTab = 0; // Current tab is set to be the first tab (0)
-showTab(currentTab); // Display the crurrent tab
 
-function showTab(n) {
-  // This function will display the specified tab of the form...
-  var x = document.getElementsByClassName("tab");
-  x[n].style.display = "block";
-  //... and fix the Previous/Next buttons:
-  if (n == 0) {
-    document.getElementById("prevBtn").style.display = "none";
-  } else {
-    document.getElementById("prevBtn").style.display = "inline";
-  }
-  // if (n == (x.length - 1)) {
-  //   document.getElementById("nextBtn").innerHTML = "Submit";
-  // } else {
-  //   document.getElementById("nextBtn").innerHTML = "Next";
-  // }
-  //... and run a function that will display the correct step indicator:
-  fixStepIndicator(n)
-}
-
-function nextPrev(n) {
-    if(!$('.next-button').hasClass('disabled')) { 
-      var x = document.getElementsByClassName("tab");
-      if(currentTab < 3 || n == -1) {
-        var b = false;
-        
-        x[currentTab].style.display = "none";
-        $('.next-button').removeClass('hidden');
-        $('#launch').addClass('hidden');
-        $('#btn_data_collection').addClass('hidden');
-        currentTab = currentTab + n;
-        if (currentTab == 2) {
-          $('.next-button').html('Create a new data Collection').removeClass('launch_request');
-          $('.next-button').addClass('hidden');
-          $('#btn_data_collection').removeClass('hidden');
-        } else if (currentTab == 3) {
-          $('.next-button').addClass('hidden');
-          $('#launch').removeClass('hidden');
-          paste_param();
-        } else {
-          $('.next-button').html('Next').removeClass('launch_request');
-        }
-          showTab(currentTab);
-      }  
-    }
-}
-
-function validateForm() {
-  // This function deals with validation of the form fields
-  var x, y, i, valid = true;
-  x = document.getElementsByClassName("tab");
-  y = x[currentTab].getElementsByTagName("input");
-  // A loop that checks every input field in the current tab:
-  for (i = 0; i < y.length; i++) {
-    // If a field is empty...
-    if (y[i].value == "") {
-      // add an "invalid" class to the field:
-      y[i].className += " invalid";
-      // and set the current valid status to false
-      valid = false;
-    }
-  }
-  // If the valid status is true, mark the step as finished and valid:
-  if (valid) {
-    document.getElementsByClassName("step")[currentTab].className += " finish";
-  }
-  return valid; // return the valid status
-}
-
-function get_locations() {
-  console.log("request"); 
-  // $.ajax({
-  //     url: 'get-locations',
-  //     type: 'GET',
-  //     dataType: 'json',
-  // })
-  // .done(function(response) {
-  //   var locations = response.data
-  //   $('input[name="location"]').html('');
-  //   for(var i = 0; i < locations.length; i++){
-  //     $('input[name="location"]').append('<option value='+locations[i].criteria_id+'>'+locations[i].location_name+'</option>');
-  //   }
-  //   console.log("The location must to be append");
-  //   console.log(locations);
-  // })
-  // .fail(function() {
-  //     console.log("error");
-  // });
-}
 
 function unique(list) {
     var result = [];
@@ -391,3 +311,23 @@ function edit_keyword(box){
   $(box).closest('tr').find('.one_keyword').attr('contenteditable','true');
 }
 
+function get_locations() {
+  console.log("request"); 
+  // $.ajax({
+  //     url: 'get-locations',
+  //     type: 'GET',
+  //     dataType: 'json',
+  // })
+  // .done(function(response) {
+  //   var locations = response.data
+  //   $('input[name="location"]').html('');
+  //   for(var i = 0; i < locations.length; i++){
+  //     $('input[name="location"]').append('<option value='+locations[i].criteria_id+'>'+locations[i].location_name+'</option>');
+  //   }
+  //   console.log("The location must to be append");
+  //   console.log(locations);
+  // })
+  // .fail(function() {
+  //     console.log("error");
+  // });
+}
