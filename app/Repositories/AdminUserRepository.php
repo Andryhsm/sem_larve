@@ -3,6 +3,7 @@ namespace App\Repositories;
 
 use App\Interfaces\AdminUserRepositoryInterface;
 use App\Models\Admin;
+use App\Models\Subaccount;
 use Illuminate\Support\Facades\Hash;
 
 /**
@@ -40,6 +41,11 @@ class AdminUserRepository implements AdminUserRepositoryInterface
 		return $this->model->where('type',$type)->orderBy('admin_id', 'desc')->get();
 	}
 
+	public function getSubaccount($type, $admin_id)
+	{
+		return $this->model->where('created_by', $admin_id)->orderBy('admin_id', 'desc')->get();
+	}
+
 	public function getById($admin_id)
 	{
 		return $this->model->where('admin_id', $admin_id)->first();
@@ -53,18 +59,25 @@ class AdminUserRepository implements AdminUserRepositoryInterface
 	public function save($input, $type)
 	{
 		$this->model->first_name = $input['first_name'];
-		$this->model->last_name = $input['last_name'];
+		$this->model->last_name = $input['last_name'];	
 		$this->model->email = $input['email'];
 		$this->model->password = Hash::make($input['password']);
 		$this->model->is_active = isset($input['is_active']) ? $input['is_active'] : '0';
-		if($type==3)
-			$this->model->role_id = null;
-		else	
+		if($type==3) {
+			$this->model->role_id = 5;
+		} else { 	
 			$this->model->role_id = $input['role_id'];
+		}
 		$this->model->profile_image = $input['image_name'];
 		$this->model->created_by = auth()->guard('admin')->user()->admin_id;
 		$this->model->type = $type;
 		$this->model->save();
+		if($type==3) {
+			$subaccount = new Subaccount();
+			$subaccount->subadmin_id = $this->model->admin_id;
+			$subaccount->admin_id = auth()->guard('admin')->user()->admin_id;
+			$subaccount->save();
+		} 
 		return $this->model;
 	}
 

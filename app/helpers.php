@@ -602,3 +602,14 @@ function get_pre_keyword() {
     //auth()->guard('admin')->user();
     return 'admin';
 }
+
+function get_user_id() {
+    $user_id = null;
+    $admin_id = auth()->guard('admin')->user()->admin_id;
+    if(auth()->guard('admin')->user()->type == 3) {
+        $user_id = App\Models\Subaccount::where('subadmin_id', $admin_id)->first()->admin_id;
+    } else {
+        $user_id = $admin_id;
+    }
+    return $user_id;
+}

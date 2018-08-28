@@ -149,7 +149,7 @@
                 @endif
         
             <!-- Admin -->
-            @if(check_user_access(['customer.index','store.index','administrator','role.index','adwords_api.index', 'subaccount.index']))
+            @if(check_user_access(['customer.index','store.index','administrator','role.index','adwords_api.index', 'subaccount.index']) && auth()->guard('admin')->user()->type == 1)
             <li class="treeview {{ set_active(['admin/role','admin/role/*','admin/customer','admin/customer/*','admin/store','admin/store/*','admin/administrator','admin/administrator/*','partner/adwords_api','partner/adwords_api/*', 'partner/subaccount/*', 'partner/adwords_api']) }}">
                 <a href="#">
                     <i class="fa fa-user"></i>
@@ -258,7 +258,7 @@
                     <span>Training</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
-                    </span>
+                    </span> 
                 </a>
                 <ul class="treeview-menu">
                     <?php echo $html; ?>
@@ -295,7 +295,7 @@
             @endif
             
                 <!-- Admin -->
-            @if(check_user_access(['profile_partner','sub-accounts']))
+            @if(check_user_access(['profile_partner','sub-accounts']) && (auth()->guard('admin')->user()->type == 2 || auth()->guard('admin')->user()->type == 3))
             <li class="treeview {{ set_active(['admin/profile','partner/profile','admin/subaccount','admin/subaccount/*','partner/subaccount','partner/subaccount/*']) }}">
                 <a href="#">
                     <i class="fa fa-user"></i>
@@ -310,7 +310,7 @@
                         <a href="{!! ($user->type == 1) ? route('profile') : route('profile_partner') !!}"><i class="fa fa-circle-o"></i> Profil</a>
                     </li>
                     @endif
-                    @if(check_user_access('subaccount.index'))
+                    @if(check_user_access('subaccount.index') && auth()->guard('admin')->user()->type != 3)
                     <li class="{{ set_active(['admin/subaccount','admin/subaccount/*','partner/subaccount','partner/subaccount/*']) }}"><a
                                 href="{!! route('subaccount.index') !!}"><i class="fa fa-circle-o"></i> Sub-accounts</a>
                     </li>

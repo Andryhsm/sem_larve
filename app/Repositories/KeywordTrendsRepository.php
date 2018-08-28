@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 use App\Models\Campaign;
 use App\Models\Keyword;
+use Carbon\Carbon;
 
 class KeywordTrendsRepository
 {
@@ -38,12 +39,13 @@ class KeywordTrendsRepository
 		$params = $input['params'];
 		
 		$campaign = new Campaign();
-		$campaign->admin_id = auth()->guard('admin')->user()->admin_id;
+		$campaign->admin_id = $user_id = get_user_id();;
 		$campaign->location_id = $params['location_id'];
 		$campaign->language_id = $params['language_id'];
 		$campaign->campaign_name = $params['campaign_name'];
 		$campaign->monthly_searches = $params['monthly_searches'];
 		$campaign->convert_null_to_zero = $params['convert_null_to_zero'];
+		$campaign->added_on = Carbon::now();
 		$campaign->save();
 		
 		foreach($keyword_results['data'] as $param_keyword) {
@@ -59,7 +61,6 @@ class KeywordTrendsRepository
 					$result_last_month .= $result_month['year'].';'.$result_month['month'].';'.$result_month['count'].'||';
 				}
 			}
-			\Log::debug($result_last_month);
 			$keyword->target_monthly_search = $result_last_month;
 			$keyword->save();
 		}
