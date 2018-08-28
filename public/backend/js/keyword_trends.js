@@ -19,7 +19,14 @@ $(document).ready(function(){
           success: function (response) {
               if(response.status == 'ok' || response.status == 'not_finish' ) {
                  insert_data(response.data);
-                 $('.next-button').removeClass('disabled');
+                 if(keyword_list.length > 0) {
+                    $('.keyword_list .number').html(keyword_list.length + ' Keywords imported')
+                    $('#show_keyword_list').removeAttr('disabled');
+                 }
+                 if(keyword_duplicate_list.length > 0) {
+                    $('.duplicate_keyword .number').html(keyword_duplicate_list.length + ' Duplicate found')
+                    $('#show_duplicate_keyword_list').removeAttr('disabled');                    
+                 }                 
               }
               $('.notification').html('<div class="alert '+response.type_alert+' alert-dismissible show" role="alert">'+
                       ' ' +response.message + ' '+
@@ -68,8 +75,12 @@ $(document).ready(function(){
         });
     }
     
-  $('#campaign_name').on('keyup', function(e) {
-     if($('#campaign_name').val() != ""){
+  $('#keyword_trend_form input').on('keyup change', function(e) {
+      var valid = true;
+      $('.required').each( function(i, el) {
+        if( $(el).val() == '' ) valid = false;
+      });
+     if(valid){  //  && keyword_list.length > 0
        $('#btn_data_collection').removeAttr('disabled');
      }else{
        $('#btn_data_collection').attr('disabled',true);
@@ -96,7 +107,7 @@ $(document).ready(function(){
   		$('button.import_files').css('display', 'block');
   });
   
-  $(document).on('click', '#launch', function() {
+  $(document).on('click', '#btn_data_collection', function() {
      if(!$(this).hasClass('request_done')){
         launch_request();
         $(this).addClass('request_done');
@@ -225,7 +236,8 @@ function launch_request() {
               if (evt.lengthComputable) {
                   var percentComplete = (evt.loaded / evt.total) * 100;
                   var loaded = (total * percentComplete) / 100;
-                  $('.notifying').css('display', 'block');
+                  $('.tab_form:last').removeClass('hidden');
+                  $('.tab_form:last').slideDown('slow');
                   $('.bar').css({'width': percentComplete + '%',
                                   'text-align': 'center'
                               });
@@ -235,13 +247,12 @@ function launch_request() {
           }, false);
           
           // Download progress
-          /*xhr.addEventListener("progress", function(evt){
+          xhr.addEventListener("progress", function(evt){
               if (evt.lengthComputable) {
-                  var percentComplete = evt.loaded / evt.total;
-                  $('.progress_stat').append(' Completed!').css('text-align', 'center');
+                  $('.data_collect_notification').html(' Data collection saved.');
                   console.log(percentComplete);
               }
-          }, false);*/
+          }, false);
     
           return xhr;
         }
@@ -254,6 +265,9 @@ function launch_request() {
       success: function(data){
         console.log("data with progression!");
         save_data_collection(data);
+      },
+      fail: function(xhr) {
+          console.log(xhr.responseText);
       }
   });
 }
@@ -288,9 +302,10 @@ function save_data_collection(response) {
   })
   .done(function(response) {
     var campaign = response.campaign;
-    var link = $('.link_result').data('link');
+    var link = $('.link_result').attr('href');
     var full_link = link +'?campaign_id='+campaign.campaign_id;
-    $('.link_result').append('<strong>See the result</strong> <a href="'+full_link+'" target="_blank">'+full_link+'</a>');
+    console.log(full_link + ' ++++++++')
+    $('.link_result').attr('href', full_link);
   })
   .fail(function() {
   });

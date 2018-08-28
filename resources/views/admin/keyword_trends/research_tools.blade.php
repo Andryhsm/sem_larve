@@ -38,11 +38,11 @@
                             <h3>Imported data</h3>
                             <div class="col-lg-12">
                                 <div class="keyword_list">
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-8 number">
                                         X.XXX.XXX Keywords imported  
                                     </div>
                                     <div class="col-lg-4 row keyword-button">
-                                        <button class="btn btn-primary pull-right" id="show_keyword_list">Show keywords list</button>
+                                        <button class="btn btn-primary pull-right" id="show_keyword_list" disabled>Show keywords list</button>
                                         <button class="btn btn-danger pull-right hidden" id="delete_keyword_in_list">Delete</button>
                                     </div>
                                     <div class="col-lg-12">
@@ -61,12 +61,12 @@
                                     </div>
                                 </div>
                                 <div class="duplicate_keyword">
-                                    <div class="col-lg-8">
-                                        XX Duplicate founded 
+                                    <div class="col-lg-8 number">
+                                        XX Duplicate found
 
                                     </div>
                                     <div class="col-lg-4 row">
-                                        <button class="btn btn-primary pull-right" id="show_duplicate_keyword_list">Show keywords list</button>
+                                        <button class="btn btn-primary pull-right" id="show_duplicate_keyword_list" disabled>Show keywords list</button>
                                     </div>
                                 </div>
                                  <div class="col-lg-12">
@@ -102,7 +102,9 @@
                                       <label class="col-sm-4 control-label">Country</label>
                                       <div class="col-sm-8">
                                           <select name="country" data-url="{!! route('get_states_partner') !!}" class="form-control required select-country">
-                                             
+                                            @foreach($countries as $country)
+                                              <option value="{!! $country->criteria_id !!}" selected="">{!! $country->location_name !!}</option>
+                                            @endforeach
                                           </select>
                                       </div>  
                                   </div>
@@ -111,7 +113,9 @@
                                       <label class="col-sm-4 control-label">Location</label>
                                       <div class="col-sm-8">
                                           <select name="location" class="form-control required select-states">
-                                           
+                                          @foreach($countries as $country)
+                                            <option value="{!! $country->criteria_id !!}" selected="">{!! $country->location_name !!}</option>
+                                          @endforeach
                                           </select>
                                       </div>  
                                   </div>
@@ -190,23 +194,25 @@
                                       </div>
                                   </div> 
                               </div>
-                              
+                              <div class="col-lg-12">
+                                  <a class=" btn btn-primary pull-right" id="btn_data_collection" disabled>Launch data collection</a>
+                              </div>
                             {!! Form::close() !!}
                           </div>
-                           <div class="tab_form">
+                           <div class="tab_form hidden">
                                <h3>Processing</h3>
                                <div class="col-lg-12">    
-                                  <div class="notifying">
+                                  <div class="notifying flex_bottle">
                                   	 <p class="progress_stat"></p>
                                   	 <div class="progressbar">
                                   	    <div class="bar"></div>
-                                  	 </div>
-                                  	 <div class="col-lg-12">
-                                  	     <span class="data_collect_notification pull-left"></span>
-                                  	     <a class="link_result btn btn-primary pull-right" data-link="{{ route('overview-list') }}">See the result</a>
-                                  	 </div>
+                                  	 </div>                                  	 
                                   </div>
                                 </div>
+                                <div class="col-lg-12">
+                                   <span class="data_collect_notification pull-left"></span>
+                                   <a class="link_result btn btn-primary pull-right" href="{{ route('overview-list') }}">See the result</a>
+                               </div>
                            </div>
                           
                         </div>

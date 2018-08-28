@@ -482,8 +482,8 @@ button.import_files {
     display: none;
     transition: all 1s ease-in-out;
 }
-/*.notifying {
-  	width: 300px;
+.notifying {
+  	/*width: 300px;
     padding: 20px 20px;
     border: 1px solid #BFBFBF;
     border-radius: 4px;
@@ -493,8 +493,12 @@ button.import_files {
   	z-index: 9;
   	right: 50px;
     top: 100px;
-    display: none;
-  }*/
+    display: none;*/
+    width: 400px;
+    margin: 20px auto;
+    -webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;
+
+  }
 .progressbar {
     float: left;
     background-color: lightgrey;

@@ -32,8 +32,8 @@ class KeywordTrendsController extends Controller
     public function researchTools() 
     {
         $locations = [];
-		//$countries = Locations::where('parent_id', '')->get();
-        return view('admin.keyword_trends.research_tools');  //, compact('countries')
+		$countries = Locations::where('parent_id', '')->get();
+        return view('admin.keyword_trends.research_tools', compact('countries'));  
     }
      
     public function getStatesByLocation(Request $request) 
@@ -106,7 +106,7 @@ class KeywordTrendsController extends Controller
 	{
 		$keywords = Input::get('keywords');
 		$params = Input::get('params');
-	
+		dd($keywords);
 		$searchVolumes = [];
 		if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==0) {
 			$searchVolumes = \AdWords::location($params['location_id'])->language($params['language_id'])->searchVolumes($keywords);
@@ -121,7 +121,7 @@ class KeywordTrendsController extends Controller
         	'status' => 'ok',
         	'data' => $searchVolumes,
         	'param' => $params
-        	]);
+        ]);
 	}
 	
 	public function save_data_collection(Request $request) 

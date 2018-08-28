@@ -29,8 +29,8 @@
                 <div class="row">
                     <div class="col-xs-8">
                         <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="memory" value="1"> Remember Me
+                            <label style="padding-left: 0">
+                                <input type="checkbox" name="memory" value="1" style="margin-left: 0"> Remember Me
                             </label>
                         </div>
                     </div>
