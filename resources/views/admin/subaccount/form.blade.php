@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-primary">
-                    {!! Form::open(array('url' => ($admin) ? route('subaccount.udpate', ['id' => $admin->admin_id]) :route('subaccount.store'),'files' => true,'class'=>'','id'=>'admin_user_form')) !!}
+                    {!! Form::open(array('url' => ($admin) ? route('subaccount.update', ['id' => $admin->admin_id]) :route('subaccount.store'),'files' => true,'class'=>'','id'=>'admin_user_form', 'method' => ($admin) ? 'PATCH' : 'POST')) !!}
                     <div class="box-body">
                         <div class="form-group">
                             {!! Form::label('first_name', 'First Name') !!}
