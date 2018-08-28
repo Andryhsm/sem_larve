@@ -45,7 +45,7 @@ class KeywordTrendsController extends Controller
     
     public function dataCollections() 
     {
-    	$user_id = auth()->guard('admin')->user()->admin_id;
+    	$user_id = get_user_id();
     	$campaigns = $this->keyword_trend_repository->getAllByUser($user_id);
     	return view('admin.keyword_trends.data_collections',compact('campaigns'));
     }

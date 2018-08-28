@@ -33,7 +33,8 @@ class SubAccountController extends Controller
     public function index()
     {
         $type = 3;
-        $admins = DataTables::collection($this->admin_repository->get($type))->make(true);
+        $admins = DataTables::collection($this->admin_repository->getSubaccount($type, 
+            auth()->guard('admin')->user()->admin_id))->make(true);
         $admins = $admins->getData();
 
         return view('admin.subaccount.list', compact('admins'));

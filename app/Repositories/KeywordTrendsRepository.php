@@ -38,7 +38,7 @@ class KeywordTrendsRepository
 		$params = $input['params'];
 		
 		$campaign = new Campaign();
-		$campaign->admin_id = auth()->guard('admin')->user()->admin_id;
+		$campaign->admin_id = $user_id = get_user_id();;
 		$campaign->location_id = $params['location_id'];
 		$campaign->language_id = $params['language_id'];
 		$campaign->campaign_name = $params['campaign_name'];
@@ -59,7 +59,6 @@ class KeywordTrendsRepository
 					$result_last_month .= $result_month['year'].';'.$result_month['month'].';'.$result_month['count'].'||';
 				}
 			}
-			\Log::debug($result_last_month);
 			$keyword->target_monthly_search = $result_last_month;
 			$keyword->save();
 		}
