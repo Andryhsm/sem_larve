@@ -31,7 +31,7 @@ class KeywordTrendsController extends Controller
      
     public function researchTools() 
     {
-    	dd(config('adwords-targeting-idea-service.user_agent'));
+    	//dd(config('adwords-targeting-idea-service.user_agent'));
         $locations = [];
 		$countries = Locations::where('parent_id', '')->get();
         return view('admin.keyword_trends.research_tools', compact('countries'));  
