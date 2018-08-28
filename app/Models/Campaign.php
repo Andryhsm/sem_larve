@@ -24,7 +24,7 @@ class Campaign extends Model
 	
 	public function language()
 	{
-		return $this->hasOne(Language::class,'language_id','language_id');
+		return $this->hasOne(Language::class,'criteron_id','language_id');
 	}
 	
 }

@@ -10,11 +10,11 @@ class Language extends Model
 	 * @var string
 	 */
     const FRENCH_CODE='fr';
-	protected $table = 'language';
+	protected $table = 'languagecode';
 	/**
 	 * @var string
 	 */
-	protected $primaryKey = 'language_id';
+	protected $primaryKey = 'criteron_id';
 
 	public $timestamps = false;
 }
