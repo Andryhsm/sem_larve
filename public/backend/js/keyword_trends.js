@@ -251,7 +251,6 @@ function launch_request() {
           xhr.addEventListener("progress", function(evt){
               if (evt.lengthComputable) {
                   $('.data_collect_notification').html(' Data collection saved.');
-                  console.log(percentComplete);
               }
           }, false);
     
