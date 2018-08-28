@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 use App\Models\Campaign;
 use App\Models\Keyword;
+use Carbon\Carbon;
 
 class KeywordTrendsRepository
 {
@@ -44,6 +45,7 @@ class KeywordTrendsRepository
 		$campaign->campaign_name = $params['campaign_name'];
 		$campaign->monthly_searches = $params['monthly_searches'];
 		$campaign->convert_null_to_zero = $params['convert_null_to_zero'];
+		$campaign->added_on = Carbon::now();
 		$campaign->save();
 		
 		foreach($keyword_results['data'] as $param_keyword) {
