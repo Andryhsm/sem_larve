@@ -149,8 +149,8 @@
                 @endif
         
             <!-- Admin -->
-            @if(check_user_access(['customer.index','store.index','administrator','role.index','adwords_api.index']))
-            <li class="treeview {{ set_active(['admin/role','admin/role/*','admin/customer','admin/customer/*','admin/store','admin/store/*','admin/administrator','admin/administrator/*','partner/adwords_api','partner/adwords_api/*']) }}">
+            @if(check_user_access(['customer.index','store.index','administrator','role.index','adwords_api.index', 'subaccount.index']))
+            <li class="treeview {{ set_active(['admin/role','admin/role/*','admin/customer','admin/customer/*','admin/store','admin/store/*','admin/administrator','admin/administrator/*','partner/adwords_api','partner/adwords_api/*', 'partner/subaccount/*', 'partner/adwords_api']) }}">
                 <a href="#">
                     <i class="fa fa-user"></i>
                     <span>Accounts</span>
@@ -183,9 +183,9 @@
                                 href="{!! route('profile') !!}"><i class="fa fa-circle-o"></i> Profil</a>
                     </li>
                     @endif
-                    @if(check_user_access('sub-accounts'))
-                    <li class="{{ set_active(['admin/store','admin/store/*']) }}"><a
-                                href=""><i class="fa fa-circle-o"></i> Sub-accounts</a>
+                    @if(check_user_access('subaccount.index'))
+                    <li class="{{ set_active(['admin/subaccount','admin/subaccount/*']) }}"><a
+                                href="{!! route('subaccount.index') !!}"><i class="fa fa-circle-o"></i> Sub-accounts</a>
                     </li>
                     @endif
                 </ul>
@@ -266,7 +266,7 @@
             </li>
             
     
-            @if(check_user_access(['help-faq', 'help-faq-partner', 'tickets-subscribe', 'tickets-subscribe-partner']))
+            @if(check_user_access(['help-faq', 'help-faq-partner', 'tickets-subscribe', 'tickets-subscribe-partner', 'subaccount.index']))
             <li class="treeview {{ set_active(['admin/tickets-subscribe','partner/tickets-subscribe', 'admin/help-faq', 'partner/help-faq']) }}">
                 <a href="#">
                     <i class="fa fa-book"></i>
@@ -296,7 +296,7 @@
             
                 <!-- Admin -->
             @if(check_user_access(['profile_partner','sub-accounts']))
-            <li class="treeview {{ set_active(['admin/profile','partner/profile']) }}">
+            <li class="treeview {{ set_active(['admin/profile','partner/profile','admin/subaccount','admin/subaccount/*','partner/subaccount','partner/subaccount/*']) }}">
                 <a href="#">
                     <i class="fa fa-user"></i>
                     <span>Accounts</span>
@@ -310,9 +310,9 @@
                         <a href="{!! ($user->type == 1) ? route('profile') : route('profile_partner') !!}"><i class="fa fa-circle-o"></i> Profil</a>
                     </li>
                     @endif
-                    @if(check_user_access('sub-accounts'))
-                    <li class="">
-                        <a href="#"><i class="fa fa-circle-o"></i> Sub-accounts</a>
+                    @if(check_user_access('subaccount.index'))
+                    <li class="{{ set_active(['admin/subaccount','admin/subaccount/*','partner/subaccount','partner/subaccount/*']) }}"><a
+                                href="{!! route('subaccount.index') !!}"><i class="fa fa-circle-o"></i> Sub-accounts</a>
                     </li>
                     @endif
                    

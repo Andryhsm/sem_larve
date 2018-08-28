@@ -31,7 +31,6 @@ class AdminUserController extends Controller
 		$admins = DataTables::collection($this->admin_repository->get($type))->make(true);
 		$admins = $admins->getData();
 		return view('admin.administrator.list', compact('admins'));
-
 	}
 
 	public function store(AdminUserRequest $admin_request)
