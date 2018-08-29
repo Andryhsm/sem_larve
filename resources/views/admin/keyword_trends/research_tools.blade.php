@@ -102,10 +102,10 @@
                                       <label class="col-sm-4 control-label">Country</label>
                                       <div class="col-sm-8">
                                           <select name="country" data-type="country" data-url="{!! route('get_states_partner') !!}" class="form-control required select-location">
-                                            <option>Select a value</option>
                                             @foreach($countries as $country)
-                                              <option value="{!! $country->criteria_id !!}" selected="">{!! $country->location_name !!}</option>
+                                              <option value="{!! $country->criteria_id !!}">{!! $country->location_name !!}</option>
                                             @endforeach
+                                             <option selected="">Select a value</option>
                                           </select>
                                       </div>  
                                   </div>
