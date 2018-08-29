@@ -180,7 +180,7 @@
                             <div class="tab">
                             
                                 <h1>Keywords</h1>
-                                @include('admin.keyword_trends.keyword_number')
+                                    @include('admin.keyword_trends.keyword_number')
                                 <br><br>
                                 
                                 <br><br>
@@ -200,7 +200,7 @@
         </div>
         
         
-        <!-- Start modal -->
+        <!-- Start modal for search data -->
         <div class="modal fade" id="showColumnModal" tabindex="-1" role="dialog" aria-labelledby="showColumnLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -225,6 +225,41 @@
                 </div>
                 <div class="checkbox">
                     <label><input class="col5" onclick="show_column(this);" type="checkbox" checked="" value="4">Date</input></label>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end modal-->
+
+        <!-- Start modal for search data -->
+        <div class="modal fade" id="showKeywordColumnModal" tabindex="-1" role="dialog" aria-labelledby="showKeywordColumnLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="showKeywordColumnLabel">Select column to show</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="checkbox">
+                    <label><input class="col1" onclick="show_column(this);" type="checkbox" checked="" value="0">Keyword</input></label>
+                </div>
+                <div class="checkbox">  
+                    <label><input class="col2" onclick="show_column(this);" type="checkbox" checked="" value="1">Search volume</input></label>
+                </div>
+                <div class="checkbox">
+                    <label><input class="col3" onclick="show_column(this);" type="checkbox" checked="" value="2">Cpc</input></label>
+                </div>
+                <div class="checkbox">
+                    <label><input class="col4" onclick="show_column(this);" type="checkbox" checked="" value="3">Competition</input></label>
+                </div>
+                <div class="checkbox">
+                    <label><input class="col5" onclick="show_column(this);" type="checkbox" checked="" value="4">Target monthly search</input></label>
                 </div>
               </div>
               <div class="modal-footer">
@@ -285,13 +320,9 @@
         
     }
 
-    if (jQuery('.dataTables_filter').length > 0) {
-        jQuery('.dataTables_filter').find('input').addClass('form-control')
-    }
-    
-    var table = $('#campaign_list').DataTable();
     
     function show_column(box){
+        var table = $('#campaign_list').DataTable();
         col_num = parseInt($(box).attr('value'));
         if($(box).prop('checked'))
         {
@@ -300,6 +331,47 @@
             table.column(col_num).visible(false);
         }
     }
+
+    /*if (jQuery('#keyword_number').length > 0) {
+        jQuery('#keyword_number').DataTable({
+            "responsive": true,
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bInfo": true,
+            "bAutoWidth": false,
+            "order": [[5, "desc"]],
+            "lengthMenu": [20, 40, 60, 80, 100],
+            "pageLength": 20,
+            columns: [
+                {searchable: true, sortable: true},
+                {searchable: true, sortable: true},
+                {searchable: true, sortable: true},
+                {searchable: true, sortable: false},
+                {searchable: false, sortable: false}
+            ],
+            fnDrawCallback: function () {
+                var $paginate = this.siblings('.dataTables_paginate');
+                if (this.api().data().length <= this.fnSettings()._iDisplayLength) {
+                    $paginate.hide();
+                }
+                else {
+                    $paginate.show();
+                }
+            }
+        });
+        
+        $('#keyword_number_length').append('<div class="btn btn-samall">'+
+            '<div class="btn-group" data-toggle="modal" data-target="#showKeywordColumnModal">'+
+              '<a href="#" class="btn btn-default">Select column to show</a>'+
+              '<a href="#" class="btn btn-default"><span class="caret"></span></a>'+
+            '</div>'+
+        '</div>');
+        
+    }*/
     
+    if (jQuery('.dataTables_filter').length > 0) {
+        jQuery('.dataTables_filter').find('input').addClass('form-control')
+    }    
 </script>
 @stop

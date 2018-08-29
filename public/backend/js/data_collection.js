@@ -85,6 +85,36 @@ $(document).ready(function(){
            $('#keyword_number tbody').append('<tr><td colspan="5">No record found</td></tr>');
         }
 				
+
+        jQuery('#keyword_number').DataTable({
+            "responsive": true,
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bInfo": true,
+            "bAutoWidth": false,
+            "order": [[5, "desc"]],
+            "lengthMenu": [20, 40, 60, 80, 100],
+            "pageLength": 20,
+            columns: [
+                {searchable: true, sortable: true},
+                {searchable: true, sortable: true},
+                {searchable: true, sortable: true},
+                {searchable: true, sortable: false},
+                {searchable: false, sortable: false}
+            ],
+            fnDrawCallback: function () {
+                var $paginate = this.siblings('.dataTables_paginate');
+                if (this.api().data().length <= this.fnSettings()._iDisplayLength) {
+                    $paginate.hide();
+                }
+                else {
+                    $paginate.show();
+                }
+            }
+        });
+
+
 				var x = document.getElementsByClassName("tab");
         x[0].style.display = "none";
         showTab(1);
