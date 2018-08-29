@@ -44,6 +44,7 @@ $(document).ready(function(){
 				data: {campaign_id: campaign_id},
 			})
 			.done(function(datas) {
+
 				var months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
 				
 				$('#keyword_number tbody').html('');
@@ -52,17 +53,19 @@ $(document).ready(function(){
         {
           // Affiche les entêtes des dates en fonction de la colonne target_monthly_search
           if(datas[0].target_monthly_search != null) {
-            var html1 = '';
+            var html1 = '<th>Keyword</th><th>Currency</th><th>Avg. monthly searches</th><th>Competition</th><th>Top of page bid (low range)</th><th>Top of page bid (high range)</th><th>Ad impression share</th><th>Organic impression share</th><th>Organic average position</th><th>In account?</th><th>In plan?</th>';
             var html2 = '';
             var j = 12;
             $.each(datas[0].target_monthly_search.split('||'), function(key, item) {
-              var dates = item.split(';')
-              html1 += '<th>Searches: ' + months[dates[1] - 1] +  ' ' + dates[0] + '</th>';
-              html2 += '<div class="checkbox"><label><input class="col'+j+'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+(j-1)+'">Searches: '+months[dates[1] - 1] +  ' ' + dates[0]+'</input></label></div>';
-              j++;
-              console.log(html2)
+              if(item != '') {
+                console.log(item)
+                var dates = item.split(';')
+                html1 += '<th>Searches: ' + months[dates[1] - 1] +  ' ' + dates[0] + '</th>';
+                html2 += '<div class="checkbox"><label><input class="col'+j+'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+(j-1)+'">Searches: '+months[dates[1] - 1] +  ' ' + dates[0]+'</input></label></div>';
+                j++;
+              }
             });
-            $('.keyword_number_tr').append(html1);
+            $('.keyword_number_tr').html(html1);
             $('#showKeywordColumnModal .modal-body').append(html2);
           }
            $.each(datas, function( index, value ) {
