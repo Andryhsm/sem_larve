@@ -52,14 +52,18 @@ $(document).ready(function(){
         {
           // Affiche les entêtes des dates en fonction de la colonne target_monthly_search
           if(datas[0].target_monthly_search != null) {
-            var html = '';
+            var html1 = '';
+            var html2 = '';
+            var j = 12;
             $.each(datas[0].target_monthly_search.split('||'), function(key, item) {
               var dates = item.split(';')
-              console.log($('.keyword_number_tr') + ' keyword_number_tr ***********')
-              html += '<th>Searches: ' + months[dates[1] - 1] +  ' ' + dates[0] + '</th>';
+              html1 += '<th>Searches: ' + months[dates[1] - 1] +  ' ' + dates[0] + '</th>';
+              html2 += '<div class="checkbox"><label><input class="col'+j+'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+(j-1)+'">Searches: '+months[dates[1] - 1] +  ' ' + dates[0]+'</input></label></div>';
+              j++;
+              console.log(html2)
             });
-            
-            $('.keyword_number_tr').append(html);
+            $('.keyword_number_tr').append(html1);
+            $('#showKeywordColumnModal .modal-body').append(html2);
           }
            $.each(datas, function( index, value ) {
             var html = '<tr>';
@@ -99,6 +103,7 @@ $(document).ready(function(){
         /****  Option de dataTable qui affiche seulement les 5 premiers colonnes  ****/
         var columns = [{searchable: true, sortable: true}];
         var nb = $('#keyword_number thead tr').children().length;
+        console.log(nb)
         for( var i = 1 ; i < nb ; i++ ) {
           if(i<5) columns.push({searchable: false, sortable: false});
           else columns.push({searchable: false, sortable: false, visible: false});
@@ -114,6 +119,7 @@ $(document).ready(function(){
             "order": [[5, "desc"]],
             "lengthMenu": [20, 40, 60, 80, 100],
             "pageLength": 20,
+            "scrollX": true,
             columns: columns,
             fnDrawCallback: function () {
                 var $paginate = this.siblings('.dataTables_paginate');
