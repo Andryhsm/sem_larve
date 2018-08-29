@@ -329,7 +329,7 @@
             }
         });
         
-        $('#campaign_list_length').append('<div class="btn btn-samall">'+
+        $('#campaign_list_length').append('<div class="btn btn-small">'+
             '<div class="btn-group" data-toggle="modal" data-target="#showColumnModal">'+
               '<a href="#" class="btn btn-default">Select column to show</a>'+
               '<a href="#" class="btn btn-default"><span class="caret"></span></a>'+
