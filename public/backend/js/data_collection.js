@@ -45,7 +45,7 @@ $(document).ready(function(){
 			})
 			.done(function(datas) {
 				var months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
-				console.log(JSON.stringify(datas[0]))
+				
 				$('#keyword_number tbody').html('');
 				
 				if(datas.length > 0)
@@ -87,12 +87,19 @@ $(document).ready(function(){
         {
            $('#keyword_number tbody').append('<tr><td colspan="11">No record found</td></tr>');
         }
-
-
+        
 				var x = document.getElementsByClassName("tab");
         x[0].style.display = "none";
         showTab(1);
 
+        /****  Option de dataTable qui affiche seulement les 5 premiers colonnes  ****/
+        var columns = [{searchable: true, sortable: true}];
+        var nb = $('#keyword_number thead tr').children().length;
+        for( var i = 1 ; i < nb ; i++ ) {
+          if(i<5) columns.push({searchable: false, sortable: false});
+          else columns.push({searchable: false, sortable: false, visible: false});
+        };
+        
         jQuery('#keyword_number').DataTable({
             "responsive": true,
             "bPaginate": true,
@@ -103,19 +110,7 @@ $(document).ready(function(){
             "order": [[5, "desc"]],
             "lengthMenu": [20, 40, 60, 80, 100],
             "pageLength": 20,
-            columns: [
-                {searchable: true, sortable: true},
-                {searchable: false, sortable: false},
-                {searchable: false, sortable: false},
-                {searchable: false, sortable: false},
-                {searchable: false, sortable: false},
-                {searchable: false, sortable: false, visible: false},
-                {searchable: false, sortable: false, visible: false},
-                {searchable: false, sortable: false, visible: false},
-                {searchable: false, sortable: false, visible: false},
-                {searchable: false, sortable: false, visible: false},
-                {searchable: false, sortable: false, visible: false}
-            ],
+            columns: columns,
             fnDrawCallback: function () {
                 var $paginate = this.siblings('.dataTables_paginate');
                 if (this.api().data().length <= this.fnSettings()._iDisplayLength) {
