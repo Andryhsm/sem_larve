@@ -105,16 +105,16 @@
                                             @foreach($countries as $country)
                                               <option value="{!! $country->criteria_id !!}">{!! $country->location_name !!}</option>
                                             @endforeach
-                                             <option selected="">Select a value</option>
+                                             <option selected="" disabled="">Select a value</option>
                                           </select>
                                       </div>  
                                   </div>
     
                                   <div class="form-group flex_bottle content-select-province">
-                                      <label class="col-sm-4 control-label">Province</label>
+                                      <label class="col-sm-4 control-label title-province">Area</label>
                                       <div class="col-sm-8">
                                           <select name="location" data-type="province" data-url="{!! route('get_states_partner') !!}" class="form-control required select-location select-province">
-                                            <option>Select a value</option>
+                                            <option disabled="" selected="">Select a value</option>
                                           </select>
                                       </div>  
                                   </div>

@@ -33,14 +33,14 @@ class KeywordTrendsController extends Controller
     {
     	//dd(config('adwords-targeting-idea-service.user_agent'));
         $locations = [];
-		$countries = Locations::where('parent_id', '')->get();
+		$countries = Locations::where('parent_id', '')->orderBy('location_name', 'asc')->get();
         return view('admin.keyword_trends.research_tools', compact('countries'));  
     }
      
     public function getStatesByLocation(Request $request) 
     {
     	$id = $request->get('id');
-    	$states = Locations::where('parent_id', $id)->get();
+    	$states = Locations::where('parent_id', $id)->orderBy('location_name', 'asc')->get();
     	return response()->json(['status' => 'ok', 'data' => $states]);
     }
     

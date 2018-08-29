@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\Admin;
 use App\Http\Requests\Admin\AdminUserRequest;
 use App\Models\AdminRole;
+use App\Models\Subaccount;
 use App\Repositories\AdminRoleRepository;
 use App\Repositories\AdminUserRepository;
 use App\Repositories\UserRepository;
@@ -110,11 +111,14 @@ class UserController extends Controller
 
     public function edit($admin_id)
     {
+        $parent_admin = [];
         $admin = $this->admin_user_repository->getById($admin_id);
+        if($admin->type == 3) {
+            $parent_admin = $this->admin_user_repository->getParent($admin_id);
+        }
         $roles=$this->admin_role_repository->getByType(2);
         $roles=$this->getAllRole($roles);
-
-        return view('admin.user.form', compact('admin','roles'));
+        return view('admin.user.form', compact('admin','roles', 'parent_admin'));
     }
 
     public function destroy($admin_id)

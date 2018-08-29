@@ -32,6 +32,7 @@
                                 <th>Last Name</th>
                                 <th>Email</th>
                                 <th>Status</th>
+                                <th>Type</th>
                                 <th class="no-sort">Action</th>
                             </tr>
                             </thead>
@@ -49,6 +50,12 @@
                                                 <span class="badge bg-green">Active</span>
                                             @endif
                                         </td>
+                                        <td>
+                                            @if($admin->type==2)
+                                                <span class="badge bg-light-blue">Principal</span>
+                                            @else 
+                                                <span class="badge bg-default">Sub-account</span>
+                                            @endif
                                         <td>
                                             <div class="btn-group">
                                                 <a href="{{ route('customer.edit', ['customer' => $admin->admin_id]) }}"
