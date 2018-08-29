@@ -228,7 +228,7 @@ function launch_request() {
     keywords: last_list_of_keyword,
     params: params
   }
-  console.log('++++++ ' + JSON.stringify(data));
+  
   $.ajax({
     xhr: function() {
         var total = keyword_list.length;
@@ -307,21 +307,10 @@ function save_data_collection(response) {
     var campaign = response.campaign;
     var link = $('.link_result').attr('href');
     var full_link = link +'?campaign_id='+campaign.campaign_id;
-    console.log(full_link + ' ++++++++')
     $('.link_result').attr('href', full_link);
   })
   .fail(function() {
   });
-}
-
-function fixStepIndicator(n) {
-  // This function removes the "active" class of all steps...
-  var i, x = document.getElementsByClassName("step");
-  for (i = 0; i < x.length; i++) {
-    x[i].className = x[i].className.replace(" active", "");
-  }
-  //... and adds the "active" class on the current step:
-  x[n].className += " active";
 }
 
 function edit_keyword(box){
