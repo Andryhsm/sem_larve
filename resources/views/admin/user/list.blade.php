@@ -52,7 +52,7 @@
                                         </td>
                                         <td>
                                             @if($admin->type==2)
-                                                <span class="badge bg-light-blue">Principal</span>
+                                                <span class="badge bg-light-blue">Main account</span>
                                             @else 
                                                 <span class="badge bg-default">Sub-account</span>
                                             @endif
