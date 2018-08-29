@@ -149,7 +149,7 @@ $(document).ready(function(){
              $('.select-province').append('<option value="'+states[i].criteria_id+'">'+states[i].location_name+'</option>');
           }
       } else {
-        if(states.length > 0) {
+        if(states.length > 0) { 
             $('.select-province').removeAttr('name');
             $('.title-province').html('State/province');
             var content = '<label class="col-sm-4 control-label">Area</label>'+
