@@ -19,7 +19,7 @@
                     <div class="box-body">
                          @if(!$admin || ($admin && $admin->type==3))
                             <div class="form-group">
-                                <span>Sub account of</span> <strong>{!! $parent_admin->email !!}</strong> <span>( {!! $parent_admin->last_name !!} {!! $parent_admin->first_name !!} )</span> 
+                                <span>Sub-account of</span> <strong>{!! $parent_admin->email !!}</strong> <span>( {!! $parent_admin->last_name !!} {!! $parent_admin->first_name !!} )</span> 
                             </div>
                         @endif
                         <div class="form-group">
