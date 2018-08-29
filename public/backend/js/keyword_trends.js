@@ -124,6 +124,7 @@ $(document).ready(function(){
   $(document).on('change', '.select-location', function(){
     var url = $(this).data('url');
     var type = $(this).data('type');
+    $this = $(this);
     $.ajax({
       url: url,
       type: 'POST',
@@ -131,17 +132,31 @@ $(document).ready(function(){
       data: {id: $(this).val()},
     })
     .done(function(response) {
-      var selector = '';
-      if(type == 'country') 
-        selector = '.select-province';
-      else 
-        selector = '.select-state';
-  
-      $(selector).html('');
       var states = response.data;
-      $(selector).append('<option>Select a value</option>');
-      for (var i = 0; i < states.length; i++) {
-        $(selector).append('<option value="'+states[i].criteria_id+'">'+states[i].location_name+'</option>');
+      var selector = '';
+      if(type == 'country') {
+          $('.select-province').html('');
+          
+          $('.select-province').append('<option>Select a value</option>');
+          for (var i = 0; i < states.length; i++) {
+             $('.select-province').append('<option value="'+states[i].criteria_id+'">'+states[i].location_name+'</option>');
+          }
+      } else {
+        if(states.length > 0) {
+            $('.select-province').removeAttr('name');
+            var content = '<label class="col-sm-4 control-label">State</label>'+
+                                              '<div class="col-sm-8">' +
+                                                  '<select name="location" class="form-control required select-state">';
+                content +=                        '<option>Select a value</option>';
+                
+                for (var i = 0; i < states.length; i++) {
+                       content +=                   '<option value="'+states[i].criteria_id+'">'+states[i].location_name+'</option>';
+                }
+
+                content +=                      '</select>'+
+                                                  '</div>';
+          $('.content-select-state').html(content);
+        }
       }
     })
     .fail(function() {
