@@ -105,16 +105,16 @@ $(document).ready(function(){
             "pageLength": 20,
             columns: [
                 {searchable: true, sortable: true},
-                {searchable: true, sortable: true},
-                {searchable: true, sortable: true},
-                {searchable: true, sortable: false},
                 {searchable: false, sortable: false},
                 {searchable: false, sortable: false},
                 {searchable: false, sortable: false},
                 {searchable: false, sortable: false},
-                {searchable: false, sortable: false},
-                {searchable: false, sortable: false},
-                {searchable: false, sortable: false}
+                {searchable: false, sortable: false, visible: false},
+                {searchable: false, sortable: false, visible: false},
+                {searchable: false, sortable: false, visible: false},
+                {searchable: false, sortable: false, visible: false},
+                {searchable: false, sortable: false, visible: false},
+                {searchable: false, sortable: false, visible: false}
             ],
             fnDrawCallback: function () {
                 var $paginate = this.siblings('.dataTables_paginate');
