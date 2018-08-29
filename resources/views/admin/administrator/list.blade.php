@@ -45,7 +45,7 @@
                                         <td>{!! $admin->email !!}</td>
                                         <td>
                                             @if($admin->is_active==0)
-                                                <span class="badge bg-light-blue">Inactive</span>
+                                                <span class="badge bg-red">Inactive</span>
                                             @else
                                                 <span class="badge bg-green">Active</span>
                                             @endif
