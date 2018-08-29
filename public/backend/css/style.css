@@ -534,7 +534,7 @@ button.import_files {
 .keyword_list, .duplicate_keyword {
     margin: 3% 0;
 }
-.keywords-duplicate-list, .import_help {
+.keywords-duplicate-list, .import_help, .keywords-list {
     display: none;
 }
 .tab_form {

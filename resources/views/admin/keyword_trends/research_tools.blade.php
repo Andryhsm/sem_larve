@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <p><input placeholder="File path" class="hidden" oninput="this.className = ''" name="file_path"></p>
-                                        <table class="table keywords-list table-bordered table-hover table-responsive hidden">
+                                        <table class="table keywords-list table-bordered table-hover table-responsive">
                                           <thead>
                                               <tr>
                                                   <th class="no-sort" style="width: 8%;"><input class="ckeck_all_keyword" type="checkbox" /></th>
