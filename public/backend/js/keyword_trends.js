@@ -151,7 +151,6 @@ $(document).ready(function(){
       } else {
         if(states.length > 0) { 
             $('.select-province').removeAttr('name');
-            $('.title-province').html('State/province');
             var content = '<label class="col-sm-4 control-label">Area</label>'+
                                               '<div class="col-sm-8">' +
                                                   '<select name="location" class="form-control required select-state">';

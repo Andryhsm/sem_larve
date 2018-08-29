@@ -111,7 +111,7 @@
                                   </div>
     
                                   <div class="form-group flex_bottle content-select-province">
-                                      <label class="col-sm-4 control-label title-province">State/province</label>
+                                      <label class="col-sm-4 control-label">State/province</label>
                                       <div class="col-sm-8">
                                           <select name="location" data-type="province" data-url="{!! route('get_states_partner') !!}" class="form-control required select-location select-province">
                                             <option disabled="" selected="">Select a value</option>
@@ -120,7 +120,7 @@
                                   </div>
 
                                   <div class="form-group flex_bottle content-select-state">
-                                      <label class="col-sm-4 control-label title-province">Area</label>
+                                      <label class="col-sm-4 control-label">Area</label>
                                       <div class="col-sm-8">
                                           <select data-type="province" data-url="{!! route('get_states_partner') !!}" class="form-control required select-location select-province">
                                             <option disabled="" selected="">Select a value</option>
