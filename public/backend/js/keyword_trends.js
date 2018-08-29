@@ -20,7 +20,8 @@ $(document).ready(function(){
               if(response.status == 'ok' || response.status == 'not_finish' ) {
                  insert_data(response.data);
                  if(keyword_list.length > 0) {
-                    $('.keyword_list .number').html(keyword_list.uniq().length + ' Keywords imported')
+                    var uniq_keyword_length = keyword_list.length - Object.keys(keyword_duplicate_list).length;
+                    $('.keyword_list .number').html(uniq_keyword_length + ' Keywords imported');
                     $('#show_keyword_list').removeAttr('disabled');
                  }
                  else $('.keyword_list .number').html('No keyword imported');
@@ -47,7 +48,13 @@ $(document).ready(function(){
   });
   
   $('#show_keyword_list').on('click', function(){
-     if($('.keywords-list').hasClass('hidden')) {
+      $('.keywords-list').slideToggle();
+      $('.keywords-list').toggleClass('show');
+      if($('.keywords-list').hasClass('show'))
+        $(this).html('Hide keywords list');
+      else $(this).html('Show keywords list');
+
+     /*if($('.keywords-list').hasClass('hidden')) {
          $('.keywords-list').removeClass('hidden');
          $('#delete_keyword_in_list').removeClass('hidden');
          $(this).html('Hide keywords list');
@@ -55,7 +62,7 @@ $(document).ready(function(){
          $('.keywords-list').addClass('hidden');
          $('#delete_keyword_in_list').addClass('hidden');
          $(this).html('Show keywords list');
-     }
+     }*/
      
   });
   

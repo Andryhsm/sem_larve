@@ -2,11 +2,17 @@
 <table id="keyword_number" class="table table-bordered table-hover">
     <thead>
     <tr>
-        <th>Keyword</th>
-        <th>Search volume</th>
-        <th>Cpc</th>
+        <th>Keyword</th>  
+        <th>Currency</th>
+        <th>Avg. monthly searches</th>
         <th>Competition</th>
-        <th style="width:25%;">Target monthly search</th>
+        <th>Top of page bid (low range)</th>
+        <th>Top of page bid (high range)</th>
+        <th>Ad impression share</th>
+        <th>Organic impression share</th>
+        <th>Organic average position</th>
+        <th>In account?</th>
+        <th>In plan?</th>
     </tr>
     </thead>
     <tbody>

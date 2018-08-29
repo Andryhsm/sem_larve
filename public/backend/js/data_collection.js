@@ -44,50 +44,92 @@ $(document).ready(function(){
 				data: {campaign_id: campaign_id},
 			})
 			.done(function(datas) {
-				var months = [ "january", "february", "march", "april", "may", "june", 
-               "july", "august", "september", "october", "november", "december" ];
+				var months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
 				
 				$('#keyword_number tbody').html('');
 				
-				if(datas.length !=0)
+				if(datas.length > 0)
         {
+          // Affiche les entêtes des dates en fonction de la colonne target_monthly_search
+          if(datas[0].target_monthly_search.length > 0) 
+            $.each(datas[0].target_monthly_search.split('||'), function(key, item) {
+              var dates = item.split(';')
+              $('#keyword_number thead tr').append('<th>Searches: ' + months[item[1] - 1] +  ' ' + item[0] + '</th>');
+            });
           
            $.each(datas, function( index, value ) {
             var html = '<tr>';
-    				  html += '<td>'+ value.keyword_name +'</td><td>'+ value.search_volume +'</td>';
-    				  html += '<td>' + value.cpc + '</td><td>' + value.competition  + '</td>';
+    				  html += '<td>'+ value.keyword_name +'</td><td>'+ value.currency +'</td>';
+    				  html += '<td>' + value.avg_monthly_searches + '</td><td>' + value.competition  + '</td>';
+              html += '<td>' + value.low_range_top_of_page_bid + '</td><td>' + value.high_range_top_of_page_bid  + '</td>';
+              html += '<td>' + value.ad_impression_share + '</td><td>' + value.organic_impression_share  + '</td>';
+              html += '<td>' + value.organic_average_position + '</td><td>' + value.in_account  + '</td>';
+              html += '<td>' + value.in_plan + '</td>';
     				  
-    				  if(value.target_monthly_search != null) 
-    				    html += '<td style="width:25%;">';
-    				      html += '<a class="btn btn-default show-monthly"><i class="fa fa-angle-down"></i></a>';
-    				        if(value.target_monthly_search.length > 0) {
-            				    html += '<div class="content-monthly-searches hidden">'+
-            				              '<ul>';
-                        				    var target_monthly_search = value.target_monthly_search.split('||');
-                        				    $.each(target_monthly_search, function(i, val) {
-                        				      var tab = val.split(';')
-                        				      if(tab[2] != null) {
-                            				    html += '<li>'+tab[0] + ' - ' + months[tab[1] - 1] + ' : ' + tab[2]+',</li>';
-                            				    
-                        				      }
-                        				    });
-              				  html +=   '</ul>';
-              				          '</div></div>';
-            				  }
-    				    html += '</td>';
-  				  html += '</tr>';
+			        if(value.target_monthly_search.length > 0) {
+      				    var target_monthly_search = value.target_monthly_search.split('||');
+      				    $.each(target_monthly_search, function(i, val) {
+      				      var tab = val.split(';')
+      				      if(tab[2] != null) 
+          				    html += '<td>' + tab[2]+ '</td>';
+          				  else  
+      				        html += '<td></td>';
+      				    });
+        				  
+      				  }
+    				    
+  				    html += '</tr>';
   				  
   				  $('#keyword_number tbody').append(html);
           });
         }
         else
         {
-           $('#keyword_number tbody').append('<tr><td colspan="5">No record found</td></tr>');
+           $('#keyword_number tbody').append('<tr><td colspan="11">No record found</td></tr>');
         }
-				
+        
 				var x = document.getElementsByClassName("tab");
         x[0].style.display = "none";
         showTab(1);
+
+        /****  Option de dataTable qui affiche seulement les 5 premiers colonnes  ****/
+        var columns = [{searchable: true, sortable: true}];
+        var nb = $('#keyword_number thead tr').children().length;
+        for( var i = 1 ; i < nb ; i++ ) {
+          if(i<5) columns.push({searchable: false, sortable: false});
+          else columns.push({searchable: false, sortable: false, visible: false});
+        };
+        
+        jQuery('#keyword_number').DataTable({
+            "responsive": true,
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bInfo": true,
+            "bAutoWidth": false,
+            "order": [[5, "desc"]],
+            "lengthMenu": [20, 40, 60, 80, 100],
+            "pageLength": 20,
+            columns: columns,
+            fnDrawCallback: function () {
+                var $paginate = this.siblings('.dataTables_paginate');
+                if (this.api().data().length <= this.fnSettings()._iDisplayLength) {
+                    $paginate.hide();
+                }
+                else {
+                    $paginate.show();
+                }
+            }
+        });
+
+        $('#keyword_number_length').append('<div class="btn btn-samall">'+
+            '<div class="btn-group" data-toggle="modal" data-target="#showKeywordColumnModal">'+
+              '<a href="#" class="btn btn-default">Select column to show</a>'+
+              '<a href="#" class="btn btn-default"><span class="caret"></span></a>'+
+            '</div>'+
+        '</div>');
+
+
 			})
 			.fail(function(xhr) {
 				//console.log(xhr.responseText);

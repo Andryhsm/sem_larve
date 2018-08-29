@@ -180,7 +180,7 @@
                             <div class="tab">
                             
                                 <h1>Keywords</h1>
-                                @include('admin.keyword_trends.keyword_number')
+                                    @include('admin.keyword_trends.keyword_number')
                                 <br><br>
                                 
                                 <br><br>
@@ -200,7 +200,7 @@
         </div>
         
         
-        <!-- Start modal -->
+        <!-- Start modal for search data -->
         <div class="modal fade" id="showColumnModal" tabindex="-1" role="dialog" aria-labelledby="showColumnLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -212,19 +212,72 @@
               </div>
               <div class="modal-body">
                 <div class="checkbox">
-                    <label><input class="col1" onclick="show_column(this);" type="checkbox" checked="" value="0">Research name</input></label>
+                    <label><input class="col1" onclick="show_column(this);" table-id="#campaign_list" type="checkbox" checked="" value="0">Research name</input></label>
                 </div>
                 <div class="checkbox">  
-                    <label><input class="col2" onclick="show_column(this);" type="checkbox" checked="" value="1">Region</input></label>
+                    <label><input class="col2" onclick="show_column(this);" table-id="#campaign_list" type="checkbox" checked="" value="1">Region</input></label>
                 </div>
                 <div class="checkbox">
-                    <label><input class="col3" onclick="show_column(this);" type="checkbox" checked="" value="2">Language</input></label>
+                    <label><input class="col3" onclick="show_column(this);" table-id="#campaign_list" type="checkbox" checked="" value="2">Language</input></label>
                 </div>
                 <div class="checkbox">
-                    <label><input class="col4" onclick="show_column(this);" type="checkbox" checked="" value="3">Username</input></label>
+                    <label><input class="col4" onclick="show_column(this);" table-id="#campaign_list" type="checkbox" checked="" value="3">Username</input></label>
                 </div>
                 <div class="checkbox">
-                    <label><input class="col5" onclick="show_column(this);" type="checkbox" checked="" value="4">Date</input></label>
+                    <label><input class="col5" onclick="show_column(this);" table-id="#campaign_list" type="checkbox" checked="" value="4">Date</input></label>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end modal-->
+
+        <!-- Start modal for search data -->
+        <div class="modal fade" id="showKeywordColumnModal" tabindex="-1" role="dialog" aria-labelledby="showKeywordColumnLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="showKeywordColumnLabel">Select column to show</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="checkbox">
+                    <label><input class="col1" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="0">Keyword</input></label>
+                </div>
+                <div class="checkbox">  
+                    <label><input class="col2" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="1">Curency</input></label>
+                </div>
+                <div class="checkbox">
+                    <label><input class="col3" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="2">Avg. monthly searches</input></label>
+                </div>
+                <div class="checkbox">
+                    <label><input class="col4" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="3">Competition</input></label>
+                </div>
+                <div class="checkbox">
+                    <label><input class="col5" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="4">Top of page bid (low range)</input></label>
+                </div>
+                <div class="checkbox">
+                    <label><input class="col6" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="5">Top of page bid (high range)</input></label>
+                </div>
+                <div class="checkbox">  
+                    <label><input class="col7" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="6">Ad impression share</input></label>
+                </div>
+                <div class="checkbox">
+                    <label><input class="col8" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="7">Organic impression share</input></label>
+                </div>
+                <div class="checkbox">
+                    <label><input class="col9" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="8">Organic average position</input></label>
+                </div>
+                <div class="checkbox">
+                    <label><input class="col10" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="9">In account?</input></label>
+                </div>
+                <div class="checkbox">
+                    <label><input class="col11" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="10">In plan?</input></label>
                 </div>
               </div>
               <div class="modal-footer">
@@ -285,13 +338,10 @@
         
     }
 
-    if (jQuery('.dataTables_filter').length > 0) {
-        jQuery('.dataTables_filter').find('input').addClass('form-control')
-    }
-    
-    var table = $('#campaign_list').DataTable();
     
     function show_column(box){
+        var id_table = $(box).attr('table-id');
+        var table = $(id_table).DataTable();
         col_num = parseInt($(box).attr('value'));
         if($(box).prop('checked'))
         {
@@ -300,6 +350,11 @@
             table.column(col_num).visible(false);
         }
     }
+
+
     
+    if (jQuery('.dataTables_filter').length > 0) {
+        jQuery('.dataTables_filter').find('input').addClass('form-control')
+    }    
 </script>
 @stop
