@@ -47,17 +47,16 @@ $(document).ready(function(){
 				var months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
 				
 				$('#keyword_number tbody').html('');
-				
+				console.log(JSON.stringify(datas[0]))
 				if(datas.length > 0)
         {
           // Affiche les entêtes des dates en fonction de la colonne target_monthly_search
-          var tab_0 = datas[0].target_monthly_search.split('||');
-          if(tab_0.length > 0) 
-            $.each(tab_0, function(key, item) {
+          if(datas[0].target_monthly_search != null) {
+            $.each(datas[0].target_monthly_search.split('||'), function(key, item) {
               var dates = item.split(';')
               $('#keyword_number thead tr').append('<th>Searches: ' + months[item[1] - 1] +  ' ' + item[0] + '</th>');
             });
-          
+          }
            $.each(datas, function( index, value ) {
             var html = '<tr>';
     				  html += '<td>'+ value.keyword_name +'</td><td>'+ value.currency +'</td>';
@@ -67,7 +66,7 @@ $(document).ready(function(){
               html += '<td>' + value.organic_average_position + '</td><td>' + value.in_account  + '</td>';
               html += '<td>' + value.in_plan + '</td>';
     				  
-			        if(value.target_monthly_search.length > 0) {
+			        if(value.target_monthly_search != null) {
       				    var target_monthly_search = value.target_monthly_search.split('||');
       				    $.each(target_monthly_search, function(i, val) {
       				      var tab = val.split(';')
