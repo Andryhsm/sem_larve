@@ -122,7 +122,9 @@ $(document).ready(function(){
             }
         });
 
-        $('#keyword_number_length').append('<div class="btn btn-samall">'+
+
+        $('#keyword_number_length .btn-small').remove();
+        $('#keyword_number_length').append('<div class="btn btn-small">'+
             '<div class="btn-group" data-toggle="modal" data-target="#showKeywordColumnModal">'+
               '<a href="#" class="btn btn-default">Select column to show</a>'+
               '<a href="#" class="btn btn-default"><span class="caret"></span></a>'+
