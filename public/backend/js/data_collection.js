@@ -47,15 +47,19 @@ $(document).ready(function(){
 				var months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
 				
 				$('#keyword_number tbody').html('');
-				console.log(JSON.stringify(datas[0]))
+				//console.log(JSON.stringify(datas[0]))
 				if(datas.length > 0)
         {
           // Affiche les entêtes des dates en fonction de la colonne target_monthly_search
           if(datas[0].target_monthly_search != null) {
+            var html = '';
             $.each(datas[0].target_monthly_search.split('||'), function(key, item) {
               var dates = item.split(';')
-              $('#keyword_number thead tr').append('<th>Searches: ' + months[item[1] - 1] +  ' ' + item[0] + '</th>');
+              console.log($('.keyword_number_tr') + ' keyword_number_tr ***********')
+              html += '<th>Searches: ' + months[dates[1] - 1] +  ' ' + dates[0] + '</th>';
             });
+            
+            $('.keyword_number_tr').append(html);
           }
            $.each(datas, function( index, value ) {
             var html = '<tr>';
