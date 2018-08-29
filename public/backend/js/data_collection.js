@@ -80,11 +80,13 @@ $(document).ready(function(){
 			        if(value.target_monthly_search != null) {
       				    var target_monthly_search = value.target_monthly_search.split('||');
       				    $.each(target_monthly_search, function(i, val) {
-      				      var tab = val.split(';')
-      				      if(tab[2] != null) 
-          				    html += '<td>' + tab[2]+ '</td>';
-          				  else  
-      				        html += '<td></td>';
+                    if(val != '') {
+        				      var tab = val.split(';')
+        				      if(tab[2] != '') 
+            				    html += '<td>' + tab[2]+ '</td>';
+            				  else  
+        				        html += '<td></td>';
+                    }
       				    });
         				  
       				  }
