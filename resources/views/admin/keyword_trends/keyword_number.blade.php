@@ -1,7 +1,7 @@
 
 <table id="keyword_number" class="table table-bordered table-hover">
     <thead>
-    <tr>
+    <tr class="keyword_number_tr">
         <th>Keyword</th>  
         <th>Currency</th>
         <th>Avg. monthly searches</th>
