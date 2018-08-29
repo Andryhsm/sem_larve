@@ -74,7 +74,7 @@ $(document).ready(function(){
               				  html +=   '</ul>';
               				          '</div></div>';
             				  }
-    				    html += '</td>';
+    				    html += '</td><td></td><td></td><td></td><td></td><td></td><td></td>';
   				  html += '</tr>';
   				  
   				  $('#keyword_number tbody').append(html);
@@ -84,7 +84,11 @@ $(document).ready(function(){
         {
            $('#keyword_number tbody').append('<tr><td colspan="5">No record found</td></tr>');
         }
-				
+
+
+				var x = document.getElementsByClassName("tab");
+        x[0].style.display = "none";
+        showTab(1);
 
         jQuery('#keyword_number').DataTable({
             "responsive": true,
@@ -101,6 +105,12 @@ $(document).ready(function(){
                 {searchable: true, sortable: true},
                 {searchable: true, sortable: true},
                 {searchable: true, sortable: false},
+                {searchable: false, sortable: false},
+                {searchable: false, sortable: false},
+                {searchable: false, sortable: false},
+                {searchable: false, sortable: false},
+                {searchable: false, sortable: false},
+                {searchable: false, sortable: false},
                 {searchable: false, sortable: false}
             ],
             fnDrawCallback: function () {
@@ -114,10 +124,14 @@ $(document).ready(function(){
             }
         });
 
+        $('#keyword_number_length').append('<div class="btn btn-samall">'+
+            '<div class="btn-group" data-toggle="modal" data-target="#showKeywordColumnModal">'+
+              '<a href="#" class="btn btn-default">Select column to show</a>'+
+              '<a href="#" class="btn btn-default"><span class="caret"></span></a>'+
+            '</div>'+
+        '</div>');
 
-				var x = document.getElementsByClassName("tab");
-        x[0].style.display = "none";
-        showTab(1);
+
 			})
 			.fail(function(xhr) {
 				//console.log(xhr.responseText);
