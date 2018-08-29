@@ -690,6 +690,7 @@ return array(
     'TypeError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
     'UpdateCampaignAddLanguageId' => $baseDir . '/database/migrations/2018_08_24_081006_update_campaign_add_language_id.php',
     'UpdateTableAdwordsAPI' => $baseDir . '/database/migrations/2018_08_23_082958_update_table_adwords__a_p_i.php',
+    'UpdateTableKeyword' => $baseDir . '/database/migrations/2018_08_29_082555_update_table_keyword.php',
     'UserRoleTableSeeder' => $baseDir . '/database/seeds/UserRoleTableSeeder.php',
     'ZfrMailChimpTest\\Client\\Listener\\ErrorHandlerListenerTest' => $vendorDir . '/zfr/zfr-mailchimp/tests/ZfrMailChimpTest/Client/Listener/ErrorHandlerListenerTest.php',
     'ZfrMailChimp\\Client\\Listener\\ErrorHandlerListener' => $vendorDir . '/zfr/zfr-mailchimp/src/ZfrMailChimp/Client/Listener/ErrorHandlerListener.php',
