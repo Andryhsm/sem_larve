@@ -101,7 +101,11 @@ $(document).ready(function(){
           else columns.push({searchable: false, sortable: false, visible: false});
         };
 
-        jQuery('#keyword_number').DataTable({
+        
+        $('#keyword_number').DataTable({
+            "destroy":true,
+            "paging": true,
+            "searching": true,
             "responsive": true,
             "bPaginate": true,
             "bLengthChange": true,
