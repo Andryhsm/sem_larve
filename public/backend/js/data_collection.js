@@ -51,8 +51,9 @@ $(document).ready(function(){
 				if(datas.length > 0)
         {
           // Affiche les entêtes des dates en fonction de la colonne target_monthly_search
-          if(datas[0].target_monthly_search.length > 0) 
-            $.each(datas[0].target_monthly_search.split('||'), function(key, item) {
+          var tab_0 = datas[0].target_monthly_search.split('||');
+          if(tab_0.length > 0) 
+            $.each(tab_0, function(key, item) {
               var dates = item.split(';')
               $('#keyword_number thead tr').append('<th>Searches: ' + months[item[1] - 1] +  ' ' + item[0] + '</th>');
             });
@@ -99,7 +100,7 @@ $(document).ready(function(){
           if(i<5) columns.push({searchable: false, sortable: false});
           else columns.push({searchable: false, sortable: false, visible: false});
         };
-        
+
         jQuery('#keyword_number').DataTable({
             "responsive": true,
             "bPaginate": true,
