@@ -114,7 +114,7 @@ $(document).ready(function(){
      if(!$(this).hasClass('request_done')){
         launch_request();
         $(this).addClass('request_done');
-     }
+     }  
   });
   
   $('#import_help').click(function(){
@@ -139,6 +139,7 @@ $(document).ready(function(){
   
       $(selector).html('');
       var states = response.data;
+      $(selector).append('<option>Select a value</option>');
       for (var i = 0; i < states.length; i++) {
         $(selector).append('<option value="'+states[i].criteria_id+'">'+states[i].location_name+'</option>');
       }
