@@ -20,7 +20,8 @@ $(document).ready(function(){
               if(response.status == 'ok' || response.status == 'not_finish' ) {
                  insert_data(response.data);
                  if(keyword_list.length > 0) {
-                    $('.keyword_list .number').html(keyword_list.uniq().length + ' Keywords imported')
+                    var uniq_keyword_length = keyword_list.length - Object.keys(keyword_duplicate_list).length;
+                    $('.keyword_list .number').html(uniq_keyword_length + ' Keywords imported');
                     $('#show_keyword_list').removeAttr('disabled');
                  }
                  else $('.keyword_list .number').html('No keyword imported');
@@ -47,7 +48,13 @@ $(document).ready(function(){
   });
   
   $('#show_keyword_list').on('click', function(){
-     if($('.keywords-list').hasClass('hidden')) {
+      $('.keywords-list').slideToggle();
+      $('.keywords-list').toggleClass('show');
+      if($('.keywords-list').hasClass('show'))
+        $(this).html('Hide keywords list');
+      else $(this).html('Show keywords list');
+
+     /*if($('.keywords-list').hasClass('hidden')) {
          $('.keywords-list').removeClass('hidden');
          $('#delete_keyword_in_list').removeClass('hidden');
          $(this).html('Hide keywords list');
@@ -55,7 +62,7 @@ $(document).ready(function(){
          $('.keywords-list').addClass('hidden');
          $('#delete_keyword_in_list').addClass('hidden');
          $(this).html('Show keywords list');
-     }
+     }*/
      
   });
   
@@ -114,7 +121,7 @@ $(document).ready(function(){
      if(!$(this).hasClass('request_done')){
         launch_request();
         $(this).addClass('request_done');
-     }
+     }  
   });
   
   $('#import_help').click(function(){
@@ -124,6 +131,7 @@ $(document).ready(function(){
   $(document).on('change', '.select-location', function(){
     var url = $(this).data('url');
     var type = $(this).data('type');
+    $this = $(this);
     $.ajax({
       url: url,
       type: 'POST',
@@ -131,16 +139,31 @@ $(document).ready(function(){
       data: {id: $(this).val()},
     })
     .done(function(response) {
-      var selector = '';
-      if(type == 'country') 
-        selector = '.select-province';
-      else 
-        selector = '.select-state';
-  
-      $(selector).html('');
       var states = response.data;
-      for (var i = 0; var i < states.length; i++) {
-        $(selector).append('<option value="'+states[i].criteria_id+'">'+states[i].location_name+'</option>');
+      var selector = '';
+      if(type == 'country') {
+          $('.select-province').html('');
+          
+          $('.select-province').append('<option>Select a value</option>');
+          for (var i = 0; i < states.length; i++) {
+             $('.select-province').append('<option value="'+states[i].criteria_id+'">'+states[i].location_name+'</option>');
+          }
+      } else {
+        if(states.length > 0) {
+            $('.select-province').removeAttr('name');
+            var content = '<label class="col-sm-4 control-label">State</label>'+
+                                              '<div class="col-sm-8">' +
+                                                  '<select name="location" class="form-control required select-state">';
+                content +=                        '<option>Select a value</option>';
+                
+                for (var i = 0; i < states.length; i++) {
+                       content +=                   '<option value="'+states[i].criteria_id+'">'+states[i].location_name+'</option>';
+                }
+
+                content +=                      '</select>'+
+                                                  '</div>';
+          $('.content-select-state').html(content);
+        }
       }
     })
     .fail(function() {
