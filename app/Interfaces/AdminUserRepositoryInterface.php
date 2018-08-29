@@ -7,6 +7,8 @@ interface AdminUserRepositoryInterface
 
 	public function get($type);
 
+	public function getPartnerAccount($type);
+
 	public function getSubaccount($type, $admin_id);
 
 	public function getById($admin_id);
