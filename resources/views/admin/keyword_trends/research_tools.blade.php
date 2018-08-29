@@ -113,7 +113,7 @@
                                       <label class="col-sm-4 control-label">Province</label>
                                       <div class="col-sm-8">
                                           <select name="province" data-type="province" data-url="{!! route('get_states_partner') !!}" class="form-control required select-location select-province">
-                                            <option>Select a province</option>
+                                            <option>Select a value</option>
                                           </select>
                                       </div>  
                                   </div>
@@ -122,7 +122,7 @@
                                       <label class="col-sm-4 control-label">State</label>
                                       <div class="col-sm-8">
                                           <select name="location" class="form-control required select-state">
-                                            <option>Select a state</option>
+                                            <option>Select a value</option>
                                           </select>
                                       </div>  
                                   </div>
