@@ -212,19 +212,19 @@
               </div>
               <div class="modal-body">
                 <div class="checkbox">
-                    <label><input class="col1" onclick="show_column(this);" type="checkbox" checked="" value="0">Research name</input></label>
+                    <label><input class="col1" onclick="show_column(this);" table-id="#campaign_list" type="checkbox" checked="" value="0">Research name</input></label>
                 </div>
                 <div class="checkbox">  
-                    <label><input class="col2" onclick="show_column(this);" type="checkbox" checked="" value="1">Region</input></label>
+                    <label><input class="col2" onclick="show_column(this);" table-id="#campaign_list" type="checkbox" checked="" value="1">Region</input></label>
                 </div>
                 <div class="checkbox">
-                    <label><input class="col3" onclick="show_column(this);" type="checkbox" checked="" value="2">Language</input></label>
+                    <label><input class="col3" onclick="show_column(this);" table-id="#campaign_list" type="checkbox" checked="" value="2">Language</input></label>
                 </div>
                 <div class="checkbox">
-                    <label><input class="col4" onclick="show_column(this);" type="checkbox" checked="" value="3">Username</input></label>
+                    <label><input class="col4" onclick="show_column(this);" table-id="#campaign_list" type="checkbox" checked="" value="3">Username</input></label>
                 </div>
                 <div class="checkbox">
-                    <label><input class="col5" onclick="show_column(this);" type="checkbox" checked="" value="4">Date</input></label>
+                    <label><input class="col5" onclick="show_column(this);" table-id="#campaign_list" type="checkbox" checked="" value="4">Date</input></label>
                 </div>
               </div>
               <div class="modal-footer">
@@ -247,19 +247,37 @@
               </div>
               <div class="modal-body">
                 <div class="checkbox">
-                    <label><input class="col1" onclick="show_column(this);" type="checkbox" checked="" value="0">Keyword</input></label>
+                    <label><input class="col1" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="0">Keyword</input></label>
                 </div>
                 <div class="checkbox">  
-                    <label><input class="col2" onclick="show_column(this);" type="checkbox" checked="" value="1">Search volume</input></label>
+                    <label><input class="col2" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="1">Curency</input></label>
                 </div>
                 <div class="checkbox">
-                    <label><input class="col3" onclick="show_column(this);" type="checkbox" checked="" value="2">Cpc</input></label>
+                    <label><input class="col3" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="2">Avg. monthly searches</input></label>
                 </div>
                 <div class="checkbox">
-                    <label><input class="col4" onclick="show_column(this);" type="checkbox" checked="" value="3">Competition</input></label>
+                    <label><input class="col4" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="3">Competition</input></label>
                 </div>
                 <div class="checkbox">
-                    <label><input class="col5" onclick="show_column(this);" type="checkbox" checked="" value="4">Target monthly search</input></label>
+                    <label><input class="col5" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="4">Top of page bid (low range)</input></label>
+                </div>
+                <div class="checkbox">
+                    <label><input class="col6" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="5">Top of page bid (high range)</input></label>
+                </div>
+                <div class="checkbox">  
+                    <label><input class="col7" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="6">Ad impression share</input></label>
+                </div>
+                <div class="checkbox">
+                    <label><input class="col8" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="7">Organic impression share</input></label>
+                </div>
+                <div class="checkbox">
+                    <label><input class="col9" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="8">Organic average position</input></label>
+                </div>
+                <div class="checkbox">
+                    <label><input class="col10" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="9">In account?</input></label>
+                </div>
+                <div class="checkbox">
+                    <label><input class="col11" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="10">In plan?</input></label>
                 </div>
               </div>
               <div class="modal-footer">
@@ -322,7 +340,8 @@
 
     
     function show_column(box){
-        var table = $('#campaign_list').DataTable();
+        var id_table = $(box).attr('table-id');
+        var table = $(id_table).DataTable();
         col_num = parseInt($(box).attr('value'));
         if($(box).prop('checked'))
         {
@@ -332,43 +351,7 @@
         }
     }
 
-    /*if (jQuery('#keyword_number').length > 0) {
-        jQuery('#keyword_number').DataTable({
-            "responsive": true,
-            "bPaginate": true,
-            "bLengthChange": true,
-            "bFilter": true,
-            "bInfo": true,
-            "bAutoWidth": false,
-            "order": [[5, "desc"]],
-            "lengthMenu": [20, 40, 60, 80, 100],
-            "pageLength": 20,
-            columns: [
-                {searchable: true, sortable: true},
-                {searchable: true, sortable: true},
-                {searchable: true, sortable: true},
-                {searchable: true, sortable: false},
-                {searchable: false, sortable: false}
-            ],
-            fnDrawCallback: function () {
-                var $paginate = this.siblings('.dataTables_paginate');
-                if (this.api().data().length <= this.fnSettings()._iDisplayLength) {
-                    $paginate.hide();
-                }
-                else {
-                    $paginate.show();
-                }
-            }
-        });
-        
-        $('#keyword_number_length').append('<div class="btn btn-samall">'+
-            '<div class="btn-group" data-toggle="modal" data-target="#showKeywordColumnModal">'+
-              '<a href="#" class="btn btn-default">Select column to show</a>'+
-              '<a href="#" class="btn btn-default"><span class="caret"></span></a>'+
-            '</div>'+
-        '</div>');
-        
-    }*/
+
     
     if (jQuery('.dataTables_filter').length > 0) {
         jQuery('.dataTables_filter').find('input').addClass('form-control')
