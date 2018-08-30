@@ -19,7 +19,7 @@ $(document).ready(function(){
     //   }
     // })
     
-    $('#keyword_number').on('click', '.show-monthly', function() {
+    /*$('#keyword_number').on('click', '.show-monthly', function() {
         console.log("click");
         var $icon = $(this).find('i');
         var $content_monthly_searches = $(this).parent().find('.content-monthly-searches');
@@ -33,7 +33,7 @@ $(document).ready(function(){
           $content_monthly_searches.addClass('hidden');
         }
         
-    })
+    })*/
     
     $('#campaign_list .show_keyword_number').click(function() {
       var campaign_id = $(this).attr('data-id');
@@ -249,11 +249,11 @@ $(document).ready(function(){
 });
 
 function exportTo(type) {
-  $('.content-monthly-searches').removeClass('hidden');
+  //$('.content-monthly-searches').removeClass('hidden');
   $('#keyword_number').tableExport({
     filename: 'Keywords_%DD%-%MM%-%YY%',
     format: type,
   });
-  $('.content-monthly-searches').addClass('hidden');
+  //$('.content-monthly-searches').addClass('hidden');
 }
 

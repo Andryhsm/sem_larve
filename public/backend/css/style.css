@@ -540,4 +540,11 @@ button.import_files {
 .tab_form {
     clear: both;
 }
-
+#keyword_number th:nth-of-type(5), 
+#keyword_number td:nth-of-type(5) {
+    min-width: 70px; 
+}
+#keyword_number th:nth-of-type(6),
+#keyword_number td:nth-of-type(6) {
+    min-width: 80px; 
+}
