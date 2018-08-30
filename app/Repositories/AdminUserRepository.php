@@ -51,6 +51,12 @@ class AdminUserRepository implements AdminUserRepositoryInterface
 		return $this->model->where('created_by', $admin_id)->orderBy('admin_id', 'desc')->get();
 	}
 
+	public function getParent($admin_id)
+	{
+		$subaccount = \App\Models\Subaccount::where('subadmin_id', $admin_id)->first();
+		return $this->model->where('admin_id', $subaccount->admin_id)->first();
+	}
+
 	public function getById($admin_id)
 	{
 		return $this->model->where('admin_id', $admin_id)->first();

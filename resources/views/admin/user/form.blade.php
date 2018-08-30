@@ -17,6 +17,11 @@
                 <div class="box box-primary">
                     {!! Form::open(array('url' => ($admin) ? "admin/customer/$admin->admin_id" :route('customer.store'),'files' => true,'class'=>'','id'=>'admin_user_form','method'=>($admin)?'PATCH':'POST')) !!}
                     <div class="box-body">
+                         @if(!$admin || ($admin && $admin->type==3))
+                            <div class="form-group">
+                                <span>Sub-account of</span> <strong>{!! $parent_admin->email !!}</strong> <span>( {!! $parent_admin->last_name !!} {!! $parent_admin->first_name !!} )</span> 
+                            </div>
+                        @endif
                         <div class="form-group">
                             {!! Form::label('first_name', 'First Name') !!}
                             {!! Form::text('first_name',($admin) ? $admin->first_name : null , ['class' => 'form-control required','id'=>'first_name','placeholder'=>"First Name"]) !!}
@@ -44,6 +49,7 @@
 
                             </div>
                         @endif
+                       
                         <div class="form-group">
                             {!! Form::label('profile_image','Profile Image') !!}
                             {!! Form::file('profile_image',array('class'=>'form-control', 'placeholder'=>'Profile Image')) !!}

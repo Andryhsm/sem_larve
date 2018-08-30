@@ -11,6 +11,8 @@ interface AdminUserRepositoryInterface
 
 	public function getSubaccount($type, $admin_id);
 
+	public function getParent($admin_id);
+
 	public function getById($admin_id);
 
 	public function save($input, $type);

@@ -144,17 +144,17 @@ $(document).ready(function(){
       if(type == 'country') {
           $('.select-province').html('');
           
-          $('.select-province').append('<option>Select a value</option>');
+          $('.select-province').append('<option disabled="">Select a value</option>');
           for (var i = 0; i < states.length; i++) {
              $('.select-province').append('<option value="'+states[i].criteria_id+'">'+states[i].location_name+'</option>');
           }
       } else {
-        if(states.length > 0) {
+        if(states.length > 0) { 
             $('.select-province').removeAttr('name');
-            var content = '<label class="col-sm-4 control-label">State</label>'+
+            var content = '<label class="col-sm-4 control-label">Area</label>'+
                                               '<div class="col-sm-8">' +
                                                   '<select name="location" class="form-control required select-state">';
-                content +=                        '<option>Select a value</option>';
+                content +=                        '<option disabled="">Select a value</option>';
                 
                 for (var i = 0; i < states.length; i++) {
                        content +=                   '<option value="'+states[i].criteria_id+'">'+states[i].location_name+'</option>';
