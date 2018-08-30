@@ -76,38 +76,6 @@
         cursor: pointer;
     }
     
-	/*  tbody {
-        display:block;
-        max-height:100vh !important;
-        overflow-y:scroll;
-    }
-    thead, tbody tr {
-        display:table;
-        width:100%;
-        table-layout:fixed;
-    }
-    thead {
-        width:100%; 
-    }
-    table {
-        width:100%;
-    }*/
-   
-    /*.td_body {
-        display: none;
-        transition: all 1s ease-in-out;
-    }
-    .td_body ul {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-            padding: 0;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-    }*/
     .content-monthly-searches ul li {
         padding: 7px;
         list-style-type: none;
@@ -317,7 +285,7 @@
                 {searchable: true, sortable: true},
                 {searchable: true, sortable: true},
                 {searchable: true, sortable: true},
-                {searchable: true, sortable: false},
+                {searchable: true, sortable: true},
                 {searchable: false, sortable: false}
             ],
             fnDrawCallback: function () {
