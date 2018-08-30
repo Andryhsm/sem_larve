@@ -1,11 +1,6 @@
 @extends($layout)
 
 @section('content')
-<!--<section class="content-header">
-    <h1>
-        Research tools Page
-    </h1>
-</section>-->
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
@@ -32,7 +27,8 @@
                                             <th>In account?</th>
                                             <th>In plan?</th>
                                             <?php
-                                            if(count($datas)>0 && $datas[0]->target_monthly_search) != '') {
+                                            if(count($datas)>0 ) {
+                                                if($datas[0]->target_monthly_search) != '')
                                                 foreach(explode('||', $datas[0]->target_monthly_search) as $head){
                                                     if(isset($head)){
                                                         $dates = explode(';', $head);
