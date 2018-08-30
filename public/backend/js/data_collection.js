@@ -113,6 +113,7 @@ $(document).ready(function(){
         showTab(1);
 
         /****  Option de dataTable qui affiche seulement les 5 premiers colonnes  ****/
+
         populateModal('keyword_number', 'showKeywordColumnModal');
         var columns = columnOPtion('keyword_number', 'showKeywordColumnModal');
         createDataTable('keyword_number', columns);
@@ -242,10 +243,14 @@ function createDataTable(table_id, columns) {
                 
   $('#' + table_id).DataTable({
     "dom": 'lBfrtip',
-      buttons: [
+     buttons: [
       {
-        extend: 'excelHtml5',
-        title: 'Keywords_'+date
+          extend: 'excelHtml5',
+          title: 'Keywords_'+date
+      },
+      {
+          extend: 'csvHtml5',
+          title: 'Keywords_'+date
       }
       ],
       "destroy":true,
