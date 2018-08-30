@@ -56,7 +56,7 @@ class KeywordTrendsRepository
 			$keyword->search_volume = $param_keyword['search_volume'];
 			$keyword->cpc = $param_keyword['cpc'];
 			$keyword->competition = $param_keyword['competition'];
-			if($param_keyword['targeted_monthly_searches'] != null) {
+			if(isset($param_keyword['targeted_monthly_searches'])) {
 				foreach($param_keyword['targeted_monthly_searches'] as $result_month) {
 					$result_last_month .= $result_month['year'].';'.$result_month['month'].';'.$result_month['count'].'||';
 				}
