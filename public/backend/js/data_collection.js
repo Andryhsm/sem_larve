@@ -113,43 +113,8 @@ $(document).ready(function(){
         showTab(1);
 
         /****  Option de dataTable qui affiche seulement les 5 premiers colonnes  ****/
-        var columns = [{searchable: true, sortable: true}];
-        var nb = $('#keyword_number thead tr').children().length;
-        $('#showKeywordColumnModal .modal-body .col' + 1).prop('checked', true);
-        for( var i = 1 ; i < nb ; i++ ) {
-          if(i<5) {
-            columns.push({searchable: false, sortable: true});
-            $('#showKeywordColumnModal .modal-body .col' + (i+1)).prop('checked', true);
-          }
-          else columns.push({searchable: false, sortable: true, visible: false});
-        };
-
-                
-        $('#keyword_number').DataTable({
-            "destroy":true,
-            "paging": true,
-            "searching": true,
-            "responsive": true,
-            "bPaginate": true,
-            "bLengthChange": true,
-            "bFilter": true,
-            "bInfo": true,
-            "bAutoWidth": false,
-            "order": [[5, "desc"]],
-            "lengthMenu": [20, 40, 60, 80, 100],
-            "pageLength": 20,
-            "scrollX": true,
-            columns: columns,
-            fnDrawCallback: function () {
-                var $paginate = this.siblings('.dataTables_paginate');
-                if (this.api().data().length <= this.fnSettings()._iDisplayLength) {
-                    $paginate.hide();
-                }
-                else {
-                    $paginate.show();
-                }
-            }
-        });
+        var columns = columnOPtion('keyword_number', 'showKeywordColumnModal');
+        createDataTable('keyword_number', columns);
 
 
         $('#keyword_number_length .btn-small').remove();
@@ -241,6 +206,19 @@ $(document).ready(function(){
     setTimeout(progress, 3000);
 	    
 	   /*** end progress bar ***/
+  if($('#keyword_number_overview')) {
+    var columns_overview = columnOPtion('keyword_number_overview', 'showKeywordColumnModalOverview');
+    createDataTable('keyword_number_overview', columns_overview);
+    $('#keyword_number_overview_length .btn-small').remove();
+    $('#keyword_number_overview_length').append('<div class="btn btn-small">'+
+        '<div class="btn-group" data-toggle="modal" data-target="#showKeywordColumnModalOverview">'+
+          '<a href="#" class="btn btn-default">Select column to show</a>'+
+          '<a href="#" class="btn btn-default"><span class="caret"></span></a>'+
+        '</div>'+
+    '</div>');
+    $('showKeywordColumnModalOverview .modal-body').html('');
+  }
+  
 });
 
 function exportTo(type) {
@@ -252,3 +230,44 @@ function exportTo(type) {
   //$('.content-monthly-searches').addClass('hidden');
 }
 
+function columnOPtion(table_id, modal_id) {
+  var columns = [{searchable: true, sortable: true}];
+  var nb = $('#' +table_id+' thead tr').children().length;
+  $('#'+modal_id+' .modal-body .col' + 1).prop('checked', true);
+  for( var i = 1 ; i < nb ; i++ ) {
+    if(i<5) {
+      columns.push({searchable: false, sortable: true});
+      $('#'+modal_id+' .modal-body .col' + (i+1)).prop('checked', true);
+    }
+    else columns.push({searchable: false, sortable: true, visible: false});
+  };
+  return columns;
+}
+
+function createDataTable(table_id, columns) {
+  $('#' + table_id).DataTable({
+      "destroy":true,
+      "paging": true,
+      "searching": true,
+      "responsive": true,
+      "bPaginate": true,
+      "bLengthChange": true,
+      "bFilter": true,
+      "bInfo": true,
+      "bAutoWidth": false,
+      "order": [[5, "desc"]],
+      "lengthMenu": [20, 40, 60, 80, 100],
+      "pageLength": 20,
+      "scrollX": true,
+      columns: columns,
+      fnDrawCallback: function () {
+          var $paginate = this.siblings('.dataTables_paginate');
+          if (this.api().data().length <= this.fnSettings()._iDisplayLength) {
+              $paginate.hide();
+          }
+          else {
+              $paginate.show();
+          }
+      }
+  });
+}
