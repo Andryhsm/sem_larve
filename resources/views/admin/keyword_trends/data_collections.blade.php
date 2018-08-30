@@ -145,10 +145,12 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="tab">
+                            <div class="tab" >
                             
                                 <h1>Keywords</h1>
+                                <div id="keyword_number_tab">
                                     @include('admin.keyword_trends.keyword_number')
+                                </div>
                                 <br><br>
                                 
                                 <br><br>
