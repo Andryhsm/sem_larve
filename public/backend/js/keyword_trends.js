@@ -295,7 +295,7 @@ function launch_request() {
       data: data,
       dataType: 'json',
       success: function(data){
-        console.log("data with progression!");
+        console.log(data);
         save_data_collection(data);
       },
       fail: function(xhr) {
