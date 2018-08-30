@@ -58,7 +58,7 @@ class KeywordTrendsController extends Controller
 			    $path = Input::file('import_file')->getRealPath();
 			    $original_name = Input::file('import_file')->getClientOriginalName();
 			    $ext = pathinfo($original_name, PATHINFO_EXTENSION);
-			    if($ext != 'csv' && $ext != 'xlsx')
+			    if($ext != 'csv' && $ext != 'xlsx' && $ext != 'xls')
 			        return response()->json([
 			            	'status' => 'error_ext',
 			            	'message' => 'You have uploaded the wrong extension! Only the extension .csv and .xlsx are accepted! Try again please!',
