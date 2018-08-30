@@ -126,6 +126,11 @@ $(document).ready(function(){
 
                 
         $('#keyword_number').DataTable({
+          "dom": 'lBfrtip',
+            buttons: [
+                'excel',
+                'csv'
+            ],
             "destroy":true,
             "paging": true,
             "searching": true,
