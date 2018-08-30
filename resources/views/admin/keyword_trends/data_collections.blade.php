@@ -1,9 +1,13 @@
 @extends($layout)
 @section('additional-styles')
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
     {!! Html::style('backend/plugins/datatables/dataTables.bootstrap.css') !!}
     {!! Html::style('backend/plugins/colorpicker/bootstrap-colorpicker.css') !!}
+
+    <!-- {!! Html::Style('https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css') !!} -->
+    {!! Html::Style('https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css') !!}
+
     <style>
     * {
       box-sizing: border-box;
@@ -87,6 +91,20 @@
     a .fa-angle-down, a .fa-angle-up {
         font-size: 20px;
     }
+
+    /*.dataTables_wrapper .dataTables_paginate .paginate_button{
+        padding: 0px !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        border: none;
+        background: white !important;
+    }
+
+    .dataTables_wrapper.no-footer .dataTables_scrollBody{
+        border:none !important;
+    }*/
+
 </style>
 @stop
 @section('content')
@@ -149,15 +167,15 @@
                             
                                 <h1>Keywords</h1>
                                 <div id="keyword_number_tab">
-                                   <!---   Keyword - number table inserted by ajax     --->
+                                   <!--   Keyword - number table inserted by ajax     -->
                                 </div>
-                                <br><br>
+                                <br><!-- <br>
                                 
-                                <br><br>
+                                <br><br> -->
                                 <div>
                                     <div>
                                       <button type="button" class="btn btn-default pull-left" id='previous'>Previous</button>
-                                      <button type="button" onclick="exportTo('xls');" class="btn btn-primary pull-right" >Exporter</button>
+                                      <!-- <button type="button" onclick="exportTo();" class="btn btn-primary pull-right" >Exporter</button> -->
                                     </div>
                                 </div>
                             </div>
@@ -264,6 +282,15 @@
     {!! Html::script('backend/plugins/datatables/jquery.dataTables.js') !!}
     {!! Html::script('backend/plugins/datatables/dataTables.bootstrap.min.js') !!}
     {!! Html::script('backend/js/TableExport/tableExport.js') !!}
+
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+
+
     {!! Html::script('backend/js/data_collection.js') !!}
 @stop
 
@@ -271,6 +298,7 @@
 <script>
     if (jQuery('#campaign_list').length > 0) {
         jQuery('#campaign_list').DataTable({
+            
             "responsive": true,
             "bPaginate": true,
             "bLengthChange": true,

@@ -55,11 +55,11 @@ $(document).ready(function(){
           // Affiche les entêtes des dates en fonction de la colonne target_monthly_search
           if(datas[0].target_monthly_search != null) {
             var html1 = '';
-            var html2 = '';
+            //var html2 = '';
 
             $.each(heads, function(i, head) {
               html1 += '<th>' + head + '</th>';
-              html2 += '<div class="checkbox"><label><input class="col'+ (i+1) +'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+ i +'">'+ head +'</input></label></div>';
+              //html2 += '<div class="checkbox"><label><input class="col'+ (i+1) +'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+ i +'">'+ head +'</input></label></div>';
             });
             
             var j = 12;
@@ -67,13 +67,13 @@ $(document).ready(function(){
               if(item != '') {
                 var dates = item.split(';')
                 html1 += '<th>Searches: ' + months[dates[1] - 1] +  ' ' + dates[0] + '</th>';
-                html2 += '<div class="checkbox"><label><input class="col'+j+'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+(j-1)+'">Searches: '+months[dates[1] - 1] +  ' ' + dates[0]+'</input></label></div>';
+                //html2 += '<div class="checkbox"><label><input class="col'+j+'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+(j-1)+'">Searches: '+months[dates[1] - 1] +  ' ' + dates[0]+'</input></label></div>';
                 j++;
               }
             });
             $('.keyword_number_tr').html(html1);
             //console.log($('.keyword_number_tr').html())
-            $('#showKeywordColumnModal .modal-body').html(html2);
+            //$('#showKeywordColumnModal .modal-body').html(html2);
           }
            $.each(datas, function( index, value ) {
             var html = '<tr>';
@@ -113,9 +113,11 @@ $(document).ready(function(){
         showTab(1);
 
         /****  Option de dataTable qui affiche seulement les 5 premiers colonnes  ****/
+        populateModal('keyword_number', 'showKeywordColumnModal');
         var columns = columnOPtion('keyword_number', 'showKeywordColumnModal');
         createDataTable('keyword_number', columns);
 
+        //$('.dt-buttons').addClass('hidden');
 
         $('#keyword_number_length .btn-small').remove();
         $('#keyword_number_length').append('<div class="btn btn-small">'+
@@ -216,19 +218,10 @@ $(document).ready(function(){
           '<a href="#" class="btn btn-default"><span class="caret"></span></a>'+
         '</div>'+
     '</div>');
-    $('showKeywordColumnModalOverview .modal-body').html('');
+    populateModal('keyword_number_overview', 'showKeywordColumnModalOverview');
   }
   
 });
-
-function exportTo(type) {
-  //$('.content-monthly-searches').removeClass('hidden');
-  $('#keyword_number').tableExport({
-    filename: 'Keywords_%DD%-%MM%-%YY%',
-    format: type,
-  });
-  //$('.content-monthly-searches').addClass('hidden');
-}
 
 function columnOPtion(table_id, modal_id) {
   var columns = [{searchable: true, sortable: true}];
@@ -245,7 +238,16 @@ function columnOPtion(table_id, modal_id) {
 }
 
 function createDataTable(table_id, columns) {
+  var date = new Date();
+                
   $('#' + table_id).DataTable({
+    "dom": 'lBfrtip',
+      buttons: [
+      {
+        extend: 'excelHtml5',
+        title: 'Keywords_'+date
+      }
+      ],
       "destroy":true,
       "paging": true,
       "searching": true,
@@ -270,4 +272,21 @@ function createDataTable(table_id, columns) {
           }
       }
   });
+
 }
+
+function populateModal(table_id, modal_id) {
+  var j_o = 0;
+  var html_o = '';
+  $('#'+table_id+' thead th').each(function(index, el) {
+    console.log('index ' + index + ' el ' + $(el).html());
+    html_o += '<div class="checkbox"><label><input class="col'+(j_o+1)+'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+j_o+'">'+$(el).html()+'</input></label></div>';
+    j_o++;
+  })
+  $('#' + modal_id+' .modal-body').html(html_o);
+}
+
+function exportTo() {
+  $('.buttons-excel').trigger('click');
+}
+

@@ -88,8 +88,8 @@
                                 <div>
                                     <div>
                                       <a type="button" class="btn btn-default pull-left" href="{!! route('data_collections_partner') !!}">Go to Data collections list</a>
-                                      <button type="button" onclick="exportTo('xls');" class="btn btn-primary pull-right" >Exporter</button>
-                                    </div>
+                                      <!-- <button type="button" onclick="exportTo('xls');" class="btn btn-primary pull-right" >Exporter</button>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
