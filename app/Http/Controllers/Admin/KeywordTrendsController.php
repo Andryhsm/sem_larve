@@ -54,6 +54,7 @@ class KeywordTrendsController extends Controller
     public function importExcel()
 	{
 		$keyword = "";
+		$insert = [];
 		if(Input::hasFile('import_file')){
 			    $path = Input::file('import_file')->getRealPath();
 			    $original_name = Input::file('import_file')->getClientOriginalName();
