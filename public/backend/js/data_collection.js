@@ -110,8 +110,8 @@ $(document).ready(function(){
         var nb = $('#keyword_number thead tr').children().length;
         console.log(nb)
         for( var i = 1 ; i < nb ; i++ ) {
-          if(i<5) columns.push({searchable: false, sortable: false});
-          else columns.push({searchable: false, sortable: false, visible: false});
+          if(i<5) columns.push({searchable: false, sortable: true});
+          else columns.push({searchable: false, sortable: true, visible: false});
         };
 
         
