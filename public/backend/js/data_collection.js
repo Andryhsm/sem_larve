@@ -124,12 +124,19 @@ $(document).ready(function(){
           else columns.push({searchable: false, sortable: true, visible: false});
         };
 
+        var date = new Date();
                 
         $('#keyword_number').DataTable({
           "dom": 'lBfrtip',
             buttons: [
-                'excel',
-                'csv'
+            {
+                extend: 'excelHtml5',
+                title: 'Keywords_'+date
+            },
+            {
+                extend: 'csvHtml5',
+                title: 'Keywords_'+date
+            }
             ],
             "destroy":true,
             "paging": true,
@@ -156,6 +163,7 @@ $(document).ready(function(){
             }
         });
 
+        //$('.dt-buttons').addClass('hidden');
 
         $('#keyword_number_length .btn-small').remove();
         $('#keyword_number_length').append('<div class="btn btn-small">'+
@@ -255,5 +263,9 @@ function exportTo(type) {
     format: type,
   });
   //$('.content-monthly-searches').addClass('hidden');
+}
+
+function exportTo() {
+  $('.buttons-excel').trigger('click');
 }
 
