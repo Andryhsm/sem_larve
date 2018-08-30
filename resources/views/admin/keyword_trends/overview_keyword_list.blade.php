@@ -28,7 +28,7 @@
                                             <th>In plan?</th>
                                             <?php
                                             if(count($datas)>0 ) {
-                                                if($datas[0]->target_monthly_search) != '')
+                                                if($datas[0]->target_monthly_search != '')
                                                 foreach(explode('||', $datas[0]->target_monthly_search) as $head){
                                                     if(isset($head)){
                                                         $dates = explode(';', $head);
