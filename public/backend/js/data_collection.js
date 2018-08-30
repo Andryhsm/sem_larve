@@ -55,11 +55,11 @@ $(document).ready(function(){
           // Affiche les entêtes des dates en fonction de la colonne target_monthly_search
           if(datas[0].target_monthly_search != null) {
             var html1 = '';
-            var html2 = '';
+            //var html2 = '';
 
             $.each(heads, function(i, head) {
               html1 += '<th>' + head + '</th>';
-              html2 += '<div class="checkbox"><label><input class="col'+ (i+1) +'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+ i +'">'+ head +'</input></label></div>';
+              //html2 += '<div class="checkbox"><label><input class="col'+ (i+1) +'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+ i +'">'+ head +'</input></label></div>';
             });
             
             var j = 12;
@@ -67,13 +67,13 @@ $(document).ready(function(){
               if(item != '') {
                 var dates = item.split(';')
                 html1 += '<th>Searches: ' + months[dates[1] - 1] +  ' ' + dates[0] + '</th>';
-                html2 += '<div class="checkbox"><label><input class="col'+j+'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+(j-1)+'">Searches: '+months[dates[1] - 1] +  ' ' + dates[0]+'</input></label></div>';
+                //html2 += '<div class="checkbox"><label><input class="col'+j+'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+(j-1)+'">Searches: '+months[dates[1] - 1] +  ' ' + dates[0]+'</input></label></div>';
                 j++;
               }
             });
             $('.keyword_number_tr').html(html1);
             //console.log($('.keyword_number_tr').html())
-            $('#showKeywordColumnModal .modal-body').html(html2);
+            //$('#showKeywordColumnModal .modal-body').html(html2);
           }
            $.each(datas, function( index, value ) {
             var html = '<tr>';
@@ -113,55 +113,10 @@ $(document).ready(function(){
         showTab(1);
 
         /****  Option de dataTable qui affiche seulement les 5 premiers colonnes  ****/
-        var columns = [{searchable: true, sortable: true}];
-        var nb = $('#keyword_number thead tr').children().length;
-        $('#showKeywordColumnModal .modal-body .col' + 1).prop('checked', true);
-        for( var i = 1 ; i < nb ; i++ ) {
-          if(i<5) {
-            columns.push({searchable: false, sortable: true});
-            $('#showKeywordColumnModal .modal-body .col' + (i+1)).prop('checked', true);
-          }
-          else columns.push({searchable: false, sortable: true, visible: false});
-        };
 
-        var date = new Date();
-                
-        $('#keyword_number').DataTable({
-          "dom": 'lBfrtip',
-            buttons: [
-            {
-                extend: 'excelHtml5',
-                title: 'Keywords_'+date
-            },
-            {
-                extend: 'csvHtml5',
-                title: 'Keywords_'+date
-            }
-            ],
-            "destroy":true,
-            "paging": true,
-            "searching": true,
-            "responsive": true,
-            "bPaginate": true,
-            "bLengthChange": true,
-            "bFilter": true,
-            "bInfo": true,
-            "bAutoWidth": false,
-            "order": [[5, "desc"]],
-            "lengthMenu": [20, 40, 60, 80, 100],
-            "pageLength": 20,
-            "scrollX": true,
-            columns: columns,
-            fnDrawCallback: function () {
-                var $paginate = this.siblings('.dataTables_paginate');
-                if (this.api().data().length <= this.fnSettings()._iDisplayLength) {
-                    $paginate.hide();
-                }
-                else {
-                    $paginate.show();
-                }
-            }
-        });
+        populateModal('keyword_number', 'showKeywordColumnModal');
+        var columns = columnOPtion('keyword_number', 'showKeywordColumnModal');
+        createDataTable('keyword_number', columns);
 
         //$('.dt-buttons').addClass('hidden');
 
@@ -254,15 +209,86 @@ $(document).ready(function(){
     setTimeout(progress, 3000);
 	    
 	   /*** end progress bar ***/
+  if($('#keyword_number_overview')) {
+    var columns_overview = columnOPtion('keyword_number_overview', 'showKeywordColumnModalOverview');
+    createDataTable('keyword_number_overview', columns_overview);
+    $('#keyword_number_overview_length .btn-small').remove();
+    $('#keyword_number_overview_length').append('<div class="btn btn-small">'+
+        '<div class="btn-group" data-toggle="modal" data-target="#showKeywordColumnModalOverview">'+
+          '<a href="#" class="btn btn-default">Select column to show</a>'+
+          '<a href="#" class="btn btn-default"><span class="caret"></span></a>'+
+        '</div>'+
+    '</div>');
+    populateModal('keyword_number_overview', 'showKeywordColumnModalOverview');
+  }
+  
 });
 
-function exportTo(type) {
-  //$('.content-monthly-searches').removeClass('hidden');
-  $('#keyword_number').tableExport({
-    filename: 'Keywords_%DD%-%MM%-%YY%',
-    format: type,
+function columnOPtion(table_id, modal_id) {
+  var columns = [{searchable: true, sortable: true}];
+  var nb = $('#' +table_id+' thead tr').children().length;
+  $('#'+modal_id+' .modal-body .col' + 1).prop('checked', true);
+  for( var i = 1 ; i < nb ; i++ ) {
+    if(i<5) {
+      columns.push({searchable: false, sortable: true});
+      $('#'+modal_id+' .modal-body .col' + (i+1)).prop('checked', true);
+    }
+    else columns.push({searchable: false, sortable: true, visible: false});
+  };
+  return columns;
+}
+
+function createDataTable(table_id, columns) {
+  var date = new Date();
+                
+  $('#' + table_id).DataTable({
+    "dom": 'lBfrtip',
+     buttons: [
+      {
+          extend: 'excelHtml5',
+          title: 'Keywords_'+date
+      },
+      {
+          extend: 'csvHtml5',
+          title: 'Keywords_'+date
+      }
+      ],
+      "destroy":true,
+      "paging": true,
+      "searching": true,
+      "responsive": true,
+      "bPaginate": true,
+      "bLengthChange": true,
+      "bFilter": true,
+      "bInfo": true,
+      "bAutoWidth": false,
+      "order": [[5, "desc"]],
+      "lengthMenu": [20, 40, 60, 80, 100],
+      "pageLength": 20,
+      "scrollX": true,
+      columns: columns,
+      fnDrawCallback: function () {
+          var $paginate = this.siblings('.dataTables_paginate');
+          if (this.api().data().length <= this.fnSettings()._iDisplayLength) {
+              $paginate.hide();
+          }
+          else {
+              $paginate.show();
+          }
+      }
   });
-  //$('.content-monthly-searches').addClass('hidden');
+
+}
+
+function populateModal(table_id, modal_id) {
+  var j_o = 0;
+  var html_o = '';
+  $('#'+table_id+' thead th').each(function(index, el) {
+    console.log('index ' + index + ' el ' + $(el).html());
+    html_o += '<div class="checkbox"><label><input class="col'+(j_o+1)+'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+j_o+'">'+$(el).html()+'</input></label></div>';
+    j_o++;
+  })
+  $('#' + modal_id+' .modal-body').html(html_o);
 }
 
 function exportTo() {
