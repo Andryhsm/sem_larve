@@ -240,7 +240,8 @@ function columnOPtion(table_id, modal_id) {
 
 function createDataTable(table_id, columns) {
   var date = new Date();
-                
+  console.log(' ++++ ' +table_id)
+  console.log($('#' + table_id))           
   $('#' + table_id).DataTable({
     "dom": 'lBfrtip',
      buttons: [
