@@ -20,13 +20,6 @@ class KeywordTrendsController extends Controller
     public function __construct(KeywordTrendsRepository $keyword_trend_repo)
     {
          $this->keyword_trend_repository = $keyword_trend_repo;
-         $auth_adword = AdwordsApi::where('is_default', 1)->first();
-         config(['adwords-targeting-idea-service.developer_token' => $auth_adword->adwords_developper_token]);
-         config(['adwords-targeting-idea-service.client_id' => $auth_adword->adwords_client_id]);
-         config(['adwords-targeting-idea-service.client_secret' => $auth_adword->adwords_client_secret]);
-         config(['adwords-targeting-idea-service.client_refresh_token' => $auth_adword->adwords_client_refresh_token]);
-         config(['adwords-targeting-idea-service.client_customer_id' => $auth_adword->adwords_client_customer_id]);
-         config(['adwords-targeting-idea-service.user_agent' => $auth_adword->adwords_user_agent]);
     } 
      
     public function researchTools() 
@@ -54,6 +47,7 @@ class KeywordTrendsController extends Controller
     public function importExcel()
 	{
 		$keyword = "";
+		$insert = [];
 		if(Input::hasFile('import_file')){
 			    $path = Input::file('import_file')->getRealPath();
 			    $original_name = Input::file('import_file')->getClientOriginalName();
