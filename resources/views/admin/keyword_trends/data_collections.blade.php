@@ -216,7 +216,7 @@
                 </button>
               </div>
               <div class="modal-body">  
-                <div class="checkbox">
+                <!-- <div class="checkbox">
                     <label><input class="col1" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="0">Keyword</input></label>
                 </div>
                 <div class="checkbox">  
@@ -248,7 +248,7 @@
                 </div>
                 <div class="checkbox">
                     <label><input class="col11" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="10">In plan?</input></label>
-                </div>
+                </div> -->
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
