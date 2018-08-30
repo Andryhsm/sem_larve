@@ -44,10 +44,10 @@ $(document).ready(function(){
 				data: {campaign_id: campaign_id},
 			})
 			.done(function(datas) {
-
+        
 				var months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
-				
-				$('#keyword_number tbody').html('');
+				$('#keyword_number_tab').html('<table id="keyword_number" class="table table-bordered table-hover"><thead><tr class="keyword_number_tr"></tr></thead><tbody></tbody>/table>');
+        console.log($('#keyword_number_tab').html());
 				//console.log(JSON.stringify(datas[0]))
 				if(datas.length > 0)
         {
@@ -58,7 +58,6 @@ $(document).ready(function(){
             var j = 12;
             $.each(datas[0].target_monthly_search.split('||'), function(key, item) {
               if(item != '') {
-                console.log(item)
                 var dates = item.split(';')
                 html1 += '<th>Searches: ' + months[dates[1] - 1] +  ' ' + dates[0] + '</th>';
                 html2 += '<div class="checkbox"><label><input class="col'+j+'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+(j-1)+'">Searches: '+months[dates[1] - 1] +  ' ' + dates[0]+'</input></label></div>';
@@ -66,6 +65,7 @@ $(document).ready(function(){
               }
             });
             $('.keyword_number_tr').html(html1);
+            //console.log($('.keyword_number_tr').html())
             $('#showKeywordColumnModal .modal-body').append(html2);
           }
            $.each(datas, function( index, value ) {
@@ -98,7 +98,7 @@ $(document).ready(function(){
         }
         else
         {
-           $('#keyword_number tbody').append('<tr><td colspan="11">No record found</td></tr>');
+           $('#keyword_number tbody').html('<tr><td colspan="11">No record found</td></tr>');
         }
         
 				var x = document.getElementsByClassName("tab");
@@ -110,11 +110,11 @@ $(document).ready(function(){
         var nb = $('#keyword_number thead tr').children().length;
         console.log(nb)
         for( var i = 1 ; i < nb ; i++ ) {
-          if(i<5) columns.push({searchable: false, sortable: false});
-          else columns.push({searchable: false, sortable: false, visible: false});
+          if(i<5) columns.push({searchable: false, sortable: true});
+          else columns.push({searchable: false, sortable: true, visible: false});
         };
 
-        
+                
         $('#keyword_number').DataTable({
             "destroy":true,
             "paging": true,

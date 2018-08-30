@@ -195,15 +195,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                         
-                          <!-- Circles which indicates the steps of the form: -->
-                            <div style="text-align:center;margin-top:40px;" class="hidden">
-                                <span class="step"></span>
-                                <span class="step"></span>
-                                <span class="step"></span>
-                                <span class="step"></span>
-                            </div>
-                        </div>
+                                                </div>
                     </div>
                 </div>
             </div>
