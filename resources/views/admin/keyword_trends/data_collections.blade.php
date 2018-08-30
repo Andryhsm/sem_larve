@@ -175,7 +175,7 @@
                                 <div>
                                     <div>
                                       <button type="button" class="btn btn-default pull-left" id='previous'>Previous</button>
-                                      <button type="button" onclick="exportTo();" class="btn btn-primary pull-right" >Exporter</button>
+                                      <!-- <button type="button" onclick="exportTo();" class="btn btn-primary pull-right" >Exporter</button> -->
                                     </div>
                                 </div>
                             </div>
