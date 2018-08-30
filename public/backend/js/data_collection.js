@@ -46,15 +46,22 @@ $(document).ready(function(){
 			.done(function(datas) {
         
 				var months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
-				$('#keyword_number_tab').html('<table id="keyword_number" class="table table-bordered table-hover"><thead><tr class="keyword_number_tr"></tr></thead><tbody></tbody>/table>');
-        console.log($('#keyword_number_tab').html());
-				//console.log(JSON.stringify(datas[0]))
+				var heads = ["Keyword", "Curency", "Avg. monthly searches", "Competition", "Top of page bid (low range)", "Top of page bid (high range)", "Ad impression share", "Organic impression share", "Organic average position", "In account?", "In plan?"];
+        
+        $('#keyword_number_tab').html('<table id="keyword_number" class="table table-bordered table-hover"><thead><tr class="keyword_number_tr"></tr></thead><tbody></tbody></table>');
+        
 				if(datas.length > 0)
         {
           // Affiche les entêtes des dates en fonction de la colonne target_monthly_search
           if(datas[0].target_monthly_search != null) {
-            var html1 = '<th>Keyword</th><th>Currency</th><th>Avg. monthly searches</th><th>Competition</th><th>Top of page bid (low range)</th><th>Top of page bid (high range)</th><th>Ad impression share</th><th>Organic impression share</th><th>Organic average position</th><th>In account?</th><th>In plan?</th>';
+            var html1 = '';
             var html2 = '';
+
+            $.each(heads, function(i, head) {
+              html1 += '<th>' + head + '</th>';
+              html2 += '<div class="checkbox"><label><input class="col'+ (i+1) +'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+ i +'">'+ head +'</input></label></div>';
+            });
+            
             var j = 12;
             $.each(datas[0].target_monthly_search.split('||'), function(key, item) {
               if(item != '') {
@@ -66,7 +73,7 @@ $(document).ready(function(){
             });
             $('.keyword_number_tr').html(html1);
             //console.log($('.keyword_number_tr').html())
-            $('#showKeywordColumnModal .modal-body').append(html2);
+            $('#showKeywordColumnModal .modal-body').html(html2);
           }
            $.each(datas, function( index, value ) {
             var html = '<tr>';
@@ -108,7 +115,7 @@ $(document).ready(function(){
         /****  Option de dataTable qui affiche seulement les 5 premiers colonnes  ****/
         var columns = [{searchable: true, sortable: true}];
         var nb = $('#keyword_number thead tr').children().length;
-        console.log(nb)
+        
         for( var i = 1 ; i < nb ; i++ ) {
           if(i<5) columns.push({searchable: false, sortable: true});
           else columns.push({searchable: false, sortable: true, visible: false});
