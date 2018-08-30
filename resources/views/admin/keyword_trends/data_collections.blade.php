@@ -76,38 +76,6 @@
         cursor: pointer;
     }
     
-	/*  tbody {
-        display:block;
-        max-height:100vh !important;
-        overflow-y:scroll;
-    }
-    thead, tbody tr {
-        display:table;
-        width:100%;
-        table-layout:fixed;
-    }
-    thead {
-        width:100%; 
-    }
-    table {
-        width:100%;
-    }*/
-   
-    /*.td_body {
-        display: none;
-        transition: all 1s ease-in-out;
-    }
-    .td_body ul {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-            padding: 0;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-    }*/
     .content-monthly-searches ul li {
         padding: 7px;
         list-style-type: none;
@@ -181,7 +149,7 @@
                             
                                 <h1>Keywords</h1>
                                 <div id="keyword_number_tab">
-                                    @include('admin.keyword_trends.keyword_number')
+                                   <!---   Keyword - number table inserted by ajax     --->
                                 </div>
                                 <br><br>
                                 
@@ -247,8 +215,8 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
-                <div class="checkbox">
+              <div class="modal-body">  
+                <!-- <div class="checkbox">
                     <label><input class="col1" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="0">Keyword</input></label>
                 </div>
                 <div class="checkbox">  
@@ -271,7 +239,7 @@
                 </div>
                 <div class="checkbox">
                     <label><input class="col8" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="7">Organic impression share</input></label>
-                </div>
+                </div> 
                 <div class="checkbox">
                     <label><input class="col9" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="8">Organic average position</input></label>
                 </div>
@@ -280,7 +248,7 @@
                 </div>
                 <div class="checkbox">
                     <label><input class="col11" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="10">In plan?</input></label>
-                </div>
+                </div> -->
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -317,7 +285,7 @@
                 {searchable: true, sortable: true},
                 {searchable: true, sortable: true},
                 {searchable: true, sortable: true},
-                {searchable: true, sortable: false},
+                {searchable: true, sortable: true},
                 {searchable: false, sortable: false}
             ],
             fnDrawCallback: function () {
