@@ -132,6 +132,10 @@ $(document).ready(function(){
             {
                 extend: 'excelHtml5',
                 title: 'Keywords_'+date
+            },
+            {
+                extend: 'csvHtml5',
+                title: 'Keywords_'+date
             }
             ],
             "destroy":true,
