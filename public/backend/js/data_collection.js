@@ -7,7 +7,6 @@ $(document).ready(function(){
       x[n].style.display = "block";
     }
     
-    
     if ($('.delete-campaign').length > 0) {
       $('.delete-campaign').off('click');
       $('.delete-campaign').on('click', function (e) {
@@ -56,15 +55,19 @@ $(document).ready(function(){
             data: {campaign_id: campaign_id},
         })
         .done(function(datas) {
+            console.log(datas);
+
+            /*$(".research_name span").html(datas.campaign.campaign_name);
+            $(".country_name span").html(datas.location);*/
             var months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
             
-            if(datas.length > 0) {
+            if(datas.datas.length > 0) {
                 // Affiche les entêtes des dates en fonction de la colonne target_monthly_search
-                if(datas[0].target_monthly_search != null) {
+                if(datas.datas[0].target_monthly_search != null) {
                     var html1 = '';
                     var html2 = '';
                     var j = 12;
-                    $.each(datas[0].target_monthly_search.split('||'), function(key, item) {
+                    $.each(datas.datas[0].target_monthly_search.split('||'), function(key, item) {
                         if(item != '') {
                             var dates = item.split(';')
                             html1 += '<th>Searches: ' + months[dates[1] - 1] +  ' ' + dates[0] + '</th>';
@@ -77,7 +80,7 @@ $(document).ready(function(){
                   
                     $('#showKeywordColumnModal .modal-body').append(html2);
                 }
-                $.each(datas, function( index, value ) {
+                $.each(datas.datas, function( index, value ) {
                     var html = '<tr>';
                     html += '<td>'+ value.keyword_name +'</td><td>'+ value.currency +'</td>';
                     html += '<td>' + value.avg_monthly_searches + '</td><td>' + value.competition  + '</td>';
@@ -163,6 +166,7 @@ $(document).ready(function(){
             });
 
             //$('.dt-buttons').addClass('hidden');
+
 
             $('#keyword_number_length .btn-small').remove();
             $('#keyword_number_length').append('<div class="btn btn-small">'+

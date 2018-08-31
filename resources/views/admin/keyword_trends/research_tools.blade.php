@@ -92,9 +92,9 @@
                             {!! Form::open(array('url' => '','id' =>'keyword_trend_form','class'=>'validate_form')) !!}
                               <div class="col-lg-6">
                                   <div class="form-group flex_bottle">
-                                    {!! Form::label('campaign_name', ' Campagne name ', ['class' => 'col-sm-4 control-label']) !!}
+                                    {!! Form::label('campaign_name', ' Research name ', ['class' => 'col-sm-4 control-label']) !!}
                                     <div class="col-sm-8">
-                                      {!! Form::text('campaign_name', null, ['class' => 'form-control required','id'=>'campaign_name','placeholder'=>" Campagne name "]) !!}
+                                      {!! Form::text('campaign_name', null, ['class' => 'form-control required','id'=>'campaign_name','placeholder'=>" Research name "]) !!}
                                     </div>
                                   </div>
                                   
@@ -233,5 +233,6 @@
     </section> 
 @endsection
 @section('additional-scripts')
+   {!! Html::script('backend/js/loadingoverlay.min.js') !!}
    {!! Html::script('backend/js/keyword_trends.js') !!}
 @stop 

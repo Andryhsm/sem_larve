@@ -82,7 +82,7 @@
                                 @foreach($last_campaigns as $campaign)
                                 <tr>
                                     <td>{!! $campaign->campaign_name !!}</td>
-                                    <td>{!! ($campaign->location) ? $campaign->location->location_name:'' !!}</td>
+                                    <td>{!! ($campaign->area) ? $campaign->area->location_name:'' !!}</td>
                                     <td>{!! ($campaign->language) ? $campaign->language->language_name:'' !!}</td>
                                     <td>{!! ($campaign->user) ? ($campaign->user->last_name.' '.$campaign->user->first_name) : '' !!}</td>
                                     <td>{!! $campaign->added_on !!}</td>

@@ -7,105 +7,6 @@
 
     <!-- {!! Html::Style('https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css') !!} -->
     {!! Html::Style('https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css') !!}
-
-    <style>
-    * {
-      box-sizing: border-box;
-    }
-    
-    body {
-      background-color: #f1f1f1;
-    }
-
-    
-    h1 {
-      text-align: center;  
-    }
-    
-    input {
-      padding: 10px;
-      width: 100%;
-      font-size: 17px;
-      font-family: Raleway;
-      border: 1px solid #aaaaaa;
-    }
-    
-    /* Mark input boxes that gets an error on validation: */
-    input.invalid {
-      background-color: #ffdddd;
-    }
-    
-    /* Hide all steps by default: */
-    .tab {
-      display: none;
-    }
-    
-    /* Make circles that indicate the steps of the form: */
-    .step {
-      height: 15px;
-      width: 15px;
-      margin: 0 2px;
-      background-color: #bbbbbb;
-      border: none;  
-      border-radius: 50%;
-      display: inline-block;
-      opacity: 0.5;
-    }
-    
-    .step.active {
-      opacity: 1;
-    }
-    
-    /* Mark the steps that are finished and valid: */
-    .step.finish {
-      background-color: #4CAF50;
-    }
-    .hiddeninputfile {
-    	width: 0.1px;
-    	height: 0.1px;
-    	/*opacity: 0;*/
-    	overflow: hidden;
-    	position: absolute;
-    	z-index: -1;
-    }
-    .custom_import_file {
-        font-size: 1.25em;
-        font-weight: 700;
-        color: gray;
-        background-color: white;
-        padding: 8px 20px;
-        border-radius: 8px;
-        font-size: 20px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-    
-    .content-monthly-searches ul li {
-        padding: 7px;
-        list-style-type: none;
-        background-color: lightgrey;
-        margin: 2px;
-        border-radius: 4px;
-        text-align: center;
-    }
-    a .fa-angle-down, a .fa-angle-up {
-        font-size: 20px;
-    }
-
-    /*.dataTables_wrapper .dataTables_paginate .paginate_button{
-        padding: 0px !important;
-    }
-
-    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-        border: none;
-        background: white !important;
-    }
-
-    .dataTables_wrapper.no-footer .dataTables_scrollBody{
-        border:none !important;
-    }*/
-
-</style>
 @stop
 @section('content')
     <section class="content">
@@ -133,7 +34,7 @@
                                         @foreach($campaigns as $campaign)
                                         <tr>
                                             <td>{!! $campaign->campaign_name !!}</td>
-                                            <td>{!! ($campaign->location) ? $campaign->location->location_name:'' !!}</td>
+                                            <td>{!! ($campaign->location) ? $campaign->area->location_name:'' !!}</td>
                                             <td>{!! ($campaign->language) ? $campaign->language->language_name:'' !!}</td>
                                             <td>{!! ($campaign->user) ? ($campaign->user->last_name.' '.$campaign->user->first_name) : '' !!}</td>
                                             <td>{!! $campaign->added_on !!}</td>
@@ -157,7 +58,8 @@
         
                                     </tbody>
                                 </table>
-                            </div>                         
+                            </div>
+                            
                           
                         </div>
                     </div>

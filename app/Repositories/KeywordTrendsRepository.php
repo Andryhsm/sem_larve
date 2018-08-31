@@ -20,7 +20,7 @@ class KeywordTrendsRepository
 
 	public function getAllByUser($id)
 	{
-		return $this->modelCampaign->with('location','language','user')->where('admin_id',$id)->orderBy('campaign_id','desc')->get();
+		return $this->modelCampaign->with('area','language','user')->where('admin_id',$id)->orderBy('campaign_id','desc')->get();
 	}
 
 	public function getKeywordByCampaignId($id)
@@ -32,12 +32,17 @@ class KeywordTrendsRepository
 	{
 		return $this->modelCampaign->destroy($id);
 	}
+	public function getCampaignById($id)
+	{
+		return $this->modelCampaign->with('area', 'area.parent','language')->where('campaign_id',$id)->first();
+	}
 
 	public function storeDataCollection($input) 
 	{
-		$keyword_results = $input['keywords_result'];
+		
+		$keywords_result = $input['keywords_result'];
 		$params = $input['params'];
-		\Log::debug($input);
+		
 		$campaign = new Campaign();
 		$campaign->admin_id = $user_id = get_user_id();
 		$campaign->country_id = $params['country_id'];
@@ -51,23 +56,30 @@ class KeywordTrendsRepository
 		$campaign->save();
 		
 		$null = ($params['convert_null_to_zero'] == 1) ? 0 : 1; 
-
-		foreach($keyword_results['data'] as $param_keyword) {
-			$result_last_month = '';
-			$keyword = new Keyword();
-			$keyword->campaign_id = $campaign->campaign_id;
-			$keyword->keyword_name = $param_keyword['keyword'];
-			$keyword->avg_monthly_searches = $param_keyword['search_volume'];
-			$keyword->cpc = $param_keyword['cpc'];
-			$keyword->competition = isset($param_keyword['competition']) ? $param_keyword['competition'] : $null;
-			if(isset($param_keyword['targeted_monthly_searches'])) {
-				foreach($param_keyword['targeted_monthly_searches'] as $result_month) {
-					$result_last_month .= $result_month['year'].';'.$result_month['month'].';'.$result_month['count'].'||';
+		$data = $keywords_result['data'];
+		
+		foreach ($data as $block_result) {
+		
+			foreach($block_result as $param_keyword) {
+				$result_last_month = '';
+				$keyword = new Keyword();
+				$keyword->campaign_id = $campaign->campaign_id;
+				$keyword->keyword_name = $param_keyword['keyword'];
+				$keyword->avg_monthly_searches = isset($param_keyword['search_volume']) ? $param_keyword['search_volume'] : $null;
+				$keyword->c;
+				$keyword->cpc = isset($param_keyword['search_volume']) ? $param_keyword['cpc'] : $null;
+				$keyword->competition = isset($param_keyword['competition']) ? $param_keyword['competition'] : $null;
+				if(isset($param_keyword['targeted_monthly_searches'])) {
+					foreach($param_keyword['targeted_monthly_searches'] as $result_month) {
+						$result_last_month .= $result_month['year'].';'.$result_month['month'].';'.$result_month['count'].'||';
+					}
 				}
+				$keyword->target_monthly_search = $result_last_month;
+				$keyword->save();
 			}
-			$keyword->target_monthly_search = $result_last_month;
-			$keyword->save();
 		}
+
+		
 			
 		return $campaign;
 	}
@@ -81,7 +93,7 @@ class KeywordTrendsRepository
 	}
 
 	public function getLastDataCollection($id) {
-		return $this->modelCampaign->with('location','language','user')->where('admin_id',$id)->orderBy('campaign_id','desc')->limit(12)->get();
+		return $this->modelCampaign->with('area','language','user')->where('admin_id',$id)->orderBy('campaign_id','desc')->limit(12)->get();
 	}
 
 }
