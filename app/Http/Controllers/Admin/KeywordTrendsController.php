@@ -101,6 +101,7 @@ class KeywordTrendsController extends Controller
 	{
 		\Log::info("result of request");
 		\Log::debug($params);
+		\Log::info("all request");
 		\Log::debug($request->all());
 		$keywords = Input::get('keywords');
 		$params = Input::get('params');
