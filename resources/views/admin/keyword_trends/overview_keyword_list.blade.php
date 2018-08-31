@@ -144,5 +144,17 @@
 @stop
 
 @section('footer-scripts')
-
+    <script type="text/javascript">
+        function show_column(box){
+            var id_table = $(box).attr('table-id');
+            var table = $(id_table).DataTable();
+            col_num = parseInt($(box).attr('value'));
+            if($(box).prop('checked'))
+            {
+                table.column(col_num).visible(true);
+            }else{
+                table.column(col_num).visible(false);
+            }
+        }
+    </script>
 @stop
