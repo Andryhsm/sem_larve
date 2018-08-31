@@ -136,7 +136,7 @@ $(document).ready(function(){
             $('#showKeywordColumnModal .modal-body .col' + 1).prop('checked', true);
               
             for( var i = 1 ; i < nb ; i++ ) {
-                if(i<5) {
+                if(i<4) {
                   columns.push({searchable: false, sortable: true});
                   $('#showKeywordColumnModal .modal-body .col' + (i+1)).prop('checked', true);
                 }
