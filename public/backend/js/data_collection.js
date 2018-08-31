@@ -119,16 +119,15 @@ $(document).ready(function(){
                             if(typeof(target_monthly_search[i]) != "undefined") {
                                 var tab = target_monthly_search[i].split(';');
                                 if(tab[2] != '') 
-                                    html += '<td>zavatra</td>';
+                                    html += '<td>'+ tab[2] +'</td>';
                                 else  
-                                    html += '<td></td>';
+                                    html += '<td>0</td>';
                             } else {
-                                html += '<td></td>';
+                                html += '<td>0</td>';
                             }
                             jinc ++;
                         }
 
-                        console.log('inc' + inc + 'jinc'+jinc);
 
                         // $.each(target_monthly_search, function(i, val) {
                         //     if(val != '' || val != null) {
