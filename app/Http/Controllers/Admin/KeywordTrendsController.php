@@ -103,10 +103,11 @@ class KeywordTrendsController extends Controller
 		$keywords = $request->get('keywords');
 		$params = $request->get('params');
 		$searchVolumes = collect();	
-		$tab_keywords = array_chunk($keywords, 41);
+		$tab_keywords = array_chunk($keywords, 800);
 
 		foreach ($tab_keywords as $tab_keyword) {
 			$result = $this->launch_request_keyword($params, $tab_keyword);
+			\Log::debug($result);
 			$searchVolumes->concat($result);
 		}
 		\Log::debug($searchVolumes);
