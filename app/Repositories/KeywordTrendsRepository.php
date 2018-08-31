@@ -35,6 +35,7 @@ class KeywordTrendsRepository
 
 	public function storeDataCollection($input) 
 	{
+		Log::debug($input);
 		$block_results = $input['keywords_result'];
 		$params = $input['params'];
 		
