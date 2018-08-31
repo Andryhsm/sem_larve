@@ -296,6 +296,7 @@ function launch_request() {
             },
       dataType: 'json',
       success: function(data){
+        console.log(data);
         save_data_collection(data);
       },
       fail: function(xhr) {
@@ -335,6 +336,7 @@ function save_data_collection(response) {
       data: data,
   })
   .done(function(response) {
+    console.log(response);
     var campaign = response.campaign;
     var link = $('.link_result').attr('href');
     var full_link = link +'?campaign_id='+campaign.campaign_id;
@@ -345,12 +347,11 @@ function save_data_collection(response) {
 }
 
 function edit_keyword(box){
-  console.log('ici');
   $(box).closest('tr').find('.one_keyword').attr('contenteditable','true');
 }
 
 function get_locations() {
-  console.log("request"); 
+  //console.log("request"); 
   // $.ajax({
   //     url: 'get-locations',
   //     type: 'GET',
