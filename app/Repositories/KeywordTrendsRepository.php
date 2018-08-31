@@ -68,7 +68,16 @@ class KeywordTrendsRepository
 		return $campaign;
 	}
 
-	public function getDataCollectionNumberInMemory($admin_id) {
-		return $this->modelCampaign->where('admin_id', $admin_id)->count();
+	public function getDataCollectionNumberInMemory($id) {
+		return $this->modelCampaign->where('admin_id', $id)->count();
 	}
+
+	public function getKeywordNumberByCampaignId($id) {
+		return $this->modelKeyword->where('campaign_id',$id)->count();
+	}
+
+	public function getLastDataCollection($id) {
+		return $this->modelCampaign->with('location','language','user')->where('admin_id',$id)->orderBy('campaign_id','desc')->limit(12)->get();
+	}
+
 }

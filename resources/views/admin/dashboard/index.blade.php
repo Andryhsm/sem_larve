@@ -16,7 +16,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Data Collections</span>
-                            <span class="info-box-number">00</span>
+                            <span class="info-box-number">{{ $data_collection_number }}</span>
                         </div>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Processed Keywords</span>
-                            <span class="info-box-number">00</span>
+                            <span class="info-box-number">{{ $keyword_number }}</span>
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Monthly searches analysed</span>
-                            <span class="info-box-number">00</span>
+                            <span class="info-box-number">{{ $monthly_searches_analysed }}</span>
                         </div>
                     </div>
                 </div>
@@ -58,8 +58,8 @@
             <div class="">
                 <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Bloc 4</h3>
-
+                        <h3 class="box-title">Last data collection</h3>
+                        
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                             </button>
@@ -67,28 +67,46 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <!-- <div class="table-responsive">
-                            <table class="table no-margin">
-                                <thead>
+                        <table id="last_data_collection" class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Research name</th>
+                                <th>Région</th>
+                                <th>Language</th>
+                                <th>Username</th>
+                                <th>Date</th>
+                                <th class="no-sort">Action</th>   <!--style="width:10%;"-->
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @if(count($last_campaigns)>0)
+                                @foreach($last_campaigns as $campaign)
                                 <tr>
-                                    <th>Order ID</th>
-                                    <th>Customer</th>
-                                    <th>Status</th>
-                                    <th>Order Date</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <div class="sparkbar" data-color="#00a65a" data-height="20">date</div>
+                                    <td>{!! $campaign->campaign_name !!}</td>
+                                    <td>{!! ($campaign->location) ? $campaign->location->location_name:'' !!}</td>
+                                    <td>{!! ($campaign->language) ? $campaign->language->language_name:'' !!}</td>
+                                    <td>{!! ($campaign->user) ? ($campaign->user->last_name.' '.$campaign->user->first_name) : '' !!}</td>
+                                    <td>{!! $campaign->added_on !!}</td>
+                                    <td>  
+                                        <div class="btn-group">
+                                            <a class="btn btn-default btn-sm show_keyword_number" action="{{ route('show_campaign_keywords') }}" data-id="{!! $campaign->campaign_id !!}" title="View" style="margin-right:6px;"><i
+                                                        class="fa fa-fw fa-eye"></i></a> 
+                                                        
+                                            <a class="btn btn-default btn-sm delete-campaign" action="{{ route('delete_campaign') }}" data-id="{!! $campaign->campaign_id !!}" title="View">
+                                                <i class="fa fa-fw fa-trash"></i>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
-                                </tbody>
-                            </table>
-                        </div> -->
+                                @endforeach
+                                @else
+                                <tr>
+                                  <td colspan='2'>No record found</td>
+                                </tr>
+                                @endif
+
+                            </tbody>
+                        </table>
                     </div>
                     <div class="box-footer clearfix">
                         <a href="#" class="btn btn-sm btn-default btn-flat pull-right">View All</a>
