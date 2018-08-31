@@ -251,16 +251,10 @@ function launch_request() {
     area_id: $('select[name="area"]').val(),
     convert_null_to_zero: $('#convert_null_to_zero').is( ":checked" ) ? 1 : 0,
   };
-  console.log(params);
   var last_list_of_keyword = [];
   $('.one_keyword').each(function(index, el){
         last_list_of_keyword.push($(el).text());
   });
-  
-  var all_param = {
-    keywords: last_list_of_keyword,
-    params: params
-  }
   
   $.ajax({
     xhr: function() {
@@ -296,7 +290,10 @@ function launch_request() {
       },
       type: 'POST',
       url: "make-request-adwords",
-      data: all_param,
+      data: {
+              params: params,
+              keywords: last_list_of_keyword
+            },
       dataType: 'json',
       success: function(data){
         console.log(data);

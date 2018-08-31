@@ -99,11 +99,13 @@ class KeywordTrendsController extends Controller
 	
 	public function makeRequestAdwords(Request $request) 
 	{
+
+		$keywords = $request->get('keywords');
+		$params = $request->get('params');
 		\Log::info("result of request");
 		\Log::debug($params);
+		\Log::info("all request");
 		\Log::debug($request->all());
-		$keywords = Input::get('keywords');
-		$params = Input::get('params');
 		$searchVolumes = [];
 		if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==0) {
 			\Log::info('monthly_searches 0 convert_null_to_zero 0');
@@ -121,7 +123,7 @@ class KeywordTrendsController extends Controller
         return response()->json([
         	'status' => 'ok',
         	'data' => $searchVolumes,
-        	'param' => $params
+        	'params' => $params
         ]);
 	}
 	
