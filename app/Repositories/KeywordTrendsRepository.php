@@ -39,6 +39,9 @@ class KeywordTrendsRepository
 		$keywords_result = $input['keywords_result'];
 		$params = $input['params'];
 		
+		\Log::info("input");
+		\Log::debug($keywords_result);
+
 		$campaign = new Campaign();
 		$campaign->admin_id = $user_id = get_user_id();
 		$campaign->country_id = $params['country_id'];
@@ -53,7 +56,9 @@ class KeywordTrendsRepository
 		
 		$null = ($params['convert_null_to_zero'] == 1) ? 0 : 1; 
 		$data = $keywords_result['data'];
+		\Log::info('result data');
 		\Log::debug($data);
+		
 		foreach ($data as $block_result) {
 		
 			foreach($block_result as $param_keyword) {
