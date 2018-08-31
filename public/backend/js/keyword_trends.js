@@ -308,7 +308,7 @@ function paste_param() {
   $('.language_code').html($('select[name="language_code"] option:selected').text());
   $('.monthly_searches').html($('input[name="monthly_searches"]').is( ":checked" ) ? 'yes' : 'no');
   $('.convert_null_to_zero').html($('input[name="convert_null_to_zero"]').is( ":checked" ) ? 'yes' : 'no');
-  $('.location').html($('select[name="location"] option:selected').text());
+  $('.location').html($('select[name="area"] option:selected').text());
 }
  
 function save_data_collection(response) {

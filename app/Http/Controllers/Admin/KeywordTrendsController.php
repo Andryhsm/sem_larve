@@ -120,6 +120,7 @@ class KeywordTrendsController extends Controller
 	
 	public function save_data_collection(Request $request) 
 	{
+		$campaign = [];
 		$keyword_result = $request->get('keywords_result');
 		try{
 			$campaign = $this->keyword_trend_repository->storeDataCollection($request->all());

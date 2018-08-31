@@ -37,7 +37,7 @@ class KeywordTrendsRepository
 	{
 		$keyword_results = $input['keywords_result'];
 		$params = $input['params'];
-		
+		\Log::debug($input);
 		$campaign = new Campaign();
 		$campaign->admin_id = $user_id = get_user_id();
 		$campaign->country_id = $params['country_id'];
