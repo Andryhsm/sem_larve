@@ -69,17 +69,24 @@ $(document).ready(function(){
             
             if(datas.datas.length > 0) {
                 // Affiche les entêtes des dates en fonction de la colonne target_monthly_search
-                if(datas.datas[0].target_monthly_search != null) {
+                var v0 = -1;
+                var nb0 = 0;
+                $.each(datas.datas, function(k, v) {
+                    if(v.target_monthly_search != null) v0 = k;
+                });
+                if(v0 != -1) {
                     var html1 = '';
                     var html2 = '';
                     var j = 12;
-                    $.each(datas.datas[0].target_monthly_search.split('||'), function(key, item) {
+                    $.each(datas.datas[v0].target_monthly_search.split('||'), function(key, item) {
                         if(item != '') {
                             var dates = item.split(';')
                             html1 += '<th>Searches: ' + months[dates[1] - 1] +  ' ' + dates[0] + '</th>';
                             html2 += '<div class="checkbox"><label><input class="col'+j+'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+(j-1)+'">Searches: '+months[dates[1] - 1] +  ' ' + dates[0]+'</input></label></div>';
                             j++;
+                            nb0++;
                         }
+
                     });
                     console.log(html1)
                     $('.keyword_number_tr').append(html1);
@@ -99,15 +106,19 @@ $(document).ready(function(){
                         var target_monthly_search = value.target_monthly_search.split('||');
                         $.each(target_monthly_search, function(i, val) {
                             if(val != '') {
-                                      var tab = val.split(';')
-                                      if(tab[2] != '') 
-                                        html += '<td>' + tab[2]+ '</td>';
-                                      else  
-                                        html += '<td></td>';
+                                var tab = val.split(';')
+                                if(tab[2] != '') 
+                                    html += '<td>' + tab[2]+ '</td>';
+                                else  
+                                    html += '<td></td>';
                             }
+                            
                         });
                               
                     }
+                    else 
+                        if(v0 != -1 && nb0 >0) 
+                            for(var i=0 ; i< nb0 ; i++) html += '<td></td>';
                             
                     html += '</tr>';
                       
