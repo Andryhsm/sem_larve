@@ -150,10 +150,9 @@ $(document).ready(function(){
           }
       } else {
         if(states.length > 0) { 
-            $('.select-province').removeAttr('name');
             var content = '<label class="col-sm-4 control-label">Area</label>'+
                                               '<div class="col-sm-8">' +
-                                                  '<select name="location" class="form-control required select-state">';
+                                                  '<select name="area" class="form-control required select-state">';
                 content +=                        '<option disabled="">Select a value</option>';
                 
                 for (var i = 0; i < states.length; i++) {
@@ -244,7 +243,7 @@ function launch_request() {
   var params = {
     language_id: $('select[name="language_code"]').val(),
     monthly_searches: $('input[name="monthly_searches"]').is( ":checked" ) ? 1 : 0,
-    location_id: $('select[name="location"]').val(),
+    area_id: $('select[name="area"]').val(),
     convert_null_to_zero: $('input[name="convert_null_to_zero"]').is( ":checked" ) ? 1 : 0,
   };
   
@@ -309,14 +308,16 @@ function paste_param() {
   $('.language_code').html($('select[name="language_code"] option:selected').text());
   $('.monthly_searches').html($('input[name="monthly_searches"]').is( ":checked" ) ? 'yes' : 'no');
   $('.convert_null_to_zero').html($('input[name="convert_null_to_zero"]').is( ":checked" ) ? 'yes' : 'no');
-  $('.location').html($('select[name="location"] option:selected').text());
+  $('.location').html($('select[name="area"] option:selected').text());
 }
-
+ 
 function save_data_collection(response) {
   var params = {
     language_id: $('select[name="language_code"]').val(),
     monthly_searches: $('input[name="monthly_searches"]').is( ":checked" ) ? 1 : 0,
-    location_id: $('select[name="location"]').val(),
+    country_id: $('select[name="country"]').val(),
+    province_id: $('select[name="province"]').val(),
+    area_id: $('select[name="area"]').val(),
     convert_null_to_zero: $('input[name="convert_null_to_zero"]').is( ":checked" ) ? 1 : 0,
     campaign_name: $('input[name="campaign_name"]').val(),
   };

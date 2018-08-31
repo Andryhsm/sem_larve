@@ -37,10 +37,12 @@ class KeywordTrendsRepository
 	{
 		$keyword_results = $input['keywords_result'];
 		$params = $input['params'];
-		
+		\Log::debug($input);
 		$campaign = new Campaign();
-		$campaign->admin_id = $user_id = get_user_id();;
-		$campaign->location_id = $params['location_id'];
+		$campaign->admin_id = $user_id = get_user_id();
+		$campaign->country_id = $params['country_id'];
+		$campaign->province_id = $params['province_id'];
+		$campaign->area_id = $params['area_id'];
 		$campaign->language_id = $params['language_id'];
 		$campaign->campaign_name = $params['campaign_name'];
 		$campaign->monthly_searches = $params['monthly_searches'];
@@ -48,14 +50,16 @@ class KeywordTrendsRepository
 		$campaign->added_on = Carbon::now();
 		$campaign->save();
 		
+		$null = ($params['convert_null_to_zero'] == 1) ? 0 : 1; 
+
 		foreach($keyword_results['data'] as $param_keyword) {
 			$result_last_month = '';
 			$keyword = new Keyword();
 			$keyword->campaign_id = $campaign->campaign_id;
 			$keyword->keyword_name = $param_keyword['keyword'];
-			$keyword->search_volume = $param_keyword['search_volume'];
+			$keyword->avg_monthly_searches = $param_keyword['search_volume'];
 			$keyword->cpc = $param_keyword['cpc'];
-			$keyword->competition = $param_keyword['competition'];
+			$keyword->competition = isset($param_keyword['competition']) ? $param_keyword['competition'] : $null;
 			if(isset($param_keyword['targeted_monthly_searches'])) {
 				foreach($param_keyword['targeted_monthly_searches'] as $result_month) {
 					$result_last_month .= $result_month['year'].';'.$result_month['month'].';'.$result_month['count'].'||';

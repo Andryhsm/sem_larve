@@ -8,7 +8,7 @@ class Campaign extends Model
 {
     protected $table = 'campaign';
     protected $primaryKey = 'campaign_id';
-    protected $fillable = ['admin_id', 'location_id', 'campaign_name', 'monthly_searches', 'convert_null_to_zero','language_id'];
+    protected $fillable = ['admin_id', 'country_id', 'province_id', 'area_id', 'campaign_name', 'monthly_searches', 'convert_null_to_zero','language_id'];
 	
 	public $timestamps = false;
 	
