@@ -95,7 +95,7 @@ $(document).ready(function(){
                 }
                 $.each(datas.datas, function( index, value ) {
                     var html = '<tr>';
-                    html += '<td>'+ value.keyword_name +'</td><td>'+ value.currency +'</td>';
+                    html += '<td>'+ value.keyword_name +'</td><td>'+ value.cpc +'</td>';
                     html += '<td>' + value.avg_monthly_searches + '</td><td>' + value.competition  + '</td>';
                     html += '<td>' + value.low_range_top_of_page_bid + '</td><td>' + value.high_range_top_of_page_bid  + '</td>';
                     html += '<td>' + value.ad_impression_share + '</td><td>' + value.organic_impression_share  + '</td>';
@@ -133,12 +133,11 @@ $(document).ready(function(){
             /****  Option de dataTable qui affiche seulement les 5 premiers colonnes  ****/
             var columns = [{searchable: true, sortable: true}];
             var nb = $('#keyword_number thead tr').children().length;
-            $('#showKeywordColumnModal .modal-body .col' + 1).prop('checked', true);
               
             for( var i = 1 ; i < nb ; i++ ) {
-                if(i<5) {
+                if(i<4) {
                   columns.push({searchable: false, sortable: true});
-                  $('#showKeywordColumnModal .modal-body .col' + (i+1)).prop('checked', true);
+                  $('#showKeywordColumnModal .modal-body .col' + i).prop('checked', true);
                 }
                 else columns.push({searchable: false, sortable: true, visible: false});
             }
