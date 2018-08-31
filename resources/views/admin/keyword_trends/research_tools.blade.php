@@ -132,52 +132,52 @@
                                      <label class="col-sm-4 control-label">Language</label>
                                       <div class="col-sm-8">
                                             <select name="language_code" class="form-control required">
-                                               <option value="1019" selected="">Arabic</option>
-                                               <option value="1056" selected="">Bengali</option>
-                                               <option value="1020" selected="">Bulgarian</option>
-                                               <option value="1038" selected="">Catalan</option>
-                                               <option value="1017" selected="">Chinese (simplified)</option>
-                                               <option value="1018" selected="">Chinese (traditional)</option>
-                                               <option value="1039" selected="">Croatian</option>
-                                               <option value="1021" selected="">Czech</option>
-                                               <option value="1009" selected="">Danish</option>
-                                               <option value="1010" selected="">Dutch</option>
-                                               <option value="1000" selected="">English</option>
-                                               <option value="1043" selected="">Estonian</option>
-                                               <option value="1042" selected="">Filipino</option>
-                                               <option value="1011" selected="">Finnish</option>
+                                               <option value="1019" >Arabic</option>
+                                               <option value="1056" >Bengali</option>
+                                               <option value="1020" >Bulgarian</option>
+                                               <option value="1038" >Catalan</option>
+                                               <option value="1017" >Chinese (simplified)</option>
+                                               <option value="1018" >Chinese (traditional)</option>
+                                               <option value="1039" >Croatian</option>
+                                               <option value="1021" >Czech</option>
+                                               <option value="1009" >Danish</option>
+                                               <option value="1010" >Dutch</option>
+                                               <option value="1000" >English</option>
+                                               <option value="1043" >Estonian</option>
+                                               <option value="1042" >Filipino</option>
+                                               <option value="1011" >Finnish</option>
                                                <option value="1002" selected="">French</option>
-                                               <option value="1001" selected="">German</option>
-                                               <option value="1022" selected="">Greek</option>
-                                               <option value="1027" selected="">Hebrew</option>
-                                               <option value="1023" selected="">Hindi</option>
-                                               <option value="1024" selected="">Hungarian</option>
-                                               <option value="1026" selected="">Icelandic</option>
-                                               <option value="1025" selected="">Indonesian</option>
-                                               <option value="1004" selected="">Italian</option>
-                                               <option value="1005" selected="">Japanese</option>
-                                               <option value="1012" selected="">Korean</option>
-                                               <option value="1028" selected="">Latvian</option>
-                                               <option value="1029" selected="">Lithuanian</option>
-                                               <option value="1102" selected="">Malay</option>
-                                               <option value="1013" selected="">Norwegian</option>
-                                               <option value="1064" selected="">Persian</option>
-                                               <option value="1030" selected="">Polish</option>
-                                               <option value="1014" selected="">Portuguese</option>
-                                               <option value="1032" selected="">Romanian</option>
-                                               <option value="1031" selected="">Russian</option>
-                                               <option value="1035" selected="">Serbian</option>
-                                               <option value="1033" selected="">Slovak</option>
-                                               <option value="1034" selected="">Slovenian</option>
-                                               <option value="1003" selected="">Spanish</option>
-                                               <option value="1015" selected="">Swedish</option>
-                                               <option value="1130" selected="">Tamil</option>
-                                               <option value="1131" selected="">Telugu</option>
-                                               <option value="1044" selected="">Thai</option>
-                                               <option value="1037" selected="">Turkish</option>
-                                               <option value="1036" selected="">Ukrainian</option>
-                                               <option value="1041" selected="">Urdu</option>
-                                               <option value="1040" selected="">Vietnamese</option>
+                                               <option value="1001" >German</option>
+                                               <option value="1022" >Greek</option>
+                                               <option value="1027" >Hebrew</option>
+                                               <option value="1023" >Hindi</option>
+                                               <option value="1024" >Hungarian</option>
+                                               <option value="1026" >Icelandic</option>
+                                               <option value="1025" >Indonesian</option>
+                                               <option value="1004" >Italian</option>
+                                               <option value="1005" >Japanese</option>
+                                               <option value="1012" >Korean</option>
+                                               <option value="1028" >Latvian</option>
+                                               <option value="1029" >Lithuanian</option>
+                                               <option value="1102" >Malay</option>
+                                               <option value="1013" >Norwegian</option>
+                                               <option value="1064" >Persian</option>
+                                               <option value="1030" >Polish</option>
+                                               <option value="1014" >Portuguese</option>
+                                               <option value="1032" >Romanian</option>
+                                               <option value="1031" >Russian</option>
+                                               <option value="1035" >Serbian</option>
+                                               <option value="1033" >Slovak</option>
+                                               <option value="1034" >Slovenian</option>
+                                               <option value="1003" >Spanish</option>
+                                               <option value="1015" >Swedish</option>
+                                               <option value="1130" >Tamil</option>
+                                               <option value="1131" >Telugu</option>
+                                               <option value="1044" >Thai</option>
+                                               <option value="1037" >Turkish</option>
+                                               <option value="1036" >Ukrainian</option>
+                                               <option value="1041" >Urdu</option>
+                                               <option value="1040" >Vietnamese</option>
                                           </select>
                                       </div>
                                   </div>
