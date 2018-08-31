@@ -41,7 +41,7 @@ class KeywordTrendsController extends Controller
     {
     	$user_id = get_user_id();
 		$campaigns = $this->keyword_trend_repository->getAllByUser($user_id);
-		dd($campaigns);
+		//dd($campaigns);
     	return view('admin.keyword_trends.data_collections',compact('campaigns'));
     }
     
@@ -164,14 +164,14 @@ class KeywordTrendsController extends Controller
 		$campaign = $this->keyword_trend_repository->getCampaignById($campaign_id);
 		$area = $campaign->area->location_name;
 		$state = $campaign->area->parent->location_name;
+		$country = $campaign->area->parent->parent->location_name;
 		$language = $campaign->language->language_name;
-		return response()->json(['datas' => $datas, 'state' => $state, 'area' => $area, 'language' => $language]);
+		return response()->json(['datas' => $datas,'area' => $area ,'campaign'=>$campaign ,'state' => $state, 'country' => $country, 'language' => $language]);
 	}
 	
 	public function OverviewListKeyword(Request $request) {
 		$campaign_id = Input::get('campaign_id');
-		$datas = $this->keyword_trend_repository->getKeywordByCampaignId($campaign_id);
-		return view('admin.keyword_trends.overview_keyword_list', compact('datas'));
+		return view('admin.keyword_trends.overview_keyword_list', compact('campaign_id')); 
 	}
 	
 	public function deleteCampaign(Request $request)

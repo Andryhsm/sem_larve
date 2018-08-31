@@ -296,9 +296,13 @@ function launch_request() {
               keywords: JSON.stringify(keyword_list.uniq())
             },
       dataType: 'json',
+      beforeSend: function() {
+          $.LoadingOverlay("show", { 'size': "10%", 'zIndex': 9999 });
+      },
       success: function(data){
         console.log(data);
         save_data_collection(data);
+         $.LoadingOverlay("hide");
       },
       fail: function(xhr) {
           console.log(xhr.responseText);

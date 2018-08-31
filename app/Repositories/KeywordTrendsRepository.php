@@ -34,7 +34,7 @@ class KeywordTrendsRepository
 	}
 	public function getCampaignById($id)
 	{
-		return $this->modelCampaign->with('area', 'area.parent','language')->where('campaign_id',$id)->first();
+		return $this->modelCampaign->with('area', 'area.parent', 'area.parent.parent','language')->where('campaign_id',$id)->first();
 	}
 
 	public function storeDataCollection($input) 
@@ -83,4 +83,17 @@ class KeywordTrendsRepository
 			
 		return $campaign;
 	}
+
+	public function getDataCollectionNumberInMemory($id) {
+		return $this->modelCampaign->where('admin_id', $id)->count();
+	}
+
+	public function getKeywordNumberByCampaignId($id) {
+		return $this->modelKeyword->where('campaign_id',$id)->count();
+	}
+
+	public function getLastDataCollection($id) {
+		return $this->modelCampaign->with('area','language','user')->where('admin_id',$id)->orderBy('campaign_id','desc')->limit(12)->get();
+	}
+
 }
