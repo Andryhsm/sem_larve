@@ -57,8 +57,14 @@ $(document).ready(function(){
         .done(function(datas) {
             console.log(datas);
 
-            /*$(".research_name span").html(datas.campaign.campaign_name);
-            $(".country_name span").html(datas.location);*/
+            $(".research_name span").html(datas.campaign.campaign_name);
+            $(".country_name span").html(datas.country);
+            $(".state_name span").html(datas.state);
+            $(".area_name span").html(datas.area);
+            $(".language span").html(datas.language);
+            $(".mounthly_research span").html((datas.campaign.monthly_searches != null || datas.campaign.monthly_searches != 0)? " oui" : " non");
+            $(".search_partner span").html(" non");
+            $(".null_to_zero span").html((datas.campaign.convert_null_to_zero != null || datas.campaign.convert_null_to_zero != 0)? " oui" : " non");
             var months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
             
             if(datas.datas.length > 0) {

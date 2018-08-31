@@ -12,7 +12,7 @@ class Location extends Model
     public $timestamps = false;
 
     public function parent(){
-		return $this->hasOne(Location::class, 'parent_id', 'criteria_id');
+		return $this->hasOne(Location::class, 'criteria_id', 'parent_id');
 	}
 
 }
