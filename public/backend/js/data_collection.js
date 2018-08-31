@@ -133,11 +133,12 @@ $(document).ready(function(){
             /****  Option de dataTable qui affiche seulement les 5 premiers colonnes  ****/
             var columns = [{searchable: true, sortable: true}];
             var nb = $('#keyword_number thead tr').children().length;
+            $('#showKeywordColumnModal .modal-body .col' + 1).prop('checked', true);
               
             for( var i = 1 ; i < nb ; i++ ) {
                 if(i<4) {
                   columns.push({searchable: false, sortable: true});
-                  $('#showKeywordColumnModal .modal-body .col' + i).prop('checked', true);
+                  $('#showKeywordColumnModal .modal-body .col' + (i+1)).prop('checked', true);
                 }
                 else columns.push({searchable: false, sortable: true, visible: false});
             }
