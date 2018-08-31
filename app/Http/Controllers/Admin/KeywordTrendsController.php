@@ -101,7 +101,7 @@ class KeywordTrendsController extends Controller
 	public function makeRequestAdwords(Request $request) 
 	{
 
-		$keywords = $request->get('keywords');
+		$keywords = json_decode($request->get('keywords'));
 		$params = $request->get('params');
 		$searchVolumes = collect();	
 		$tab_keywords = array_chunk($keywords, 800);
