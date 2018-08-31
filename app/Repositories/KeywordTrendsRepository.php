@@ -50,6 +50,8 @@ class KeywordTrendsRepository
 		$campaign->added_on = Carbon::now();
 		$campaign->save();
 		
+		$null = ($params['convert_null_to_zero'] == 1) ? 0 : 1; 
+
 		foreach($keyword_results['data'] as $param_keyword) {
 			$result_last_month = '';
 			$keyword = new Keyword();
@@ -57,7 +59,7 @@ class KeywordTrendsRepository
 			$keyword->keyword_name = $param_keyword['keyword'];
 			$keyword->avg_monthly_searches = $param_keyword['search_volume'];
 			$keyword->cpc = $param_keyword['cpc'];
-			$keyword->competition = $param_keyword['competition'];
+			$keyword->competition = isset($param_keyword['competition']) ? $param_keyword['competition'] : $null;
 			if(isset($param_keyword['targeted_monthly_searches'])) {
 				foreach($param_keyword['targeted_monthly_searches'] as $result_month) {
 					$result_last_month .= $result_month['year'].';'.$result_month['month'].';'.$result_month['count'].'||';
