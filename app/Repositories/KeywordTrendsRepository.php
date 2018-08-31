@@ -67,4 +67,8 @@ class KeywordTrendsRepository
 			
 		return $campaign;
 	}
+
+	public function getDataCollectionNumberInMemory($admin_id) {
+		return $this->modelCampaign->where('admin_id', $admin_id)->count();
+	}
 }
