@@ -35,7 +35,7 @@ class KeywordTrendsRepository
 
 	public function storeDataCollection($input) 
 	{
-		$block_results = $input['keyword_results'];
+		$block_results = $input['keywords_result'];
 		$params = $input['params'];
 		
 		$campaign = new Campaign();
@@ -54,7 +54,7 @@ class KeywordTrendsRepository
 
 		foreach ($block_results as $block_result) {
 			
-			$keyword_results = $input['keywords_result'];
+			$keyword_results = $block_result;
 			
 			foreach($keyword_results['data'] as $param_keyword) {
 				$result_last_month = '';
