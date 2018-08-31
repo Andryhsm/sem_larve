@@ -252,7 +252,7 @@ function launch_request() {
         last_list_of_keyword.push($(el).text());
   });
   
-  var data = {
+  var all_param = {
     keywords: last_list_of_keyword,
     params: params
   }
@@ -291,7 +291,7 @@ function launch_request() {
       },
       type: 'POST',
       url: "make-request-adwords",
-      data: data,
+      data: all_param,
       dataType: 'json',
       success: function(data){
         console.log(data);

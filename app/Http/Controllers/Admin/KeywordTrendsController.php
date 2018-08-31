@@ -102,6 +102,7 @@ class KeywordTrendsController extends Controller
 		$keywords = Input::get('keywords');
 		$params = Input::get('params');
 		\Log::debug($params);
+		\Log::debug($request->all());
 		$searchVolumes = [];
 		if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==0) {
 			\Log::info('monthly_searches 0 convert_null_to_zero 0');
