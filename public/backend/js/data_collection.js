@@ -53,6 +53,9 @@ $(document).ready(function(){
             url: $('#keyword_number').attr('data-route'),
             type: 'GET',
             data: {campaign_id: campaign_id},
+            beforeSend: function() {
+                        $.LoadingOverlay("show", { 'size': "10%", 'zIndex': 9999 });
+                    },
         })
         .done(function(datas) {
             console.log(datas);
@@ -193,6 +196,7 @@ $(document).ready(function(){
                 '</div>'+
               '</div>');
 
+            $.LoadingOverlay("hide");
         })
         .fail(function(xhr) {
             //console.log(xhr.responseText);
