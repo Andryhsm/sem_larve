@@ -92,6 +92,10 @@ class KeywordTrendsRepository
 		return $this->modelKeyword->where('campaign_id',$id)->count();
 	}
 
+	public function getKeywordNumberTracked($id) {
+		return $this->modelKeyword->where('campaign_id',$id)->count();
+	}
+
 	public function getLastDataCollection($id) {
 		return $this->modelCampaign->with('area','language','user')->where('admin_id',$id)->orderBy('campaign_id','desc')->limit(12)->get();
 	}

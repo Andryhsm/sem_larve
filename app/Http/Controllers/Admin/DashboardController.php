@@ -23,8 +23,10 @@ class DashboardController extends Controller
     	$data_collection_number = $this->keyword_trend_repository->getDataCollectionNumberInMemory($admin_id);
     	$campaigns = $this->keyword_trend_repository->getAllByUser($admin_id);
     	$keyword_number = 0;
+        $keyword_tracked = 0;
     	foreach ($campaigns as $key => $campaign) {
     		$keyword_number += $this->keyword_trend_repository->getKeywordNumberByCampaignId($campaign->campaign_id);
+            //$keyword_tracked += $this->keyword_trend_repository->getKeywordNumberTracked($campaign->campaign_id);
     	}
     	$monthly_searches_analysed = $keyword_number * 24;
     	$last_campaigns = $this->keyword_trend_repository->getLastDataCollection($admin_id);
