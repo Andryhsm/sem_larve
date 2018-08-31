@@ -242,11 +242,11 @@ function post_duplicate(keyword_duplicate_list) {
 function launch_request() { 
   var params = {
     language_id: $('select[name="language_code"]').val(),
-    monthly_searches: $('input[name="monthly_searches"]').is( ":checked" ) ? 1 : 0,
+    monthly_searches: $('#monthly_searches').is( ":checked" ) ? 1 : 0,
     area_id: $('select[name="area"]').val(),
-    convert_null_to_zero: $('input[name="convert_null_to_zero"]').is( ":checked" ) ? 1 : 0,
+    convert_null_to_zero: $('#convert_null_to_zero').is( ":checked" ) ? 1 : 0,
   };
-  
+  console.log(params);
   var last_list_of_keyword = [];
   $('.one_keyword').each(function(index, el){
         last_list_of_keyword.push($(el).text());
