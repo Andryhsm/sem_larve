@@ -296,7 +296,6 @@ function launch_request() {
             },
       dataType: 'json',
       success: function(data){
-        console.log(data);
         save_data_collection(data);
       },
       fail: function(xhr) {

@@ -107,10 +107,8 @@ class KeywordTrendsController extends Controller
 
 		foreach ($tab_keywords as $tab_keyword) {
 			$result = $this->launch_request_keyword($params, $tab_keyword);
-			\Log::debug($result);
-			$searchVolumes->concat($result);
+			$searchVolumes[] = $result;
 		}
-		\Log::debug($searchVolumes);
 		
 		//$searchVolumes = $this->launch_request_keyword($params, $keywords);
 
@@ -123,7 +121,7 @@ class KeywordTrendsController extends Controller
 		// } else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==1) {
 		// 	$searchVolumes = \AdWords::withTargetedMonthlySearches()->convertNullToZero()->location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords);
 		// }
-
+		
         return response()->json([
         	'status' => 'ok',
         	'data' => $searchVolumes,
