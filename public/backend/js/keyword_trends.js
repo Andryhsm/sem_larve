@@ -24,7 +24,8 @@ $(document).ready(function(){
               if(response.status == 'ok' || response.status == 'not_finish' ) {
                  insert_data(response.data);
                  if(keyword_list.length > 0) {
-                    var uniq_keyword_length = keyword_list.length - Object.keys(keyword_duplicate_list).length;
+                   // var uniq_keyword_length = keyword_list.length - Object.keys(keyword_duplicate_list).length;
+                   var uniq_keyword_length = keyword_list.uniq().length;
                     $('.keyword_list .number').html(uniq_keyword_length + ' Keywords imported');
                     $('#show_keyword_list').removeAttr('disabled');
                  }
@@ -255,10 +256,9 @@ function launch_request() {
   $('.one_keyword').each(function(index, el){
         last_list_of_keyword.push($(el).text());
   });
-  
   $.ajax({
     xhr: function() {
-        var total = keyword_list.length;
+        var total = keyword_list.uniq().length;
         for(var i=0; i<total; i++) {
           var xhr = new window.XMLHttpRequest();
   
@@ -266,6 +266,7 @@ function launch_request() {
           xhr.upload.addEventListener("progress", function(evt){
               if (evt.lengthComputable) {
                   var percentComplete = (evt.loaded / evt.total) * 100;
+                  console.log(percentComplete);
                   var loaded = (total * percentComplete) / 100;
                   $('.tab_form:last').removeClass('hidden');
                   $('.tab_form:last').slideDown('slow');
@@ -292,7 +293,7 @@ function launch_request() {
       url: "make-request-adwords",
       data: {
               params: params,
-              keywords: last_list_of_keyword
+              keywords: JSON.stringify(keyword_list.uniq())
             },
       dataType: 'json',
       beforeSend: function() {
