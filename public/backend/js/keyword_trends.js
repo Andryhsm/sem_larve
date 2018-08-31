@@ -12,10 +12,14 @@ $(document).ready(function(){
   $("form#import-data").submit(function(e) {
       e.preventDefault();    
       var formData = new FormData(this);
+      console.log("eto ilay izy");
       $.ajax({
           url: $(this).attr('action'),
           type: 'POST',
           data: formData,
+           beforeSend: function() {
+                        $.LoadingOverlay("show", { 'size': "10%", 'zIndex': 9999 });
+                    },
           success: function (response) {
               if(response.status == 'ok' || response.status == 'not_finish' ) {
                  insert_data(response.data);
@@ -38,6 +42,7 @@ $(document).ready(function(){
                         '<span aria-hidden="true">&times;</span>'+
                       '</button>'+
                     '</div>');
+              $.LoadingOverlay("hide");
           },
           cache: false,
           contentType: false,
@@ -242,20 +247,14 @@ function post_duplicate(keyword_duplicate_list) {
 function launch_request() { 
   var params = {
     language_id: $('select[name="language_code"]').val(),
-    monthly_searches: $('input[name="monthly_searches"]').is( ":checked" ) ? 1 : 0,
+    monthly_searches: $('#monthly_searches').is( ":checked" ) ? 1 : 0,
     area_id: $('select[name="area"]').val(),
-    convert_null_to_zero: $('input[name="convert_null_to_zero"]').is( ":checked" ) ? 1 : 0,
+    convert_null_to_zero: $('#convert_null_to_zero').is( ":checked" ) ? 1 : 0,
   };
-  
   var last_list_of_keyword = [];
   $('.one_keyword').each(function(index, el){
         last_list_of_keyword.push($(el).text());
   });
-  
-  var data = {
-    keywords: last_list_of_keyword,
-    params: params
-  }
   
   $.ajax({
     xhr: function() {
@@ -291,7 +290,10 @@ function launch_request() {
       },
       type: 'POST',
       url: "make-request-adwords",
-      data: data,
+      data: {
+              params: params,
+              keywords: last_list_of_keyword
+            },
       dataType: 'json',
       success: function(data){
         console.log(data);
@@ -308,7 +310,7 @@ function paste_param() {
   $('.language_code').html($('select[name="language_code"] option:selected').text());
   $('.monthly_searches').html($('input[name="monthly_searches"]').is( ":checked" ) ? 'yes' : 'no');
   $('.convert_null_to_zero').html($('input[name="convert_null_to_zero"]').is( ":checked" ) ? 'yes' : 'no');
-  $('.location').html($('select[name="location"] option:selected').text());
+  $('.location').html($('select[name="area"] option:selected').text());
 }
  
 function save_data_collection(response) {
@@ -334,6 +336,7 @@ function save_data_collection(response) {
       data: data,
   })
   .done(function(response) {
+    console.log(response);
     var campaign = response.campaign;
     var link = $('.link_result').attr('href');
     var full_link = link +'?campaign_id='+campaign.campaign_id;
@@ -344,12 +347,11 @@ function save_data_collection(response) {
 }
 
 function edit_keyword(box){
-  console.log('ici');
   $(box).closest('tr').find('.one_keyword').attr('contenteditable','true');
 }
 
 function get_locations() {
-  console.log("request"); 
+  //console.log("request"); 
   // $.ajax({
   //     url: 'get-locations',
   //     type: 'GET',

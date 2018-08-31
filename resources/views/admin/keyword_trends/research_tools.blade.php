@@ -233,5 +233,6 @@
     </section> 
 @endsection
 @section('additional-scripts')
+   {!! Html::script('backend/js/loadingoverlay.min.js') !!}
    {!! Html::script('backend/js/keyword_trends.js') !!}
 @stop 

@@ -39,7 +39,8 @@ class KeywordTrendsRepository
 
 	public function storeDataCollection($input) 
 	{
-		$keyword_results = $input['keywords_result'];
+		
+		$keywords_result = $input['keywords_result'];
 		$params = $input['params'];
 		
 		$campaign = new Campaign();
@@ -54,22 +55,31 @@ class KeywordTrendsRepository
 		$campaign->added_on = Carbon::now();
 		$campaign->save();
 		
-		foreach($keyword_results['data'] as $param_keyword) {
-			$result_last_month = '';
-			$keyword = new Keyword();
-			$keyword->campaign_id = $campaign->campaign_id;
-			$keyword->keyword_name = $param_keyword['keyword'];
-			$keyword->avg_monthly_searches = $param_keyword['search_volume'];
-			$keyword->cpc = $param_keyword['cpc'];
-			$keyword->competition = $param_keyword['competition'];
-			if(isset($param_keyword['targeted_monthly_searches'])) {
-				foreach($param_keyword['targeted_monthly_searches'] as $result_month) {
-					$result_last_month .= $result_month['year'].';'.$result_month['month'].';'.$result_month['count'].'||';
+		$null = ($params['convert_null_to_zero'] == 1) ? 0 : 1; 
+		$data = $keywords_result['data'];
+		
+		foreach ($data as $block_result) {
+		
+			foreach($block_result as $param_keyword) {
+				$result_last_month = '';
+				$keyword = new Keyword();
+				$keyword->campaign_id = $campaign->campaign_id;
+				$keyword->keyword_name = $param_keyword['keyword'];
+				$keyword->avg_monthly_searches = isset($param_keyword['search_volume']) ? $param_keyword['search_volume'] : $null;
+				$keyword->c;
+				$keyword->cpc = isset($param_keyword['search_volume']) ? $param_keyword['cpc'] : $null;
+				$keyword->competition = isset($param_keyword['competition']) ? $param_keyword['competition'] : $null;
+				if(isset($param_keyword['targeted_monthly_searches'])) {
+					foreach($param_keyword['targeted_monthly_searches'] as $result_month) {
+						$result_last_month .= $result_month['year'].';'.$result_month['month'].';'.$result_month['count'].'||';
+					}
 				}
+				$keyword->target_monthly_search = $result_last_month;
+				$keyword->save();
 			}
-			$keyword->target_monthly_search = $result_last_month;
-			$keyword->save();
 		}
+
+		
 			
 		return $campaign;
 	}
