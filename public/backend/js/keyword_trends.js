@@ -286,8 +286,8 @@ function launch_request() {
       type: 'POST',
       url: "make-request-adwords",
       data: {
-              keywords: last_list_of_keyword,
-              params: params
+              params: params,
+              keywords: last_list_of_keyword
             },
       dataType: 'json',
       success: function(data){

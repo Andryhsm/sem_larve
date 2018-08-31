@@ -99,9 +99,9 @@ class KeywordTrendsController extends Controller
 	
 	public function makeRequestAdwords(Request $request) 
 	{
-		
-		$keywords = Input::get('keywords');
-		$params = Input::get('params');
+
+		$keywords = $request->get('keywords');
+		$params = $request->get('params');
 		\Log::info("result of request");
 		\Log::debug($params);
 		\Log::info("all request");
@@ -123,7 +123,7 @@ class KeywordTrendsController extends Controller
         return response()->json([
         	'status' => 'ok',
         	'data' => $searchVolumes,
-        	'param' => $params
+        	'params' => $params
         ]);
 	}
 	
