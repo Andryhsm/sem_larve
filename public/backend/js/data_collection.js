@@ -72,22 +72,22 @@ $(document).ready(function(){
             
             if(datas.datas.length > 0) {
                 // Affiche les entêtes des dates en fonction de la colonne target_monthly_search
-                var v0 = -1;
-                var nb0 = 0;
-                $.each(datas.datas, function(k, v) {
-                    if(v.target_monthly_search != null) v0 = k;
-                });
-                if(v0 != -1) {
+                // var v0 = -1;
+                // var nb0 = 0;
+                // $.each(datas.datas, function(k, v) {
+                //     if(v.target_monthly_search != null) v0 = k;
+                // });
+                if(datas.datas[0].target_monthly_search != '') {
                     var html1 = '';
                     var html2 = '';
                     var j = 12;
-                    $.each(datas.datas[v0].target_monthly_search.split('||'), function(key, item) {
+                    $.each(datas.datas[0].target_monthly_search.split('||'), function(key, item) {
                         if(item != '') {
                             var dates = item.split(';')
                             html1 += '<th>Searches: ' + months[dates[1] - 1] +  ' ' + dates[0] + '</th>';
                             html2 += '<div class="checkbox"><label><input class="col'+j+'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+(j-1)+'">Searches: '+months[dates[1] - 1] +  ' ' + dates[0]+'</input></label></div>';
                             j++;
-                            nb0++;
+                            //nb0++;
                         }
 
                     });
@@ -119,9 +119,9 @@ $(document).ready(function(){
                         });
                               
                     }
-                    else 
-                        if(v0 != -1 && nb0 >0) 
-                            for(var i=0 ; i< nb0 ; i++) html += '<td></td>';
+                    // else 
+                    //     if(v0 != -1 && nb0 >0) 
+                    //         for(var i=0 ; i< nb0 ; i++) html += '<td></td>';
                             
                     html += '</tr>';
                       
@@ -132,7 +132,7 @@ $(document).ready(function(){
                 $('#keyword_number tbody').html('<tr><td colspan="11">No record found</td></tr>');
             }
             
-
+            console.log($('#keyword_number').html())
             /****  Option de dataTable qui affiche seulement les 5 premiers colonnes  ****/
             var columns = [{searchable: true, sortable: true}];
             var nb = $('#keyword_number thead tr').children().length;

@@ -163,6 +163,7 @@ class KeywordTrendsController extends Controller
 		$campaign_id = Input::get('campaign_id');
 		$datas = $this->keyword_trend_repository->getKeywordByCampaignId($campaign_id);
 		$campaign = $this->keyword_trend_repository->getCampaignById($campaign_id);
+		\Log::debug($campaign);		
 		$area = $campaign->area->location_name;
 		$state = $campaign->area->parent->location_name;
 		$country = $campaign->area->parent->parent->location_name;
