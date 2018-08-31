@@ -11,23 +11,28 @@
                 <div class="box-body"> 
                     <div class="">
                         <div class="tab" > 
-                            <h1> Data collection Parameters </h1>
-                            <div class="row"> 
-                                <div class="col-sm-6 research_name" >Research Name: <span> </span></div>
-                                <div class="col-sm-6 country_name">Country: <span> </span> </div>
-                            </div>
-                            <div class="row"> 
-                                <div class="col-sm-6 state_name">State/province: <span> </span></div>
-                                <div class="col-sm-6 area">Area: <span> </span></div>
-                            </div>
-                            <div class="row"> 
-                                <div class="col-sm-6 language">Language: <span> </span></div>
-                                <div class="col-sm-6 mounthly_research">Include monthly research: <span> </span></div>
-                            </div>
-                            <div class="row"> 
-                                <div class="col-sm-6 search_partner">Include search partner: <span> </span></div>
-                                <div class="col-sm-6 null_to_zero">Convert NULL values to Zero: <span> </span></div>
-                            </div>                           
+                            
+                            <!-- <h1> Data collection Parameters </h1> -->
+                            <div style="background: #f4f4f4;">    
+                                <div style="padding: 15px;">
+                                    <div class="row"> 
+                                        <div class="col-sm-6 research_name" ><b>Research Name:</b> <span> </span></div>
+                                        <div class="col-sm-6 country_name"><b>Country:</b> <span> </span> </div>
+                                    </div>
+                                    <div class="row"> 
+                                        <div class="col-sm-6 state_name"><b>State/province:</b> <span> </span></div>
+                                        <div class="col-sm-6 area_name"><b>Area:</b> <span> </span></div>
+                                    </div>
+                                    <div class="row"> 
+                                        <div class="col-sm-6 language"><b>Language:</b> <span> </span></div>
+                                        <div class="col-sm-6 mounthly_research"><b>Include monthly research:</b> <span> </span></div>
+                                    </div>
+                                    <div class="row"> 
+                                        <div class="col-sm-6 search_partner"><b>Include search partner:</b> <span> </span></div>
+                                        <div class="col-sm-6 null_to_zero"><b>Convert NULL values to Zero:</b> <span> </span></div>
+                                    </div>
+                                </div>                            
+                            </div>       
                             <h1>Keywords</h1>
                             <input type="text" class="hidden campaign_id" value="{!! $campaign_id !!}">
                             <div >

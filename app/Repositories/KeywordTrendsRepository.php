@@ -34,7 +34,7 @@ class KeywordTrendsRepository
 	}
 	public function getCampaignById($id)
 	{
-		return $this->modelCampaign->with('area', 'area.parent','language')->where('campaign_id',$id)->first();
+		return $this->modelCampaign->with('area', 'area.parent', 'area.parent.parent','language')->where('campaign_id',$id)->first();
 	}
 
 	public function storeDataCollection($input) 
