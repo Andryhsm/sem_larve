@@ -1,6 +1,7 @@
 @extends($layout)
 
 @section('additional-styles')
+    {!! Html::style('backend/plugins/datatables/dataTables.bootstrap.css') !!}
     {!! Html::Style('https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css') !!}
 @stop
 @section('content')
