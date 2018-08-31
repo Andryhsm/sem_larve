@@ -139,8 +139,7 @@ class KeywordTrendsController extends Controller
 	
 	public function OverviewListKeyword(Request $request) {
 		$campaign_id = Input::get('campaign_id');
-		$datas = $this->keyword_trend_repository->getKeywordByCampaignId($campaign_id);
-		return view('admin.keyword_trends.overview_keyword_list', compact('datas'));
+		return view('admin.keyword_trends.overview_keyword_list', compact('campaign_id')); 
 	}
 	
 	public function deleteCampaign(Request $request)

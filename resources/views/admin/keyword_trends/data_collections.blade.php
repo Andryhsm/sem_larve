@@ -108,11 +108,6 @@
 </style>
 @stop
 @section('content')
-    <!--<section class="content-header">
-        <h1>
-            Research tools Page
-        </h1>
-    </section>-->
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
@@ -144,7 +139,7 @@
                                             <td>{!! $campaign->added_on !!}</td>
                                             <td>  
                                                 <div class="btn-group">
-                                                    <a class="btn btn-default btn-sm show_keyword_number" action="{{ route('show_campaign_keywords') }}" data-id="{!! $campaign->campaign_id !!}" title="View" style="margin-right:6px;"><i
+                                                    <a class="btn btn-default btn-sm show_keyword_number" href="{{ route('overview-list') }}" data-id="{!! $campaign->campaign_id !!}" title="View" style="margin-right:6px;"><i
                                                                 class="fa fa-fw fa-eye"></i></a> 
                                                                 
                                                     <a class="btn btn-default btn-sm delete-campaign" action="{{ route('delete_campaign') }}" data-id="{!! $campaign->campaign_id !!}" title="View">
@@ -162,24 +157,7 @@
         
                                     </tbody>
                                 </table>
-                            </div>
-                            <div class="tab" >
-                            
-                                <h1>Keywords</h1>
-                                <div id="keyword_number_tab">
-                                   <!--   Keyword - number table inserted by ajax     -->
-                                </div>
-                                <br><!-- <br>
-                                
-                                <br><br> -->
-                                <div>
-                                    <div>
-                                      <button type="button" class="btn btn-default pull-left" id='previous'>Previous</button>
-                                      <!-- <button type="button" onclick="exportTo();" class="btn btn-primary pull-right" >Exporter</button> -->
-                                    </div>
-                                </div>
-                            </div>
-                         
+                            </div>                         
                           
                         </div>
                     </div>
@@ -223,58 +201,7 @@
         </div>
         <!--end modal-->
 
-        <!-- Start modal for search data -->
-        <div class="modal fade" id="showKeywordColumnModal" tabindex="-1" role="dialog" aria-labelledby="showKeywordColumnLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="showKeywordColumnLabel">Select column to show</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">  
-                <!-- <div class="checkbox">
-                    <label><input class="col1" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="0">Keyword</input></label>
-                </div>
-                <div class="checkbox">  
-                    <label><input class="col2" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="1">Curency</input></label>
-                </div>
-                <div class="checkbox">
-                    <label><input class="col3" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="2">Avg. monthly searches</input></label>
-                </div>
-                <div class="checkbox">
-                    <label><input class="col4" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="3">Competition</input></label>
-                </div>
-                <div class="checkbox">
-                    <label><input class="col5" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="4">Top of page bid (low range)</input></label>
-                </div>
-                <div class="checkbox">
-                    <label><input class="col6" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="5">Top of page bid (high range)</input></label>
-                </div>
-                <div class="checkbox">  
-                    <label><input class="col7" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="6">Ad impression share</input></label>
-                </div>
-                <div class="checkbox">
-                    <label><input class="col8" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="7">Organic impression share</input></label>
-                </div> 
-                <div class="checkbox">
-                    <label><input class="col9" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="8">Organic average position</input></label>
-                </div>
-                <div class="checkbox">
-                    <label><input class="col10" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="9">In account?</input></label>
-                </div>
-                <div class="checkbox">
-                    <label><input class="col11" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="10">In plan?</input></label>
-                </div> -->
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--end modal-->
+       
          
     </section> 
 @endsection
@@ -334,6 +261,12 @@
             '</div>'+
         '</div>');
         
+        $('.show_keyword_number').each(function(key, element) {
+            var link = $(element).attr('href');
+            var id = $(element).attr('data-id');
+            var full_link = link +'?campaign_id='+id;
+            $(element).attr('href', full_link);
+        });
     }
 
     

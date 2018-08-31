@@ -218,7 +218,7 @@
              @endif
 
              <!-- Abonnée -->
-            @if(check_user_access(['research_tools', 'data_collections', 'research_tools_partner', 'data_collections_partner', 'keyword_number']))
+            @if(check_user_access(['research_tools', 'data_collections', 'research_tools_partner', 'data_collections_partner', 'keyword_number', 'overview-list', 'show_campaign_keywords']))
             <li class="treeview {{ set_active(['admin/research-tools/*', 'admin/research-tools', '/admin/data-collections', '/admin/data-collections/*',
                                                 'partner/research-tools/*', 'partner/research-tools', 'partner/data-collections', 'partner/data-collections/*']) }}">
                     <a href="#">
@@ -234,7 +234,7 @@
                                         href="{!! ($user->type == 1) ? route('research_tools') : route('research_tools_partner') !!}"><i class="fa fa-circle-o"></i> Research tools</a>
                             </li>
                         @endif
-                        @if(check_user_access('data_collections', 'data_collections_partner', 'keyword_number'))
+                        @if(check_user_access('data_collections', 'data_collections_partner', 'keyword_number', 'overview-list', 'show_campaign_keywords'))
                             <li class="{{ set_active(['admin/data-collections','admin/data-collections/*','partner/data-collections','partner/data-collections/*' ]) }}"><a
                                     href="{!! ($user->type == 1) ? route('data_collections') : route('data_collections_partner') !!}"><i class="fa fa-circle-o"></i> Data collections</a></li>
                         @endif

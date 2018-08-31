@@ -75,7 +75,6 @@
                                 <th>Language</th>
                                 <th>Username</th>
                                 <th>Date</th>
-                                <th class="no-sort">Action</th>   <!--style="width:10%;"-->
                             </tr>
                             </thead>
                             <tbody>
@@ -87,16 +86,6 @@
                                     <td>{!! ($campaign->language) ? $campaign->language->language_name:'' !!}</td>
                                     <td>{!! ($campaign->user) ? ($campaign->user->last_name.' '.$campaign->user->first_name) : '' !!}</td>
                                     <td>{!! $campaign->added_on !!}</td>
-                                    <td>  
-                                        <div class="btn-group">
-                                            <a class="btn btn-default btn-sm show_keyword_number" action="{{ route('show_campaign_keywords') }}" data-id="{!! $campaign->campaign_id !!}" title="View" style="margin-right:6px;"><i
-                                                        class="fa fa-fw fa-eye"></i></a> 
-                                                        
-                                            <a class="btn btn-default btn-sm delete-campaign" action="{{ route('delete_campaign') }}" data-id="{!! $campaign->campaign_id !!}" title="View">
-                                                <i class="fa fa-fw fa-trash"></i>
-                                            </a>
-                                        </div>
-                                    </td>
                                 </tr>
                                 @endforeach
                                 @else
@@ -109,7 +98,7 @@
                         </table>
                     </div>
                     <div class="box-footer clearfix">
-                        <a href="#" class="btn btn-sm btn-default btn-flat pull-right">View All</a>
+                        <a href="{!! route('data_collections_partner') !!}" class="btn btn-sm btn-default btn-flat pull-right">View All</a>
                     </div>
                 </div>
             </div>
