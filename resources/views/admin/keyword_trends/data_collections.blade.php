@@ -138,7 +138,7 @@
                                         @foreach($campaigns as $campaign)
                                         <tr>
                                             <td>{!! $campaign->campaign_name !!}</td>
-                                            <td>{!! ($campaign->location) ? $campaign->location->location_name:'' !!}</td>
+                                            <td>{!! ($campaign->location) ? $campaign->area->location_name:'' !!}</td>
                                             <td>{!! ($campaign->language) ? $campaign->language->language_name:'' !!}</td>
                                             <td>{!! ($campaign->user) ? ($campaign->user->last_name.' '.$campaign->user->first_name) : '' !!}</td>
                                             <td>{!! $campaign->added_on !!}</td>
@@ -164,7 +164,23 @@
                                 </table>
                             </div>
                             <div class="tab" >
-                            
+                                <h1> Data collection Parameters </h1>
+                                <div class="row"> 
+                                    <div class="col-sm-6 research_name" >Research Name: <span> </span></div>
+                                    <div class="col-sm-6 country_name">Country: <span> </span> </div>
+                                </div>
+                                <div class="row"> 
+                                    <div class="col-sm-6 state_name">State/province: <span> </span></div>
+                                    <div class="col-sm-6 area">Area: <span> </span></div>
+                                </div>
+                                <div class="row"> 
+                                    <div class="col-sm-6 language">Language: <span> </span></div>
+                                    <div class="col-sm-6 mounthly_research">Include monthly research: <span> </span></div>
+                                </div>
+                                <div class="row"> 
+                                    <div class="col-sm-6 search_partner">Include search partner: <span> </span></div>
+                                    <div class="col-sm-6 null_to_zero">Convert NULL values to Zero: <span> </span></div>
+                                </div>
                                 <h1>Keywords</h1>
                                 <div id="keyword_number_tab">
                                    <!--   Keyword - number table inserted by ajax     -->

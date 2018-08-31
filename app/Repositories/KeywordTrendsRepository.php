@@ -20,7 +20,7 @@ class KeywordTrendsRepository
 
 	public function getAllByUser($id)
 	{
-		return $this->modelCampaign->with('location','language','user')->where('admin_id',$id)->orderBy('campaign_id','desc')->get();
+		return $this->modelCampaign->with('area','language','user')->where('admin_id',$id)->orderBy('campaign_id','desc')->get();
 	}
 
 	public function getKeywordByCampaignId($id)
@@ -31,6 +31,10 @@ class KeywordTrendsRepository
 	public function deleteCampaignById($id)
 	{
 		return $this->modelCampaign->destroy($id);
+	}
+	public function getCampaignById($id)
+	{
+		return $this->modelCampaign->with('area', 'area.parent','language')->where('campaign_id',$id)->first();
 	}
 
 	public function storeDataCollection($input) 
