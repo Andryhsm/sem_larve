@@ -12,10 +12,14 @@ $(document).ready(function(){
   $("form#import-data").submit(function(e) {
       e.preventDefault();    
       var formData = new FormData(this);
+      console.log("eto ilay izy");
       $.ajax({
           url: $(this).attr('action'),
           type: 'POST',
           data: formData,
+           beforeSend: function() {
+                        $.LoadingOverlay("show", { 'size': "10%", 'zIndex': 9999 });
+                    },
           success: function (response) {
               if(response.status == 'ok' || response.status == 'not_finish' ) {
                  insert_data(response.data);
@@ -38,6 +42,7 @@ $(document).ready(function(){
                         '<span aria-hidden="true">&times;</span>'+
                       '</button>'+
                     '</div>');
+              $.LoadingOverlay("hide");
           },
           cache: false,
           contentType: false,
