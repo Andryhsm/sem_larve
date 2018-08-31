@@ -35,8 +35,8 @@ class KeywordTrendsRepository
 
 	public function storeDataCollection($input) 
 	{
-		\Log::debug($input);
-		$block_results = $input['keywords_result'];
+		
+		$keywords_result = $input['keywords_result'];
 		$params = $input['params'];
 		
 		$campaign = new Campaign();
@@ -52,12 +52,11 @@ class KeywordTrendsRepository
 		$campaign->save();
 		
 		$null = ($params['convert_null_to_zero'] == 1) ? 0 : 1; 
-
-		foreach ($block_results as $block_result) {
-			
-			$keyword_results = $block_result;
-			
-			foreach($keyword_results['data'] as $param_keyword) {
+		$data = $keywords_result['data'];
+		\Log::debug($data);
+		foreach ($data as $block_result) {
+		
+			foreach($block_result as $param_keyword) {
 				$result_last_month = '';
 				$keyword = new Keyword();
 				$keyword->campaign_id = $campaign->campaign_id;
