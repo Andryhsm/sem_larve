@@ -121,15 +121,16 @@ class KeywordTrendsController extends Controller
 		// } else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==1) {
 		// 	$searchVolumes = \AdWords::withTargetedMonthlySearches()->convertNullToZero()->location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords);
 		// }
-		
+
         return response()->json([
         	'status' => 'ok',
         	'data' => $searchVolumes,
-        	'params' => $params
+        	'params' => $params,
+        	'keyword_param' => $keywords
         ]);
 	}
 
-	public function launch_request_keyword($params, $keywords){
+	public function launch_request_keyword($params, $keywords) {
 		$searchVolumes = null;
 		if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==0) {
 			$searchVolumes = \AdWords::location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords);
