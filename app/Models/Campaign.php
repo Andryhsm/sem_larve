@@ -17,9 +17,9 @@ class Campaign extends Model
 		return $this->hasOne(Admin::class,'admin_id','admin_id');
 	}
 	
-	public function location()
+	public function area()
 	{
-		return $this->hasOne(Location::class,'criteria_id','location_id');
+		return $this->hasOne(Location::class,'criteria_id','area_id');
 	}
 	
 	public function language()

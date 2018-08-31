@@ -44,89 +44,93 @@ $(document).ready(function(){
 				data: {campaign_id: campaign_id},
 			})
 			.done(function(datas) {
-        
-				var months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
-				var heads = ["Keyword", "Curency", "Avg. monthly searches", "Competition", "Top of page bid (low range)", "Top of page bid (high range)", "Ad impression share", "Organic impression share", "Organic average position", "In account?", "In plan?"];
-        
-        $('#keyword_number_tab').html('<table id="keyword_number" class="table table-bordered table-hover"><thead><tr class="keyword_number_tr"></tr></thead><tbody></tbody></table>');
-        
-				if(datas.length > 0)
-        {
-          // Affiche les entêtes des dates en fonction de la colonne target_monthly_search
-          if(datas[0].target_monthly_search != null) {
-            var html1 = '';
-            //var html2 = '';
+        console.log(datas);
 
-            $.each(heads, function(i, head) {
-              html1 += '<th>' + head + '</th>';
-              //html2 += '<div class="checkbox"><label><input class="col'+ (i+1) +'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+ i +'">'+ head +'</input></label></div>';
-            });
+        $(".research_name span").html(datas.campaign.campaign_name);
+        $(".country_name span").html(datas.location);
+
+				// var months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+				// var heads = ["Keyword", "Curency", "Avg. monthly searches", "Competition", "Top of page bid (low range)", "Top of page bid (high range)", "Ad impression share", "Organic impression share", "Organic average position", "In account?", "In plan?"];
+        
+        // $('#keyword_number_tab').html('<table id="keyword_number" class="table table-bordered table-hover"><thead><tr class="keyword_number_tr"></tr></thead><tbody></tbody></table>');
+        
+				// if(datas.length > 0)
+        // {
+        //   // Affiche les entêtes des dates en fonction de la colonne target_monthly_search
+        //   if(datas[0].target_monthly_search != null) {
+        //     var html1 = '';
+        //     //var html2 = '';
+
+        //     $.each(heads, function(i, head) {
+        //       html1 += '<th>' + head + '</th>';
+        //       //html2 += '<div class="checkbox"><label><input class="col'+ (i+1) +'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+ i +'">'+ head +'</input></label></div>';
+        //     });
             
-            var j = 12;
-            $.each(datas[0].target_monthly_search.split('||'), function(key, item) {
-              if(item != '') {
-                var dates = item.split(';')
-                html1 += '<th>Searches: ' + months[dates[1] - 1] +  ' ' + dates[0] + '</th>';
-                //html2 += '<div class="checkbox"><label><input class="col'+j+'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+(j-1)+'">Searches: '+months[dates[1] - 1] +  ' ' + dates[0]+'</input></label></div>';
-                j++;
-              }
-            });
-            $('.keyword_number_tr').html(html1);
-            //console.log($('.keyword_number_tr').html())
-            //$('#showKeywordColumnModal .modal-body').html(html2);
-          }
-           $.each(datas, function( index, value ) {
-            var html = '<tr>';
-    				  html += '<td>'+ value.keyword_name +'</td><td>'+ value.currency +'</td>';
-    				  html += '<td>' + value.avg_monthly_searches + '</td><td>' + value.competition  + '</td>';
-              html += '<td>' + value.low_range_top_of_page_bid + '</td><td>' + value.high_range_top_of_page_bid  + '</td>';
-              html += '<td>' + value.ad_impression_share + '</td><td>' + value.organic_impression_share  + '</td>';
-              html += '<td>' + value.organic_average_position + '</td><td>' + value.in_account  + '</td>';
-              html += '<td>' + value.in_plan + '</td>';
+        //     var j = 12;
+        //     $.each(datas[0].target_monthly_search.split('||'), function(key, item) {
+        //       if(item != '') {
+        //         var dates = item.split(';')
+        //         html1 += '<th>Searches: ' + months[dates[1] - 1] +  ' ' + dates[0] + '</th>';
+        //         //html2 += '<div class="checkbox"><label><input class="col'+j+'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+(j-1)+'">Searches: '+months[dates[1] - 1] +  ' ' + dates[0]+'</input></label></div>';
+        //         j++;
+        //       }
+        //     });
+        //     $('.keyword_number_tr').html(html1);
+        //     //console.log($('.keyword_number_tr').html())
+        //     //$('#showKeywordColumnModal .modal-body').html(html2);
+        //   }
+        //    $.each(datas, function( index, value ) {
+        //     var html = '<tr>';
+    		// 		  html += '<td>'+ value.keyword_name +'</td><td>'+ value.currency +'</td>';
+    		// 		  html += '<td>' + value.avg_monthly_searches + '</td><td>' + value.competition  + '</td>';
+        //       html += '<td>' + value.low_range_top_of_page_bid + '</td><td>' + value.high_range_top_of_page_bid  + '</td>';
+        //       html += '<td>' + value.ad_impression_share + '</td><td>' + value.organic_impression_share  + '</td>';
+        //       html += '<td>' + value.organic_average_position + '</td><td>' + value.in_account  + '</td>';
+        //       html += '<td>' + value.in_plan + '</td>';
     				  
-			        if(value.target_monthly_search != null) {
-      				    var target_monthly_search = value.target_monthly_search.split('||');
-      				    $.each(target_monthly_search, function(i, val) {
-                    if(val != '') {
-        				      var tab = val.split(';')
-        				      if(tab[2] != '') 
-            				    html += '<td>' + tab[2]+ '</td>';
-            				  else  
-        				        html += '<td></td>';
-                    }
-      				    });
+			  //       if(value.target_monthly_search != null) {
+      	// 			    var target_monthly_search = value.target_monthly_search.split('||');
+      	// 			    $.each(target_monthly_search, function(i, val) {
+        //             if(val != '') {
+        // 				      var tab = val.split(';')
+        // 				      if(tab[2] != '') 
+        //     				    html += '<td>' + tab[2]+ '</td>';
+        //     				  else  
+        // 				        html += '<td></td>';
+        //             }
+      	// 			    });
         				  
-      				  }
+      	// 			  }
     				    
-  				    html += '</tr>';
+  			// 	    html += '</tr>';
   				  
-  				  $('#keyword_number tbody').append(html);
-          });
-        }
-        else
-        {
-           $('#keyword_number tbody').html('<tr><td colspan="11">No record found</td></tr>');
-        }
+  			// 	  $('#keyword_number tbody').append(html);
+        //   });
+        // }
+        // else
+        // {
+        //    $('#keyword_number tbody').html('<tr><td colspan="11">No record found</td></tr>');
+        // }
         
-				var x = document.getElementsByClassName("tab");
-        x[0].style.display = "none";
-        showTab(1);
+				// var x = document.getElementsByClassName("tab");
+        // x[0].style.display = "none";
+        // showTab(1);
 
-        /****  Option de dataTable qui affiche seulement les 5 premiers colonnes  ****/
+        // /****  Option de dataTable qui affiche seulement les 5 premiers colonnes  ****/
 
-        populateModal('keyword_number', 'showKeywordColumnModal');
-        var columns = columnOPtion('keyword_number', 'showKeywordColumnModal');
-        createDataTable('keyword_number', columns);
+        // populateModal('keyword_number', 'showKeywordColumnModal');
+        // var columns = columnOPtion('keyword_number', 'showKeywordColumnModal');
+        // createDataTable('keyword_number', columns);
 
-        //$('.dt-buttons').addClass('hidden');
+        // //$('.dt-buttons').addClass('hidden');
 
-        $('#keyword_number_length .btn-small').remove();
-        $('#keyword_number_length').append('<div class="btn btn-small">'+
-            '<div class="btn-group" data-toggle="modal" data-target="#showKeywordColumnModal">'+
-              '<a href="#" class="btn btn-default">Select column to show</a>'+
-              '<a href="#" class="btn btn-default"><span class="caret"></span></a>'+
-            '</div>'+
-        '</div>');
+        // $('#keyword_number_length .btn-small').remove();
+        // $('#keyword_number_length').append('<div class="btn btn-small">'+
+        //     '<div class="btn-group" data-toggle="modal" data-target="#showKeywordColumnModal">'+
+        //       '<a href="#" class="btn btn-default">Select column to show</a>'+
+        //       '<a href="#" class="btn btn-default"><span class="caret"></span></a>'+
+        //     '</div>'+
+        // '</div>');
 
 
 			})

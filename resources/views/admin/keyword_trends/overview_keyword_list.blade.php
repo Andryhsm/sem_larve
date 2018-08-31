@@ -11,6 +11,7 @@
                         <div class="tab" >
                         
                             <h1>Keywords</h1>
+                            
                                 <?php $months = [ "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december" ]; ?>
                                 <table class="table table-bordered table-hover" id="keyword_number_overview"> 
                                      <thead>
