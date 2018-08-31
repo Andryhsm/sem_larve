@@ -39,9 +39,12 @@ class KeywordTrendsRepository
 
 	public function storeDataCollection($input) 
 	{
+
 		
-		$keywords_result = $input['keywords_result'];
+		$keywords_tab = json_decode($input['keywords_result']);
 		$params = $input['params'];
+
+		//\Log::debug($keywords_tab);
 		
 		$campaign = new Campaign();
 		$campaign->admin_id = $user_id = get_user_id();
@@ -56,7 +59,7 @@ class KeywordTrendsRepository
 		$campaign->save();
 		
 		$null = ($params['convert_null_to_zero'] == 1) ? 0 : 1; 
-		$data = $keywords_result['data'];
+		$data = $keywords_tab->data;
 		
 		foreach ($data as $block_result) {
 		
@@ -64,14 +67,14 @@ class KeywordTrendsRepository
 				$result_last_month = '';
 				$keyword = new Keyword();
 				$keyword->campaign_id = $campaign->campaign_id;
-				$keyword->keyword_name = $param_keyword['keyword'];
-				$keyword->avg_monthly_searches = isset($param_keyword['search_volume']) ? $param_keyword['search_volume'] : $null;
-				$keyword->c;
-				$keyword->cpc = isset($param_keyword['search_volume']) ? $param_keyword['cpc'] : $null;
-				$keyword->competition = isset($param_keyword['competition']) ? $param_keyword['competition'] : $null;
-				if(isset($param_keyword['targeted_monthly_searches'])) {
-					foreach($param_keyword['targeted_monthly_searches'] as $result_month) {
-						$result_last_month .= $result_month['year'].';'.$result_month['month'].';'.$result_month['count'].'||';
+				$keyword->keyword_name = $param_keyword->keyword;
+				$keyword->avg_monthly_searches = isset($param_keyword->search_volume) ? $param_keyword->search_volume : $null;
+				//$keyword->c;
+				$keyword->cpc = isset($param_keyword->search_volume) ? $param_keyword->cpc : $null;
+				$keyword->competition = isset($param_keyword->competition) ? $param_keyword->competition : $null;
+				if(isset($param_keyword->targeted_monthly_searches)) {
+					foreach($param_keyword->targeted_monthly_searches as $result_month) {
+						$result_last_month .= $result_month->year.';'.$result_month->month.';'.$result_month->count.'||';
 					}
 				}
 				$keyword->target_monthly_search = $result_last_month;

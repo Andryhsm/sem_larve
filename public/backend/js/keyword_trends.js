@@ -331,7 +331,7 @@ function save_data_collection(response) {
   
   var data = {
     params: params,
-    keywords_result: response
+    keywords_result: JSON.stringify(response)
   };
   
   $.ajax({ 
