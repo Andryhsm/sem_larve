@@ -37,11 +37,11 @@ class KeywordTrendsRepository
 		return $this->modelCampaign->with('area', 'area.parent', 'area.parent.parent','language')->where('campaign_id',$id)->first();
 	}
 
-	public function storeDataCollection($input) 
+	public function storeDataCollection($input, $searchVolumes) 
 	{
 
 		
-		$keywords_tab = json_decode($input['keywords_result']);
+		//$keywords_tab = json_decode($input['keywords_result']);
 		$params = $input['params'];
 
 		//\Log::debug($keywords_tab);
@@ -59,10 +59,10 @@ class KeywordTrendsRepository
 		$campaign->save();
 		
 		$null = ($params['convert_null_to_zero'] == 1) ? 0 : 1; 
-		$data = $keywords_tab->data;
+		//$data = $keywords_tab->data;
 		
-		foreach ($data as $block_result) {
-		
+		//foreach ($data as $block_result) {
+		foreach ($searchVolumes as $block_result) {
 			foreach($block_result as $param_keyword) {
 				$result_last_month = '';
 				$keyword = new Keyword();
