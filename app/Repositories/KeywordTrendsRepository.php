@@ -44,7 +44,6 @@ class KeywordTrendsRepository
 		//$keywords_tab = json_decode($input['keywords_result']);
 		$params = $input['params'];
 
-		//\Log::debug($keywords_tab);
 		
 		$campaign = new Campaign();
 		$campaign->admin_id = $user_id = get_user_id();
@@ -62,7 +61,6 @@ class KeywordTrendsRepository
 		//$data = $keywords_tab->data;
 		
 		//foreach ($data as $block_result) {
-
 		foreach ($searchVolumes as $block_result) {
 			foreach($block_result as $param_keyword) {
 				$result_last_month = '';
@@ -75,7 +73,7 @@ class KeywordTrendsRepository
 				$keyword->competition = ($param_keyword->competition != null) ? $param_keyword->competition : $null;
 				if($param_keyword->targeted_monthly_searches != null) {
 					foreach($param_keyword->targeted_monthly_searches as $result_month) {
-						$result_last_month .= $result_month->year.';'.$result_month->month.';'.$result_month->count.'||';
+						$result_last_month .= $result_month['year'].';'.$result_month['month'].';'.$result_month['count'].'||';
 					}
 				}
 				$keyword->target_monthly_search = $result_last_month;

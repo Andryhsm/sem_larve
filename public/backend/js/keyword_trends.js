@@ -274,14 +274,17 @@ function launch_request() {
           var xhr = new window.XMLHttpRequest();
   
           // Upload progress
-          xhr.upload.addEventListener("progress", function(evt){
+          xhr.upload.onprogress = function (evt) {
               if (evt.lengthComputable) {
                 var percentComplete = (evt.loaded / evt.total) * 100;
-                while(percentComplete != 100) {                  
-                    console.log(percentComplete + ' +++++++');
+                console.log(percentComplete);
+
+                $('.tab_form:last').removeClass('hidden');
+                $('.tab_form:last').slideDown('slow');
+                
+                while(percentComplete < 100) {               
+                    console.log('here');
                     var loaded = (total * percentComplete) / 100;
-                    $('.tab_form:last').removeClass('hidden');
-                    $('.tab_form:last').slideDown('slow');
                     $('.bar').css({'width': percentComplete + '%',
                                     'text-align': 'center'
                                 });
@@ -291,7 +294,7 @@ function launch_request() {
                 if(percentComplete == 100) 
                   $('.data_collect_notification').html(' Data collection saved.');
               }
-          }, false);
+          }
             
           return xhr;
         //}
