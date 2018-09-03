@@ -44,7 +44,7 @@
                                             <th>Keyword</th>
                                             <th>Avg. monthly searches</th>
                                             <th>Competition</th>
-                                            <th>Average cpc</th>
+                                            <th>Cpc</th>
                                             <!-- <th>Top of page bid (low range)</th>
                                             <th>Top of page bid (high range)</th>
                                             <th>Ad impression share</th>

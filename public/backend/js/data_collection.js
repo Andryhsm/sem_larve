@@ -59,7 +59,7 @@ $(document).ready(function(){
         })
         .done(function(datas) {
             console.log(datas);
-
+            console.log(datas.state)
             $(".research_name span").html(datas.campaign.campaign_name);
             $(".country_name span").html(datas.country);
             $(".state_name span").html(datas.state);
