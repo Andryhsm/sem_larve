@@ -80,7 +80,7 @@ $(document).ready(function(){
                 if(datas.datas[0].target_monthly_search != '') {
                     var html1 = '';
                     var html2 = '';
-                    var j = 12;
+                    var j = 5;
                     var inc = 0;
                     $.each(datas.datas[0].target_monthly_search.split('||'), function(key, item) {
                         if(item != '') {
@@ -101,21 +101,21 @@ $(document).ready(function(){
                 $.each(datas.datas, function( index, value ) {
                     var html = '<tr>';
                             html += '<td>'+ value.keyword_name +'</td>'
-                            html += '<td>'+ value.cpc +'</td>';
                             html += '<td>' + value.avg_monthly_searches + '</td>';
                             html += '<td>' + value.competition  + '</td>';
-                            html += '<td>' + value.low_range_top_of_page_bid + '</td>';
-                            html += '<td>' + value.high_range_top_of_page_bid  + '</td>';
-                            html += '<td>' + value.ad_impression_share + '</td>';
-                            html += '<td>' + value.organic_impression_share  + '</td>';
-                            html += '<td>' + value.organic_average_position + '</td>';
-                            html += '<td>' + value.in_account  + '</td>';
-                            html += '<td>' + value.in_plan + '</td>';
+                            html += '<td>'+ value.cpc +'</td>';
+                            // html += '<td>' + value.low_range_top_of_page_bid + '</td>';
+                            // html += '<td>' + value.high_range_top_of_page_bid  + '</td>';
+                            // html += '<td>' + value.ad_impression_share + '</td>';
+                            // html += '<td>' + value.organic_impression_share  + '</td>';
+                            // html += '<td>' + value.organic_average_position + '</td>';
+                            // html += '<td>' + value.in_account  + '</td>';
+                            // html += '<td>' + value.in_plan + '</td>';
                     var jinc = 0;
                     if(value.target_monthly_search != null) {
                         var target_monthly_search = value.target_monthly_search.split('||');
                         
-                        for (var i = 11; i >= 0; i--) {
+                        for (var i = 0; i <= 11; i++) {
                             if(typeof(target_monthly_search[i]) != "undefined") {
                                 var tab = target_monthly_search[i].split(';');
                                 if(tab[2] != '') 
