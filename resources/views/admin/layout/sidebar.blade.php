@@ -220,7 +220,7 @@
              <!-- Abonnée -->
             @if(check_user_access(['research_tools', 'data_collections', 'research_tools_partner', 'data_collections_partner', 'keyword_number', 'overview-list', 'overview-keyword-list']))
             <li class="treeview {{ set_active(['admin/research-tools/*', 'admin/research-tools', '/admin/data-collections', '/admin/data-collections/*',
-                                                'partner/research-tools/*', 'partner/research-tools', 'partner/data-collections', 'partner/data-collections/*']) }}">
+                                                'partner/research-tools/*', 'partner/research-tools', 'partner/data-collections', 'partner/data-collections/*', 'partner/overview-list', 'partner/overview-keyword-list']) }}">
                     <a href="#">
                         <i class="fa fa-pencil"></i>
                         <span>Keywords trends</span>
@@ -235,7 +235,7 @@
                             </li>
                         @endif
                         @if(check_user_access('data_collections', 'data_collections_partner', 'keyword_number', 'overview-list', 'overview-keyword-list'))
-                            <li class="{{ set_active(['admin/data-collections','admin/data-collections/*','partner/data-collections','partner/data-collections/*' ]) }}"><a
+                            <li class="{{ set_active(['admin/data-collections','admin/data-collections/*','partner/data-collections','partner/data-collections/*', 'partner/overview-list', 'partner/overview-keyword-list']) }}"><a
                                     href="{!! ($user->type == 1) ? route('data_collections') : route('data_collections_partner') !!}"><i class="fa fa-circle-o"></i> Data collections</a></li>
                         @endif
                     </ul>

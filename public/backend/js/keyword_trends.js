@@ -149,20 +149,26 @@ $(document).ready(function(){
       var selector = '';
       if(type == 'country') {
           $('.select-province').html('');
-          
+          var selected_province = 'selected';
           $('.select-province').append('<option disabled="">Select a value</option>');
           for (var i = 0; i < states.length; i++) {
-             $('.select-province').append('<option value="'+states[i].criteria_id+'">'+states[i].location_name+'</option>');
+             if(i > 0) 
+                          selected_province = '';
+             $('.select-province').append('<option value="'+states[i].criteria_id+'" '+selected_province+'>'+states[i].location_name+'</option>');
           }
       } else {
         if(states.length > 0) { 
+
             var content = '<label class="col-sm-4 control-label">Area</label>'+
                                               '<div class="col-sm-8">' +
                                                   '<select name="area" class="form-control required select-state">';
                 content +=                        '<option disabled="">Select a value</option>';
-                
+                var selected = 'selected';
                 for (var i = 0; i < states.length; i++) {
-                       content +=                   '<option value="'+states[i].criteria_id+'">'+states[i].location_name+'</option>';
+                       if(i > 0) 
+                          selected = '';
+
+                      content +=                   '<option value="'+states[i].criteria_id+'" '+selected+'>'+states[i].location_name+'</option>';
                 }
 
                 content +=                      '</select>'+

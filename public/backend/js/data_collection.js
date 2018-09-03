@@ -72,22 +72,24 @@ $(document).ready(function(){
             
             if(datas.datas.length > 0) {
                 // Affiche les entêtes des dates en fonction de la colonne target_monthly_search
-                var v0 = -1;
-                var nb0 = 0;
-                $.each(datas.datas, function(k, v) {
-                    if(v.target_monthly_search != null) v0 = k;
-                });
-                if(v0 != -1) {
+                // var v0 = -1;
+                // var nb0 = 0;
+                // $.each(datas.datas, function(k, v) {
+                //     if(v.target_monthly_search != null) v0 = k;
+                // });
+                if(datas.datas[0].target_monthly_search != '') {
                     var html1 = '';
                     var html2 = '';
                     var j = 12;
-                    $.each(datas.datas[v0].target_monthly_search.split('||'), function(key, item) {
+                    var inc = 0;
+                    $.each(datas.datas[0].target_monthly_search.split('||'), function(key, item) {
                         if(item != '') {
                             var dates = item.split(';')
                             html1 += '<th>Searches: ' + months[dates[1] - 1] +  ' ' + dates[0] + '</th>';
                             html2 += '<div class="checkbox"><label><input class="col'+j+'" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="'+(j-1)+'">Searches: '+months[dates[1] - 1] +  ' ' + dates[0]+'</input></label></div>';
                             j++;
-                            nb0++;
+                            inc++;
+                            //nb0++;
                         }
 
                     });
@@ -98,30 +100,50 @@ $(document).ready(function(){
                 }
                 $.each(datas.datas, function( index, value ) {
                     var html = '<tr>';
-                    html += '<td>'+ value.keyword_name +'</td><td>'+ value.cpc +'</td>';
-                    html += '<td>' + value.avg_monthly_searches + '</td><td>' + value.competition  + '</td>';
-                    html += '<td>' + value.low_range_top_of_page_bid + '</td><td>' + value.high_range_top_of_page_bid  + '</td>';
-                    html += '<td>' + value.ad_impression_share + '</td><td>' + value.organic_impression_share  + '</td>';
-                    html += '<td>' + value.organic_average_position + '</td><td>' + value.in_account  + '</td>';
-                    html += '<td>' + value.in_plan + '</td>';
-                          
+                            html += '<td>'+ value.keyword_name +'</td>'
+                            html += '<td>'+ value.cpc +'</td>';
+                            html += '<td>' + value.avg_monthly_searches + '</td>';
+                            html += '<td>' + value.competition  + '</td>';
+                            html += '<td>' + value.low_range_top_of_page_bid + '</td>';
+                            html += '<td>' + value.high_range_top_of_page_bid  + '</td>';
+                            html += '<td>' + value.ad_impression_share + '</td>';
+                            html += '<td>' + value.organic_impression_share  + '</td>';
+                            html += '<td>' + value.organic_average_position + '</td>';
+                            html += '<td>' + value.in_account  + '</td>';
+                            html += '<td>' + value.in_plan + '</td>';
+                    var jinc = 0;
                     if(value.target_monthly_search != null) {
                         var target_monthly_search = value.target_monthly_search.split('||');
-                        $.each(target_monthly_search, function(i, val) {
-                            if(val != '') {
-                                var tab = val.split(';')
+                        
+                        for (var i = 11; i >= 0; i--) {
+                            if(typeof(target_monthly_search[i]) != "undefined") {
+                                var tab = target_monthly_search[i].split(';');
                                 if(tab[2] != '') 
-                                    html += '<td>' + tab[2]+ '</td>';
+                                    html += '<td>'+ tab[2] +'</td>';
                                 else  
-                                    html += '<td></td>';
+                                    html += '<td>0</td>';
+                            } else {
+                                html += '<td>0</td>';
                             }
-                            
-                        });
+                            jinc ++;
+                        }
+
+
+                        // $.each(target_monthly_search, function(i, val) {
+                        //     if(val != '' || val != null) {
+                        //         var tab = val.split(';');
+                        //         if(tab[2] != '') 
+                        //             html += '<td>' + tab[2]+ '</td>';
+                        //         else  
+                        //             html += '<td></td>';
+                        //     } else 
+                        //          html += '<td></td>';
+                        // });
                               
-                    }
-                    else 
-                        if(v0 != -1 && nb0 >0) 
-                            for(var i=0 ; i< nb0 ; i++) html += '<td></td>';
+                     }
+                    // else 
+                    //     if(v0 != -1 && nb0 >0) 
+                    //         for(var i=0 ; i< nb0 ; i++) html += '<td></td>';
                             
                     html += '</tr>';
                       
@@ -132,7 +154,7 @@ $(document).ready(function(){
                 $('#keyword_number tbody').html('<tr><td colspan="11">No record found</td></tr>');
             }
             
-
+            console.log($('#keyword_number').html())
             /****  Option de dataTable qui affiche seulement les 5 premiers colonnes  ****/
             var columns = [{searchable: true, sortable: true}];
             var nb = $('#keyword_number thead tr').children().length;

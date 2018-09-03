@@ -34,7 +34,7 @@
                                     </div>
                                 </div>                            
                             </div>       
-                            <h1>Research list</h1>
+                            
                             <input type="text" class="hidden campaign_id" value="{!! $campaign_id !!}">
                             <div >
                                <table id="keyword_number" class="table table-bordered table-hover" data-route = "{{ route('show_campaign_keywords') }}">
