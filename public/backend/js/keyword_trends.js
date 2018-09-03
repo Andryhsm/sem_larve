@@ -12,7 +12,7 @@ $(document).ready(function(){
   $("form#import-data").submit(function(e) {
       e.preventDefault();    
       var formData = new FormData(this);
-      console.log("eto ilay izy");
+      
       $.ajax({
           url: $(this).attr('action'),
           type: 'POST',
@@ -281,8 +281,7 @@ function launch_request() {
 
                 $('.tab_form:last').removeClass('hidden');
                 $('.tab_form:last').slideDown('slow');
-                
-                while(percentComplete < 100) {               
+                              
                     console.log('here');
                     var loaded = (total * percentComplete) / 100;
                     $('.bar').css({'width': percentComplete + '%',
@@ -291,9 +290,9 @@ function launch_request() {
                     $('.bar').html(percentComplete + ' %');
                     $('.progress_stat').html(parseInt(loaded) + ' keywords / ' + total + ' done');
                 }
-                if(percentComplete == 100) 
-                  $('.data_collect_notification').html(' Data collection saved.');
-              }
+                
+                //  $('.data_collect_notification').html(' Data collection saved.');
+            
           }
             
           return xhr;
@@ -307,10 +306,13 @@ function launch_request() {
               keywords: JSON.stringify(keyword_list.uniq())
             },
       dataType: 'json',
+      beforeSend: function() {
+                    $.LoadingOverlay("show", { 'size': "10%", 'zIndex': 9999 });
+                },
       success: function(response){
         //console.log(data);
         //save_data_collection(data);
-        //$.LoadingOverlay("hide");
+        $.LoadingOverlay("hide");
         console.log(response);
         var campaign = response.campaign;
         var link = $('.link_result').attr('href');
