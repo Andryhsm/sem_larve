@@ -62,17 +62,18 @@ class KeywordTrendsRepository
 		//$data = $keywords_tab->data;
 		
 		//foreach ($data as $block_result) {
+
 		foreach ($searchVolumes as $block_result) {
 			foreach($block_result as $param_keyword) {
 				$result_last_month = '';
 				$keyword = new Keyword();
 				$keyword->campaign_id = $campaign->campaign_id;
 				$keyword->keyword_name = $param_keyword->keyword;
-				$keyword->avg_monthly_searches = isset($param_keyword->search_volume) ? $param_keyword->search_volume : $null;
+				$keyword->avg_monthly_searches = ($param_keyword->search_volume != null) ? $param_keyword->search_volume : $null;
 				//$keyword->c;
-				$keyword->cpc = isset($param_keyword->search_volume) ? $param_keyword->cpc : $null;
-				$keyword->competition = isset($param_keyword->competition) ? $param_keyword->competition : $null;
-				if(isset($param_keyword->targeted_monthly_searches)) {
+				$keyword->cpc = ($param_keyword->search_volume != null) ? $param_keyword->cpc : $null;
+				$keyword->competition = ($param_keyword->competition != null) ? $param_keyword->competition : $null;
+				if($param_keyword->targeted_monthly_searches != null) {
 					foreach($param_keyword->targeted_monthly_searches as $result_month) {
 						$result_last_month .= $result_month->year.';'.$result_month->month.';'.$result_month->count.'||';
 					}
