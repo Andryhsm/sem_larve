@@ -42,16 +42,16 @@
                                         <tr class="keyword_number_tr">
 
                                             <th>Keyword</th>
-                                            <th>Curency</th>
                                             <th>Avg. monthly searches</th>
                                             <th>Competition</th>
-                                            <th>Top of page bid (low range)</th>
+                                            <th>Average cpc</th>
+                                            <!-- <th>Top of page bid (low range)</th>
                                             <th>Top of page bid (high range)</th>
                                             <th>Ad impression share</th>
                                             <th>Organic impression share</th>
                                             <th>Organic average position</th>
                                             <th>In account</th>
-                                            <th>In plan?</th>
+                                            <th>In plan?</th> -->
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -87,15 +87,20 @@
                 <div class="checkbox">
                     <label><input class="col1" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="0">Keyword</input></label>
                 </div>
-                <div class="checkbox">  
+                <!-- <div class="checkbox">  
                     <label><input class="col2" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="1">Curency</input></label>
+                </div> -->
+                <div class="checkbox">
+                    <label><input class="col2" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="1">Avg. monthly searches</input></label>
                 </div>
                 <div class="checkbox">
-                    <label><input class="col3" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="2">Avg. monthly searches</input></label>
+                    <label><input class="col3" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="2">Competition</input></label>
                 </div>
                 <div class="checkbox">
-                    <label><input class="col4" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="3">Competition</input></label>
+                    <label><input class="col4" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="3">Average cpc</input></label>
                 </div>
+                
+                <!--
                 <div class="checkbox">
                     <label><input class="col5" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" checked="" value="4">Top of page bid (low range)</input></label>
                 </div>
@@ -117,6 +122,7 @@
                 <div class="checkbox">
                     <label><input class="col11" onclick="show_column(this);" table-id="#keyword_number" type="checkbox" value="10">In plan?</input></label>
                 </div>
+                -->
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
