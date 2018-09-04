@@ -3,6 +3,7 @@
 @section('additional-styles')
     {!! Html::style('backend/plugins/datatables/dataTables.bootstrap.css') !!}
     {!! Html::Style('https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css') !!}
+    {!! Html::style('backend/css/bgstyle.css') !!}
 @stop
 @section('content')
  <section class="content">
@@ -33,7 +34,16 @@
                                         <div class="col-sm-6 null_to_zero"><b>Convert NULL values to Zero:</b> <span> </span></div>
                                     </div>
                                 </div>                            
-                            </div>       
+                            </div>   
+                            <div style="background: #f4f4f4;">    
+                                <div style="padding: 15px;">
+                                    <span class="bgred_taille">Very Low</span>
+                                    <span class="bgorange_taille">Low</span>
+                                    <span class="bgyellow_taille">Medium</span>
+                                    <span class="bggreenyellow_taille">High</span>
+                                    <span class="bggreen_taille">Very High</span>
+                                </div>
+                            </div>    
                             
                             <input type="text" class="hidden campaign_id" value="{!! $campaign_id !!}">
                             <div >
@@ -163,5 +173,6 @@
                 table.column(col_num).visible(false);
             }
         }
+
     </script>
 @stop
