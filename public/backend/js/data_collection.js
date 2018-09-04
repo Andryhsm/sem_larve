@@ -98,6 +98,8 @@ $(document).ready(function(){
                     $('#showKeywordColumnModal .modal-body').append(html2);
                 }
                 $.each(datas.datas, function( index, value ) {
+                    var cpc_arrondi = value.cpc / 1000000;
+                    cpc_arrondi  = cpc_arrondi.toFixed(2);
                     var html = '<tr>';
 
                             competitionArrondi = value.competition.toFixed(3);
@@ -122,8 +124,13 @@ $(document).ready(function(){
 
                             html += '<td>'+ value.keyword_name +'</td>'
                             html += '<td>' + value.avg_monthly_searches + '</td>';
+<<<<<<< HEAD
                             html += '<td class="'+bg+'">' + competitionArrondi + '</td>';
                             html += '<td>'+ value.cpc +'</td>';
+=======
+                            html += '<td>' + value.competition  + '</td>';
+                            html += '<td>'+ cpc_arrondi +'</td>';
+>>>>>>> bb55be6eea2b9944ecd51040047a8671f975100e
                             // html += '<td>' + value.low_range_top_of_page_bid + '</td>';
                             // html += '<td>' + value.high_range_top_of_page_bid  + '</td>';
                             // html += '<td>' + value.ad_impression_share + '</td>';
