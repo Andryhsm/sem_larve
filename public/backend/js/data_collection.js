@@ -99,11 +99,13 @@ $(document).ready(function(){
                     $('#showKeywordColumnModal .modal-body').append(html2);
                 }
                 $.each(datas.datas, function( index, value ) {
+                    var cpc_arrondi = value.cpc / 1000000;
+                    cpc_arrondi  = cpc_arrondi.toFixed(2);
                     var html = '<tr>';
                             html += '<td>'+ value.keyword_name +'</td>'
                             html += '<td>' + value.avg_monthly_searches + '</td>';
                             html += '<td>' + value.competition  + '</td>';
-                            html += '<td>'+ value.cpc +'</td>';
+                            html += '<td>'+ cpc_arrondi +'</td>';
                             // html += '<td>' + value.low_range_top_of_page_bid + '</td>';
                             // html += '<td>' + value.high_range_top_of_page_bid  + '</td>';
                             // html += '<td>' + value.ad_impression_share + '</td>';
