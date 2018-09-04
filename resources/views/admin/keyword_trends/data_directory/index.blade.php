@@ -1,6 +1,6 @@
 @extends($layout)
 @section('additional-styles')
-
+    {!! Html::style('backend/plugins/jqueryFileTree/jqueryFileTree.css') !!}
 @stop
 @section('content')
     <section class="content">
@@ -18,7 +18,7 @@
         </div>
 @endsection
 @section('additional-scripts')
-
-
+    {!! Html::script('backend/plugins/jquery-easing/jquery.easing.1.3.js') !!}
+    {!! Html::style('backend/plugins/jqueryFileTree/jqueryFileTree.js') !!}
 @stop
 
