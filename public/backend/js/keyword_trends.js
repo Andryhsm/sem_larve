@@ -310,9 +310,7 @@ function launch_request() {
                     $.LoadingOverlay("show", { 'size': "10%", 'zIndex': 9999 });
                 },
       success: function(response){
-        //console.log(data);
         //save_data_collection(data);
-        $.LoadingOverlay("hide");
         console.log(response);
         var campaign = response.campaign;
         var link = $('.link_result').attr('href');
@@ -322,6 +320,8 @@ function launch_request() {
       fail: function(xhr) {
           console.log(xhr.responseText);
       }
+  }).always(function(){
+        $.LoadingOverlay("hide");
   });
 }
 

@@ -124,24 +124,6 @@ class KeywordTrendsController extends Controller
 			$result = $this->launch_request_keyword($params, $tab_keyword);
 			$searchVolumes[] = $result;
 		}
-		//$searchVolumes = $this->launch_request_keyword($params, $keywords);
-
-		// if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==0) {
-		// 	$searchVolumes = \AdWords::location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords);
-		// } else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==0) {
-		// 	$searchVolumes = \AdWords::withTargetedMonthlySearches()->location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords);
-		// } else if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==1) {
-		// 	$searchVolumes = \AdWords::convertNullToZero()->location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords);
-		// } else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==1) {
-		// 	$searchVolumes = \AdWords::withTargetedMonthlySearches()->convertNullToZero()->location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords);
-		// }
-
-        /*return response()->json([
-        	'status' => 'ok',
-        	'data' => $searchVolumes,
-        	'params' => $params,
-        	'keyword_param' => $keywords
-        ]);*/
 
 		try{
 			$campaign = $this->keyword_trend_repository->storeDataCollection($request->all(), $searchVolumes);
@@ -149,7 +131,11 @@ class KeywordTrendsController extends Controller
 			\Log::debug($e->getMessage());
 		}
 		$params = $request->get('params');
-		return response()->json(['status' => 'ok', 'campaign' => $campaign]);
+		return response()->json([
+			'status' => 'ok', 
+			'campaign' => $campaign,
+			'search_volume' => $searchVolumes
+		]);
 	}
 	
 	/*public function save_data_collection(Request $request) 
