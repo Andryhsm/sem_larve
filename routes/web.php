@@ -54,6 +54,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::post('get-states', 'KeywordTrendsController@getStatesByLocation')->name('get_states_partner');
             Route::resource('subaccount', 'SubAccountController');
             
+            Route::get('data-directory', 'DataDirectoryController@index')->name('data_directory_partner');
+
             Route::get('404',function(){
                 return view('admin.404');
             })->name('404');
@@ -146,6 +148,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::post('make-request-adwords', 'KeywordTrendsController@makeRequestAdwords')->name('make_request_adwords');
             Route::post('get-states', 'KeywordTrendsController@getStatesByLocation')->name('get_states');
             Route::post('save-data-collection','KeywordTrendsController@save_data_collection')->name('save_data_collection');
+
+             Route::get('data-directory', 'DataDirectoryController@index')->name('data_directory');
            
             // Route::resource('banner', 'BannerController');
             // Route::resource('product-rating', 'ProductRatingController');
