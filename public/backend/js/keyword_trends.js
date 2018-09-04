@@ -117,7 +117,7 @@ $(document).ready(function(){
         }
     });
     
-  $('input[name="import_file"]').change(function(e) {
+  $('input[name="import_file"]').change(function(e){
       $('.file_name').css('display', 'block');
   		$('.file_name').html(e.target.files[0].name);
   		$('button.import_files').css('display', 'block');
@@ -267,22 +267,39 @@ function launch_request() {
   $('.one_keyword').each(function(index, el){
         last_list_of_keyword.push($(el).text());
   });*/
+  var incr = 0;
+  function recursive() {
+    setTimeout(function(){
+       var total = keyword_list.uniq().length;
+      // var item = para.res[i];
+       var percent = (incr/parseInt(total))*100;
+       console.log(percent);
+       $('.bar').css({'width': percent + '%',
+                                      'text-align': 'center'
+                                  });
+       // do something
+       incr++;        
+       if (incr < total) recursive()
+    }, 200)
+  }
+
   $.ajax({
     xhr: function() {
         var total = keyword_list.uniq().length;
         //for(var i=0; i<total; i++) {
           var xhr = new window.XMLHttpRequest();
-  
+          
+          recursive();
+
+          $('.tab_form:last').removeClass('hidden');
+          $('.tab_form:last').slideDown('slow');
+          
           // Upload progress
-          xhr.upload.onprogress = function (evt) {
+          xhr.onprogress = function (evt) {
               if (evt.lengthComputable) {
                 var percentComplete = (evt.loaded / evt.total) * 100;
                 console.log(percentComplete);
 
-                $('.tab_form:last').removeClass('hidden');
-                $('.tab_form:last').slideDown('slow');
-                              
-                    console.log('here');
                     var loaded = (total * percentComplete) / 100;
                     $('.bar').css({'width': percentComplete + '%',
                                     'text-align': 'center'
@@ -299,7 +316,7 @@ function launch_request() {
         //}
         
       },
-      type: 'POST',
+      type: 'GET',
       url: "make-request-adwords",
       data: {
               params: params,
