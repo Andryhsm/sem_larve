@@ -24,7 +24,7 @@ $(document).ready(function(){
             			})
             			.done(function(response) {
             				
-            				console.log(response.status);
+            			//	console.log(response.status);
             				$('.notification').html('<div class="alert '+response.status+' alert-dismissible show" role="alert">'+
                     ' ' +response.message + ' '+
                     '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
@@ -48,7 +48,7 @@ $(document).ready(function(){
 
     if($('#keyword_number').length > 0) {
         var campaign_id = $('.campaign_id').val();
-        console.log(campaign_id + ' +++')  
+        //console.log(campaign_id + ' +++')  
         $.ajax({
             url: $('#keyword_number').attr('data-route'),
             type: 'GET',
@@ -58,8 +58,7 @@ $(document).ready(function(){
                     },
         })
         .done(function(datas) {
-            console.log(datas);
-            console.log(datas.state)
+           // console.log(datas.state)
             $(".research_name span").html(datas.campaign.campaign_name);
             $(".country_name span").html(datas.country);
             $(".state_name span").html(datas.state);
@@ -93,16 +92,37 @@ $(document).ready(function(){
                         }
 
                     });
-                    console.log(html1)
+                    //console.log(html1)
                     $('.keyword_number_tr').append(html1);
                   
                     $('#showKeywordColumnModal .modal-body').append(html2);
                 }
                 $.each(datas.datas, function( index, value ) {
                     var html = '<tr>';
+
+                            competitionArrondi = value.competition.toFixed(3);
+                            var bg = "";
+                            if(competitionArrondi >= 0 && competitionArrondi < 0.2){
+                                bg = "bgred";
+                            }
+                            else if (competitionArrondi >= 0.2 && competitionArrondi < 0.4){
+                                bg = "bgorange";
+                            }
+                            else if (competitionArrondi >= 0.4 && competitionArrondi < 0.6){
+                                bg = "bgyellow";
+                            }
+                            else if (competitionArrondi >= 0.6 && competitionArrondi < 0.8){
+                                bg = "bggreenyellow";
+                            }
+                            else {
+                                bg = "bggreen";
+                            }
+
+
+
                             html += '<td>'+ value.keyword_name +'</td>'
                             html += '<td>' + value.avg_monthly_searches + '</td>';
-                            html += '<td>' + value.competition  + '</td>';
+                            html += '<td class="'+bg+'">' + competitionArrondi + '</td>';
                             html += '<td>'+ value.cpc +'</td>';
                             // html += '<td>' + value.low_range_top_of_page_bid + '</td>';
                             // html += '<td>' + value.high_range_top_of_page_bid  + '</td>';
@@ -146,15 +166,33 @@ $(document).ready(function(){
                     //         for(var i=0 ; i< nb0 ; i++) html += '<td></td>';
                             
                     html += '</tr>';
-                      
+                    
                     $('#keyword_number tbody').append(html);
-                });
+                    // console.log(10);
+                    // $('.keyword_number tr').each(function(){
+                    //     console.log("each");
+                    //     var ligne = $(this);
+                    //     ligne.children("td").each(function(index, elt){
+                    //        console.log($(elt).html());
+                    //        console.log(1000);
+                    //     });
+                        // var $cell1 = $cell[2];
+                        // console.log()
+                        // if($cell1.val() > 0 && $cell1.val() < 0,2){
+                        //      $cell1.css('background','#F00');
+                        // }
+                        // else{
+                        //     $cell1.css('background','#0F0');
+                        // }
+                    });
+
+                
             }
             else {
                 $('#keyword_number tbody').html('<tr><td colspan="11">No record found</td></tr>');
             }
             
-            console.log($('#keyword_number').html())
+           // console.log($('#keyword_number').html())
             /****  Option de dataTable qui affiche seulement les 5 premiers colonnes  ****/
             var columns = [{searchable: true, sortable: true}];
             var nb = $('#keyword_number thead tr').children().length;
@@ -206,6 +244,7 @@ $(document).ready(function(){
                     }
                 }
             });
+            
 
             //$('.dt-buttons').addClass('hidden');
 
@@ -224,6 +263,7 @@ $(document).ready(function(){
             //console.log(xhr.responseText);
         });
         
+        
     }
 });
 
@@ -233,3 +273,5 @@ function exportTo() {
   $('.buttons-excel').trigger('click');
 }
 
+
+    
