@@ -37,11 +37,11 @@
                             </div>   
                             <div style="background: #f4f4f4;">    
                                 <div style="padding: 15px;">
-                                    <span class="bgred_taille">Very Low</span>
-                                    <span class="bgorange_taille">Low</span>
+                                    <span class="bggreen_taille">Very Low</span>
+                                    <span class="bggreenyellow_taille">Low</span>
                                     <span class="bgyellow_taille">Medium</span>
-                                    <span class="bggreenyellow_taille">High</span>
-                                    <span class="bggreen_taille">Very High</span>
+                                    <span class="bgorange_taille">High</span>
+                                    <span class="bgred_taille">Very High</span>
                                 </div>
                             </div>    
                             
