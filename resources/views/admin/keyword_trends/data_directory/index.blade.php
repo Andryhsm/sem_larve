@@ -26,7 +26,7 @@
     {
          var script_url = $('#container_id').data('url-script');
             $('#container_id').fileTree({
-                root: '/var/www/Factorysem/public/upload/document/',
+                root: '/var/www/Factorysem/storage/data-keyword/',
                 folderEvent: 'click',
                 script: script_url,
                 expandSpeed: 750,

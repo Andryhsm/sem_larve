@@ -56,6 +56,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             
             Route::get('data-directory', 'DataDirectoryController@index')->name('data_directory_partner');
 
+            Route::post('export-excel', 'KeywordTrendsController@exportExcel')->name('export_excel_partner');
+
             Route::get('404',function(){
                 return view('admin.404');
             })->name('404');
@@ -150,6 +152,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::post('save-data-collection','KeywordTrendsController@save_data_collection')->name('save_data_collection');
 
              Route::get('data-directory', 'DataDirectoryController@index')->name('data_directory');
+
+             Route::post('export-excel', 'KeywordTrendsController@export-excel')->name('export_excel');
            
             // Route::resource('banner', 'BannerController');
             // Route::resource('product-rating', 'ProductRatingController');
