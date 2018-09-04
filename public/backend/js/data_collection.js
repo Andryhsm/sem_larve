@@ -104,20 +104,23 @@ $(document).ready(function(){
 
                             competitionArrondi = value.competition.toFixed(3);
                             var bg = "";
-                            if(competitionArrondi >= 0 && competitionArrondi < 0.2){
-                                bg = "bgred";
+                            if(competitionArrondi > 0 && competitionArrondi < 0.2){
+                                bg = "bggreen";
                             }
                             else if (competitionArrondi >= 0.2 && competitionArrondi < 0.4){
-                                bg = "bgorange";
+                                bg = "bggreenyellow";
                             }
                             else if (competitionArrondi >= 0.4 && competitionArrondi < 0.6){
                                 bg = "bgyellow";
                             }
                             else if (competitionArrondi >= 0.6 && competitionArrondi < 0.8){
-                                bg = "bggreenyellow";
+                                bg = "bgorange";
+                            }
+                            else if(competitionArrondi >= 0.8){
+                                bg = "bgred";
                             }
                             else {
-                                bg = "bggreen";
+                                bg = ""; 
                             }
 
 
