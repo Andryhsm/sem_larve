@@ -27,8 +27,8 @@
 //
 // TERMS OF USE
 // 
-// jQuery File Tree is licensed under a Creative Commons License and is copyrighted (C)2008 by Cory S.N. LaViska.
-// For details, visit http://creativecommons.org/licenses/by/3.0/us/
+// This plugin is dual-licensed under the GNU General Public License and the MIT License and
+// is copyright 2008 A Beautiful Site, LLC. 
 //
 if(jQuery) (function($){
 	
