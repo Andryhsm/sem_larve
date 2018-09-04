@@ -12,7 +12,7 @@ $(document).ready(function(){
   $("form#import-data").submit(function(e) {
       e.preventDefault();    
       var formData = new FormData(this);
-      console.log("eto ilay izy");
+      
       $.ajax({
           url: $(this).attr('action'),
           type: 'POST',
@@ -252,47 +252,51 @@ function post_duplicate(keyword_duplicate_list) {
 }   
 
 function launch_request() { 
+
   var params = {
     language_id: $('select[name="language_code"]').val(),
-    monthly_searches: $('#monthly_searches').is( ":checked" ) ? 1 : 0,
+    monthly_searches: $('input[name="monthly_searches"]').is( ":checked" ) ? 1 : 0,
+    country_id: $('select[name="country"]').val(),
+    province_id: $('select[name="province"]').val(),
     area_id: $('select[name="area"]').val(),
-    convert_null_to_zero: $('#convert_null_to_zero').is( ":checked" ) ? 1 : 0,
+    convert_null_to_zero: $('input[name="convert_null_to_zero"]').is( ":checked" ) ? 1 : 0,
+    campaign_name: $('input[name="campaign_name"]').val(),
   };
-  var last_list_of_keyword = [];
+
+  /*var last_list_of_keyword = [];
   $('.one_keyword').each(function(index, el){
         last_list_of_keyword.push($(el).text());
-  });
+  });*/
   $.ajax({
     xhr: function() {
         var total = keyword_list.uniq().length;
-        for(var i=0; i<total; i++) {
+        //for(var i=0; i<total; i++) {
           var xhr = new window.XMLHttpRequest();
   
           // Upload progress
-          xhr.upload.addEventListener("progress", function(evt){
+          xhr.upload.onprogress = function (evt) {
               if (evt.lengthComputable) {
-                  var percentComplete = (evt.loaded / evt.total) * 100;
-                  console.log(percentComplete);
-                  var loaded = (total * percentComplete) / 100;
-                  $('.tab_form:last').removeClass('hidden');
-                  $('.tab_form:last').slideDown('slow');
-                  $('.bar').css({'width': percentComplete + '%',
-                                  'text-align': 'center'
-                              });
-                  $('.bar').html(percentComplete + ' %');
-                  $('.progress_stat').html(parseInt(loaded) + ' keywords / ' + total + ' done');
-              }
-          }, false);
-          
-          // Download progress
-          xhr.addEventListener("progress", function(evt){
-              if (evt.lengthComputable) {
-                  $('.data_collect_notification').html(' Data collection saved.');
-              }
-          }, false);
-    
+                var percentComplete = (evt.loaded / evt.total) * 100;
+                console.log(percentComplete);
+
+                $('.tab_form:last').removeClass('hidden');
+                $('.tab_form:last').slideDown('slow');
+                              
+                    console.log('here');
+                    var loaded = (total * percentComplete) / 100;
+                    $('.bar').css({'width': percentComplete + '%',
+                                    'text-align': 'center'
+                                });
+                    $('.bar').html(percentComplete + ' %');
+                    $('.progress_stat').html(parseInt(loaded) + ' keywords / ' + total + ' done');
+                }
+                
+                //  $('.data_collect_notification').html(' Data collection saved.');
+            
+          }
+            
           return xhr;
-        }
+        //}
         
       },
       type: 'POST',
@@ -303,12 +307,17 @@ function launch_request() {
             },
       dataType: 'json',
       beforeSend: function() {
-          $.LoadingOverlay("show", { 'size': "10%", 'zIndex': 9999 });
-      },
-      success: function(data){
-        console.log(data);
-        save_data_collection(data);
-         $.LoadingOverlay("hide");
+                    $.LoadingOverlay("show", { 'size': "10%", 'zIndex': 9999 });
+                },
+      success: function(response){
+        //console.log(data);
+        //save_data_collection(data);
+        $.LoadingOverlay("hide");
+        console.log(response);
+        var campaign = response.campaign;
+        var link = $('.link_result').attr('href');
+        var full_link = link +'?campaign_id='+campaign.campaign_id;
+        $('.link_result').attr('href', full_link);
       },
       fail: function(xhr) {
           console.log(xhr.responseText);
@@ -324,7 +333,7 @@ function paste_param() {
   $('.location').html($('select[name="area"] option:selected').text());
 }
  
-function save_data_collection(response) {
+/*function save_data_collection(response) {
   var params = {
     language_id: $('select[name="language_code"]').val(),
     monthly_searches: $('input[name="monthly_searches"]').is( ":checked" ) ? 1 : 0,
@@ -355,7 +364,7 @@ function save_data_collection(response) {
   })
   .fail(function() {
   });
-}
+}*/
 
 function edit_keyword(box){
   $(box).closest('tr').find('.one_keyword').attr('contenteditable','true');

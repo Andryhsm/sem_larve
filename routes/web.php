@@ -50,7 +50,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::get('overview-keyword-list', 'KeywordTrendsController@OverviewListKeyword')->name('overview-list');
             Route::get('get-locations', 'KeywordTrendsController@getLocations')->name('get_locations_partner');
             Route::post('delete_campaign','KeywordTrendsController@deleteCampaign')->name('delete_campaign');
-            Route::post('save-data-collection','KeywordTrendsController@save_data_collection')->name('save_data_collection_partner');
+            /*Route::post('save-data-collection','KeywordTrendsController@save_data_collection')->name('save_data_collection_partner');*/
             Route::post('get-states', 'KeywordTrendsController@getStatesByLocation')->name('get_states_partner');
             Route::resource('subaccount', 'SubAccountController');
             
