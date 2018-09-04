@@ -126,20 +126,14 @@ class KeywordTrendsController extends Controller
 		}
 
 		try{
-			$storedata = $this->keyword_trend_repository->storeDataCollection($request->all(), $searchVolumes);
+			$campaign = $this->keyword_trend_repository->storeDataCollection($request->all(), $searchVolumes);
 		} catch(\Exception $e) {
 			\Log::debug($e->getMessage());
 		}
-
-		$path = 'data-keyword/test';
-		$filename = 'filename';
-		$data = $storedata['sheet_array'];
-		$this->exportData($path, $filename, $data);
-
 		$params = $request->get('params');
 		return response()->json([
 			'status' => 'ok', 
-			'campaign' => $storedata['campaign'],
+			'campaign' => $campaign,
 			'search_volume' => $searchVolumes
 		]);
 	}
@@ -194,17 +188,5 @@ class KeywordTrendsController extends Controller
         	'message' => 'Campaign not deleted successfully.'
         	]);
 		}
-	}
-
-	public function exportData($path, $filename, $data) {
-		Excel::create($filename, function($excel) use ($data) {
-
-		    $excel->sheet('Sheetname', function($sheet) use ($data) {
-
-		        $sheet->fromArray($data);
-
-		    });
-
-		})->store('xls', storage_path($path));
 	}
 }

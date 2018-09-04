@@ -59,8 +59,6 @@ class KeywordTrendsRepository
 		//$data = $keywords_tab->data;
 		
 		//foreach ($data as $block_result) {
-		$sheet_array[] = array('Keyword', 'Avg. monthly searches', 'Competition', 'Cpc');
-
 		foreach ($searchVolumes as $block_result) {
 			foreach($block_result as $param_keyword) {
 				$result_last_month = '';
@@ -68,6 +66,7 @@ class KeywordTrendsRepository
 				$keyword->campaign_id = $campaign->campaign_id;
 				$keyword->keyword_name = $param_keyword->keyword;
 				$keyword->avg_monthly_searches = ($param_keyword->search_volume != null) ? $param_keyword->search_volume : $null;
+				//$keyword->c;
 				$keyword->cpc = ($param_keyword->search_volume != null) ? $param_keyword->cpc : $null;
 				$keyword->competition = ($param_keyword->competition != null) ? $param_keyword->competition : $null;
 				if($param_keyword->targeted_monthly_searches != null) {
@@ -77,16 +76,12 @@ class KeywordTrendsRepository
 				}
 				$keyword->target_monthly_search = $result_last_month;
 				$keyword->save();
-
-
-				$sheet_array[] = array($keyword->keyword_name, $keyword->avg_monthly_searches, $keyword->cpc, $keyword->competition);
-			
 			}
 		}
 
 		
 			
-		return array('campaign' => $campaign, 'sheet_array' => $sheet_array);
+		return $campaign;
 	}
 
 	public function getDataCollectionNumberInMemory($id) {
