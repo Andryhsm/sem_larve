@@ -16,7 +16,7 @@
 |--------------------------------------------------------------------------
 | Admin Routes
 |--------------------------------------------------------------------------
-|
+|over
 | Here is where you can register web routes for your admin. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
@@ -48,6 +48,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::resource('adwords_api','AdwordsApiController');
             Route::get('show-campaign-keywords','KeywordTrendsController@showCampaignResultData')->name('show_campaign_keywords');
             Route::get('overview-keyword-list', 'KeywordTrendsController@OverviewListKeyword')->name('overview-list');
+            Route::get('tracksave-campaign/{campaign_id}', 'KeywordTrendsController@TrackSaveCampaign')->name('tracksave_campaign');
+            Route::post('tracksave-campaign/{campaign_id}', 'KeywordTrendsController@makeRequestAdwordsTrackSave')->name('make_request_adowrds_partner');
             Route::get('get-locations', 'KeywordTrendsController@getLocations')->name('get_locations_partner');
             Route::post('delete_campaign','KeywordTrendsController@deleteCampaign')->name('delete_campaign');
             Route::post('save-data-collection','KeywordTrendsController@save_data_collection')->name('save_data_collection_partner');

@@ -10,102 +10,63 @@
                         <div id="regForm">
                           <!-- One "tab" for each step in the form: -->
                           <div class="tab_form">
-                            <div class="notification">
-                            </div>
-                            <h3>Keywords import</h3>
-                        		<form id="import-data" action="{{ route('import_excel_partner') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
-                        			<div class="col-lg-10 import_label">
-                        			    <label for="import_file" class="custom_import_file">
-                                            <i class="fa fa-download"></i>
-                                            Choose file to import (csv or Excel)
-                                        </label>
-                                        <a id="import_help">
-                                            <i class="fa fa-question-circle"></i>
-                                        </a>
-                                        <input type="file" id="import_file" name="import_file" class="hiddeninputfile" autocomplete="off"/>
-                        			    <p class="file_name"></p>
-                        			   <div class="import_help">
-                        			        <p>Import an Excel or CSV file with one column. </p> 
-                                            <p>First Row/description will not be imported. </p>
-                        			    </div>
-                        			</div>
-                        			<div class="col-lg-2">
-                        			    <button class="btn btn-primary import_files" type="submit" style="margin-top:2.5%;">Import File</button>
-                        			</div>
-                        		</form>
-                          </div>
-                          <div class="tab_form">
-                            <h3>Imported data</h3>
-                            <div class="col-lg-12">
-                                <div class="keyword_list">
-                                    <div class="col-lg-8 number">
-                                        Keywords imported  
+                                <h3>Your Keywords Lists</h3>
+                                <div class="col-lg-12">
+                                    <div class="duplicate_keyword">
+                                        <div class="col-lg-12 row">
+                                            <button class="btn btn-primary pull-right" id="show_duplicate_keyword_list">Show keywords list</button>
+                                        </div>
                                     </div>
-                                    <div class="col-lg-4 row keyword-button">
-                                        <button class="btn btn-primary pull-right" id="show_keyword_list" disabled>Show keywords list</button>
-                                        <button class="btn btn-danger pull-right hidden" id="delete_keyword_in_list">Delete</button>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <p><input placeholder="File path" class="hidden" oninput="this.className = ''" name="file_path"></p>
-                                        <table class="table keywords-list table-bordered table-hover table-responsive">
-                                          <thead>
-                                              <tr>
-                                                  <th class="no-sort" style="width: 8%;"><input class="ckeck_all_keyword" type="checkbox" /></th>
-                                                  <th>keyword</th>
-                                                  <th style="width: 5%;">Edit</th>
-                                              </tr>
+                                     <div class="col-lg-12">
+                                        <table style="background: #f4f4f4; margin-top: 5%; " class="table keywords-duplicate-list table-bordered table-hover table-responsive">
+                                        <thead>
+                                            <tr>
+                                                <th>keyword Name</th>
+                                                <th>CPC</th>
+                                                <th>Monthly Searches</th>
+                                            </tr>
                                           </thead>
                                           <tbody>
+                                                @foreach ($keywords as $keyword)
+                                                    <tr>
+                                                        <td>{!! $keyword->keyword_name !!}</td>
+                                                        <td>{!! $keyword->cpc !!}</td>
+                                                        <td>{!! $keyword->avg_monthly_searches!!}</td>
+                                                    </tr>
+                                                @endforeach
                                           </tbody>
-                                        </table>
+                                      </table>
                                     </div>
+                                    
                                 </div>
-                                <div class="duplicate_keyword">
-                                    <div class="col-lg-8 number">
-                                        Duplicate found
-
-                                    </div>
-                                    <div class="col-lg-4 row">
-                                        <button class="btn btn-primary pull-right" id="show_duplicate_keyword_list" disabled>Show keywords list</button>
-                                    </div>
-                                </div>
-                                 <div class="col-lg-12">
-                                    <table style="background: #f4f4f4; margin-top: 5%;" class="table keywords-duplicate-list table-bordered table-hover table-responsive">
-                                    <thead>
-                                        <tr>
-                                            <th>keyword</th>
-                                            <th>Occurence</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                      </tbody>
-                                  </table>
-                                </div>
-                                
+                               
+                              </div>
+                          <div class="tab_form">
+                            <div class="notification">
                             </div>
-                           
+                            <h3>Track & Save Campaign</h3>
                           </div>
                           <div class="tab_form">
                             <!--<div class="notification">-->
                             <!--</div> -->
-                            <h3>Data collection parameters</h3>
-                            {!! Form::open(array('url' => '','id' =>'keyword_trend_form','class'=>'validate_form')) !!}
+                            {{-- <h3> Data collection parameters </h3> --}}
+                            {!! Form::open(array('url' =>'','id' =>'keyword_trend_form','class'=>'validate_form')) !!}
                               <div class="col-lg-6">
                                   <div class="form-group flex_bottle">
                                     {!! Form::label('campaign_name', ' Research name ', ['class' => 'col-sm-4 control-label']) !!}
                                     <div class="col-sm-8">
-                                      {!! Form::text('campaign_name', null, ['class' => 'form-control required','id'=>'campaign_name','placeholder'=>" Research name "]) !!}
+                                      {!! Form::text('campaign_name', $campaign->campaign_name , ['class' => 'form-control required','id'=>'campaign_name','placeholder'=>" Research name "]) !!}
                                     </div>
                                   </div>
                                   
                                   <div class="form-group flex_bottle">
-                                      <label class="col-sm-4 control-label">Country</label>
+                                      <label class="col-sm-4 control-label"> Country </label>
                                       <div class="col-sm-8">
                                           <select name="country" data-type="country" data-url="{!! route('get_states_partner') !!}" class="form-control required select-location">
-                                            @foreach($countries as $country)
-                                              <option value="{!! $country->criteria_id !!}">{!! $country->location_name !!}</option>
+                                            @foreach($countries as $countrie)
+                                              <option value="{!! $countrie->criteria_id !!}">{!! $countrie->location_name !!}</option>
                                             @endforeach
-                                             <option selected="" disabled="">Select a value</option>
+                                             <option selected="" value = "{!! $campaign->country_id !!}"> {{ $country }}</option>
                                           </select>
                                       </div>  
                                   </div>
@@ -114,7 +75,7 @@
                                       <label class="col-sm-4 control-label">State/province</label>
                                       <div class="col-sm-8">
                                           <select name="province" data-type="province" data-url="{!! route('get_states_partner') !!}" class="form-control required select-location select-province">
-                                            <option disabled="" selected="">Select a value</option>
+                                            <option selected="" value = "{!! $campaign->province_id !!}">{!!  $state   !!}</option>
                                           </select>
                                       </div>  
                                   </div>
@@ -123,7 +84,7 @@
                                       <label class="col-sm-4 control-label">Area</label>
                                       <div class="col-sm-8">
                                           <select name="area" data-type="province" data-url="{!! route('get_states_partner') !!}" class="form-control required select-location select-province">
-                                            <option disabled="" selected="">Select a value</option>
+                                            <option selected="" value = "{!! $campaign->area_id !!}">{!! $area !!}</option>
                                           </select>
                                       </div>
                                   </div>
@@ -132,6 +93,7 @@
                                      <label class="col-sm-4 control-label">Language</label>
                                       <div class="col-sm-8">
                                             <select name="language_code" class="form-control required">
+                                               <option selected="" value = "{!! $campaign->language_id !!}">{!! $language !!}</option>
                                                <option value="1019" >Arabic</option>
                                                <option value="1056" >Bengali</option>
                                                <option value="1020" >Bulgarian</option>
@@ -186,19 +148,20 @@
                                   <div class="form-group flex_bottle">
                                       {!! Form::label('monthly_searches', 'Include monthly research', ['class' => 'col-sm-6 control-label']) !!}
                                       <div class="col-sm-6">
-                                          {!! Form::checkbox('monthly_searches', null, false) !!}
+                                          {!! Form::checkbox('monthly_searches', null,  $campaign->monthly_searches ) !!}
                                       </div>
                                   </div>
-                                  
+                                 
                                   <div class="form-group flex_bottle">
                                       {!! Form::label('convert_null_to_zero', 'Convert NULL values to Zero', ['class' => 'col-sm-6 control-label']) !!}
                                       <div class="col-sm-6">
-                                          {!! Form::checkbox('convert_null_to_zero', null, false) !!}
+                                          {!! Form::checkbox('convert_null_to_zero', null, $campaign->convert_null_to_zero ) !!}
                                       </div>
                                   </div> 
                               </div>
                               <div class="col-lg-12">
-                                  <a class=" btn btn-primary pull-right" id="btn_data_collection" disabled>Launch data collection</a>
+                                  <a href="{!!  URL::to('partner/data-collections') !!}" class="btn btn-primary">Return</a>
+                                  <a class=" btn btn-primary pull-right" id="btn_data_collection">Track&Save Campaign</a>
                               </div>
                             {!! Form::close() !!}
                           </div>
