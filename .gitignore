@@ -6,7 +6,6 @@ composer.lock
 /public/storage
 /public/hot
 /storage/*.key
-/storage/*
 .c9/*
 /.idea
 /.c9
@@ -15,3 +14,4 @@ Homestead.json
 Homestead.yaml
 .env
 _ide_helper.php
+/vendor/symfony/var-dumper/Tests/Cloner/*

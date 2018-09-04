@@ -211,6 +211,7 @@ class AdWords
         $competition =
             ($data[AttributeType::COMPETITION]->getValue() !== null)
                 ? $data[AttributeType::COMPETITION]->getValue() : 0;
+        
 
         $result = new Keyword([
             'keyword'                   => $keyword,
@@ -219,6 +220,7 @@ class AdWords
             'competition'               => $competition,
             'targeted_monthly_searches' => null,
         ]);
+
 
         if ($this->withTargetedMonthlySearches) {
             $targeted_monthly_searches =

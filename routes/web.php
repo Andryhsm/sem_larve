@@ -52,10 +52,14 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::post('tracksave-campaign/{campaign_id}', 'KeywordTrendsController@makeRequestAdwordsTrackSave')->name('make_request_adowrds_partner');
             Route::get('get-locations', 'KeywordTrendsController@getLocations')->name('get_locations_partner');
             Route::post('delete_campaign','KeywordTrendsController@deleteCampaign')->name('delete_campaign');
-            Route::post('save-data-collection','KeywordTrendsController@save_data_collection')->name('save_data_collection_partner');
+            /*Route::post('save-data-collection','KeywordTrendsController@save_data_collection')->name('save_data_collection_partner');*/
             Route::post('get-states', 'KeywordTrendsController@getStatesByLocation')->name('get_states_partner');
             Route::resource('subaccount', 'SubAccountController');
             
+            Route::get('data-directory', 'DataDirectoryController@index')->name('data_directory_partner');
+
+            Route::post('export-excel', 'KeywordTrendsController@exportExcel')->name('export_excel_partner');
+
             Route::get('404',function(){
                 return view('admin.404');
             })->name('404');
@@ -148,6 +152,10 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::post('make-request-adwords', 'KeywordTrendsController@makeRequestAdwords')->name('make_request_adwords');
             Route::post('get-states', 'KeywordTrendsController@getStatesByLocation')->name('get_states');
             Route::post('save-data-collection','KeywordTrendsController@save_data_collection')->name('save_data_collection');
+
+             Route::get('data-directory', 'DataDirectoryController@index')->name('data_directory');
+
+             Route::post('export-excel', 'KeywordTrendsController@export-excel')->name('export_excel');
            
             // Route::resource('banner', 'BannerController');
             // Route::resource('product-rating', 'ProductRatingController');

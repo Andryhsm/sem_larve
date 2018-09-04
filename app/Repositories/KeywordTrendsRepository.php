@@ -37,15 +37,12 @@ class KeywordTrendsRepository
 		return $this->modelCampaign->with('area', 'area.parent', 'area.parent.parent','language')->where('campaign_id',$id)->first();
 	}
 
-	public function storeDataCollection($input) 
+	public function storeDataCollection($input, $searchVolumes) 
 	{
 
 		
-		$keywords_tab = json_decode($input['keywords_result']);
-		$params = $input['params'];
-
-		//\Log::debug($keywords_tab);
-		
+		//$keywords_tab = json_decode($input['keywords_result']);
+		$params = $input['params'];		
 		$campaign = new Campaign();
 		$campaign->admin_id = $user_id = get_user_id();
 		$campaign->country_id = $params['country_id'];
@@ -59,22 +56,22 @@ class KeywordTrendsRepository
 		$campaign->save();
 		
 		$null = ($params['convert_null_to_zero'] == 1) ? 0 : 1; 
-		$data = $keywords_tab->data;
+		//$data = $keywords_tab->data;
 		
-		foreach ($data as $block_result) {
-		
+		//foreach ($data as $block_result) {
+		foreach ($searchVolumes as $block_result) {
 			foreach($block_result as $param_keyword) {
 				$result_last_month = '';
 				$keyword = new Keyword();
 				$keyword->campaign_id = $campaign->campaign_id;
 				$keyword->keyword_name = $param_keyword->keyword;
-				$keyword->avg_monthly_searches = isset($param_keyword->search_volume) ? $param_keyword->search_volume : $null;
+				$keyword->avg_monthly_searches = ($param_keyword->search_volume != null) ? $param_keyword->search_volume : $null;
 				//$keyword->c;
-				$keyword->cpc = isset($param_keyword->search_volume) ? $param_keyword->cpc : $null;
-				$keyword->competition = isset($param_keyword->competition) ? $param_keyword->competition : $null;
-				if(isset($param_keyword->targeted_monthly_searches)) {
+				$keyword->cpc = ($param_keyword->search_volume != null) ? $param_keyword->cpc : $null;
+				$keyword->competition = ($param_keyword->competition != null) ? $param_keyword->competition : $null;
+				if($param_keyword->targeted_monthly_searches != null) {
 					foreach($param_keyword->targeted_monthly_searches as $result_month) {
-						$result_last_month .= $result_month->year.';'.$result_month->month.';'.$result_month->count.'||';
+						$result_last_month .= $result_month['year'].';'.$result_month['month'].';'.$result_month['count'].'||';
 					}
 				}
 				$keyword->target_monthly_search = $result_last_month;

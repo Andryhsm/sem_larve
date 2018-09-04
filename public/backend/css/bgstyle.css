@@ -1,0 +1,44 @@
+.bgred {
+    background-color: #F08080;
+    font-weight: bold;
+}
+.bgorange {
+    background-color: orange;
+    font-weight: bold;
+}
+.bgyellow {
+    background-color: yellow;
+    font-weight: bold;
+}
+.bggreenyellow {
+    background-color: greenyellow;
+    font-weight: bold;
+}
+.bggreen {
+    background-color: #32CD32;
+    font-weight: bold;
+}
+
+.bgred_taille {
+    background-color: #F08080;
+    font-weight: bold;
+}
+.bgorange_taille{
+    background-color: orange;
+    font-weight: bold;
+}
+.bgyellow_taille {
+    background-color: yellow;
+    font-weight: bold;
+}
+.bggreenyellow_taille {
+    background-color: greenyellow;
+    font-weight: bold;
+}
+.bggreen_taille {
+    background-color: #32CD32;
+    font-weight: bold;
+}
+
+
+
