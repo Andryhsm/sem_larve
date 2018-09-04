@@ -254,7 +254,7 @@ function post_duplicate(keyword_duplicate_list) {
 function launch_request() { 
   var params = {
     language_id: $('select[name="language_code"]').val(),
-    monthly_searches: $('input[name="monthly_searches"]').is( ":checked" ) ? 1 : 0,
+    monthly_searches: 1 ,
     country_id: $('select[name="country"]').val(),
     province_id: $('select[name="province"]').val(),
     area_id: $('select[name="area"]').val(),
@@ -267,18 +267,19 @@ function launch_request() {
         last_list_of_keyword.push($(el).text());
   });*/
   var incr = 0;
+  var success = false;
   function recursive() {
     setTimeout(function(){
        var total = keyword_list.uniq().length;
       // var item = para.res[i];
        var percent = (incr/parseInt(total))*100;
-       console.log(percent);
        $('.bar').css({'width': percent + '%',
                                       'text-align': 'center'
                                   });
+       $('.bar').html(Math.ceil(percent) + ' %');
        // do something
        incr++;        
-       if (incr < total) recursive()
+       if (incr < total && success==false) recursive()
     }, 200)
   }
 
@@ -323,7 +324,7 @@ function launch_request() {
             },
       dataType: 'json',
       beforeSend: function() {
-                    $.LoadingOverlay("show", { 'size': "10%", 'zIndex': 9999 });
+                   // $.LoadingOverlay("show", { 'size': "10%", 'zIndex': 9999 });
                 },
       success: function(response){
         //save_data_collection(data);
@@ -337,7 +338,8 @@ function launch_request() {
           console.log(xhr.responseText);
       }
   }).always(function(){
-        $.LoadingOverlay("hide");
+        //$.LoadingOverlay("hide");
+        success = true;
   });
 }
 

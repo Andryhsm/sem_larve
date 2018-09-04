@@ -183,7 +183,7 @@
                                   </div>
                               </div>
                               <div class="col-lg-6">
-                                  <div class="form-group flex_bottle">
+                                  <div class="form-group flex_bottle hidden">
                                       {!! Form::label('monthly_searches', 'Include monthly research', ['class' => 'col-sm-6 control-label']) !!}
                                       <div class="col-sm-6">
                                           {!! Form::checkbox('monthly_searches', null, false) !!}
