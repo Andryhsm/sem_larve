@@ -252,7 +252,6 @@ function post_duplicate(keyword_duplicate_list) {
 }   
 
 function launch_request() { 
-
   var params = {
     language_id: $('select[name="language_code"]').val(),
     monthly_searches: $('input[name="monthly_searches"]').is( ":checked" ) ? 1 : 0,

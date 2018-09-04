@@ -46,7 +46,9 @@
                                                     <a class="btn btn-default btn-sm delete-campaign" action="{{ route('delete_campaign') }}" data-id="{!! $campaign->campaign_id !!}" title="View">
                                                         <i class="fa fa-fw fa-trash"></i>
                                                     </a>
-                                                    <a class="btn btn-default btn-sm delete-campaign" action="{{ route('delete_campaign') }}" data-id="{!! $campaign->campaign_id !!}" data-area_id="{!!  $campaign->area_id !!}" data-monthly_searches="{!!  $campaign->monthly_searches !!}" data-convert_null_to_zero="{!!  $campaign->convert_null_to_zero !!}" data-language_id="{!!  $campaign->language_id !!}" title="View" style="margin-left:6px;">
+
+                                                    <a class="btn btn-default btn-sm tracksave-campaign" href="{{ route('tracksave_campaign',$campaign->campaign_id) }}" data-id="{!! $campaign->campaign_id !!}" data-area_id="{!!  $campaign->area_id !!}" data-monthly_searches="{!!  $campaign->monthly_searches !!}" data-convert_null_to_zero="{!!  $campaign->convert_null_to_zero !!}" data-language_id="{!!  $campaign->language_id !!}" title="View" style="margin-left:6px;">
+
                                                         <span> Track & Save</span>
                                                     </a>
                                                 </div>
