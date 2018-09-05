@@ -251,7 +251,7 @@ function post_duplicate(keyword_duplicate_list) {
     }
 }   
 
-function launch_request() { 
+function launch_request() {
   var params = {
     language_id: $('select[name="language_code"]').val(),
     monthly_searches: 1 ,
@@ -262,11 +262,11 @@ function launch_request() {
     campaign_name: $('input[name="campaign_name"]').val(),
   };
 
-  /*var last_list_of_keyword = [];
+  var last_list_of_keyword = [];
   $('.one_keyword').each(function(index, el){
         last_list_of_keyword.push($(el).text());
-  });*/
-  var incr = 0;
+  });
+/*  var incr = 0;
   var success = false;
   function recursive() {
     setTimeout(function(){
@@ -281,42 +281,10 @@ function launch_request() {
        incr++;        
        if (incr < total && success==false) recursive()
     }, 200)
-  }
-
-  $.ajax({
-    xhr: function() {
-        var total = keyword_list.uniq().length;
-        //for(var i=0; i<total; i++) {
-          var xhr = new window.XMLHttpRequest();
-          
-          recursive();
-
-          $('.tab_form:last').removeClass('hidden');
-          $('.tab_form:last').slideDown('slow');
-          
-          // Upload progress
-          xhr.onprogress = function (evt) {
-              if (evt.lengthComputable) {
-                var percentComplete = (evt.loaded / evt.total) * 100;
-                console.log(percentComplete);
-
-                    var loaded = (total * percentComplete) / 100;
-                    $('.bar').css({'width': percentComplete + '%',
-                                    'text-align': 'center'
-                                });
-                    $('.bar').html(percentComplete + ' %');
-                    $('.progress_stat').html(parseInt(loaded) + ' keywords / ' + total + ' done');
-                }
-                
-                //  $('.data_collect_notification').html(' Data collection saved.');
-            
-          }
-            
-          return xhr;
-        //}
-        
-      },
-      type: 'GET',
+  }*/
+  var interval = null; // interval used to stop setInterval
+  $.ajax({   
+      type: 'POST',
       url: "make-request-adwords",
       data: {
               params: params,
@@ -324,8 +292,23 @@ function launch_request() {
             },
       dataType: 'json',
       beforeSend: function() {
-                   // $.LoadingOverlay("show", { 'size': "10%", 'zIndex': 9999 });
-                },
+          $('.tab_form:last').removeClass('hidden');
+          $('.tab_form:last').slideDown('slow');
+          $('html,body').animate({scrollTop: document.body.scrollHeight},"fast");
+          var total = keyword_list.uniq().length;
+          var incr = 0;
+          interval = setInterval(function() {
+            var percent = (incr/parseInt(total))*100;
+            if(percent < 95) {
+              $('.bar').css({'width': percent + '%',
+                              'text-align': 'center'
+                          });
+              $('.bar').html(Math.ceil(percent) + ' %');
+            } 
+            
+            incr++;        
+          }, 200);            
+      },
       success: function(response){
         //save_data_collection(data);
         console.log(response);
@@ -340,6 +323,11 @@ function launch_request() {
   }).always(function(){
         //$.LoadingOverlay("hide");
         success = true;
+        clearInterval(interval);
+        $('.bar').css({'width': '100%',
+                        'text-align': 'center'
+                      });
+        $('.bar').html('100 %');
   });
 }
 
