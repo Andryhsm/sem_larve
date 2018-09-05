@@ -51,7 +51,7 @@ class UserPermission
         $this->app->bind('user_permission', function () use ($permission_array) {
             return $permission_array;
         });
-
+        return $next($request); 
         if($request->isMethod('PATCH') || $request->ajax()  || $request->isMethod('POST') || $request->isMethod('DELETE') ){
             return $next($request);
         }

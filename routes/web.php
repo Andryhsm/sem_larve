@@ -30,7 +30,10 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
     
     Route::group(['prefix' => 'partner/'],function(){
         Route::group(['middleware' => ['auth.admin','permission']], function () {
-            
+            Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {
+                 \UniSharp\LaravelFilemanager\Lfm::routes();
+             });
+           
             Route::get('dashboard', 'DashboardController@index')->name('dashboard_partner');
            
             Route::get('profile', 'UserController@show')->name('profile_partner');
@@ -250,6 +253,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             })->name('404');
         });
     });
+
+     
     
     Route::group(['middleware' => ['permission']], function () {
         Route::get('/{slug}/{item_id?}', function (Request $request, $slug, $item_id = null) {
