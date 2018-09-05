@@ -12,6 +12,7 @@ use App\Repositories\KeywordTrendsRepository;
 use League\Csv\Reader;
 use League\Csv\Statement;
 use App\Models\AdwordsApi;
+use \Log;
  
 class KeywordTrendsController extends Controller
 {   
@@ -97,11 +98,28 @@ class KeywordTrendsController extends Controller
 		    'type_alert' => 'alert-success'
 		    ]);
 	}
-
+//mountroyal 1002599 , montreal 1002604
 	public function launch_request_keyword($params, $keywords) {
 		$searchVolumes = null;
 		if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==0) {
-			$searchVolumes = \AdWords::location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords);
+			$searchVolumes = \AdWords::location('1002599')->language($params['language_id'])->searchVolumes($keywords);
+			$searchVolumes1 = \AdWords::location('1002604')->language($params['language_id'])->searchVolumes($keywords);
+			$searchVolumes2 = \AdWords::location('1002598')->language($params['language_id'])->searchVolumes($keywords);
+			$searchVolumes3 = \AdWords::location('1002600')->language($params['language_id'])->searchVolumes($keywords);
+            Log::debug($searchVolumes);Log::info('search zero');
+            Log::debug($searchVolumes1);Log::info('search un');
+            Log::debug($searchVolumes2);Log::info('search deux');
+            Log::debug($searchVolumes3);Log::info('search trois');
+           // Log::debug($searchVolumes[0]->keyword);Log::info('search zero');
+            for ($i=0; $i<sizeof($searchVolumes); $i++){
+                $searchVolumes[$i]->search_volume = $searchVolumes[$i]->search_volume +  $searchVolumes1[$i]->search_volume + $searchVolumes2[$i]->search_volume +  $searchVolumes3[$i]->search_volume;
+                $searchVolumes[$i]->cpc = ($searchVolumes[$i]->cpc +  $searchVolumes1[$i]->cpc + $searchVolumes2[$i]->cpc +  $searchVolumes3[$i]->cpc)/4;
+                $searchVolumes[$i]->competition = ($searchVolumes[$i]->competition +  $searchVolumes1[$i]->competition + $searchVolumes2[$i]->competition +  $searchVolumes3[$i]->competition)/4;
+
+            }
+
+            Log::debug($searchVolumes);Log::info('valinys');
+
 		} else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==0) {
 			$searchVolumes = \AdWords::withTargetedMonthlySearches()->location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords);
 		} else if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==1) {
