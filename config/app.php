@@ -202,6 +202,7 @@ return [
         Jenssegers\Date\DateServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         SchulzeFelix\AdWords\AdWordsServiceProvider::class,
+        UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
 	],
 
     /*
