@@ -51,8 +51,6 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::resource('adwords_api','AdwordsApiController');
             Route::get('show-campaign-keywords','KeywordTrendsController@showCampaignResultData')->name('show_campaign_keywords');
             Route::get('overview-keyword-list', 'KeywordTrendsController@OverviewListKeyword')->name('overview-list');
-            Route::get('tracksave-campaign/{campaign_id}', 'KeywordTrendsController@TrackSaveCampaign')->name('tracksave_campaign');
-            Route::post('tracksave-campaign/{campaign_id}', 'KeywordTrendsController@makeRequestAdwordsTrackSave')->name('make_request_adowrds_partner');
             Route::get('get-locations', 'KeywordTrendsController@getLocations')->name('get_locations_partner');
             Route::post('delete_campaign','KeywordTrendsController@deleteCampaign')->name('delete_campaign');
             /*Route::post('save-data-collection','KeywordTrendsController@save_data_collection')->name('save_data_collection_partner');*/
@@ -63,6 +61,9 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
 
             Route::post('export-excel', 'KeywordTrendsController@exportExcel')->name('export_excel_partner');
 
+            Route::get('tracksave-campaign/{campaign_id}', 'KeywordTrendsController@TrackSaveCampaign')->name('tracksave_campaign');
+            Route::post('tracksave-campaign-adwords', 'KeywordTrendsController@makeRequestAdwordsTrackSave')->name('tracksave_campaign_adwords');
+           
             Route::get('404',function(){
                 return view('admin.404');
             })->name('404');

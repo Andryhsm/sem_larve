@@ -17,3 +17,4 @@ class Keyword extends Model
 		return $this->hasOne(Campaign::class,'campaign_id','campaign_id');
 	}
 }
+	

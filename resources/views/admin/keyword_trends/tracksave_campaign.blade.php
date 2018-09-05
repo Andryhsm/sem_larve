@@ -27,7 +27,7 @@
                                             </tr>
                                           </thead>
                                           <tbody>
-                                                @foreach ($keywords as $keyword)
+                                                @foreach ($keywords_decode as $keyword)
                                                     <tr>
                                                         <td>{!! $keyword->keyword_name !!}</td>
                                                         <td>{!! $keyword->cpc !!}</td>
@@ -44,7 +44,7 @@
                           <div class="tab_form">
                             <div class="notification">
                             </div>
-                            <h3>Track & Save Campaign</h3>
+                            <h3>Description</h3>
                           </div>
                           <div class="tab_form">
                             <!--<div class="notification">-->
@@ -53,18 +53,22 @@
                             {!! Form::open(array('url' =>'','id' =>'keyword_trend_form','class'=>'validate_form')) !!}
                               <div class="col-lg-6">
                                   <div class="form-group flex_bottle">
-                                    {!! Form::label('campaign_name', ' Research name ', ['class' => 'col-sm-4 control-label']) !!}
+                                    {!! Form::label('campaign_name', ' Research name ', ['class' => 'col-sm-4 control-label']) !!}:
+
                                     <div class="col-sm-8">
-                                      {!! Form::text('campaign_name', $campaign->campaign_name , ['class' => 'form-control required','id'=>'campaign_name','placeholder'=>" Research name "]) !!}
+                                      <span> {!! $campaign->campaign_name !!}</span>
+                                      {!! Form::text('campaign_name', $campaign->campaign_name , ['class' => 'form-control required hidden','id'=>'campaign_name','placeholder'=>" Research name "]) !!}
                                     </div>
                                   </div>
-                                  
+                                  {{--  {!! @if($campaign->country_id  == $countrie->criteria_id)?"selected" : "" @endif!!}  --}}
+                                  <input type="hidden" value="{!! $campaign->campaign_id !!}" name="campaign_id">
                                   <div class="form-group flex_bottle">
-                                      <label class="col-sm-4 control-label"> Country </label>
+                                      <label class="col-sm-4 control-label"> Country </label>:  
                                       <div class="col-sm-8">
-                                          <select name="country" data-type="country" data-url="{!! route('get_states_partner') !!}" class="form-control required select-location">
+                                          <span>{!! $country !!}</span>
+                                          <select name="country" data-type="country" data-url="{!! route('get_states_partner') !!}" class="hidden form-control required select-location">
                                             @foreach($countries as $countrie)
-                                              <option value="{!! $countrie->criteria_id !!}">{!! $countrie->location_name !!}</option>
+                                              <option value="{!! $countrie->criteria_id !!}" > {!! $countrie->location_name !!}</option>
                                             @endforeach
                                              <option selected="" value = "{!! $campaign->country_id !!}"> {{ $country }}</option>
                                           </select>
@@ -72,27 +76,30 @@
                                   </div>
     
                                   <div class="form-group flex_bottle content-select-province">
-                                      <label class="col-sm-4 control-label">State/province</label>
+                                      <label class="col-sm-4 control-label">State/province</label>:
                                       <div class="col-sm-8">
-                                          <select name="province" data-type="province" data-url="{!! route('get_states_partner') !!}" class="form-control required select-location select-province">
+                                          <span>{!! $state !!}</span>
+                                          <select name="province" data-type="province" data-url="{!! route('get_states_partner') !!}" class="hidden form-control required select-location select-province">
                                             <option selected="" value = "{!! $campaign->province_id !!}">{!!  $state   !!}</option>
                                           </select>
                                       </div>  
                                   </div>
 
                                   <div class="form-group flex_bottle content-select-state">
-                                      <label class="col-sm-4 control-label">Area</label>
+                                      <label class="col-sm-4 control-label">Area</label>:
                                       <div class="col-sm-8">
-                                          <select name="area" data-type="province" data-url="{!! route('get_states_partner') !!}" class="form-control required select-location select-province">
+                                         <span>{!! $area !!}</span>
+                                          <select name="area" data-type="province" data-url="{!! route('get_states_partner') !!}" class="hidden form-control required select-location select-province">
                                             <option selected="" value = "{!! $campaign->area_id !!}">{!! $area !!}</option>
                                           </select>
                                       </div>
                                   </div>
                                   
                                   <div class="form-group flex_bottle">
-                                     <label class="col-sm-4 control-label">Language</label>
+                                     <label class="col-sm-4 control-label">Language</label>:
                                       <div class="col-sm-8">
-                                            <select name="language_code" class="form-control required">
+                                            <span>{!! $language !!}</span>
+                                            <select name="language_code" class="hidden form-control required">
                                                <option selected="" value = "{!! $campaign->language_id !!}">{!! $language !!}</option>
                                                <option value="1019" >Arabic</option>
                                                <option value="1056" >Bengali</option>
@@ -161,7 +168,7 @@
                               </div>
                               <div class="col-lg-12">
                                   <a href="{!!  URL::to('partner/data-collections') !!}" class="btn btn-primary">Return</a>
-                                  <a class=" btn btn-primary pull-right" id="btn_data_collection">Track&Save Campaign</a>
+                                  <a class=" btn btn-primary pull-right" data-url = "{!! route('tracksave_campaign_adwords') !!}" id="btn_data_collection_tracksave">Track & Save</a>
                               </div>
                             {!! Form::close() !!}
                           </div>
@@ -177,7 +184,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                    <span class="data_collect_notification pull-left"></span>
-                                   <a class="link_result btn btn-primary pull-right" href="{{ route('overview-list') }}">See the result</a>
+                                   <a class="link_result btn btn-primary disabled pull-right" href="{{ route('overview-list') }}">See the result</a>
                                </div>
                            </div>
                           

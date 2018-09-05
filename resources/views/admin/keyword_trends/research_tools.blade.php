@@ -214,7 +214,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                    <span class="data_collect_notification pull-left"></span>
-                                   <a class="link_result btn btn-primary pull-right" href="{{ route('overview-list') }}">See the result</a>
+                                   <a class="link_result btn btn-primary disabled pull-right" href="{{ route('overview-list') }}">See the result</a>
                                </div>
                            </div>
                           

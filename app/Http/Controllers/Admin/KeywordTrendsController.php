@@ -230,34 +230,53 @@ class KeywordTrendsController extends Controller
 		$campaign = $this->keyword_trend_repository->getCampaignById($campaign_id);
 		// dd($campaign);
 		$area = $campaign->area->location_name;
-		$state = $campaign->area->parent->location_name;
-		$country = $campaign->area->parent->parent->location_name;
-		$language = $campaign->language->language_name;
+		$state = $campaign->area->parent->canonical_name;
+		$country = $campaign->area->parent->parent->canonical_name;
+		$language = $campaign->language->language_name;	
 		
 		$datas = $this->keyword_trend_repository->getKeywordByCampaignId($campaign_id);
-		$keywords = json_decode($datas);
+		$keywords_decode = json_decode($datas);
+
 		return view('admin.keyword_trends.tracksave_campaign')->with('campaign', $campaign)->with('countries', $countries)
-		->with('area', $area)->with('state', $state)->with('country', $country)->with('language', $language)->with('keywords', $keywords);
+		->with('area', $area)->with('state', $state)->with('country', $country)->with('language', $language)->with('keywords_decode', $keywords_decode);
 	}
 	
-	public function makeRequestAdwordsTrackSave($campaign_id, Request $request){
-
-		$datas = $this->keyword_trend_repository->getKeywordByCampaignId($campaign_id);
-		$keywords = json_decode($datas);
-
+	public function makeRequestAdwordsTrackSave(Request $request){
 		$params = $request->get('params');
-		$searchVolumes = collect();	
+		$campaign = null;
+		$campaign_id = $params['campaign_id'];
+		$datas = $this->keyword_trend_repository->getKeywordByCampaignId($campaign_id);
+		$keywords = [];
+		foreach($datas as $keyword){
+			$keywords[] = $keyword->keyword_name;
+		}
+		$searchVolumes = collect();
 		$tab_keywords = array_chunk($keywords, 800);
 
 		foreach ($tab_keywords as $tab_keyword) {
-			$result = $this->launch_request_keyword($params, $tab_keyword);
+			$result = $this->launch_request_keyword_decode($params, $tab_keyword);
 			$searchVolumes[] = $result;
 		}
+		$campaign = $this->keyword_trend_repository->updateKeywordByCampaignId($params, $searchVolumes);
 		return response()->json([
+
         	'status' => 'ok',
         	'data' => $searchVolumes,
         	'params' => $params,
         	'keyword_param' => $keywords
         ]);
+	}
+	public function launch_request_keyword_decode($params, $keywords_decodes) {
+		$searchVolumes = null;
+		if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==0) {
+			$searchVolumes = \AdWords::location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords_decodes);
+		} else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==0) {
+			$searchVolumes = \AdWords::withTargetedMonthlySearches()->location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords_decodes);
+		} else if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==1) {
+			$searchVolumes = \AdWords::convertNullToZero()->location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords_decodes);
+		} else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==1) {
+			$searchVolumes = \AdWords::withTargetedMonthlySearches()->convertNullToZero()->location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords_decodes);
+		}
+		return $searchVolumes;
 	}
 }
