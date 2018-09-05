@@ -79,7 +79,6 @@
                             </nav>
                             <div class="visible-xs" id="current_dir" style="padding: 5px 15px;background-color: #f8f8f8;color: #5e5e5e;"></div>
 
-                            <div id="alerts"></div>
 
                             <div id="content"></div>
                           </div>
