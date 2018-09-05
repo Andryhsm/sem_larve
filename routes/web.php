@@ -47,7 +47,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::get('data-collections', 'KeywordTrendsController@dataCollections')->name('data_collections_partner');
             //Route::get('downloadExcel/{type}', 'KeywordTrendsController@downloadExcel')->name('download_excel_partner');
             Route::post('import-excel', 'KeywordTrendsController@importExcel')->name('import_excel_partner');
-            Route::get('make-request-adwords', 'KeywordTrendsController@makeRequestAdwords')->name('make_request_adowrds_partner');
+            Route::post('make-request-adwords', 'KeywordTrendsController@makeRequestAdwords')->name('make_request_adowrds_partner');
             Route::resource('adwords_api','AdwordsApiController');
             Route::get('show-campaign-keywords','KeywordTrendsController@showCampaignResultData')->name('show_campaign_keywords');
             Route::get('overview-keyword-list', 'KeywordTrendsController@OverviewListKeyword')->name('overview-list');
@@ -152,7 +152,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
 
             //Route::get('downloadExcel/{type}', 'KeywordTrendsController@downloadExcel')->name('download_excel');
             Route::post('importExcel', 'KeywordTrendsController@importExcel')->name('import_excel');
-            Route::get('make-request-adwords', 'KeywordTrendsController@makeRequestAdwords')->name('make_request_adwords');
+            Route::post('make-request-adwords', 'KeywordTrendsController@makeRequestAdwords')->name('make_request_adwords');
             Route::post('get-states', 'KeywordTrendsController@getStatesByLocation')->name('get_states');
             Route::post('save-data-collection','KeywordTrendsController@save_data_collection')->name('save_data_collection');
 
