@@ -307,7 +307,7 @@ function launch_request() {
             } 
             
             incr++;        
-          }, 100);            
+          }, 50);            
       },
       success: function(response){
         //save_data_collection(data);
