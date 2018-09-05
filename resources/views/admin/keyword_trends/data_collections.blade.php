@@ -32,6 +32,17 @@
                                     <tbody>
                                         @if(count($campaigns)>0)
                                         @foreach($campaigns as $campaign)
+                                        <?php 
+                                            $disabled = 'disabled';
+                                            $target_monthly = $campaign->piecekeyword->target_monthly_search;
+                                            if($target_monthly != null && $target_monthly != '') {
+                                                $target_monthly = explode('||', $target_monthly);
+                                                $last_month = explode(';', $target_monthly[0]);
+                                                if (\Carbon\Carbon::now()->month >= (int)$last_month[1])
+                                                    $disabled = '';
+                                            }
+
+                                         ?>
                                         <tr>
                                             <td>{!! $campaign->campaign_name !!}</td>
                                             <td>{!! ($campaign->area) ? $campaign->area->location_name:'' !!}</td>
@@ -47,7 +58,7 @@
                                                         <i class="fa fa-fw fa-trash"></i>
                                                     </a>
 
-                                                    <a class="btn btn-default btn-sm tracksave-campaign" href="{{ route('tracksave_campaign',$campaign->campaign_id) }}" data-id="{!! $campaign->campaign_id !!}" data-area_id="{!!  $campaign->area_id !!}" data-monthly_searches="{!!  $campaign->monthly_searches !!}" data-convert_null_to_zero="{!!  $campaign->convert_null_to_zero !!}" data-language_id="{!!  $campaign->language_id !!}" title="View" style="margin-left:6px;">
+                                                    <a class="btn btn-default btn-sm tracksave-campaign {!! $disabled !!}" href="{{ route('tracksave_campaign',$campaign->campaign_id) }}" data-id="{!! $campaign->campaign_id !!}" data-area_id="{!!  $campaign->area_id !!}" data-monthly_searches="{!!  $campaign->monthly_searches !!}" data-convert_null_to_zero="{!!  $campaign->convert_null_to_zero !!}" data-language_id="{!!  $campaign->language_id !!}" title="View" style="margin-left:6px;">
 
                                                         <span> Track & Save</span>
                                                     </a>

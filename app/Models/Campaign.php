@@ -26,5 +26,10 @@ class Campaign extends Model
 	{
 		return $this->hasOne(Language::class,'criteron_id','language_id');
 	}
+
+	public function piecekeyword()
+	{
+		return $this->hasOne(Keyword::class,'campaign_id', 'campaign_id');
+	}
 	
 }
