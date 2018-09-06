@@ -134,25 +134,57 @@ class KeywordTrendsController extends Controller
 
 	public function launch_request_keyword($params, $keywords) {
 		$searchVolumes = null;
-//        $area_id_size = sizeof($params['area_id']);
+        \Log::debug(sizeof($params['area_id']));
+        foreach ($params['area_id'] as $key=>$value) {
+            \Log::debug($value);
+            if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==0) {
+                $searchVolumes[] = \AdWords::location("".$value)->language($params['language_id'])->searchVolumes($keywords);
+
+            } else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==0) {
+                $searchVolumes[] = \AdWords::withTargetedMonthlySearches()->location("".$value)->language($params['language_id'])->searchVolumes($keywords);
+                Log::info('/////////////////////////////////////////////////');
+                //\Log::debug($searchVolumes);
+
+                Log::info('/////////////////////////////////////////////////');
+
+            } else if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==1) {
+                $searchVolumes[] = \AdWords::convertNullToZero()->location("".$value)->language($params['language_id'])->searchVolumes($keywords);
 
 
-     //   \Log::debug($area_id_size);
-		if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==0) {
-			$searchVolumes = \AdWords::location('1002599')->language($params['language_id'])->searchVolumes($keywords);
+            } else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==1) {
+                $searchVolumes[] = \AdWords::withTargetedMonthlySearches()->convertNullToZero()->location("".$value)->language($params['language_id'])->searchVolumes($keywords);
+            }
 
-           // Log::debug($searchVolumes[0]->keyword);Log::info('search zero')
+        }
+        $resume_search_volume = null;
+        for($j = 0 ; $j< sizeof($keywords); $j++) {
+            $nb = 0;
+            $average_competition = 0;
+            $average_cpc = 0;
+            $sum_search_volume = 0;
+
+            $keyword = '';
+
+            for ($i=0; $i< sizeof($params['area_id']); $i++){
+                //for ($k=0; $k< sizeof($value1); $k++){
+                    $average_competition += $searchVolumes[$i][$j]->competition;
+                    $average_cpc += $searchVolumes[$i][$j]->cpc;
+                    $sum_search_volume += $searchVolumes[$i][$j]->search_volume;
+                    $keyword =  $searchVolumes[$i][$j]->keyword;
+                    $nb++;
+                }
+            $average_competition = $average_competition / $nb;
+            $average_cpc = $average_cpc / $nb;
+            $resume_search_volume[$j]['keyword'] = $keyword;
+            $resume_search_volume[$j]['competition'] = $average_competition;
+            $resume_search_volume[$j]['cpc'] = $average_cpc;
+            $resume_search_volume[$j]['search_volume'] = $sum_search_volume;
+            }
 
 
 
-		} else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==0) {
-			$searchVolumes = \AdWords::withTargetedMonthlySearches()->location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords);
-		} else if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==1) {
-			$searchVolumes = \AdWords::convertNullToZero()->location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords);
-		} else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==1) {
-			$searchVolumes = \AdWords::withTargetedMonthlySearches()->convertNullToZero()->location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords);
-		}
-		return $searchVolumes;
+
+		return $resume_search_volume;
 	}
 
 	public function makeRequestAdwords(Request $request) 
