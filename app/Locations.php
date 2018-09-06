@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Campaign;
 use Illuminate\Database\Eloquent\Model;
 
 class Locations extends Model
@@ -20,4 +21,8 @@ class Locations extends Model
 	protected $fillable = ['location_name', 'canonical_name', 'parent_id', 'country_code', 'target_type', 'status'];
 
     public $timestamps = false;
+
+    public function campaigns() {
+        return $this->belongsToMany(Campaign::class);
+    }
 }
