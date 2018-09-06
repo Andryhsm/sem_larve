@@ -21,7 +21,7 @@ class KeywordTrendsRepository
 
 	public function getAllByUser($id)
 	{
-		return $this->modelCampaign->with('area','language','user')->where('admin_id',$id)->orderBy('campaign_id','desc')->get();
+		return $this->modelCampaign->with('area','language','user', 'piecekeyword')->where('admin_id',$id)->orderBy('campaign_id','desc')->get();
 	}
 
 	public function getKeywordByCampaignId($id)
@@ -33,9 +33,37 @@ class KeywordTrendsRepository
 	{
 		return $this->modelCampaign->destroy($id);
 	}
+
 	public function getCampaignById($id)
 	{
 		return $this->modelCampaign->with('area', 'area.parent', 'area.parent.parent','language')->where('campaign_id',$id)->first();
+	}
+
+	public function updateKeywordByCampaignId($params,$searchVolumes)
+	{
+		$delete_keyword = $this->modelKeyword->where('campaign_id', $params['campaign_id'])->delete($params['campaign_id']);
+		
+		$null = ($params['convert_null_to_zero'] == 1) ? 0 : 1; 
+
+		foreach($searchVolumes as $results){
+			foreach($results as $result) {
+				$result_last_month = '';
+				$keyword = new Keyword();
+				$keyword->campaign_id = $params['campaign_id'];
+				$keyword->keyword_name = $result['keyword'];
+				$keyword->avg_monthly_searches = ($result['search_volume'] != null) ? $result['search_volume']: $null;
+				//$keyword->c;	
+				$keyword->cpc = ($result['cpc'] != null) ? $result['cpc'] : $null;
+				$keyword->competition = ($result['competition'] != null) ? $result['competition'] : $null;
+				if($result['targeted_monthly_searches'] != null) {
+					foreach($result['targeted_monthly_searches'] as $result_month) {
+						$result_last_month .= $result_month['year'].';'.$result_month['month'].';'.$result_month['count'].'||';
+					}
+				}
+				$keyword->target_monthly_search = $result_last_month;
+				$keyword->save();
+			}
+		}
 	}
 
 	public function storeDataCollection($input, $searchVolumes) 
@@ -103,7 +131,7 @@ class KeywordTrendsRepository
 	}
 
 	public function getKeywordNumberTracked($id) {
-		return $this->modelKeyword->where('campaign_id',$id)->count();
+			return $this->modelKeyword->where('campaign_id',$id)->count();
 	}
 
 	public function getLastDataCollection($id) {

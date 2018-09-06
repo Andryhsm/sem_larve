@@ -31,5 +31,10 @@ class Campaign extends Model
 	public function locations() {
         return $this->belongsToMany(Locations::class, 'campaign_locations', 'criteria_id', 'campaign_id');
     }
-	
+
+	public function piecekeyword()
+	{
+		return $this->hasOne(Keyword::class,'campaign_id', 'campaign_id');
+	}
+
 }

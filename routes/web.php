@@ -16,7 +16,7 @@
 |--------------------------------------------------------------------------
 | Admin Routes
 |--------------------------------------------------------------------------
-|
+|over
 | Here is where you can register web routes for your admin. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
@@ -30,7 +30,10 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
     
     Route::group(['prefix' => 'partner/'],function(){
         Route::group(['middleware' => ['auth.admin','permission']], function () {
-            
+            Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {
+                 \UniSharp\LaravelFilemanager\Lfm::routes();
+             });
+           
             Route::get('dashboard', 'DashboardController@index')->name('dashboard_partner');
            
             Route::get('profile', 'UserController@show')->name('profile_partner');
@@ -56,6 +59,11 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             
             Route::get('data-directory', 'DataDirectoryController@index')->name('data_directory_partner');
 
+            Route::post('export-excel', 'KeywordTrendsController@exportExcel')->name('export_excel_partner');
+
+            Route::get('tracksave-campaign/{campaign_id}', 'KeywordTrendsController@TrackSaveCampaign')->name('tracksave_campaign');
+            Route::post('tracksave-campaign-adwords', 'KeywordTrendsController@makeRequestAdwordsTrackSave')->name('tracksave_campaign_adwords');
+           
             Route::get('404',function(){
                 return view('admin.404');
             })->name('404');
@@ -150,6 +158,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             Route::post('save-data-collection','KeywordTrendsController@save_data_collection')->name('save_data_collection');
 
              Route::get('data-directory', 'DataDirectoryController@index')->name('data_directory');
+
+             Route::post('export-excel', 'KeywordTrendsController@export-excel')->name('export_excel');
            
             // Route::resource('banner', 'BannerController');
             // Route::resource('product-rating', 'ProductRatingController');
@@ -244,6 +254,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => []], function () {
             })->name('404');
         });
     });
+
+     
     
     Route::group(['middleware' => ['permission']], function () {
         Route::get('/{slug}/{item_id?}', function (Request $request, $slug, $item_id = null) {

@@ -21,8 +21,8 @@ class KeywordTrendsController extends Controller
     public function __construct(KeywordTrendsRepository $keyword_trend_repo)
     {
          $this->keyword_trend_repository = $keyword_trend_repo;
-    } 
-     
+	} 
+	
     public function researchTools() 
     {
     	//dd(config('adwords-targeting-idea-service.user_agent'));
@@ -98,6 +98,39 @@ class KeywordTrendsController extends Controller
 		    'type_alert' => 'alert-success'
 		    ]);
 	}
+
+	
+	// public function makeRequestAdwords(Request $request) 
+	// {
+	// 	$keywords = json_decode($request->get('keywords'));
+	// 	$params = $request->get('params');
+	// 	$searchVolumes = collect();	
+	// 	$tab_keywords = array_chunk($keywords, 800);
+
+	// 	foreach ($tab_keywords as $tab_keyword) {
+	// 		$result = $this->launch_request_keyword($params, $tab_keyword);
+	// 		$searchVolumes[] = $result;
+	// 	}
+		
+	// 	//$searchVolumes = $this->launch_request_keyword($params, $keywords);
+
+	// 	// if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==0) {
+	// 	// 	$searchVolumes = \AdWords::location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords);
+	// 	// } else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==0) {
+	// 	// 	$searchVolumes = \AdWords::withTargetedMonthlySearches()->location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords);
+	// 	// } else if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==1) {
+	// 	// 	$searchVolumes = \AdWords::convertNullToZero()->location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords);
+	// 	// } else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==1) {
+	// 	// 	$searchVolumes = \AdWords::withTargetedMonthlySearches()->convertNullToZero()->location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords);
+	// 	// }
+
+    //     return response()->json([
+    //     	'status' => 'ok',
+    //     	'data' => $searchVolumes,
+    //     	'params' => $params,
+    //     	'keyword_param' => $keywords
+    //     ]);
+	// }
 
 	public function launch_request_keyword($params, $keywords) {
 		$searchVolumes = null;
@@ -198,5 +231,62 @@ class KeywordTrendsController extends Controller
         	'message' => 'Campaign not deleted successfully.'
         	]);
 		}
+	}
+
+	public function TrackSaveCampaign($campaign_id, Request $request){
+		//$campaign = Campaign::find($campaign_id);	
+		$locations = [];
+		$countries = Locations::where('parent_id', '')->orderBy('location_name', 'asc')->get();
+		$campaign = $this->keyword_trend_repository->getCampaignById($campaign_id);
+		// dd($campaign);
+		$area = $campaign->area->location_name;
+		$state = $campaign->area->parent->canonical_name;
+		$country = $campaign->area->parent->parent->canonical_name;
+		$language = $campaign->language->language_name;	
+		
+		$datas = $this->keyword_trend_repository->getKeywordByCampaignId($campaign_id);
+		$keywords_decode = json_decode($datas);
+
+		return view('admin.keyword_trends.tracksave_campaign')->with('campaign', $campaign)->with('countries', $countries)
+		->with('area', $area)->with('state', $state)->with('country', $country)->with('language', $language)->with('keywords_decode', $keywords_decode);
+	}
+	
+	public function makeRequestAdwordsTrackSave(Request $request){
+		$params = $request->get('params');
+		$campaign = null;
+		$campaign_id = $params['campaign_id'];
+		$datas = $this->keyword_trend_repository->getKeywordByCampaignId($campaign_id);
+		$keywords = [];
+		foreach($datas as $keyword){
+			$keywords[] = $keyword->keyword_name;
+		}
+		$searchVolumes = collect();
+		$tab_keywords = array_chunk($keywords, 800);
+
+		foreach ($tab_keywords as $tab_keyword) {
+			$result = $this->launch_request_keyword_decode($params, $tab_keyword);
+			$searchVolumes[] = $result;
+		}
+		$campaign = $this->keyword_trend_repository->updateKeywordByCampaignId($params, $searchVolumes);
+		return response()->json([
+
+        	'status' => 'ok',
+        	'data' => $searchVolumes,
+        	'params' => $params,
+        	'keyword_param' => $keywords
+        ]);
+	}
+	public function launch_request_keyword_decode($params, $keywords_decodes) {
+		$searchVolumes = null;
+		if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==0) {
+			$searchVolumes = \AdWords::location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords_decodes);
+		} else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==0) {
+			$searchVolumes = \AdWords::withTargetedMonthlySearches()->location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords_decodes);
+		} else if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==1) {
+			$searchVolumes = \AdWords::convertNullToZero()->location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords_decodes);
+		} else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==1) {
+			$searchVolumes = \AdWords::withTargetedMonthlySearches()->convertNullToZero()->location($params['area_id'])->language($params['language_id'])->searchVolumes($keywords_decodes);
+		}
+		return $searchVolumes;
 	}
 }

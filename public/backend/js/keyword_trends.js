@@ -8,7 +8,6 @@ var keyword_list = [];
 var keyword_duplicate_list = [];
 
 $(document).ready(function(){
-
   $("form#import-data").submit(function(e) {
       e.preventDefault();    
       var formData = new FormData(this);
@@ -59,24 +58,7 @@ $(document).ready(function(){
       if($('.keywords-list').hasClass('show'))
         $(this).html('Hide keywords list');
       else $(this).html('Show keywords list');
-
-     /*if($('.keywords-list').hasClass('hidden')) {
-         $('.keywords-list').removeClass('hidden');
-         $('#delete_keyword_in_list').removeClass('hidden');
-         $(this).html('Hide keywords list');
-     } else {
-         $('.keywords-list').addClass('hidden');
-         $('#delete_keyword_in_list').addClass('hidden');
-         $(this).html('Show keywords list');
-     }*/
-     
   });
-  
-  // $('#delete_keyword_in_list').on('click', function(){
-  //     $('.ckeck_keyword:checked').each(function () {
-  //       $(this).closest('tr').remove()
-  //     });
-  // });
   
   if ($('#delete_keyword_in_list').length > 0) {
         $('#delete_keyword_in_list').off('click');
@@ -119,8 +101,8 @@ $(document).ready(function(){
     
   $('input[name="import_file"]').change(function(e){
       $('.file_name').css('display', 'block');
-  		$('.file_name').html(e.target.files[0].name);
-  		$('button.import_files').css('display', 'block');
+      $('.file_name').html(e.target.files[0].name);
+      $('button.import_files').css('display', 'block');
   });
   
   $(document).on('click', '#btn_data_collection', function() {
@@ -129,7 +111,14 @@ $(document).ready(function(){
         $(this).addClass('request_done');
      }  
   });
-  
+
+  $(document).on('click', '#btn_data_collection_tracksave', function() {
+    if(!$(this).hasClass('request_done')){
+      launch_tracksave();
+       $(this).addClass('request_done');
+    }  
+  });
+
   $('#import_help').click(function(){
     $('.import_help').slideToggle();
   });
@@ -252,11 +241,10 @@ function post_duplicate(keyword_duplicate_list) {
     }
 }   
 
-function launch_request() { 
-
+function launch_request() {
   var params = {
     language_id: $('select[name="language_code"]').val(),
-    monthly_searches: $('input[name="monthly_searches"]').is( ":checked" ) ? 1 : 0,
+    monthly_searches: 1 ,
     country_id: $('select[name="country"]').val(),
     province_id: $('select[name="province"]').val(),
     area_id: $('select[name="area[]"]').val(),
@@ -264,10 +252,10 @@ function launch_request() {
     campaign_name: $('input[name="campaign_name"]').val(),
   };
 
-  /*var last_list_of_keyword = [];
+  var last_list_of_keyword = [];
   $('.one_keyword').each(function(index, el){
         last_list_of_keyword.push($(el).text());
-  });*/
+  });
   $.ajax({
     xhr: function() {
         var total = keyword_list.uniq().length;
@@ -299,6 +287,9 @@ function launch_request() {
         //}
         
       },
+  });
+  var interval = null; // interval used to stop setInterval
+  $.ajax({   
       type: 'POST',
       url: "make-request-adwords",
       data: {
@@ -307,21 +298,42 @@ function launch_request() {
             },
       dataType: 'json',
       beforeSend: function() {
-                    $.LoadingOverlay("show", { 'size': "10%", 'zIndex': 9999 });
-                },
+          $('.tab_form:last').removeClass('hidden');
+          $('.tab_form:last').slideDown('slow');
+          $('html,body').animate({scrollTop: document.body.scrollHeight},"fast");
+          var total = keyword_list.uniq().length;
+          var incr = 0;
+          interval = setInterval(function() {
+            var percent = (incr/parseInt(total))*100;
+            if(percent < 95) {
+              $('.bar').css({'width': percent + '%',
+                              'text-align': 'center'
+                          });
+              $('.bar').html(Math.ceil(percent) + ' %');
+            } 
+            
+            incr++;        
+          }, 50);            
+      },
       success: function(response){
         //save_data_collection(data);
         console.log('res',response);
         var campaign = response.campaign;
         var link = $('.link_result').attr('href');
         var full_link = link +'?campaign_id='+campaign.campaign_id;
-        $('.link_result').attr('href', full_link);
+        $('.link_result').attr('href', full_link).removeClass('disabled');
       },
       fail: function(xhr) {
           console.log(xhr.responseText);
       }
   }).always(function(){
-        $.LoadingOverlay("hide");
+        //$.LoadingOverlay("hide");
+        success = true;
+        clearInterval(interval);
+        $('.bar').css({'width': '100%',
+                        'text-align': 'center'
+                      });
+        $('.bar').html('100 %');
   });
 }
 
@@ -334,37 +346,89 @@ function paste_param() {
 }
  
 /*function save_data_collection(response) {
+=======
+
+/**
+ * *********************************************** JS TrackSave
+ */
+function launch_tracksave() {
+  var url_id = $('#btn_data_collection_tracksave').data("url");
   var params = {
     language_id: $('select[name="language_code"]').val(),
-    monthly_searches: $('input[name="monthly_searches"]').is( ":checked" ) ? 1 : 0,
+    monthly_searches: 1 ,
     country_id: $('select[name="country"]').val(),
     province_id: $('select[name="province"]').val(),
     area_id: $('select[name="area"]').val(),
     convert_null_to_zero: $('input[name="convert_null_to_zero"]').is( ":checked" ) ? 1 : 0,
     campaign_name: $('input[name="campaign_name"]').val(),
+    campaign_id : $('input[name="campaign_id"]').val()
   };
+ 
+  var incr = 0;
+  var success2 = false;
   
-  var data = {
-    params: params,
-    keywords_result: JSON.stringify(response)
-  };
-  
-  $.ajax({ 
-      url: 'save-data-collection',
+  $.ajax({
       type: 'POST',
+      url: url_id,
+      data: {
+              params: params
+            },
       dataType: 'json',
-      data: data,
-  })
-  .done(function(response) {
-    console.log(response);
-    var campaign = response.campaign;
-    var link = $('.link_result').attr('href');
-    var full_link = link +'?campaign_id='+campaign.campaign_id;
-    $('.link_result').attr('href', full_link);
-  })
-  .fail(function() {
+      beforeSend: function() {
+                   // $.LoadingOverlay("show", { 'size': "10%", 'zIndex': 9999 });
+                $('.tab_form:last').removeClass('hidden');
+                $('.tab_form:last').slideDown('slow');
+                $('html,body').animate({scrollTop: document.body.scrollHeight},"fast");
+                
+                var total = $('tr').length;
+                var incr = 0;
+                
+                interval = setInterval(function() {
+                  var percent = (incr/parseInt(total))*100;
+                  if(percent < 95 && success2==false) {
+                    $('.bar').css({'width': percent + '%',
+                                    'text-align': 'center'
+                                });
+                    $('.bar').html(Math.ceil(percent) + ' %');
+                  } else {
+                    return false;
+                  } 
+                  incr++;        
+                }, 50);            
+         
+    }, success: function(response){
+        //save_data_collection(data);
+        success2 = true;
+        var campaign = response.params;
+        var link = $('.link_result').attr('href');
+        var full_link = link +'?campaign_id='+campaign.campaign_id;
+        $('.link_result').attr('href', full_link).removeClass('disabled');
+        $('.bar').css({'width': 100 + '%',
+                                    'text-align': 'center'
+                                });
+        $('.bar').html(Math.ceil(100) + ' %');
+      },
+      fail: function(xhr) {
+          console.log(xhr.responseText);
+      }
+  }).always(function(){
+        //$.LoadingOverlay("hide");
   });
-}*/
+}
+/**
+ * ********************************* END JS TrackSave
+ */
+
+
+function paste_param() {
+  $('.campaign_name').html($('input[name="campaign_name"]').val());
+  $('.language_code').html($('select[name="language_code"] option:selected').text());
+  $('.monthly_searches').html($('input[name="monthly_searches"]').is( ":checked" ) ? 'yes' : 'no');
+  $('.convert_null_to_zero').html($('input[name="convert_null_to_zero"]').is( ":checked" ) ? 'yes' : 'no');
+  $('.location').html($('select[name="area"] option:selected').text());
+}
+ 
+
 
 function edit_keyword(box){
   $(box).closest('tr').find('.one_keyword').attr('contenteditable','true');

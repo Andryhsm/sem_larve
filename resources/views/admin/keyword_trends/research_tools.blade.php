@@ -183,18 +183,13 @@
                                   </div>
                               </div>
                               <div class="col-lg-6">
-                                  <div class="form-group flex_bottle">
+                                  <div class="form-group flex_bottle hidden">
                                       {!! Form::label('monthly_searches', 'Include monthly research', ['class' => 'col-sm-6 control-label']) !!}
                                       <div class="col-sm-6">
                                           {!! Form::checkbox('monthly_searches', null, false) !!}
                                       </div>
                                   </div>
-                                  <div class="form-group flex_bottle">
-                                      {!! Form::label('monthly_searches', 'Include search partner', ['class' => 'col-sm-6 control-label']) !!}
-                                      <div class="col-sm-6">
-                                          {!! Form::checkbox('monthly_searches', null, false) !!}
-                                      </div>
-                                  </div>
+                                  
                                   <div class="form-group flex_bottle">
                                       {!! Form::label('convert_null_to_zero', 'Convert NULL values to Zero', ['class' => 'col-sm-6 control-label']) !!}
                                       <div class="col-sm-6">
@@ -219,7 +214,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                    <span class="data_collect_notification pull-left"></span>
-                                   <a class="link_result btn btn-primary pull-right" href="{{ route('overview-list') }}">See the result</a>
+                                   <a class="link_result btn btn-primary disabled pull-right" href="{{ route('overview-list') }}">See the result</a>
                                </div>
                            </div>
                           
