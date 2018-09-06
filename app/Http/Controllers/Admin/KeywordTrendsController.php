@@ -166,23 +166,19 @@ class KeywordTrendsController extends Controller
             $keyword = '';
 
             for ($i=0; $i< sizeof($params['area_id']); $i++){
-                //for ($k=0; $k< sizeof($value1); $k++){
-                    $average_competition += $searchVolumes[$i][$j]->competition;
-                    $average_cpc += $searchVolumes[$i][$j]->cpc;
-                    $sum_search_volume += $searchVolumes[$i][$j]->search_volume;
-                    $keyword =  $searchVolumes[$i][$j]->keyword;
-                    $nb++;
-                }
+                $average_competition += $searchVolumes[$i][$j]->competition;
+                $average_cpc += $searchVolumes[$i][$j]->cpc;
+                $sum_search_volume += $searchVolumes[$i][$j]->search_volume;
+                $keyword =  $searchVolumes[$i][$j]->keyword;
+                $nb++;
+            }
             $average_competition = $average_competition / $nb;
             $average_cpc = $average_cpc / $nb;
             $resume_search_volume[$j]['keyword'] = $keyword;
             $resume_search_volume[$j]['competition'] = $average_competition;
             $resume_search_volume[$j]['cpc'] = $average_cpc;
             $resume_search_volume[$j]['search_volume'] = $sum_search_volume;
-            }
-
-
-
+        }
 
 		return $resume_search_volume;
 	}
