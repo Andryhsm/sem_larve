@@ -26,10 +26,15 @@ class DashboardController extends Controller
         $keyword_tracked = 0;
     	foreach ($campaigns as $key => $campaign) {
     		$keyword_number += $this->keyword_trend_repository->getKeywordNumberByCampaignId($campaign->campaign_id);
-            //$keyword_tracked += $this->keyword_trend_repository->getKeywordNumberTracked($campaign->campaign_id);
+            $keywords = $this->keyword_trend_repository->getKeywordByCampaignId($campaign->campaign_id);
+            foreach ($keywords as $keyword) {
+                $monthly_searches = explode('||', $keyword->target_monthly_search);
+                // Si la taille des monthly searches dépasse les 12 premiers mois, alors le keyword doit être sûrement tracké
+                if(count(array_filter($monthly_searches)) > 12) $keyword_tracked += 1;
+            }
     	}
     	$monthly_searches_analysed = $keyword_number * 24;
     	$last_campaigns = $this->keyword_trend_repository->getLastDataCollection($admin_id);
-    	return view('admin.dashboard.index', compact('data_collection_number', 'keyword_number', 'monthly_searches_analysed', 'last_campaigns'));
+    	return view('admin.dashboard.index', compact('data_collection_number', 'keyword_number', 'monthly_searches_analysed', 'keyword_tracked', 'last_campaigns'));
     }
 }
