@@ -141,22 +141,7 @@ class KeywordTrendsController extends Controller
 	public function launch_request_keyword($params, $keywords) {
 		$searchVolumes = null;
         foreach ($params['area_id'] as $key=>$value) {
-            if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==0) {
-                $searchVolumes[] = \AdWords::location((string)$value)->language($params['language_id'])->searchVolumes($keywords);
-
-            } else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==0) {
-                $searchVolumes[] = \AdWords::withTargetedMonthlySearches()->location((string)$value)->language($params['language_id'])->searchVolumes($keywords);
-                //\Log::debug($searchVolumes);
-
-
-            } else if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==1) {
-                $searchVolumes[] = \AdWords::convertNullToZero()->location((string)$value)->language($params['language_id'])->searchVolumes($keywords);
-
-
-            } else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==1) {
-                $searchVolumes[] = \AdWords::withTargetedMonthlySearches((string)$value)->convertNullToZero()->location('1002491')->language($params['language_id'])->searchVolumes($keywords);
-            }
-
+            $searchVolumes[] = \AdWords::withTargetedMonthlySearches()->location((string)$value)->language($params['language_id'])->searchVolumes($keywords);
         }
         $resume_search_volume = null;
         $monthly_searches = null;
