@@ -6,15 +6,8 @@ class ConfigHandler
 {
     public function userField()
     {
-        return auth()->guard('admin')->user()->id;
-    }
-
-    public function baseDirectory(){
-        //if(auth()->user()->user_type !== "S"){
-        //    return 'public/'.auth()->guard('admin')->user()->id;
-        // }
-        // else{
-             return 'public/';
-        // }
+    	$user = auth()->guard('admin')->user();
+    	$folder_name = $user->admin_id.' '.$user->first_name.' '.$user->last_name;
+        return $folder_name;
     }
 }

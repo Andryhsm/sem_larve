@@ -76,16 +76,16 @@ $(document).ready(function(){
         });
     }
     
-  $('#keyword_trend_form input').on('keyup change', function(e) {
+  $('#keyword_trend_form .required').on('keyup change', function(e) {
       var valid = true;
       $('.required').each( function(i, el) {
         if( $(el).val() == '' ) valid = false;
       });
-     if(valid && keyword_list.length > 0){  
+     if(valid && keyword_list.length > 0){
        $('#btn_data_collection').removeAttr('disabled');
      }else{
        $('#btn_data_collection').attr('disabled',true);
-     } 
+     }
   });
   
   $('.ckeck_all_keyword').click(function(){
@@ -151,9 +151,10 @@ $(document).ready(function(){
       } else {
         if(states.length > 0) { 
 
-            var content = '<label class="col-sm-4 control-label">Area</label>'+
+            var content = '<label class="col-sm-4 control-label">' +
+                '</label>'+
                                               '<div class="col-sm-8">' +
-                                                  '<select name="area" class="form-control required select-state">';
+                                                  '<select name="area[]" multiple size="10" class="form-control required select-state">';
                 content +=                        '<option disabled="">Select a value</option>';
                 var selected = 'selected';
                 for (var i = 0; i < states.length; i++) {
@@ -249,7 +250,7 @@ function launch_request() {
     monthly_searches: 1 ,
     country_id: $('select[name="country"]').val(),
     province_id: $('select[name="province"]').val(),
-    area_id: $('select[name="area"]').val(),
+    area_id: $('select[name="area[]"]').val(),
     convert_null_to_zero: $('input[name="convert_null_to_zero"]').is( ":checked" ) ? 1 : 0,
     campaign_name: $('input[name="campaign_name"]').val(),
   };
@@ -257,6 +258,38 @@ function launch_request() {
   var last_list_of_keyword = [];
   $('.one_keyword').each(function(index, el){
         last_list_of_keyword.push($(el).text());
+  });
+  $.ajax({
+    xhr: function() {
+        var total = keyword_list.uniq().length;
+        //for(var i=0; i<total; i++) {
+          var xhr = new window.XMLHttpRequest();
+  
+          // Upload progress
+          xhr.upload.onprogress = function (evt) {
+              if (evt.lengthComputable) {
+                var percentComplete = (evt.loaded / evt.total) * 100;
+                console.log(percentComplete);
+
+                $('.tab_form:last').removeClass('hidden');
+                $('.tab_form:last').slideDown('slow');
+                              
+                    var loaded = (total * percentComplete) / 100;
+                    $('.bar').css({'width': percentComplete + '%',
+                                    'text-align': 'center'
+                                });
+                    $('.bar').html(percentComplete + ' %');
+                    $('.progress_stat').html(parseInt(loaded) + ' keywords / ' + total + ' done');
+                }
+                
+                //  $('.data_collect_notification').html(' Data collection saved.');
+            
+          }
+            
+          return xhr;
+        //}
+        
+      },
   });
   var interval = null; // interval used to stop setInterval
   $.ajax({   
@@ -287,7 +320,7 @@ function launch_request() {
       },
       success: function(response){
         //save_data_collection(data);
-        console.log(response);
+        console.log('res',response);
         var campaign = response.campaign;
         var link = $('.link_result').attr('href');
         var full_link = link +'?campaign_id='+campaign.campaign_id;
@@ -307,6 +340,16 @@ function launch_request() {
   });
 }
 
+function paste_param() {
+  $('.campaign_name').html($('input[name="campaign_name"]').val());
+  $('.language_code').html($('select[name="language_code"] option:selected').text());
+  $('.monthly_searches').html($('input[name="monthly_searches"]').is( ":checked" ) ? 'yes' : 'no');
+  $('.convert_null_to_zero').html($('input[name="convert_null_to_zero"]').is( ":checked" ) ? 'yes' : 'no');
+  $('.location').html($('select[name="area[]"] option:selected').text());
+}
+ 
+/*function save_data_collection(response) {
+=======
 
 /**
  * *********************************************** JS TrackSave

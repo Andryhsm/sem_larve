@@ -132,7 +132,7 @@
                                   <div class="form-group flex_bottle content-select-state">
                                       <label class="col-sm-4 control-label">Area</label>
                                       <div class="col-sm-8">
-                                          <select name="area" data-type="province" data-url="{!! route('get_states_partner') !!}" class="form-control required select-location select-province">
+                                          <select name="area[]" autocomplete="off" multiple size="10" data-type="province" data-url="{!! route('get_states_partner') !!}" class="form-control required select-location select-province">
                                             <option disabled="" selected="">Select a value</option>
                                           </select>
                                       </div>

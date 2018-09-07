@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Locations;
 use Illuminate\Database\Eloquent\Model;
 
 class Campaign extends Model
@@ -27,9 +28,13 @@ class Campaign extends Model
 		return $this->hasOne(Language::class,'criteron_id','language_id');
 	}
 
+	public function locations() {
+        return $this->belongsToMany(Locations::class, 'campaign_locations', 'criteria_id', 'campaign_id');
+    }
+
 	public function piecekeyword()
 	{
 		return $this->hasOne(Keyword::class,'campaign_id', 'campaign_id');
 	}
-	
+
 }

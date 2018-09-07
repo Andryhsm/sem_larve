@@ -15,4 +15,5 @@ class Location extends Model
 		return $this->hasOne(Location::class, 'criteria_id', 'parent_id');
 	}
 
+
 }
