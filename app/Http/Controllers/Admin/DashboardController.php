@@ -28,9 +28,13 @@ class DashboardController extends Controller
     		$keyword_number += $this->keyword_trend_repository->getKeywordNumberByCampaignId($campaign->campaign_id);
             $keywords = $this->keyword_trend_repository->getKeywordByCampaignId($campaign->campaign_id);
             foreach ($keywords as $keyword) {
-                $monthly_searches = explode('||', $keyword->target_monthly_search);
-                // Si la taille des monthly searches dépasse les 12 premiers mois, alors le keyword doit être sûrement tracké
-                if(count(array_filter($monthly_searches)) > 12) $keyword_tracked += 1;
+                $target_monthly = $keyword->target_monthly_search;
+                if($target_monthly != null && $target_monthly != '') {
+                    $target_monthly = explode('||', $target_monthly);
+                    $last_month = explode(';', $target_monthly[0]);
+                    if (\Carbon\Carbon::now()->month <= (int)$last_month[1])
+                        $keyword_tracked += 1;
+                }
             }
     	}
     	$monthly_searches_analysed = $keyword_number * 24;
