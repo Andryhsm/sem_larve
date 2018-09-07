@@ -42,6 +42,9 @@ $(document).ready(function(){
                         '<span aria-hidden="true">&times;</span>'+
                       '</button>'+
                     '</div>');
+
+              $('button.import_files').addClass('hidden');
+
               $.LoadingOverlay("hide");
           },
           cache: false,
@@ -102,7 +105,7 @@ $(document).ready(function(){
   $('input[name="import_file"]').change(function(e){
       $('.file_name').css('display', 'block');
       $('.file_name').html(e.target.files[0].name);
-      $('button.import_files').css('display', 'block');
+      if($('button.import_files').hasClass('hidden')) $('button.import_files').removeClass('hidden');
   });
   
   $(document).on('click', '#btn_data_collection', function() {

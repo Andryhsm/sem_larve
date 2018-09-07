@@ -45,10 +45,11 @@ class KeywordTrendsController extends Controller
     	return view('admin.keyword_trends.data_collections',compact('campaigns'));
     }
     
-    public function importExcel()
+    public function importExcel(Request $request)
 	{
 		$keyword = "";
 		$insert = [];
+		$use_first_line = $request->get('use_first_line');
 		if(Input::hasFile('import_file')){
 			    $path = Input::file('import_file')->getRealPath();
 			    $original_name = Input::file('import_file')->getClientOriginalName();
@@ -62,11 +63,17 @@ class KeywordTrendsController extends Controller
 			    $data = Excel::load($path, function($reader) {})->get();
 			if(!empty($data) && $data->count()){
 			    $keyword = $data[0]->keys()[0];
-			    
-				foreach ($data as $key => $value) {
+			    ($use_first_line == 'on') ? $i = 1 : $i = 0;
+			    for( ; $i < sizeof($data) ; $i++) {
+			    	\Log::debug($i);
+			    	if($data[$i]->$keyword != false)
+						$insert[] = $data[$i]->$keyword;
+			    }
+			    \Log::debug($insert);
+				/*foreach ($data as $key => $value) {
 					if($value->$keyword != false)
 						$insert[] = $value->$keyword;
-				}
+				}*/
 				
 			} else {
 		        return response()->json([

@@ -14,7 +14,7 @@
                             </div>
                             <h3>Keywords import</h3>
                         		<form id="import-data" action="{{ route('import_excel_partner') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
-                        			<div class="col-lg-10 import_label">
+                        			<div class="col-lg-7 import_label">
                         			    <label for="import_file" class="custom_import_file">
                                             <i class="fa fa-download"></i>
                                             Choose file to import (csv or Excel)
@@ -26,11 +26,21 @@
                         			    <p class="file_name"></p>
                         			   <div class="import_help">
                         			        <p>Import an Excel or CSV file with one column. </p> 
-                                            <p>First Row/description will not be imported. </p>
+                                      <p>First Row/description will not be imported. </p>
+                                      <p>Check / Uncheck "Use first column" to include or not the first column</p>
                         			    </div>
                         			</div>
+                              <div class="col-lg-3">
+                                <div class="form-group inline_flex_bottle">
+                                  <div class="" style="width: 40px;margin-left: 15px;">
+                                      <input name="use_first_line" type="checkbox" id="use_first_line">
+                                  </div>
+                                  <label for="use_first_line" class="control-label" style="padding-top: 0px;margin-bottom: 5px;">Use first column</label>
+                                    
+                                </div>
+                              </div>
                         			<div class="col-lg-2">
-                        			    <button class="btn btn-primary import_files" type="submit" style="margin-top:2.5%;">Import File</button>
+                        			    <button class="btn btn-primary import_files hidden" type="submit" style="margin-top:2.5%;">Import File</button>
                         			</div>
                         		</form>
                           </div>
