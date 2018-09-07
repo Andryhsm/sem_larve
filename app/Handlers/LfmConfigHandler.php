@@ -6,6 +6,6 @@ class LfmConfigHandler extends \UniSharp\LaravelFilemanager\Handlers\ConfigHandl
 {
     public function userField()
     {
-       return auth()->guard('admin')->user()->id;
+        return auth()->guard('admin')->user()->id;
     }
 }
