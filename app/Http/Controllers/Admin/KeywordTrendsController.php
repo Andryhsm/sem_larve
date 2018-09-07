@@ -66,11 +66,10 @@ class KeywordTrendsController extends Controller
 			    $keyword = $data[0]->keys()[0];
 			    ($use_first_line == 'on') ? $i = 1 : $i = 0;
 			    for( ; $i < sizeof($data) ; $i++) {
-			    	\Log::debug($i);
 			    	if($data[$i]->$keyword != false)
 						$insert[] = $data[$i]->$keyword;
 			    }
-			    \Log::debug($insert);
+			    
 				/*foreach ($data as $key => $value) {
 					if($value->$keyword != false)
 						$insert[] = $value->$keyword;
