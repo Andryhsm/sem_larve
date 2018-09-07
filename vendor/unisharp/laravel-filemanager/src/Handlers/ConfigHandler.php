@@ -6,6 +6,8 @@ class ConfigHandler
 {
     public function userField()
     {
-        return auth()->guard('admin')->user()->id;
+    	$user = auth()->guard('admin')->user();
+    	$folder_name = $user->admin_id.' '.$user->first_name.' '.$user->last_name;
+        return $folder_name;
     }
 }

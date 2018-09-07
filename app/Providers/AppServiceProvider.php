@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
           'recaptcha',
           'App\\Validators\\Recaptcha@validate'
         );
+
     }
 
     /**
