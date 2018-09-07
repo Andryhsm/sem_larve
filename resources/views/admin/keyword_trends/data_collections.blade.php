@@ -32,16 +32,17 @@
                                     <tbody>
                                         @if(count($campaigns)>0)
                                         @foreach($campaigns as $campaign)
-                                        <?php 
-                                            $disabled = '';
-                                            $target_monthly = $campaign->piecekeyword->target_monthly_search;
-                                            if($target_monthly != null && $target_monthly != '') {
-                                                $target_monthly = explode('||', $target_monthly);
-                                                $last_month = explode(';', $target_monthly[0]);
-                                                if ((\Carbon\Carbon::now()->month-1) == (int)$last_month[1])
-                                                    $disabled = 'disabled';
+                                        <?php
+                                            if(isset($campaign->piecekeyword->target_monthly_search)) {
+                                                $disabled = '';
+                                                $target_monthly = $campaign->piecekeyword->target_monthly_search;
+                                                if($target_monthly != null && $target_monthly != '') {
+                                                    $target_monthly = explode('||', $target_monthly);
+                                                    $last_month = explode(';', $target_monthly[0]);
+                                                    if ((\Carbon\Carbon::now()->month-1) == (int)$last_month[1])
+                                                        $disabled = 'disabled';
+                                                }
                                             }
-
                                          ?>
                                         <tr>
                                             <td>{!! $campaign->campaign_name !!}</td>
