@@ -8,7 +8,6 @@ var keyword_list = [];
 var keyword_duplicate_list = [];
 
 $(document).ready(function(){
-
   $("form#import-data").submit(function(e) {
       e.preventDefault();    
       var formData = new FormData(this);
@@ -59,24 +58,7 @@ $(document).ready(function(){
       if($('.keywords-list').hasClass('show'))
         $(this).html('Hide keywords list');
       else $(this).html('Show keywords list');
-
-     /*if($('.keywords-list').hasClass('hidden')) {
-         $('.keywords-list').removeClass('hidden');
-         $('#delete_keyword_in_list').removeClass('hidden');
-         $(this).html('Hide keywords list');
-     } else {
-         $('.keywords-list').addClass('hidden');
-         $('#delete_keyword_in_list').addClass('hidden');
-         $(this).html('Show keywords list');
-     }*/
-     
   });
-  
-  // $('#delete_keyword_in_list').on('click', function(){
-  //     $('.ckeck_keyword:checked').each(function () {
-  //       $(this).closest('tr').remove()
-  //     });
-  // });
   
   if ($('#delete_keyword_in_list').length > 0) {
         $('#delete_keyword_in_list').off('click');
@@ -119,8 +101,8 @@ $(document).ready(function(){
     
   $('input[name="import_file"]').change(function(e){
       $('.file_name').css('display', 'block');
-  		$('.file_name').html(e.target.files[0].name);
-  		$('button.import_files').css('display', 'block');
+      $('.file_name').html(e.target.files[0].name);
+      $('button.import_files').css('display', 'block');
   });
   
   $(document).on('click', '#btn_data_collection', function() {
@@ -273,22 +255,6 @@ function launch_request() {
   $('.one_keyword').each(function(index, el){
         last_list_of_keyword.push($(el).text());
   });
-/*  var incr = 0;
-  var success = false;
-  function recursive() {
-    setTimeout(function(){
-       var total = keyword_list.uniq().length;
-      // var item = para.res[i];
-       var percent = (incr/parseInt(total))*100;
-       $('.bar').css({'width': percent + '%',
-                                      'text-align': 'center'
-                                  });
-       $('.bar').html(Math.ceil(percent) + ' %');
-       // do something
-       incr++;        
-       if (incr < total && success==false) recursive()
-    }, 200)
-  }*/
   var interval = null; // interval used to stop setInterval
   $.ajax({   
       type: 'POST',
@@ -354,10 +320,7 @@ function launch_tracksave() {
     campaign_name: $('input[name="campaign_name"]').val(),
     campaign_id : $('input[name="campaign_id"]').val()
   };
-  /*var last_list_of_keyword = [];
-  $('.one_keyword').each(function(index, el){
-        last_list_of_keyword.push($(el).text());
-  });*/
+ 
   var incr = 0;
   var success2 = false;
   
@@ -422,38 +385,7 @@ function paste_param() {
   $('.location').html($('select[name="area"] option:selected').text());
 }
  
-/*function save_data_collection(response) {
-  var params = {
-    language_id: $('select[name="language_code"]').val(),
-    monthly_searches: $('input[name="monthly_searches"]').is( ":checked" ) ? 1 : 0,
-    country_id: $('select[name="country"]').val(),
-    province_id: $('select[name="province"]').val(),
-    area_id: $('select[name="area"]').val(),
-    convert_null_to_zero: $('input[name="convert_null_to_zero"]').is( ":checked" ) ? 1 : 0,
-    campaign_name: $('input[name="campaign_name"]').val(),
-  };
-  
-  var data = {
-    params: params,
-    keywords_result: JSON.stringify(response)
-  };
-  
-  $.ajax({ 
-      url: 'save-data-collection',
-      type: 'POST',
-      dataType: 'json',
-      data: data,
-  })
-  .done(function(response) {
-    console.log(response);
-    var campaign = response.campaign;
-    var link = $('.link_result').attr('href');
-    var full_link = link +'?campaign_id='+campaign.campaign_id;
-    $('.link_result').attr('href', full_link);
-  })
-  .fail(function() {
-  });
-}*/
+
 
 function edit_keyword(box){
   $(box).closest('tr').find('.one_keyword').attr('contenteditable','true');

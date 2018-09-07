@@ -49,7 +49,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Keywords Tracked</span>
-                            <span class="info-box-number">00</span>
+                            <span class="info-box-number">{{ $keyword_tracked }}</span>
                         </div>
                     </div>
                 </div>
