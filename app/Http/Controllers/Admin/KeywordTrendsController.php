@@ -134,36 +134,36 @@ class KeywordTrendsController extends Controller
 
 	public function launch_request_keyword($params, $keywords) {
 		$searchVolumes = null;
-        \Log::debug(sizeof($params['area_id']));
         foreach ($params['area_id'] as $key=>$value) {
-            \Log::debug($value);
             if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==0) {
-                $searchVolumes[] = \AdWords::location("".$value)->language($params['language_id'])->searchVolumes($keywords);
+                $searchVolumes[] = \AdWords::location((string)$value)->language($params['language_id'])->searchVolumes($keywords);
 
             } else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==0) {
-                $searchVolumes[] = \AdWords::withTargetedMonthlySearches()->location("".$value)->language($params['language_id'])->searchVolumes($keywords);
-                Log::info('/////////////////////////////////////////////////');
+                $searchVolumes[] = \AdWords::withTargetedMonthlySearches()->location((string)$value)->language($params['language_id'])->searchVolumes($keywords);
                 //\Log::debug($searchVolumes);
 
-                Log::info('/////////////////////////////////////////////////');
 
             } else if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==1) {
-                $searchVolumes[] = \AdWords::convertNullToZero()->location("".$value)->language($params['language_id'])->searchVolumes($keywords);
+                $searchVolumes[] = \AdWords::convertNullToZero()->location((string)$value)->language($params['language_id'])->searchVolumes($keywords);
 
 
             } else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==1) {
-                $searchVolumes[] = \AdWords::withTargetedMonthlySearches()->convertNullToZero()->location("".$value)->language($params['language_id'])->searchVolumes($keywords);
+                $searchVolumes[] = \AdWords::withTargetedMonthlySearches((string)$value)->convertNullToZero()->location('1002491')->language($params['language_id'])->searchVolumes($keywords);
             }
 
         }
         $resume_search_volume = null;
+        $monthly_searches = null;
         for($j = 0 ; $j< sizeof($keywords); $j++) {
             $nb = 0;
             $average_competition = 0;
             $average_cpc = 0;
             $sum_search_volume = 0;
-
+            $count = 0;
             $keyword = '';
+            $year = 0;
+            $month = 0;
+            $index = 0;
 
             for ($i=0; $i< sizeof($params['area_id']); $i++){
                 $average_competition += $searchVolumes[$i][$j]->competition;
@@ -171,6 +171,27 @@ class KeywordTrendsController extends Controller
                 $sum_search_volume += $searchVolumes[$i][$j]->search_volume;
                 $keyword =  $searchVolumes[$i][$j]->keyword;
                 $nb++;
+
+            }
+
+            for ($k=0; $k<12; $k++){
+                $count = 0;
+                for ($l=0; $l< sizeof($params['area_id']); $l++){
+                    if ( $searchVolumes[$l][$j]->targeted_monthly_searches  != null) {
+                        if ($searchVolumes[$l][$j]->targeted_monthly_searches[$k]['count'] == null ){
+                            $index = 0;
+                        }else {
+                            $index = $searchVolumes[$l][$j]->targeted_monthly_searches[$k]['count'];
+                        }
+                    }
+
+                    $count +=  $index;
+                    $month = $searchVolumes[$l][$j]->targeted_monthly_searches[$k]['month'];
+                    $year = $searchVolumes[$l][$j]->targeted_monthly_searches[$k]['year'];
+                }
+                $monthly_searches[$k]['year'] = $year;
+                $monthly_searches[$k]['month'] = $month;
+                $monthly_searches[$k]['count'] = $count;
             }
             $average_competition = $average_competition / $nb;
             $average_cpc = $average_cpc / $nb;
@@ -178,7 +199,9 @@ class KeywordTrendsController extends Controller
             $resume_search_volume[$j]['competition'] = $average_competition;
             $resume_search_volume[$j]['cpc'] = $average_cpc;
             $resume_search_volume[$j]['search_volume'] = $sum_search_volume;
+            $resume_search_volume[$j]['targeted_monthly_searches'] = $monthly_searches;
         }
+
 
 		return $resume_search_volume;
 	}
