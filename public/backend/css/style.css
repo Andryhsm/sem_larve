@@ -465,6 +465,9 @@ a .fa-angle-down {
   clear: both;
   display: flex;
 }
+.inline_flex_bottle {
+    display: inline-flex;
+}
 .file_name, .import_help {
     display: none;
     padding: 15px 50px;
@@ -480,9 +483,9 @@ a .fa-angle-down {
     background: lightblue;
 }
 button.import_files {
-    display: none;
     transition: all 1s ease-in-out;
 }
+
 .notifying {
   	/*width: 300px;
     padding: 20px 20px;
