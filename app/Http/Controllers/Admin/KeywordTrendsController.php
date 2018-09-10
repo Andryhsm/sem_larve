@@ -46,10 +46,11 @@ class KeywordTrendsController extends Controller
     	return view('admin.keyword_trends.data_collections',compact('campaigns'));
     }
     
-    public function importExcel()
+    public function importExcel(Request $request)
 	{
 		$keyword = "";
 		$insert = [];
+		$use_first_line = $request->get('use_first_line');
 		if(Input::hasFile('import_file')){
 			    $path = Input::file('import_file')->getRealPath();
 			    $original_name = Input::file('import_file')->getClientOriginalName();
@@ -63,11 +64,16 @@ class KeywordTrendsController extends Controller
 			    $data = Excel::load($path, function($reader) {})->get();
 			if(!empty($data) && $data->count()){
 			    $keyword = $data[0]->keys()[0];
+			    ($use_first_line == 'on') ? $i = 1 : $i = 0;
+			    for( ; $i < sizeof($data) ; $i++) {
+			    	if($data[$i]->$keyword != false)
+						$insert[] = $data[$i]->$keyword;
+			    }
 			    
-				foreach ($data as $key => $value) {
+				/*foreach ($data as $key => $value) {
 					if($value->$keyword != false)
 						$insert[] = $value->$keyword;
-				}
+				}*/
 				
 			} else {
 		        return response()->json([
@@ -135,22 +141,7 @@ class KeywordTrendsController extends Controller
 	public function launch_request_keyword($params, $keywords) {
 		$searchVolumes = null;
         foreach ($params['area_id'] as $key=>$value) {
-            if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==0) {
-                $searchVolumes[] = \AdWords::location((string)$value)->language($params['language_id'])->searchVolumes($keywords);
-
-            } else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==0) {
-                $searchVolumes[] = \AdWords::withTargetedMonthlySearches()->location((string)$value)->language($params['language_id'])->searchVolumes($keywords);
-                //\Log::debug($searchVolumes);
-
-
-            } else if($params['monthly_searches'] == 0 && $params['convert_null_to_zero'] ==1) {
-                $searchVolumes[] = \AdWords::convertNullToZero()->location((string)$value)->language($params['language_id'])->searchVolumes($keywords);
-
-
-            } else if($params['monthly_searches'] == 1 && $params['convert_null_to_zero'] ==1) {
-                $searchVolumes[] = \AdWords::withTargetedMonthlySearches((string)$value)->convertNullToZero()->location('1002491')->language($params['language_id'])->searchVolumes($keywords);
-            }
-
+            $searchVolumes[] = \AdWords::withTargetedMonthlySearches()->location((string)$value)->language($params['language_id'])->searchVolumes($keywords);
         }
         $resume_search_volume = null;
         $monthly_searches = null;
